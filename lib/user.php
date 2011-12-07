@@ -110,7 +110,6 @@ class PL_User{
 	        placester_send_request(self::$placester_api_url, self::$placester_api_request, 'PUT');
 
 		} else {
-			self::
 
 		}
 	}
