@@ -1,0 +1,8 @@
+.pl_ui.alert {
+    position: relative;
+}
+.pl_ui.alert .close_btn {
+    position: absolute;
+    right: 10px;
+    top: 7px;
+}

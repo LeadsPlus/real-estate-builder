@@ -1,0 +1,68 @@
+/* Shortcode styles*/
+/* use wp_deregister_style('shortcodes') to stop including it*/
+
+/* @group Clearfix */
+.clearfix:before, .clearfix:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
+.clearfix:after { clear: both; }
+/* Fix clearfix: blueprintcss.lighthouseapp.com/projects/15318/tickets/5-extra-margin-padding-bottom-of-page */
+.clearfix { zoom: 1; }
+/* @end */
+
+.placester_search_results ul.item-list {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+.placester_search_results .single-item { 
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+	border-bottom:1px solid #ddd;
+	}
+.placester_search_results .single-item > * { 
+	float: left;
+	}
+.placester_search_results .single-item .thumbs { 
+	width: 100px;
+	margin-right: 10px;
+	}
+.placester_search_results .single-item .thumbs a { 
+	display: block;
+	margin: 0;
+	}
+
+.placester_search_results .item-list ul.item-details { 
+	width:  500px;
+	line-height: 1.3;
+	margin: 0;
+    padding: 0;
+    list-style-type: none;
+    font-size: 0.9em;
+	}
+.placester_search_results .item-list ul.item-details li { 
+	float: left;
+	width: 200px;
+	}
+.placester_search_results .item-list .single-item .feat-title { 
+	display: block;
+	margin-bottom: 10px;
+	}
+.placester_search_results a.seemore { 
+	display: block;
+	font-size: 0.9em;
+	margin-top: 7px;
+	}
+.placester_search_results .sort-by { 
+	float: left;
+	margin-right: 5px;
+	}
+.placester_search_results .Prev_buttom { 
+	float: left;
+	}
+.placester_search_results .Next_button { 
+	float: right;
+	}
+
+.map #placester_listings_map_map {
+    width: 620px;
+    height: 250px;
+}

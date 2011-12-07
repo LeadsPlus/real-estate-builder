@@ -1,0 +1,19 @@
+.side-ctnr.pl_favorite_properties ul {
+    list-style-type: none;
+    list-style: none;
+    margin: 0;
+}
+
+.side-ctnr.pl_favorite_properties ul li {
+    border-bottom: 1px solid #ddd;
+    padding: 5px 0;
+}
+
+.side-ctnr.pl_favorite_properties .pl_remove {
+    display: block;
+    float: right;
+}
+.side-ctnr.pl_favorite_properties .pl_spinner {
+    float: right;
+    margin-right: 5px;
+}

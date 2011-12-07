@@ -1,0 +1,7 @@
+*.git*
+deploy.sh
+docs
+.DS_Store
+*.sw*
+README.markdown
+api_shortcodes.php

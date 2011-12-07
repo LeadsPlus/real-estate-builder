@@ -1,0 +1,89 @@
+.side-ctnr.placester_contact label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 13px;
+}
+ 
+ .side-ctnr.placester_contact input[type="text"], .side-ctnr.placester_contact input[type="email"], .side-ctnr.placester_contact textarea {
+    width: 200px;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    color: #444;
+}       
+ 
+ .side-ctnr.placester_contact input[type="submit"]{
+     display: inline-block;
+     outline: none;
+     cursor: pointer;
+     text-align: center;
+     text-decoration: none;
+     font: 14px/100% Arial, Helvetica, sans-serif;
+     padding: .5em 2em .55em;
+     text-shadow: 0 1px 1px rgba(0,0,0,.3);
+     -webkit-border-radius: .5em; 
+     -moz-border-radius: .5em;
+     border-radius: .5em;
+     -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+     box-shadow: 0 1px 2px rgba(0,0,0,.2);
+
+    float: left;
+	color: #fef4e9;
+	border: solid 1px #333;
+	background: #444;
+	background: -webkit-gradient(linear, left top, left bottom, from(#777), to(#444));
+	background: -moz-linear-gradient(top,  #777,  #444);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#777', endColorstr='#444');
+
+ }
+ .side-ctnr.placester_contact input[type="submit"]:hover {
+     text-decoration: none;
+background: #777;
+	background: -webkit-gradient(linear, left top, left bottom, from(#888), to(#555));
+	background: -moz-linear-gradient(top,  #888,  #555);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#888', endColorstr='#555');
+}
+
+ .side-ctnr.placester_contact input[type="submit"]:active {
+     position: relative;
+     top: 1px;
+
+background: #777;
+	background: -webkit-gradient(linear, left top, left bottom, from(#555), to(#888));
+	background: -moz-linear-gradient(top,  #555,  #888);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#555', endColorstr='#888');
+
+ }
+ .side-ctnr.placester_contact textarea {
+    width: 250px;
+}       
+  
+
+.side-ctnr.placester_contact .placester_loading {
+    float: left;
+    background: url('../images/loader.gif') no-repeat center center;
+    margin: 0 0 0 120px;
+    width: 32px;
+    height: 32px;
+    border-radius: 5px;
+	display: none;
+}
+.side-ctnr.placester_contact .msg { 
+    display: none;
+    font-size: 13px;
+    line-height: 20px;
+    padding: 5px 10px;
+    border: 1px solid #000;
+    border-left: 0;
+    border-right: 0;
+    margin-top: 10px;
+ }
+ .side-ctnr.placester_contact .success { 
+    color: green;
+    border-color: green;
+ }
+ .side-ctnr.placester_contact .error { 
+    color: #DE4826;
+    border-color: #DE4826;
+ }
