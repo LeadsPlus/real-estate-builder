@@ -38,7 +38,10 @@ include_once( 'admin/widgets.php' );
 include_once( 'core/shortcodes.php');
 include_once( 'core/leads.php' );
 include_once( 'core/membership.php' );
+//sanity starts here. 
 include_once( 'lib/debug.php' );
+include_once( 'lib/user.php' );
+include_once( 'lib/company.php' );
 
 
 register_activation_hook( __FILE__, 'placester_activate' );
