@@ -28,9 +28,6 @@ function placester_admin_menu() {
     $submenu['placester'] = array();
 
     add_submenu_page( 'placester', '', 
-        'Dashboard', 'edit_pages', 'placester_dashboard', 
-        'placester_admin_dashboard_html' );
-    add_submenu_page( 'placester', '', 
         'My Listings', 'edit_pages', 'placester_properties', 
         'placester_admin_properties_html' );
     add_submenu_page( 'placester', '', 
@@ -170,19 +167,6 @@ function update_theme_alert() {
 
 require ( 'leads.php' );
 require( 'leads_ajax.php' );
-
-/**
- * Admin menu
- */
-
-/**
- * Admin menu - "dashboard" page
- */
-function placester_admin_dashboard_html() {
-    require( 'dashboard.php' );
-}
-
-
 
 /**
  * Admin menu - "dashboard" page, on-load handler
