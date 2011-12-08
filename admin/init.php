@@ -760,11 +760,7 @@ function placester_info_message( $e ) {
  * @param string $message
  */
 function placester_success_message( $message ) {
-    ?>
-    <div class="updated">
-      <p><?php echo $message; ?></p>
-    </div>
-    <?php
+    placester_warning_message($message);
 }
 
 

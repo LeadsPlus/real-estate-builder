@@ -239,8 +239,8 @@ if (array_key_exists('apply', $_POST))
 
 ?>
 <div class="wrap">
-  <?php placester_admin_header('placester_settings') ?>
   <?php if (isset($show_success_message)) { placester_success_message("Your settings have been successfully saved"); } ?>
+  <?php placester_admin_header('placester_settings') ?>
   <form method="post" action="admin.php?page=placester_settings" id="placester_form">
     <?php placester_postbox_container_header(); ?>
 

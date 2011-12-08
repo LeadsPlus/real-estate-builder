@@ -84,9 +84,13 @@ else
 
 }
 
-if ($view_success)
+if ($view_success) {
     placester_success_message('Data has been changed');
-if (strlen($error_message) > 0)
-    placester_error_message($error_message);
+}
+    
+if (strlen($error_message) > 0) {
+    placester_error_message($error_message);    
+}
+    
 
 details($company, $user, $error_validation_data);
