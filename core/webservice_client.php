@@ -4,44 +4,6 @@
  * Web service interface with placester remote properties storage
  */
 
-/*
-response structure:
-
-object(stdClass)[163]
-  'half_baths' => int 0
-  'price' => float 1250
-  'bedrooms' => int 2
-  'location' => 
-    object(stdClass)[143]
-      'address' => string '131 Marion St' (length=13)
-      'city' => string 'East Boston' (length=11)
-      'zip' => string '02128' (length=5)
-      'unit' => string '1' (length=1)
-      'state' => string 'MA' (length=2)
-      'coords' => 
-        object(stdClass)[142]
-          'latitude' => float 42.376889
-          'longitude' => float -71.036665
-  'available_on' => string '02-02-2011' (length=10)
-  'amenities' => 
-    array
-      empty
-  'contact' => 
-    object(stdClass)[141]
-      'phone' => string '+16177345050' (length=12)
-      'email' => string 'inquiries-p-a2a134e8-04bf63@placester.net' (length=41)
-  'url' => string 'http://placester.com/listing/lead/4d4b04b1abe10f50f4000003/4d4b10ffabe10f55b7000561/' (length=84)
-  'id' => string '4d4b10ffabe10f55b7000561' (length=24)
-  'images' => 
-    array
-      0 => 
-        object(stdClass)[140]
-          'url' => string 'http://placester.com/listing/image/4d4b04b1abe10f50f4000003/4d49fd5adf093a112b028f17.jpg' (length=88)
-          'order' => int 0
-  'bathrooms' => int 2
-  'description' => string 'Great Deal'
-*/
-
 /**
  * ValidationException 
  * 
