@@ -587,9 +587,7 @@ function placester_property_delete($property_id)
  */
 function placester_user_add($user)
 {
-    $request =
-        array
-        (
+    $request = array(
             'first_name' => $user->first_name,
             'source' => 'wordpress',
             'last_name' => $user->last_name,
@@ -604,7 +602,7 @@ function placester_user_add($user)
         );
     placester_cut_empty_fields($request);
 
-    $url = 'http://api.placester.com/v1.0/users/setup.json';
+    $url = 'https://api.placester.com/v1.0/users/setup.json';
         
     // Do request
     return placester_send_request($url, $request, 'POST');
@@ -662,7 +660,7 @@ function placester_user_set($user)
         );
     placester_cut_empty_fields($request);
 
-    $url = 'http://api.placester.com/v1.0/users.json';
+    $url = 'https://api.placester.com/v1.0/users.json';
 
     // Do request
     return placester_send_request($url, $request, 'PUT');
@@ -714,7 +712,7 @@ function placester_company_set($id, $company)
 
     placester_cut_empty_fields($request);
 
-    $url = 'http://api.placester.com/v1.0/organizations/' . $id . '.json';
+    $url = 'https://api.placester.com/v1.0/organizations/' . $id . '.json';
 
     // Do request
     return placester_send_request($url, $request, 'PUT');
@@ -776,9 +774,9 @@ function placester_location_list()
  */
 function placester_send_request($url, $request, $method = 'GET')
 {
-    $affects_cache = ($method != 'GET');
-
+    
     $request_string = '';
+    
     foreach ($request as $key => $value)
     {
         if (is_array($value))
@@ -795,6 +793,10 @@ function placester_send_request($url, $request, $method = 'GET')
                 $key . '=' . urlencode($value);
     }
 
+    // If the request is a get, attempt to retrieve the response
+    // from the transient cache. POSTs and PUTs are ommited.
+    $affects_cache = ($method != 'GET');
+
     if ($affects_cache)
         $response = false;
     else
@@ -810,23 +812,14 @@ function placester_send_request($url, $request, $method = 'GET')
     {
         if ($method == 'POST' || $method == 'PUT')
         {
-
-// echo "\n <pre>XSTART \n";
-// print_r($request_string);
-// echo "\n XEND </pre>";
-
+            // pls_dump($url);
             $response = wp_remote_post($url, 
                 array (
                     'body' => $request_string, 
                     'timeout' => PLACESTER_TIMEOUT_SEC,
                     'method' => $method
                 ));
-
-// echo "\n <pre>XSTART \n";
-// print_r($response);
-// echo "\n XEND </pre>";
-
-
+            // pls_dump($reponse);
         }
         else if ($method == 'DELETE')
         {
@@ -847,15 +840,7 @@ function placester_send_request($url, $request, $method = 'GET')
                 $response = array();
                 $response['headers']["status"] = 400;
             }
-            // Old way
-            // $request['_method'] = 'DELETE';
-            // // wp_remote_request
-            // $response = wp_remote_post($url, 
-                // array (
-                    // 'body' => $request, 
-                    // 'timeout' => PLACESTER_TIMEOUT_SEC,
-                    // 'method' => $method
-                // ));
+
         }
         else {
             $response = wp_remote_get($url . '?' . $request_string, 
