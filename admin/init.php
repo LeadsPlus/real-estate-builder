@@ -796,7 +796,7 @@ function placester_admin_header( $current_page, $title_postfix = '' ) {
     /**
      *      Check to see if the agency is verified.
      */
-    placester_verified_check()
+    // placester_verified_check()
             
 
     ?>
