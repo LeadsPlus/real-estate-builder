@@ -603,9 +603,8 @@ function placester_user_get($company_id, $user_id)
  */
 function placester_user_set($user)
 {
-    $request =
-        array
-        (
+    
+    $request = array(
             'api_key' => placester_get_api_key(),
             'source' => 'wordpress',
             'user_id' => $user->id,
@@ -614,11 +613,11 @@ function placester_user_set($user)
             'email' => $user->email,
             'website' => $user->website,
             'phone' => $user->phone,
-            'location[address]' => $user->location->address,
-            'location[city]' => $user->location->city,
-            'location[zip]' => $user->location->zip,
-            'location[state]' => $user->location->state,
-            'location[unit]' => $user->location->unit
+            'location[address]' => (isset($user->location) ? $user->location->address : ''),
+            'location[city]' => (isset($user->location) ? $user->location->city : ''),
+            'location[zip]' => (isset($user->location) ? $user->location->zip : ''),
+            'location[state]' => (isset($user->location) ? $user->location->state : ''),
+            'location[unit]' => (isset($user->location) ? $user->location->unit : '')
         );
     placester_cut_empty_fields($request);
 
@@ -774,14 +773,14 @@ function placester_send_request($url, $request, $method = 'GET')
     {
         if ($method == 'POST' || $method == 'PUT')
         {
-            // pls_dump($url);
+            PL_Dump::add_msg($url);
             $response = wp_remote_post($url, 
                 array (
                     'body' => $request_string, 
                     'timeout' => PLACESTER_TIMEOUT_SEC,
                     'method' => $method
                 ));
-            // pls_dump($reponse);
+            PL_Dump::add_msg($reponse);
         }
         else if ($method == 'DELETE')
         {
