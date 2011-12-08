@@ -325,8 +325,6 @@ function details($company, $user, $error_validation_data)
     <?php placester_postbox_header('Company'); ?>
     <table class="form-table">
       <?php 
-      row_image('Logo', 'company_logo', $company, $v_company, 'logo',
-          'The logo of your company'); 
       row_textbox('Company Name', 'company_name', $company, $v_company, 'name',
           'The name of your company. These will be used by ' .
           'your theme to display to the public.'); 
@@ -357,8 +355,6 @@ function details($company, $user, $error_validation_data)
 ?>
     <table class="form-table">
         <?php 
-        row_image('Headshot', 'user_logo', $user, $v_user, 'logo',
-            'If your theme supports a headshot, upload one here.'); 
         row_textbox('Phone', 'user_phone', $user, $v_user, 'phone',
             'Depending on your theme and it\'s settings, you may want ' .
             'to list your personal phone number for clients to call.'); 
