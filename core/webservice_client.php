@@ -431,7 +431,7 @@ function placester_property_set($id, $p, $method='PUT')
             );
         // Don't pass description if blank, API will create it automatically
         if ( !$request['description'] ) unset( $request['description'] );
-        $url = 'http://api.placester.com/v1.0/properties/' . $id . '.xml';
+        $url = 'https://api.placester.com/v1.0/properties/' . $id . '.xml';
         // Do request
         return placester_send_request($url, $request, $method);
     }
@@ -471,7 +471,7 @@ function placester_property_seturl_bulk($url_format, $filter)
  */
 function placester_property_image_add($property_id, $file_name, $file_mime_type, $file_tmpname, $api_key = '')
 {
-    $url = 'http://api.placester.com/v1.0/properties/media/image/' .  $property_id . '.json';
+    $url = 'https://api.placester.com/v1.0/properties/media/image/' .  $property_id . '.json';
     if ( $api_key )
         $request = array('api_key' => $api_key);
     else 
