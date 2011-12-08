@@ -19,6 +19,9 @@ $signup_user = new StdClass;
 // @TODO Properly inform the user of the fact that this is a signup form
 if (isset($_POST['signup_finish']))
 {
+
+    // combines POST information with reference to current
+    // vars.
     details_compine_with_http($signup_company, $signup_user);
 
     try
