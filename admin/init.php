@@ -37,10 +37,10 @@ function placester_admin_menu() {
     //     'Documents', 'edit_pages', 'placester_documents', 
     //     'placester_admin_documents_html' );
     add_submenu_page( 'placester', '', 
-        'Your Contact Information', 'edit_pages', 'placester_contact', 
+        'Contact Information', 'edit_pages', 'placester_contact', 
         'placester_admin_contact_html' );
     add_submenu_page( 'placester', '', 
-        'Settings', 'edit_pages', 'placester_settings', 
+        'Plugin Settings', 'edit_pages', 'placester_settings', 
         'placester_admin_settings_html' );
     // add_submenu_page( 'placester', '', 
     //     'Get Themes', 'edit_pages', 'placester_themes', 
