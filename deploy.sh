@@ -11,7 +11,7 @@ BRANCH=${2-'trunk'}
 # paths
 SRC_DIR=$(pwd)
 DIR_NAME=$(basename $SRC_DIR)
-DEST_DIR=/Volumes/MacData/Projects/Wordpress/plugins/svn/$DIR_NAME/$BRANCH
+DEST_DIR=/Users/m/sites/placester-svn/$BRANCH
 
 # make sure the destination dir exists
 svn mkdir $DEST_DIR 2> /dev/null
