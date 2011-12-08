@@ -606,8 +606,6 @@ function placester_user_set($user)
     
     $request = array(
             'api_key' => placester_get_api_key(),
-            'source' => 'wordpress',
-            'user_id' => $user->id,
             'first_name' => $user->first_name,
             'last_name' => $user->last_name,
             'email' => $user->email,
@@ -735,7 +733,8 @@ function placester_location_list()
  */
 function placester_send_request($url, $request, $method = 'GET')
 {
-    
+    PL_Debug::add_msg('Endpoint Logged As: ' . $method . ' ' . $url);
+
     $request_string = '';
     
     foreach ($request as $key => $value)
@@ -754,6 +753,8 @@ function placester_send_request($url, $request, $method = 'GET')
                 $key . '=' . urlencode($value);
     }
 
+    PL_Debug::add_msg(array('-------','Request String Logged As: ', $request_string, '-------'));    
+
     // If the request is a get, attempt to retrieve the response
     // from the transient cache. POSTs and PUTs are ommited.
     $affects_cache = ($method != 'GET');
@@ -769,21 +770,19 @@ function placester_send_request($url, $request, $method = 'GET')
     }
 
     $response = !is_array( $response ) ? $response : false;
-    if ($response === false)
-    {
-        if ($method == 'POST' || $method == 'PUT')
-        {
-            PL_Dump::add_msg($url);
-            $response = wp_remote_post($url, 
-                array (
+    
+    if ($response === false) {
+
+        if ($method == 'POST' || $method == 'PUT') {
+            
+            $response = wp_remote_post($url, array(
                     'body' => $request_string, 
                     'timeout' => PLACESTER_TIMEOUT_SEC,
                     'method' => $method
                 ));
-            PL_Dump::add_msg($reponse);
-        }
-        else if ($method == 'DELETE')
-        {
+
+        } else if ($method == 'DELETE') {
+            
             $ch = curl_init( $url );
             curl_setopt($ch, CURLOPT_POSTFIELDS, $request_string);
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 0);
@@ -802,23 +801,25 @@ function placester_send_request($url, $request, $method = 'GET')
                 $response['headers']["status"] = 400;
             }
 
-        }
-        else {
+        } else {
             $response = wp_remote_get($url . '?' . $request_string, 
                 array
                 (
                     'timeout' => PLACESTER_TIMEOUT_SEC
                 ));
         }
-        
-        
-        /**
-         *      Defines the caching behavior.
-         *      
-         *      Only cache get requests, requests without errors, and valid responses.
-         */
     }
 
+    PL_Debug::add_msg('-------');
+    PL_Debug::add_msg('Response Logged as:');
+    PL_Debug::add_msg($response);
+    PL_Debug::add_msg('-------');
+
+    /**
+     *      Defines the caching behavior.
+     *      
+     *      Only cache get requests, requests without errors, and valid responses.
+     */
     if ($affects_cache && !isset($response->errors) && $response['headers']["status"] === 200) {
         placester_clear_cache();
         return 0;

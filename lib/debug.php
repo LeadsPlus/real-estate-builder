@@ -21,13 +21,14 @@ class PL_Debug {
     static $debug_messages = array();
     static $message_text = '';
 
-    static $show_debug = false;
+    static $show_debug = true;
 
     
 
     static function init() {
-
+ 
         add_action('wp_footer', array(__CLASS__, 'show_window' ) );
+        add_action('admin_footer', array(__CLASS__, 'show_window' ) );
 
     }
 
@@ -35,6 +36,7 @@ class PL_Debug {
 
     static function show_window () {
         
+
         // optionally show debug messages.  
         if (self::$show_debug) {
             self::assemble_messages();
@@ -76,7 +78,7 @@ class PL_Debug {
             $styled_message .= "<ul>";
         }
 
-        if ( is_array($message) ) {
+        if ( is_array($message) || is_object($message) ) {
             foreach ($message as $item) {
                 $styled_message .= self::style_message($item, true);
             }
