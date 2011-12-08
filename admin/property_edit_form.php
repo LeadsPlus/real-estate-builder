@@ -30,7 +30,6 @@ jQuery(document).ready(function()
     <div style="position: relative">
         <h3>Edit Listing</h3>
         <a class="button view_listing" href="<?php echo site_url( '/listing/' . $property_id ); ?>" target="_blank">View listing</a>
-        <a class="craiglist_template button" href="admin.php?page=placester_properties&craigslist_template=1&id=<?php echo $_GET['id'] ?>">Post to Craigslist</a>
     </div>
       <?php if ($provider = placester_provider_check()): ?>
           <div style="margin: 50px 50px 0 50px; padding: 10px; border: 2px solid #E6DB55; background: lightYellow; margin-bottom: 10px">

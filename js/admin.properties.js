@@ -195,9 +195,6 @@ function placesterListLone_create()
                                 control_div += 
                                     '<span><a href="admin.php?page=placester_properties&id=' + 
                                     row_data.aData[10] +'" class="pl_listing_delete">Delete</a> | </span>';
-                                control_div += 
-                                    '<span><a href="admin.php?page=placester_properties&id=' + 
-                                    row_data.aData[10] + '&craigslist_template=1">Post to craigslist</a> | </span>';
 
                                 if (typeof(placesterAdmin_properties_item_menu) != 'undefined')
                                 {
