@@ -586,21 +586,21 @@ function placester_theme_compatibility()
     }
 }
 
-function placester_check_theme ()
-{
-    $path = pathinfo(get_bloginfo('template_directory'));
+// function placester_check_theme ()
+// {
+//     $path = pathinfo(get_bloginfo('template_directory'));
     
-    $all_files = recursive_directory_search("../wp-content/themes/" . $path['filename']);
+//     $all_files = recursive_directory_search("../wp-content/themes/" . $path['filename']);
     
-    $theme->hash = @md5(implode($all_files, ' '), 0 );
-    $theme->domain = $_SERVER['HTTP_HOST'];
-    $theme->name = pathinfo(get_bloginfo('template_directory'));
+//     $theme->hash = @md5(implode($all_files, ' '), 0 );
+//     $theme->domain = $_SERVER['HTTP_HOST'];
+//     $theme->name = pathinfo(get_bloginfo('template_directory'));
 
     
-    placester_theme_check($theme);
+//     placester_theme_check($theme);
     
-}
-add_action("switch_theme", 'placester_check_theme', 1);
+// }
+//add_action("switch_theme", 'placester_check_theme', 1);
 
 function recursive_directory_search( $path = '.')
 { 
