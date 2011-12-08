@@ -386,7 +386,7 @@ function placester_property_add($p)
             'location[coords][longitude]' => $p->location->coords->longitude
         );
 
-    $url = 'http://api.placester.com/v1.0/properties.json';
+    $url = 'https://api.placester.com/v1.0/properties.json';
         
     // Do request
     return placester_send_request($url, $request, 'POST');
