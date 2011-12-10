@@ -44,7 +44,7 @@ class Placester_Search_Widget extends WP_Widget {
         echo '</div>';
         
  
-        $price = array('',200,500,1000,1500,2000,3000,4000,5000);
+        $price = array('',200,500,1000,1500,2000,3000,4000,5000,50000,100000,200000,300000,400000,500000,600000,800000,1000000,1200000,1500000,1800000,2000000);
         echo '<div>Minimum Price';
         echo '<select name="min_price">';
         foreach ($price as $value) { ?>
@@ -54,8 +54,7 @@ class Placester_Search_Widget extends WP_Widget {
         echo '</select>';
         echo '</div>';
  
- 
-        $price = array(5000,4000,3000,2000,1500,1000,500,200);
+        $price = array(1800000,1500000,1200000,1000000,800000,600000,500000,400000,300000,200000,100000,50000,5000,4000,3000,2000,1500,1000,500,200);
         echo '<div>Maximum Price';
         echo '<select name="max_price">';
         foreach ($price as $value) { ?>
