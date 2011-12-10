@@ -550,17 +550,17 @@ function placester_property_delete($property_id)
 function placester_user_add($user)
 {
     $request = array(
-            'first_name' => $user->first_name,
+            'first_name' => (isset($user->first_name) ? $user->first_name : ''),
             'source' => 'wordpress',
-            'last_name' => $user->last_name,
-            'email' => $user->email,
-            'website' => $user->website,
-            'phone' => $user->phone,
-            'location[address]' => $user->location->address,
-            'location[city]' => $user->location->city,
-            'location[zip]' => $user->location->zip,
-            'location[state]' => $user->location->state,
-            'location[unit]' => $user->location->unit
+            'last_name' => (isset($user->last_name) ? $user->last_name : ''),
+            'email' => (isset($user->email) ? $user->email : ''),
+            'website' => (isset($user->website) ? $user->website : ''),
+            'phone' => (isset($user->phone) ? $user->phone : ''),
+            'location[address]' => (isset($user->location) ? $user->location->address : ''),
+            'location[city]' => (isset($user->location) ? $user->location->city : ''),
+            'location[zip]' => (isset($user->location) ? $user->location->zip : ''),
+            'location[state]' => (isset($user->location) ? $user->location->state : ''),
+            'location[unit]' => (isset($user->location) ? $user->location->unit : '')
         );
     placester_cut_empty_fields($request);
 
