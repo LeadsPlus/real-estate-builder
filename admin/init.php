@@ -928,9 +928,9 @@ function placester_postbox( $id, $title, $content ) {
 
 
 
-function placester_postbox_header( $title, $id = '' ) {
+function placester_postbox_header( $title, $id = '', $styles = '' ) {
     ?>
-    <div id="<?php echo $id; ?>" class="postbox">
+    <div id="<?php echo $id; ?>" class="postbox" style="<?php echo $styles; ?>">
     	<div class="handlediv" title="Click to toggle"><br /></div>
     	<h3 class="hndle"><span><?php echo $title; ?></span></h3>
     	<div class="inside">

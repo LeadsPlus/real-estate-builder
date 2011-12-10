@@ -303,78 +303,81 @@ function details($company, $user, $error_validation_data)
     $api_key_type = get_option( 'placester_api_key_type' );
     ?>
 
-    <?php placester_postbox_header('Basic Details'); ?>
-    <table class="form-table">
-        <?php 
-        row_textbox('Email', 'user_email', $user, $v_user, 'email',
-            'The email address you wish to be contacted at by leads.' .
-            'Depending on your theme, this email address and name will ' .
-            'be used to be displayed outwardly to the public. '.
-            'Check your theme for specific details'); 
-        row_textbox('First Name', 'user_first_name', $user, $v_user, 'first_name');
-        row_textbox('Last Name', 'user_last_name', $user, $v_user, 'last_name'); 
-        ?>
-    </table>    
-    <p class="submit clear">
-      <input type="submit" name="<?php echo CONTACT_SIGNUP_FORM ? 'signup_finish' : 'edit_finish' ?>" class="button-primary" 
-        value="Save All Changes" />
-    </p>        
-    <?php placester_postbox_footer(); 
-?>
-
-    <?php placester_postbox_header('Company'); ?>
-    <table class="form-table">
-      <?php 
-      row_textbox('Company Name', 'company_name', $company, $v_company, 'name',
-          'The name of your company. These will be used by ' .
-          'your theme to display to the public.'); 
-      row_textbox('Phone', 'company_phone', $company, $v_company, 'phone',
-          'The phone number of your company. ' .
-          'Depending on your theme, this will be displayed publicly and ' .
-          'thus will receive calls from time to time.'); 
-      row_address('company_location_', $company, $v_company, 'location',
-          'The address of your office. This could be the location of your ' .
-          'office, just a mailing address or both.  To see how it\'s used.'); 
-      
-      row_textarea('Description', 'company_description', $company, $v_company, 
-          'description',
-          'A description of your company. Typically this will be used in ' .
-          'the about us section and used to give potential clients a bit ' .
-          'more information about your company.'); 
-      ?>
-    </table>
-    <p class="submit">
-        <input type="submit" name="<?php echo CONTACT_SIGNUP_FORM ? 'signup_finish' : 'edit_finish' ?>" 
-            class="button-primary" value="Save All Changes" />
-    </p>
-    <?php placester_postbox_footer(); ?>
-    
-<?php
-
+    <div style="width: 49%; float: left; margin-right: 10px">
+      <?php placester_postbox_header('Basic Details', null, ""); ?>
+      <table class="form-table">
+          <?php 
+          row_textbox('Email', 'user_email', $user, $v_user, 'email',
+              'The email address you wish to be contacted at by leads.' .
+              'Depending on your theme, this email address and name will ' .
+              'be used to be displayed outwardly to the public. '.
+              'Check your theme for specific details'); 
+          row_textbox('First Name', 'user_first_name', $user, $v_user, 'first_name');
+          row_textbox('Last Name', 'user_last_name', $user, $v_user, 'last_name'); 
+          ?>
+      </table>    
+      <p class="submit clear">
+        <input type="submit" name="<?php echo CONTACT_SIGNUP_FORM ? 'signup_finish' : 'edit_finish' ?>" class="button-primary" 
+          value="Save All Changes" />
+      </p>        
+      <?php placester_postbox_footer(); 
+      ?>      
+      <?php
         placester_postbox_header('Personal Details'); 
-?>
-    <table class="form-table">
+      ?>
+      <table class="form-table">
+          <?php 
+          row_textbox('Phone', 'user_phone', $user, $v_user, 'phone',
+              'Depending on your theme and it\'s settings, you may want ' .
+              'to list your personal phone number for clients to call.'); 
+          row_textbox('Website', 'user_website', $user, $v_user, 'website');
+          /*
+          row_address('user_location_', $user, $v_user, 'location',
+              'Depending on your needs, your theme and it\'s settings you may ' .
+              'wish to display a personal or secondary address as well. ' .
+              'Enter that information here.'); 
+          */
+          row_textarea('Bio', 'user_description', $user, $v_user, 'description',
+              'A short description of you.  Depending on your theme and it\'s ' .
+              'settings this might be used throughout the site - typically on an ' .
+              'about us or contact us page.'); 
+          ?>
+        </table>
+        <p class="submit">
+           <input type="submit" name="<?php echo CONTACT_SIGNUP_FORM ? 'signup_finish' : 'edit_finish' ?>" 
+               class="button-primary" value="Save All Changes" />
+        </p>
+        <?php placester_postbox_footer(); ?>
+    </div>
+
+    <div style="width: 49%; float: left; margin-right: 10px">
+      <?php placester_postbox_header('Company'); ?>
+      <table class="form-table">
         <?php 
-        row_textbox('Phone', 'user_phone', $user, $v_user, 'phone',
-            'Depending on your theme and it\'s settings, you may want ' .
-            'to list your personal phone number for clients to call.'); 
-        row_textbox('Website', 'user_website', $user, $v_user, 'website');
-        /*
-        row_address('user_location_', $user, $v_user, 'location',
-            'Depending on your needs, your theme and it\'s settings you may ' .
-            'wish to display a personal or secondary address as well. ' .
-            'Enter that information here.'); 
-        */
-        row_textarea('Bio', 'user_description', $user, $v_user, 'description',
-            'A short description of you.  Depending on your theme and it\'s ' .
-            'settings this might be used throughout the site - typically on an ' .
-            'about us or contact us page.'); 
+        row_textbox('Company Name', 'company_name', $company, $v_company, 'name',
+            'The name of your company. These will be used by ' .
+            'your theme to display to the public.'); 
+        row_textbox('Phone', 'company_phone', $company, $v_company, 'phone',
+            'The phone number of your company. ' .
+            'Depending on your theme, this will be displayed publicly and ' .
+            'thus will receive calls from time to time.'); 
+        row_address('company_location_', $company, $v_company, 'location',
+            'The address of your office. This could be the location of your ' .
+            'office, just a mailing address or both.  To see how it\'s used.'); 
+        
+        row_textarea('Description', 'company_description', $company, $v_company, 
+            'description',
+            'A description of your company. Typically this will be used in ' .
+            'the about us section and used to give potential clients a bit ' .
+            'more information about your company.'); 
         ?>
-    </table>
-    <p class="submit">
-       <input type="submit" name="<?php echo CONTACT_SIGNUP_FORM ? 'signup_finish' : 'edit_finish' ?>" 
-           class="button-primary" value="Save All Changes" />
-    </p>
-    <?php placester_postbox_footer(); ?>
+      </table>
+      <p class="submit">
+          <input type="submit" name="<?php echo CONTACT_SIGNUP_FORM ? 'signup_finish' : 'edit_finish' ?>" 
+              class="button-primary" value="Save All Changes" />
+      </p>
+      <?php placester_postbox_footer(); ?>
+    </div>
+    
     <?php  
 }
