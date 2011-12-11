@@ -937,7 +937,7 @@ function placester_postbox_header( $title, $id = '', $unavailable = false) {
                 <h3 class="hndle"><span><?php echo $title; ?></span></h3>
                 <p style="padding: 10px;">You currently are using a Placester API key <strong>assigned to an organization</strong> and therefore can not enter personal contact information. This is because Placester wouldn't know which person's information to update in your organization. <strong>This isn't a problem</strong>, however if you'd prefer this to be a site with contact information you have two options:</p>
                 <ul style="margin-left: 30px; padding:10px;">
-                    <li style="padding: 0 0 10px 0;">1. Enter a personal api key into the <a href="admin.php?page=placester_settings">Plugin Settings</a>screen. You can find your personal api key <a href="https://placester.com/user/apikeys">here</a> (you'll need to login)</li>
+                    <li style="padding: 0 0 10px 0;">1. Enter a personal api key into the <a href="admin.php?page=placester_settings">Plugin Settings</a> screen. You can find your personal api key <a href="https://placester.com/user/apikeys">here</a> (you'll need to login)</li>
                     <li>2. <strong>If your current theme supports it</strong>, enter your personal details in the theme options menu.</li>
                 </ul>
           </div>
