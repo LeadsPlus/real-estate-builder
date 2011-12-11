@@ -294,6 +294,21 @@ function details_compine_with_http(&$company, &$user)
  */
 function details($company, $user, $error_validation_data)
 {
+    // if the user is currently using an agency_api key
+    // we'll need to throw up a warning message on the user
+    // details section of the contact information.
+    // This retrieves the type of api we are currently
+    // using. Either, "user" or "agency"
+    $api_key_type = get_option( 'placester_api_key_type' );
+    
+    // default flag for warning message is false.
+    $show_organization_warning = false;
+    
+    // if not a user api key, show warning message.
+    if ($api_key_type != "user") {
+      $show_organization_warning = true;  
+    }
+
     $v_company = new StdClass;
     $v_user = new StdClass;
     if (property_exists($error_validation_data, 'company'))
@@ -304,7 +319,7 @@ function details($company, $user, $error_validation_data)
     ?>
 
     <div style="width: 49%; float: left; margin-right: 10px">
-      <?php placester_postbox_header('Basic Details', null, ""); ?>
+      <?php placester_postbox_header('Basic Details', null, $show_organization_warning); ?>
       <table class="form-table">
           <?php 
           row_textbox('Email', 'user_email', $user, $v_user, 'email',
@@ -323,7 +338,7 @@ function details($company, $user, $error_validation_data)
       <?php placester_postbox_footer(); 
       ?>      
       <?php
-        placester_postbox_header('Personal Details'); 
+        placester_postbox_header('Personal Details', null, $show_organization_warning); 
       ?>
       <table class="form-table">
           <?php 
