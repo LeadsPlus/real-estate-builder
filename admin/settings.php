@@ -276,7 +276,7 @@ if (array_key_exists('apply', $_POST))
     </table>
     <p class="submit">
       <input type="submit" name="remove" class="button-primary" 
-        value="Remove All Listings" />
+        value="Regenerate All Listings" />
     </p>
     <?php placester_postbox_footer(); ?>
 
