@@ -55,8 +55,7 @@ if (isset($_POST['signup_finish']))
         {
             try
             {
-                placester_company_set(
-                    get_option('placester_company_id'), $signup_company);
+                placester_company_set(get_option('placester_company_id'), $signup_company);
                 update_option('placester_company', $signup_company);
             }
             catch (ValidationException $e) 
