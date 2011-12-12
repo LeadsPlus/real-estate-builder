@@ -15,16 +15,11 @@ function placester_get_user_details()
 
     $company = get_option('placester_company');
     if(isset($company->location)) $location = $company->location;
-
-    $user->logo_url = plugins_url('/images/null/profile-110-90.png', dirname(__FILE__));
-    if (property_exists($user, 'logo'))
-    {
-        $id = $user->logo;
-        if (strlen($id) > 0)
-        {
-            $urls = wp_get_attachment_image_src($id, 'full');
-            $user->logo_url = $urls[0];
-        }
+    
+    if (property_exists($user, 'headshot')) {
+            $user->logo_url = $user->headshot;
+    } else {
+        $user->logo_url = $user->logo_url = plugins_url('/images/null/profile-110-90.png', dirname(__FILE__));
     }
 
     if (!isset($user->first_name))
@@ -62,16 +57,14 @@ function placester_get_user_details()
 function get_company_details()
 {
     $company = get_option('placester_company');
+    // pl_dump($company);
 
-    $company->logo_url = plugins_url('/images/null/logo-190-160.png', dirname(__FILE__));
+    
     if (property_exists($company, 'logo'))
     {
-        $id = $company->logo;
-        if (strlen($id) > 0)
-        {
-            $urls = wp_get_attachment_image_src($id, 'full');
-            $company->logo_url = $urls[0];
-        }
+        $company->logo_url = $company->logo;
+    } else {
+        $company->logo_url = plugins_url('/images/null/logo-190-160.png', dirname(__FILE__));
     }
 
     if (!isset($company->name))
