@@ -360,7 +360,11 @@ function details($company, $user, $error_validation_data)
           <tr valign="top">
           <th scope="row"><label>Personal Headshot</label></th>
           <td>
-            <img src="<?php echo $company->user->headshot; ?>" alt=""><br>
+            <?php if (isset($company->user) && isset($company->user->headshot)): ?>
+              <img src="<?php echo $company->user->headshot; ?>" alt=""><br>  
+            <?php else: ?>
+              <strong>No Headshot Uploaded.</strong><a href="https://placester.com/user/profile">Upload a Headshot</a><br>
+            <?php endif ?>
             <span class="description">Your default headshot set in your <a href="https://placester.com/user/login/">Placester account</a>. Set or change it <a href="https://placester.com/user/profile">here</a> (you'll need to login). If your current theme supports a headshot, you can override this headshot by uploading another in the theme settings menu.</span>
           </td>
         </tr>
@@ -396,7 +400,11 @@ function details($company, $user, $error_validation_data)
         <tr valign="top">
           <th scope="row"><label>Company Logo</label></th>
           <td>
-            <img src="<?php echo $company->logo; ?>" alt=""><br>
+            <?php if (isset($company->logo)): ?>
+              <img src="<?php echo $company->logo; ?>" alt=""><br>
+            <?php else: ?>
+              <strong>No Logo Uploaded.</strong> <a href="https://placester.com/company/settings">Upload a Logo</a><br>
+            <?php endif ?>
             <span class="description">Your default logo set in your <a href="https://placester.com/user/login/">Placester account</a>. Set or change it <a href="https://placester.com/company/settings">here</a> (you'll need to login). If your current theme supports a logo, you can override this logo by uploading another in the theme settings menu.</span>
           </td>
         </tr>
