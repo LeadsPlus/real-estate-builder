@@ -361,7 +361,7 @@ function details($company, $user, $error_validation_data)
           <th scope="row"><label>Personal Headshot</label></th>
           <td>
             <?php if (isset($company->user) && isset($company->user->headshot)): ?>
-              <img src="<?php echo $company->user->headshot; ?>" alt=""><br>  
+              <img width=200 src="<?php echo $company->user->headshot; ?>" alt=""><br>  
             <?php else: ?>
               <strong>No Headshot Uploaded.</strong><a href="https://placester.com/user/profile">Upload a Headshot</a><br>
             <?php endif ?>
@@ -401,7 +401,7 @@ function details($company, $user, $error_validation_data)
           <th scope="row"><label>Company Logo</label></th>
           <td>
             <?php if (isset($company->logo)): ?>
-              <img src="<?php echo $company->logo; ?>" alt=""><br>
+              <img width=200 src="<?php echo $company->logo; ?>" alt=""><br>
             <?php else: ?>
               <strong>No Logo Uploaded.</strong> <a href="https://placester.com/company/settings">Upload a Logo</a><br>
             <?php endif ?>
