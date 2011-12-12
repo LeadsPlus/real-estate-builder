@@ -357,6 +357,13 @@ function details($company, $user, $error_validation_data)
               'settings this might be used throughout the site - typically on an ' .
               'about us or contact us page.'); 
           ?>
+          <tr valign="top">
+          <th scope="row"><label>Personal Headshot</label></th>
+          <td>
+            <img src="<?php echo $company->user->headshot; ?>" alt=""><br>
+            <span class="description">Your default headshot set in your <a href="https://placester.com/user/login/">Placester account</a>. Set or change it <a href="https://placester.com/user/profile">here</a> (you'll need to login). If your current theme supports a headshot, you can override this headshot by uploading another in the theme settings menu.</span>
+          </td>
+        </tr>
         </table>
         <p class="submit">
            <input type="submit" name="<?php echo CONTACT_SIGNUP_FORM ? 'signup_finish' : 'edit_finish' ?>" 
@@ -386,6 +393,13 @@ function details($company, $user, $error_validation_data)
             'the about us section and used to give potential clients a bit ' .
             'more information about your company.'); 
         ?>
+        <tr valign="top">
+          <th scope="row"><label>Company Logo</label></th>
+          <td>
+            <img src="<?php echo $company->logo; ?>" alt=""><br>
+            <span class="description">Your default logo set in your <a href="https://placester.com/user/login/">Placester account</a>. Set or change it <a href="https://placester.com/company/settings">here</a> (you'll need to login). If your current theme supports a logo, you can override this logo by uploading another in the theme settings menu.</span>
+          </td>
+        </tr>
       </table>
       <p class="submit">
           <input type="submit" name="<?php echo CONTACT_SIGNUP_FORM ? 'signup_finish' : 'edit_finish' ?>" 
