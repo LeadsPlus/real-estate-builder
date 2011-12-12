@@ -305,7 +305,7 @@ function details($company, $user, $error_validation_data)
     $show_organization_warning = false;
     
     // if not a user api key, show warning message.
-    if ($api_key_type != "user") {
+    if ($api_key_type && $api_key_type != "user") {
       $show_organization_warning = true;  
     }
 
