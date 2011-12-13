@@ -19,10 +19,10 @@ function placester_admin_menu() {
         'edit_pages',
         'placester', 
         'placester_admin_default_html', 
-        plugins_url( '/images/logo_16.png', dirname( __FILE__ ) ), 
+        plugins_url('/placester/images/logo_16.png'), 
         '3b' /* position between 3 and 4 */ );
 
-
+    // var_dump(dirname( __FILE__ ));
     // Avoid submenu to start with menu function
     global $submenu;
     $submenu['placester'] = array();
@@ -61,7 +61,7 @@ function placester_admin_menu() {
             'add_favorites', 
             'placester_favorite_properties', 
             'placester_admin_favorite_properties_html', 
-            plugins_url( '/images/icons/favorites.png', dirname( __FILE__ ) ),
+            plugins_url( '/placester/images/icons/favorites.png'),
             '2a' 
         );
         // Add Roommates menu
@@ -71,7 +71,7 @@ function placester_admin_menu() {
             'add_roomates', 
             'placester_roommates', 
             'placester_admin_roommates_html', 
-            plugins_url( '/images/icons/roommates.png', dirname( __FILE__ ) ),
+            plugins_url( '/placester/images/icons/roommates.png'),
             '2b' 
         );
         // Add Lead Profile menu
@@ -81,63 +81,63 @@ function placester_admin_menu() {
             'add_roomates', 
             'placester_lead_profile', 
             'placester_admin_lead_profile_html', 
-            plugins_url( '/images/icons/roommates.png', dirname( __FILE__ ) ),
+            plugins_url( '/placester/images/icons/roommates.png'),
             '9' 
         );
     }
 
     // Styles, scripts
     wp_register_style( 'placester.admin', 
-        plugins_url( '/css/admin.css', dirname( __FILE__ ) ) );
+        plugins_url( '/placester/css/admin.css') );
     wp_register_style( 'placester.admin.jquery-ui', 
-        plugins_url( '/css/admin.jquery-ui.css', dirname( __FILE__ ) ) );
+        plugins_url( '/placester/css/admin.jquery-ui.css' ) );
 
     wp_register_script( 'googlemaps_v3',
         'http://maps.google.com/maps/api/js?sensor=false&amp;v=3.3' );
     wp_register_script( 'zeroclipboard',
-        plugins_url( '/js/zeroclipboard/ZeroClipboard.js', dirname( __FILE__ ) ) );
+        plugins_url( '/placester/js/zeroclipboard/ZeroClipboard.js' ) );
     wp_register_script( 'jquery.datatables',
-        plugins_url( '/js/jquery.dataTables.js', dirname( __FILE__ ) ) );
+        plugins_url( '/placester/js/jquery.dataTables.js' ) );
     wp_register_script( 'jquery.lightbox',
-        plugins_url( '/js/jquery.lightbox-0.5.min.js', dirname( __FILE__ ) ) );
+        plugins_url( '/placester/js/jquery.lightbox-0.5.min.js' ) );
     wp_register_script( 'jquery.multifile',
-        plugins_url( '/js/jquery.MultiFile.pack.js', dirname( __FILE__ ) ) );
+        plugins_url( '/placester/js/jquery.MultiFile.pack.js' ) );
     wp_register_script( 'jquery.upload',
-        plugins_url( '/js/jquery.upload.js', dirname( __FILE__ ) ) );
+        plugins_url( '/placester/js/jquery.upload.js' ) );
     wp_register_script( 'jquery-ui.datepicker',
-        plugins_url( '/js/jquery-ui.datepicker.min.js', dirname( __FILE__ ) ) );
+        plugins_url( '/placester/js/jquery-ui.datepicker.min.js' ) );
 
     wp_register_script( 'placester.admin.property', 
-        plugins_url( '/js/admin.property.js', dirname( __FILE__ ) ) );
+        plugins_url( '/placester/js/admin.property.js' ) );
     wp_register_script( 'placester.admin.property_form', 
-        plugins_url( '/js/admin.property_form.js', dirname( __FILE__ ) ) );
+        plugins_url( '/placester/js/admin.property_form.js' ) );
     wp_register_script( 'placester.admin.settings', 
-        plugins_url( '/js/admin.settings.js', dirname( __FILE__ ) ) );
+        plugins_url( '/placester/js/admin.settings.js' ) );
 
     wp_register_script( 'uploadify',
-        plugins_url( '/js/uploadify/jquery.uploadify.v2.1.4.js', dirname( __FILE__ ) ) );
+        plugins_url( '/placester/js/uploadify/jquery.uploadify.v2.1.4.js' ) );
 
-    wp_register_script( 'uploadify_swfobject', plugins_url( '/js/uploadify/swfobject.js', dirname( __FILE__ ) ) );
+    wp_register_script( 'uploadify_swfobject', plugins_url( '/placester/js/uploadify/swfobject.js' ) );
     wp_register_script( 'uploadify_settings',
-        plugins_url( '/js/uploadify/uploadify_settings.js', dirname( __FILE__ ) ) );
+        plugins_url( '/placester/js/uploadify/uploadify_settings.js' ) );
     wp_register_script( 'uploadify_settings_add',
-        plugins_url( '/js/uploadify/uploadify_settings_add.js', dirname( __FILE__ ) ) );
+        plugins_url( '/placester/js/uploadify/uploadify_settings_add.js' ) );
     wp_register_script( 'JSON-js',
-        plugins_url( '/js/json2.js', dirname( __FILE__ ) ) );
+        plugins_url( '/placester/js/json2.js' ) );
     wp_register_script( 'jquery.validate',
         'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8.1/jquery.validate.min.js' );
     wp_register_script( 'placester.admin.leads',
-        plugins_url( '/js/admin.leads.js', dirname( __FILE__ ) ) );
+        plugins_url( '/placester/js/admin.leads.js' ) );
     wp_register_script( 'placester.ui',
-        plugins_url( '/js/placester.ui.js', dirname( __FILE__ ) ) );
+        plugins_url( '/placester/js/placester.ui.js' ) );
 
     // Styles
     wp_register_style( 'uploadify',
-        plugins_url( '/js/uploadify/uploadify.css', dirname( __FILE__ ) ) );
+        plugins_url( '/placester/js/uploadify/uploadify.css' ) );
     wp_register_style( 'placester.ui',
-        plugins_url( '/css/placester.ui.css', dirname( __FILE__ ) ) );
+        plugins_url( '/placester/css/placester.ui.css' ) );
     wp_register_style( 'placester.admin.leads',
-        plugins_url( '/css/admin.leads.css', dirname( __FILE__ ) ) );
+        plugins_url( '/placester/css/admin.leads.css' ) );
 }
 add_action( 'admin_menu', 'placester_admin_menu' );
 
@@ -145,7 +145,7 @@ add_action( 'admin_init', 'placester_admin_init');
 function placester_admin_init() {
     // Scripts
     wp_enqueue_script( 'placester.admin', 
-        plugins_url( '/js/placester.admin.js', dirname( __file__ ) ) );
+        plugins_url( '/placester/js/placester.admin.js' ) );
 
     wp_enqueue_script( 'placester.ui' );
     // Styles
@@ -186,9 +186,9 @@ function placester_admin_dashboard_onload() {
 
     wp_enqueue_style( 'placester.admin' );
     wp_enqueue_script( 'placester.admin.widgets', 
-        plugins_url( '/js/admin.widgets.js', dirname( __FILE__ ) ) );
+        plugins_url( '/placester/js/admin.widgets.js' ) );
     wp_enqueue_style( 'placester.admin.widgets', 
-        plugins_url( '/css/admin.widgets.css', dirname( __FILE__ ) ) );
+        plugins_url( '/placester/css/admin.widgets.css' ) );
 }
 
 add_action( 'load-placester_page_placester_dashboard', 
@@ -297,9 +297,9 @@ function placester_admin_documents_onload() {
 
     // Scripts
     wp_register_script( 'placester.pdfobject', // TODO replace with min
-        plugins_url( '/pdf/includes/pdfobject/code/pdfobject.js', dirname( __FILE__ ) ) );
+        plugins_url( '/placester/pdf/includes/pdfobject/code/pdfobject.js' ) );
     wp_register_script( 'placester.admin.documents',
-        plugins_url( '/js/admin.documents.js', dirname( __FILE__ ) ) );
+        plugins_url( '/placester/js/admin.documents.js' ) );
     wp_enqueue_script( 'JSON-js' );
     wp_enqueue_script( 'jquery.validate' );
     wp_enqueue_script( 'placester.pdfobject' );
@@ -308,7 +308,7 @@ function placester_admin_documents_onload() {
 
     // Styles
     wp_register_style( 'placester.admin.documents',
-        plugins_url( '/css/admin.documents.css', dirname( __FILE__ ) ) );
+        plugins_url( '/placester/css/admin.documents.css' ) );
     wp_enqueue_style( 'placester.admin' );
     wp_enqueue_style( 'placester.admin.documents');
 
@@ -363,7 +363,7 @@ function placester_admin_contact_onload() {
 
     wp_enqueue_script( 'jquery.upload' );
     wp_enqueue_script( 'placester.admin.contact',
-        plugins_url( '/js/admin.contact.js', dirname( __FILE__ ) ) );
+        plugins_url( '/placester/js/admin.contact.js' ) );
 
     wp_enqueue_style( 'placester.admin' );
 }
@@ -377,7 +377,7 @@ function placester_admin_contact_onload() {
  */
 function placester_admin_properties_html() {
     if ( isset( $_REQUEST['craigslist_template'] ) )
-        require( dirname( __FILE__ ) . '/templates.php' );
+        require(plugins_url('/placester/templates.php'));
     else if ( isset( $_REQUEST['id'] ) )
         require( 'property_edit.php' );
     else
@@ -527,7 +527,7 @@ function placester_admin_properties_onload() {
             wp_enqueue_script( 'placester.admin.property' );
             wp_enqueue_script( 'placester.admin.property_form' );
             wp_enqueue_script( 'placester.admin.property_edit',
-                plugins_url( '/js/admin.property_edit.js', dirname( __FILE__ ) ) );
+                plugins_url( '/placester/js/admin.property_edit.js' ) );
 
             $params = array(
                 'spinner' => site_url('wp-admin/images/wpspin_light.gif')
@@ -540,7 +540,7 @@ function placester_admin_properties_onload() {
             wp_enqueue_style( 'placester.admin' );
             wp_enqueue_script( 'jquery.datatables' );
             wp_enqueue_script('placester.admin.properties',
-                plugins_url( '/js/admin.properties.js', dirname( __FILE__ ) ) );
+                plugins_url( '/placester/js/admin.properties.js' ) );
         }
 
 
@@ -653,7 +653,7 @@ function placester_admin_support_onload() {
     }
 
     wp_enqueue_script( 'placester.admin.support',
-        plugins_url( '/js/admin.support.js', dirname( __FILE__ ) ) );
+        plugins_url( '/placester/js/admin.support.js' ) );
 
     wp_enqueue_style( 'placester.admin' );
 }

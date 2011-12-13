@@ -40,7 +40,7 @@ function placester_init() {
     wp_register_script( 'placester.theme.leads', "{$base_url}/js/theme/placester.leads.js" );
 
     wp_register_style( 'placester.map.widget', 
-        plugins_url( '/css/listings_map.widget.css', dirname( __FILE__ ) ) );
+        plugins_url( '/placester/css/listings_map.widget.css' ) );
 
     /** TODO
      * When WP 3.3 is released, shorcode scripts will be able to be 
