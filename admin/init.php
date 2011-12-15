@@ -947,7 +947,7 @@ function placester_postbox( $id, $title, $content ) {
 
 
 
-function placester_postbox_header( $title, $id = '', $unavailable = false) {
+function placester_postbox_header( $title, $id = '', $unavailable = false, $styles = '') {
     ?>
     <div id="<?php echo $id; ?>" class="postbox" style="<?php echo $styles; ?>">
         <?php if ($unavailable): ?>
