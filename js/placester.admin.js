@@ -5,13 +5,14 @@
  */
 jQuery(document).ready(function($) {
     jQuery('#hide-theme-alert')
-        .click(function(e){
+        .live("click", function(e){
             e.preventDefault();
             $warning = jQuery(this).closest('.updated');
             data = {
                 action: 'update_theme_alert',
+                message_name: jQuery(this).closest('.updated').attr("ref"),
             };
-            jQuery.get(ajaxurl, data, function(response) {
+            jQuery.post(ajaxurl, data, function(response) {
                 if (response) {
                     $warning.fadeOut('200', function() {
                         jQuery(this).remove();

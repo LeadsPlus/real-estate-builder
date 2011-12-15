@@ -46,8 +46,13 @@ try {
     $response = placester_property_list($filter_request);
     // print_r($response);
     // print_r($filter_request);
-    $response_properties = $response->properties;
-    $response_total = $response->total;
+    $response_properties = array();
+    $response_total = 0;
+    if ($response) {
+        $response_properties = $response->properties;
+        $response_total = $response->total;    
+    }
+    
 }
 catch (Exception $e) {
     $response_properties = array();

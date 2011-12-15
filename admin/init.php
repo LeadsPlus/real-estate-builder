@@ -157,11 +157,17 @@ function placester_admin_init() {
  */
 add_action( 'wp_ajax_update_theme_alert', 'update_theme_alert' );
 function update_theme_alert() {
-    $placester_admin_options = get_option('placester_admin_options');
-    $placester_admin_options = isset($placester_admin_options) ? $placester_admin_options : array();
-    $placester_admin_options['hide_theme_alert'] = true;
+    $message_to_hide = $_POST['message_name'];
 
-    echo update_option( 'placester_admin_options', $placester_admin_options );
+    $placester_admin_options = get_option('placester_admin_options');
+
+    
+
+    $placester_admin_options[$message_to_hide] = true;
+
+    update_option( 'placester_admin_options', $placester_admin_options );
+
+    echo true;
     die;
 }
 
@@ -729,11 +735,18 @@ function placester_error_message( $message ) {
  *
  * @param string $message
  */
-function placester_warning_message( $message, $id = '', $inline = true ) {
+function placester_warning_message( $message, $id = '', $inline = true, $ref = '', $button = true) {
     ?>
-        <div <?php if ($id) echo 'id="' . $id . '" '; ?>class="updated <?php if ($inline) echo ' inline'; ?>">
-      <p><?php echo $message ?></p>
-    </div>
+        <div style="" <?php if ($id) echo 'id="' . $id . '" '; ?>class="updated <?php if ($inline) echo ' inline'; ?>" ref="<?php echo $ref; ?>">
+            <p style="">
+                <?php echo $message ?>
+                <?php if ($button): ?>
+                    <a href="#" id="hide-theme-alert" class="button" style="margin: 10px;">Hide this notice.</a>        
+                <?php endif ?>
+                
+            </p>
+            
+        </div>
     <?php
 }
 
@@ -770,30 +783,36 @@ function placester_success_message( $message ) {
  * @param string $current_page
  */
 function placester_admin_header( $current_page, $title_postfix = '' ) {
-    $api_key = get_option( 'placester_api_key' );
-    if ( empty( $api_key ) )
-        placester_warning_message(
-            'You need to add your contact details before you can continue. ' .
-            ' Navigate to the <a href="admin.php?page=placester_contact">' .
-            'personal tab</a> and add an email address to start.',
-            'warning_no_api_key');
+   
+    /**
+     *      Check to see if the agency is verified.
+     */
+    // placester_verified_check()
+
+    global $i_am_a_placester_theme;
+
+    $placester_admin_options = get_option('placester_admin_options');
+
+    if ( !$i_am_a_placester_theme && !isset( $placester_admin_options['placester-theme-update'] ) && current_user_can( 'switch_themes' ) ) {
+        placester_warning_message('<strong>You are currently running the Placester plugin, but not with a Placester theme</strong>. You\'ll likely have a better experience with a compatible theme.  <a target="_blank" href="https://placester.com/themes/">Find a compatible theme here.</a>', '', true, 'placester-theme-update');
+    }
+
+    if ( !$i_am_a_placester_theme && !isset( $placester_admin_options['placester-theme-problem'] ) && current_user_can( 'switch_themes' ) ) {
+        placester_warning_message('<strong>Having issues with a Placester theme?</strong> please checkout our <a target="_blank" href="https://placester.com/themes/">theme gallery</a> for the latest updates. If you are having a problem it\'s likely been addressed there.', '', true, 'placester-theme-problem');
+    }
 
     global $wp_rewrite;
 
-    if ( !$wp_rewrite->using_permalinks() ) {
+    if ( !$wp_rewrite->using_permalinks() && !isset( $placester_admin_options['placester-theme-links'])) {
         placester_warning_message(
             'For best performance <input type="button" class="button " value="Enable Fancy Permalinks" onclick="document.location.href = \'/wp-admin/options-permalink.php\';">' .
             'following the directions appropriate for your ' .
             '<a href="http://codex.wordpress.org/Using_Permalinks#Choosing_your_permalink_structure">' .
             'WordPress ' . get_bloginfo( 'version' ) .
-            '</a>');
+            '</a>', null, true, 'placester-theme-links');
     }
-    
-    /**
-     *      Check to see if the agency is verified.
-     */
-    // placester_verified_check()
-            
+
+    echo "<div class='clear'></div>";  
 
     ?>
     <div id="icon-options-general" class="icon32 placester_icon"><br /></div>
@@ -928,7 +947,7 @@ function placester_postbox( $id, $title, $content ) {
 
 
 
-function placester_postbox_header( $title, $id = '', $unavailable = false) {
+function placester_postbox_header( $title, $id = '', $unavailable = false, $styles = '') {
     ?>
     <div id="<?php echo $id; ?>" class="postbox" style="<?php echo $styles; ?>">
         <?php if ($unavailable): ?>

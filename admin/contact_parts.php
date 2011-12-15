@@ -377,7 +377,9 @@ function details($company, $user, $error_validation_data)
     </div>
 
     <div style="width: 49%; float: left; margin-right: 10px">
+
       <?php placester_postbox_header('Company'); ?>
+    </span>
       <table class="form-table">
         <?php 
         row_textbox('Company Name', 'company_name', $company, $v_company, 'name',

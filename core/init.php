@@ -70,8 +70,8 @@ function placester_init() {
         wp_enqueue_script( 'sparkbox_select' );
 
         /** TODO Determine why was this included */
-        wp_register_script( 'colorbox', $base_url . '/js/jquery.colorbox.js' );
-        wp_enqueue_script( 'colorbox' );
+        // wp_register_script( 'colorbox', $base_url . '/js/jquery.colorbox.js' );
+        // wp_enqueue_script( 'colorbox' );
 
         wp_register_script( 'jquery_tools', $base_url . '/js/jquery.tools.min.js' );
         wp_register_script( 'sparkbox_select', $base_url . '/js/jquery.sparkbox-select.js' );
