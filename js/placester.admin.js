@@ -14,7 +14,6 @@ jQuery(document).ready(function($) {
             };
             jQuery.post(ajaxurl, data, function(response) {
                 if (response) {
-                    alert(response);
                     $warning.fadeOut('200', function() {
                         jQuery(this).remove();
                     });

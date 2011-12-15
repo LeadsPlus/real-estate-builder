@@ -256,7 +256,7 @@ if (array_key_exists('apply', $_POST))
           '<a href="http://placester.com/user/apikeys/">Placester account management page</a>' .
           ') copy and paste it in above.<br />' .
           'If you don\'t have an API key, don\'t worry. Just fill out the ' .
-          'fields on the <a href="admin.php?page=placester_personal">Contact</a> page '.
+          'fields on the <a href="admin.php?page=placester_contact">Contact</a> page '.
           'and one will be generated automatically (and for free).'); 
       ?>
     </table>
@@ -279,7 +279,20 @@ if (array_key_exists('apply', $_POST))
         value="Regenerate All Listings" />
     </p>
     <?php placester_postbox_footer(); ?>
-
+    <?php placester_postbox_header('Refresh User Data'); ?>
+      <table class="form-table">
+           <?php 
+            row_hidden('Refresh User Data', 'refresh_user_data',
+            'This will refresh all your user data with information from your Placester <a href="https://placester.com/user/profile"> Profile</a>. It will overwrite what you\'ve entered here, and download the logo or headshot you\'ve uploaded in Placester.'); 
+          ?>
+      </table>
+      <p>
+        <span class="submit">
+            <input type="submit" name="refresh_user_data" id="refresh_user_data" class="button-primary" value="Refresh All User Data" />
+        </span>            
+      </p>
+      
+      <?php placester_postbox_footer(); ?>
 
     <?php placester_postbox_header('Display only'); ?>
     <div>

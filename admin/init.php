@@ -167,8 +167,6 @@ function update_theme_alert() {
 
     update_option( 'placester_admin_options', $placester_admin_options );
 
-    pl_dump($placester_admin_options);
-
     echo true;
     die;
 }
