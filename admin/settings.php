@@ -398,11 +398,7 @@ if (array_key_exists('apply', $_POST))
       <input type="submit" name="set_default" class="button" 
         value="Revert all settings to defaults" />
     </span>
-    
-    <span class="submit">
-      <input type="submit" name="refresh_user_data" id="refresh_user_data" class="button" 
-        value="Refresh All User Data" />
-    </span>
+  
     </p>
     <?php placester_postbox_container_footer(); ?>
   </form>
