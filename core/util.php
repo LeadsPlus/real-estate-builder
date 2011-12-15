@@ -578,13 +578,16 @@ function placester_lead_invite_message() {
 add_action('admin_notices', 'placester_theme_compatibility',10); 
 function placester_theme_compatibility() 
 {
-    global $i_am_a_placester_theme;
-    $placester_admin_options = get_option('placester_admin_options');
 
-    if ( !$i_am_a_placester_theme && !isset( $placester_admin_options['hide_theme_alert'] ) && current_user_can( 'switch_themes' ) ) {
-        placester_warning_message('You are currently running the Placester plugin, but not with a Placester theme. You\'ll likely have a better experience with a compatible theme.  <a href="' . admin_url( 'admin.php?page=placester_themes' ) . '">Find a compatible theme here.</a> <a href="#" id="hide-theme-alert" class="button" style="margin-left: 15px;">Hide this notice.</a>', '', false);
-    }
+    $api_key = get_option( 'placester_api_key' );
+        if ( empty( $api_key ) ) {
+            placester_warning_message(
+                'Thanks for installing the Placester Plugin. <strong>To get started you need to add an email address</strong> to the <a href="admin.php?page=placester_contact">Contact Information</a> tab.',
+                'warning_no_api_key', true, null, null, true);
+        }
+            
 }
+
 
 // function placester_check_theme ()
 // {
