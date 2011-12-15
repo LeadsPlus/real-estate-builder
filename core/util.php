@@ -858,7 +858,8 @@ function placester_is_membership_active() {
 
 function placester_remove_listings() {
     global $wpdb;
-    $myrows = $wpdb->get_results( "DELETE FROM wp_posts WHERE post_type = 'property'" );
+    $posts_table = $wpdb->prefix . 'posts';
+    $myrows = $wpdb->get_results( "DELETE FROM $posts_table WHERE post_type = 'property'" );
 }
 
 function get_plugin_dir( $subpath = false ) {
