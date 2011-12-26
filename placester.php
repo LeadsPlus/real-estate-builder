@@ -39,6 +39,7 @@ include_once( 'core/shortcodes.php');
 include_once( 'core/leads.php' );
 include_once( 'core/membership.php' );
 include_once( 'lib/debug.php' );
+include_once( 'lib/listings.php' );
 
 
 register_activation_hook( __FILE__, 'placester_activate' );
