@@ -46,7 +46,7 @@ class Placester_Contact_Widget extends WP_Widget {
         $data = placester_property_get($post->post_name);
     extract($args);
     $title = apply_filters('widget_title', empty($instance['title']) ? '&nbsp;' : $instance['title']);
-    $modern = $instance['modern'] ? 1 : 0;
+    $modern = @$instance['modern'] ? 1 : 0;
     $template_url = get_bloginfo('template_url');
 
     // Create the title, if there is one
