@@ -42,7 +42,7 @@ class Placester_Contact_Widget extends WP_Widget {
   // Admin widget
   function widget($args, $instance) {
     global $post;
-    if($post->post_type == 'property') {
+    if(isset($post->post_type) && $post->post_type == 'property') {
         $data = placester_property_get($post->post_name);
     extract($args);
     $title = apply_filters('widget_title', empty($instance['title']) ? '&nbsp;' : $instance['title']);
