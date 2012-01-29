@@ -27,6 +27,11 @@ Author URI: http://www.placester.com/
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+// new
+include_once( 'config/api/custom_attributes.php' );
+include_once( 'config/api/listings.php' );
+include_once( 'lib/config.php' );
+
 include_once( 'core/init.php' );
 include_once( 'core/util.php' );
 include_once( 'core/webservice_client.php' );
@@ -38,9 +43,19 @@ include_once( 'admin/widgets.php' );
 include_once( 'core/shortcodes.php');
 include_once( 'core/leads.php' );
 include_once( 'core/membership.php' );
-include_once( 'lib/debug.php' );
-include_once( 'lib/listings.php' );
 
+
+//new
+include_once( 'models/listing.php' );
+include_once( 'models/custom_attribute.php' );
+
+include_once( 'lib/http.php' );
+include_once( 'lib/debug.php' );
+include_once( 'lib/form.php' );
+include_once( 'lib/validation.php' );
+
+include_once( 'helpers/listing.php' );
+// end new
 
 register_activation_hook( __FILE__, 'placester_activate' );
 register_deactivation_hook( __FILE__, 'placester_deactivate' );
