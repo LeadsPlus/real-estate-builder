@@ -71,7 +71,7 @@ class PL_Form {
 			?>
 				<section id="<?php echo $id ?>" class="pls_search_form">
 					<label for="<?php echo $id ?>"><?php echo $text ?></label>	
-					<input id="<?php echo $id ?>" type="<?php echo $type ?>" name="<?php echo $name ?>" />
+					<input id="<?php echo $id ?>" type="<?php echo $type ?>" name="<?php echo $name ?>" <?php echo !empty($vale) ? 'value="'.$value.'"' : ''; ?> />
 				</section>
 			<?php
 		}
@@ -104,6 +104,8 @@ class PL_Form {
 				$value = isset($_GET[$item]) ? $_GET[$item] : null;	
 			}
 		}
+
+		pls_dump($name, $value);
 
 		return array('name' => $name, 'value' => $value, 'text' => $item, 'options' => $options, 'id' => $item, 'type' => $attributes['type'] );
 	}
