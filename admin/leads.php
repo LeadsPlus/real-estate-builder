@@ -86,7 +86,7 @@ remove_filter( 'authenticate', 'wp_authenticate_username_password', 20, 3 );
 add_filter( 'authenticate', 'placester_email_authentification', 20, 3 );
 function placester_email_authentification( $user, $username, $password ) {
 	if ( !empty( $username ) )
-		$user = get_user_by_email( $username );
+		$user = get_user_by( $username, '' );
 	if ( $user )
 		$username = $user->user_login;
 	
