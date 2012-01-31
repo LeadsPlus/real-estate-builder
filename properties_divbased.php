@@ -24,7 +24,8 @@ $filter_request['address_mode'] = placester_get_property_address_mode();
 // Request
 try {
     $response = placester_property_list( $filter_request );
-    $response_properties = $response->properties;
+    $response_properties = apply_filters( 'pls_listing_list_ajax_data_request', $response->properties );
+
     $response_total = $response->total;
 }
 catch (Exception $e) {

@@ -9,19 +9,13 @@ $placester_const_property_types =
     array(
         'apartment' => 'Apartment',
         'penthouse' => 'Penthouse',
+        'condo' => 'Condo',
         'townhouse' => 'Townhouse',
+        'duplex' => 'Duplex',
         'brownstone' => 'Brownstone',
-        'family_home' => 'Single Family Home',
-        'multi_fam_home' => 'Multi Family Home',
-        'flat' => 'Flat',
-        'loft' => 'Loft',
-        'cottage' => 'Cottage',
-        'villa' => 'Villa',
-        'mansion' => 'Mansion',
-        'ranch' => 'Ranch',
-        'island' => 'Island',
-        'log_cabin' => 'Log Cabin',
-        'tent' => 'Tent'
+        'fam_home' => 'Single Family Home',
+        'multi_fam' => 'Multi Family Home',
+        'coop' => 'Co Op'
     );
 
 global $placester_const_listing_types;

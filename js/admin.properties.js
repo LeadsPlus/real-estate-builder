@@ -164,7 +164,22 @@ function placesterListLone_create()
             'bServerSide': true,
             'sDom': '<"dataTables_top"pi>lftpir',
             'bDestroy': true,
-            'sAjaxSource': placesterListLone_datasource_url + placesterListLone_filter,
+            'fnServerData':
+                function ( sSource, aoData, fnCallback ) {
+                    // aoData.push({ action : 'admin_datatable'});
+                    // console.log(aoData);
+                    // console.log(aoData[0]);
+                    // console.log(aoData[0]['value']);
+
+                    $.ajax( {
+                        "dataType": 'json', 
+                        "type": "POST", 
+                        "url": ajaxurl + '?no_admin_filter=yes&fields=empty,empty,location.address,bathrooms,bedrooms,price,location.city,url,is_new,is_featured,id,list_details,featured_image&sEcho=' + aoData[0]['value'], 
+                        "data": {action : 'admin_datatable'},  
+                        "success": fnCallback
+                    });
+                },
+            // 'sAjaxSource': placesterListLone_datasource_url + placesterListLone_filter,
             'aoColumns': 
                 [
                     {

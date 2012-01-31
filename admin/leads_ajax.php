@@ -212,7 +212,7 @@ function placester_ajax_send_lead_invite() {
 
     $error_messages = array();
     // Verify if this user isn't already added to the roommate list
-    $invited_user = get_user_by_email( $email_address );
+    $invited_user = get_user_by( $email_address );
     if ( $invited_user ) {
         $current_user = wp_get_current_user();
         $current_user_roommates = get_user_meta( $current_user->ID, 'placester_roommates', true );

@@ -48,7 +48,7 @@ add_action('init', 'placester_listings_map_widget');
 function placester_listings_map_widget() {
     global $i_am_a_placester_theme;
     wp_register_style( 'placester.map.widget', 
-        plugins_url( '/css/listings_map.widget.css', dirname( __FILE__ ) ) );
+        plugins_url( '/placester/css/listings_map.widget.css' ) );
 
     if ( empty($i_am_a_placester_theme) )
         wp_enqueue_style( 'placester.map.widget' );
