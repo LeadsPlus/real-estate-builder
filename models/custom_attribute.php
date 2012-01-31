@@ -7,8 +7,7 @@ class PL_Custom_Attributes {
 		$request = array_merge(array( "api_key" => placester_get_api_key()), PL_Validate::request($args, $config['args']));
 		$response = PL_HTTP::send_request($config['request']['url'], $request);
 		foreach ($response as $attribute => $value) {
-			//$value['id'] compensating for a bug in the api
-		 	$response[$attribute] = PL_Validate::attributes($value['id'], $config['returns']);
+		 	$response[$attribute] = PL_Validate::attributes($value, $config['returns']);
 		 }
 		return $response;
 	}

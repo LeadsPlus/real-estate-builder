@@ -232,12 +232,12 @@ $PL_API_LISTINGS = array(
                 'cent_ht' => array('type' => 'checkbox'),
                 'pk_spce' => array('type' => 'checkbox'),
                 'air_cond' => array('type' => 'checkbox'),
-                'lse_trms' => array(
-	                'type' => 'select',
-	                'options' => array(
-		            	'per_mnt' => 'Per Month'	
-		            )
-	            ),
+             //    'lse_trms' => array(
+	            //     'type' => 'select',
+	            //     'options' => array(
+		           //  	'per_mnt' => 'Per Month'	
+		           //  )
+	            // ),
                 'ngb_trans' => array('type' => 'checkbox'),
                 'off_den' => array('type' => 'checkbox'),
                 'frnshed' => array('type' => 'checkbox'),
@@ -257,10 +257,10 @@ $PL_API_LISTINGS = array(
 				'value'
 			),
 			'box' => array(
-				'min_latitude' => array('type' => 'text'),
-				'min_longitude' => array('type' => 'text'),
-				'max_latitude' => array('type' => 'text'),
-				'max_longitude' => array('type' => 'text')
+				'min_latitude',// => array('type' => 'text'),
+				'min_longitude',// => array('type' => 'text'),
+				'max_latitude',// => array('type' => 'text'),
+				'max_longitude'// => array('type' => 'text')
 			),
 			'address_mode' => array(
 				'type' => 'select',
