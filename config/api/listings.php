@@ -244,16 +244,7 @@ $PL_API_LISTINGS = array(
                 'refrig' => array('type' => 'checkbox'),
                 'deposit' => array('type' => 'checkbox'),
                 'ngb_pubsch' => array('type' => 'checkbox'),
-				'key' => array(
-					'type' => 'select',
-					'bound' => array(
-						'class' => 'PL_Custom_Attributes',
-						'method' => 'keys_for_options',
-						'params' => array(
-							'attr_class' => '2'
-						)
-					)
-				),
+				'key',
 				'value'
 			),
 			'box' => array(
