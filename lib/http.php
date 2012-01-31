@@ -22,14 +22,12 @@ Class PL_HTTP {
 	            if ( empty($value) ) {
 	                $request_string .= (strlen($request_string) > 0 ? '&' : '') . urlencode($key) . '[]=';
 	            }
-
 	            foreach ($value as $k => $v) {
 	            	if (is_array($v)) {
-	            		// pls_dump('value is array');
-	            		// pls_dump($v);
+	            		
 	            		$request_string .= (strlen($request_string) > 0 ? '&' : '') . urlencode($key) . '[' . $k . ']=' . urlencode(implode($v, ','));
 	            	} else {
-		            	$request_string .= (strlen($request_string) > 0 ? '&' : '') . urlencode($key) . '[]=' . urlencode($v);	
+		            	$request_string .= (strlen($request_string) > 0 ? '&' : '') . urlencode($key) . '[' . $k . ']=' . urlencode($v);	
 	            	}
 	            }
 	        } else {
@@ -85,7 +83,7 @@ Class PL_HTTP {
 	            }
 
 	        } else {
-	        	pls_dump($url . '?' . $request_string);
+	        	// pls_dump($url . '?' . $request_string);
 	            $response = wp_remote_get($url . '?' . $request_string, array(
 	                    'timeout' => PLACESTER_TIMEOUT_SEC
 	                ));
