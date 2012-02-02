@@ -358,7 +358,7 @@ function details($company, $user, $error_validation_data)
               'about us or contact us page.'); 
           ?>
           <tr valign="top">
-            <th scope="row"><label>Bio</label></th>
+            <th scope="row"><label>Headshot</label></th>
             <td>
               <?php if (isset($company->user) && isset($company->user->headshot)): ?>
                 <img width=200 src="<?php echo $company->user->headshot; ?>" alt=""><br>  
