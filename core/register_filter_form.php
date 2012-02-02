@@ -26,8 +26,8 @@ var placesterFilter_fields =
         'min_price',
         'property_type',
         'listing_types',
-        'purchase_types',
-        'zoning_types',
+        'purchase_types[purchase_type]',
+        'zoning_types[zoning_type]',
         'is_new',
         'is_featured'
     ];
