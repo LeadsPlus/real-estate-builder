@@ -386,8 +386,10 @@ function placester_admin_properties_html() {
         require(plugins_url('/placester/templates.php'));
     else if ( isset( $_REQUEST['id'] ) )
         require( 'property_edit.php' );
-    else
-        require( 'properties.php' );
+    else {
+        require(plugins_url('/placester/views/admin/my-listings.php'));
+    }
+        
 }
 
 /**

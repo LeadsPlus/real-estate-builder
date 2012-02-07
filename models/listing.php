@@ -4,14 +4,13 @@ class PL_Listing {
 	
 	public function get($args = array()) {
 		$config = PL_Config::PL_API_LISTINGS('get');
-		$request = array_merge(array("api_key" => placester_get_api_key()), PL_Validate::request($args, $config['args']));
+		$request = array_merge(array("api_key" => PL_Option_Helper::api_key()), PL_Validate::request($args, $config['args']));
 		$response = PL_HTTP::send_request($config['request']['url'], $request);
 		if (isset($response) && isset($response['listings'])) {
 			foreach ($response['listings'] as $key => $listing) {
 				$response['listings'][$key] = PL_Validate::attributes($listing, $config['returns']);
 			}
-		}
-		
+		}	
 		return $response;
 	}
 
@@ -33,7 +32,7 @@ class PL_Listing {
 
 	public function locations($args = array()) {
 		$config = PL_Config::PL_API_LISTINGS('get.locations');
-		$request = array_merge(array("api_key" => placester_get_api_key()), PL_Validate::request($args, $config['args']));
+		$request = array_merge(array("api_key" => PL_Option_Helper::api_key()), PL_Validate::request($args, $config['args']));
 		return PL_Validate::attributes(PL_HTTP::send_request($config['request']['url'], $request), $config['returns']);
 	}
 

@@ -3,6 +3,8 @@
 
 Class PL_HTTP {
 	
+	static $timeout = 10;
+
 	/*
 	 * Sends HTTP request and parses genercic elements of API response
 	 *
@@ -58,7 +60,7 @@ Class PL_HTTP {
 	            
 	            $response = wp_remote_post($url, array(
 	                    'body' => $request_string, 
-	                    'timeout' => PLACESTER_TIMEOUT_SEC,
+	                    'timeout' => self::$timeout,
 	                    'method' => $method
 	                ));
 
@@ -84,8 +86,9 @@ Class PL_HTTP {
 
 	        } else {
 	        	// pls_dump($url . '?' . $request_string);
+	        	error_log($url . '?' . $request_string);
 	            $response = wp_remote_get($url . '?' . $request_string, array(
-	                    'timeout' => PLACESTER_TIMEOUT_SEC
+	                    'timeout' => self::$timeout
 	                ));
 	        }
 	    }
@@ -195,7 +198,7 @@ Class PL_HTTP {
 	    	return false;
 	        // throw new Exception('http_request_failed');
 
-	    stream_set_timeout( $handle, PLACESTER_TIMEOUT_SEC );
+	    stream_set_timeout( $handle, self::$timeout );
 
 	    $response = stream_get_contents($handle);
 	    fclose($handle);

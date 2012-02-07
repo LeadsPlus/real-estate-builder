@@ -2,14 +2,13 @@
 
 class PL_Form {
 	
-	public static function generate($items, $url = false, $method = 'GET') {
-		// pls_dump($_GET);
-		$form = '<form name="input" method="' . $method . '" class="complex-search" >';
+	public static function generate($items, $url = false, $method = 'GET', $id = 'pls_search_form') {
+		$form = '<form name="input" method="' . $method . '" class="complex-search" id="' . $id . '">';
 		foreach ($items as $key => $attributes) {
 			$form .= self::item($key, $attributes, $method);
 		}	
 		$form .= '<section class="clear"></section>';
-		$form .= '<button type="submit">Submit</button>';
+		$form .= '<button id="' . $id . '_submit_button" type="submit">Submit</button>';
 		$form .= '</form>';
 		echo $form;
 	}
@@ -102,6 +101,12 @@ class PL_Form {
 				$value = isset($_GET[$parent][$item]) ? $_GET[$parent][$item] : null;
 			} else {
 				$value = isset($_GET[$item]) ? $_GET[$item] : null;	
+			}
+		} else {
+			if ($parent) {
+				$value = isset($_POST[$parent][$item]) ? $_POST[$parent][$item] : null;
+			} else {
+				$value = isset($_POST[$item]) ? $_POST[$item] : null;	
 			}
 		}
 
