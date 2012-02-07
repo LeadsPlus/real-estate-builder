@@ -8,8 +8,6 @@ $PL_API_LISTINGS = array(
 			'type' => 'GET'
 		),
 		'args' => array(
-			'include_disabled' => array('type' => 'checkbox'),
-			// binds to listings
 			'listing_ids',
 			'listing_types' => array(
 				'type' => 'multiselect',
@@ -174,7 +172,7 @@ $PL_API_LISTINGS = array(
 				)
 			),
 			// binds to building id
-			'building_id' => array('type' => 'text'),
+			'building_id',// => array('type' => 'text'),
 			// binds to locations
 			'location' => array(
 				'postal' => array(
@@ -232,12 +230,7 @@ $PL_API_LISTINGS = array(
                 'cent_ht' => array('type' => 'checkbox'),
                 'pk_spce' => array('type' => 'checkbox'),
                 'air_cond' => array('type' => 'checkbox'),
-             //    'lse_trms' => array(
-	            //     'type' => 'select',
-	            //     'options' => array(
-		           //  	'per_mnt' => 'Per Month'	
-		           //  )
-	            // ),
+                'lse_trms',// => array('type' => 'select','options' => array('per_mnt' => 'Per Month')),
                 'ngb_trans' => array('type' => 'checkbox'),
                 'off_den' => array('type' => 'checkbox'),
                 'frnshed' => array('type' => 'checkbox'),
@@ -253,24 +246,13 @@ $PL_API_LISTINGS = array(
 				'max_latitude',// => array('type' => 'text'),
 				'max_longitude'// => array('type' => 'text')
 			),
-			'address_mode' => array(
-				'type' => 'select',
-				'options' => array(
-					'exact' => 'Exact',
-					'polygon' => 'Polygon'
-				)
-			),
-			'limit' => array('type' => 'text'),
-			'skip'  => array('type' => 'text'),
+			'include_disabled' => array('type' => 'checkbox'),
+			'address_mode',// => array('type' => 'select','options' => array('exact' => 'Exact','polygon' => 'Polygon')),
+			'limit', // => array('type' => 'text'),
+			'offset', // => array('type' => 'text'),
 			// Field to sort by, can be any field returned from the API, for uncurated fields use _uncur_data.<key>_ for curated use _cur_data.<key>_
 			'sort_by',
-			'sort_type' => array(
-				'type' => 'select',
-				'options' => array(
-					'asc' => 'Ascending',
-					'desc' => 'Decending'
-				)
-			)
+			'sort_type'// => array('type' => 'select','options' => array('asc' => 'Ascending','desc' =>'Decending'))
 		),
 		'returns' => array(
 			'property_type' => false,

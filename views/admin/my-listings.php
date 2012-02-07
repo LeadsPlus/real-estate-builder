@@ -15,6 +15,7 @@
         <th scope="col" class="manage-column" style="width: 70px">Price</th>
         <th scope="col" class="manage-column" style="width: 100px">City</th>
         <th scope="col" class="manage-column" style="width: 100px">Image</th> -->
+        <th>Images</th>
         <th>Street</th>
         <th>City</th>
         <th>State</th>
@@ -33,6 +34,7 @@
     <tbody></tbody>
     <tfoot>
       <tr>
+        <th></th>
         <th></th>
         <th></th>
         <th></th>

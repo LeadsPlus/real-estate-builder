@@ -1,7 +1,12 @@
 <style type="text/css">
   .wrapper .pls_search_form {
     float: left;
-    padding: 10px
+    padding: 10px;
+    width: 200px;
+    height: 75px
+  }
+  .pls_search_form select {
+    width: 190px;
   }
 </style>
 

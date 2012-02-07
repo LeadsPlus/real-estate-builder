@@ -17,36 +17,46 @@ class PL_Listing_Helper {
 		$response = array();
 
 		// Sorting
-		$columns = array('location.address', 'location.locality', 'location.region', 'location.postal', 'zoning_types', 'purchase_types', 'listing_types', 'property_type', 'cur_data.beds', 'cur_data.baths', 'cur_data.price', 'cur_data.sqft', 'cur_data.avail_on');
+		$columns = array('images','location.address', 'location.locality', 'location.region', 'location.postal', 'zoning_types', 'purchase_types', 'listing_types', 'property_type', 'cur_data.beds', 'cur_data.baths', 'cur_data.price', 'cur_data.sqft', 'cur_data.avail_on');
 		$_POST['sort_by'] = $columns[$_POST['iSortCol_0']];
 		$_POST['sort_type'] = $_POST['sSortDir_0'];
 
-		// Need Pagination
+		// Pagination
 		$_POST['limit'] = $_POST['iDisplayLength'];
-		$_POST['skip'] = $_POST['iDisplayStart'];		
+		$_POST['offset'] = $_POST['iDisplayStart'];		
+		
+		// Get listings from model
 		$api_response = PL_Listing::get($_POST);
 		
+		// build response for datatables.js
 		$listings = array();
 		foreach ($api_response['listings'] as $key => $listing) {
-			$listings[$key][] = $api_response['listings'][$key]["location"]["address"];
-			$listings[$key][] = $api_response['listings'][$key]["location"]["locality"];
-			$listings[$key][] = $api_response['listings'][$key]["location"]["region"];
-			$listings[$key][] = $api_response['listings'][$key]["location"]["postal"];
-			$listings[$key][] = implode($api_response['listings'][$key]["zoning_types"], ', ');
-			$listings[$key][] = implode($api_response['listings'][$key]["purchase_types"], ', ');
-			$listings[$key][] = implode($api_response['listings'][$key]["listing_types"], ', ');
-			$listings[$key][] = $api_response['listings'][$key]["property_type"];
-			$listings[$key][] = $api_response['listings'][$key]["cur_data"]["beds"];
-			$listings[$key][] = $api_response['listings'][$key]["cur_data"]["baths"];
-			$listings[$key][] = $api_response['listings'][$key]["cur_data"]["price"];
-			$listings[$key][] = $api_response['listings'][$key]["cur_data"]["sqft"];
-			$listings[$key][] = $api_response['listings'][$key]["cur_data"]["avail_on"];
+			
+			$images = $listing['images'];
+			$listings[$key][] = ((is_array($images) && isset($images[0])) ? '<img width=75 height=75 src="' . $images[0]['url'] . '" />' : 'empty');
+			$listings[$key][] = $listing["location"]["address"];
+			$listings[$key][] = $listing["location"]["locality"];
+			$listings[$key][] = $listing["location"]["region"];
+			$listings[$key][] = $listing["location"]["postal"];
+			$listings[$key][] = implode($listing["zoning_types"], ', ');
+			$listings[$key][] = implode($listing["purchase_types"], ', ');
+			$listings[$key][] = implode($listing["listing_types"], ', ');
+			$listings[$key][] = $listing["property_type"];
+			$listings[$key][] = $listing["cur_data"]["beds"];
+			$listings[$key][] = $listing["cur_data"]["baths"];
+			$listings[$key][] = $listing["cur_data"]["price"];
+			$listings[$key][] = $listing["cur_data"]["sqft"];
+			$listings[$key][] = $listing["cur_data"]["avail_on"];
 		}
+
+		// Required for datatables.js to function properly.
 		$response['sEcho'] = $_POST['sEcho'];
 		$response['aaData'] = $listings;
 		$response['iTotalRecords'] = $api_response['total'];
 		$response['iTotalDisplayRecords'] = $api_response['total'];
 		echo json_encode($response);
+
+		//wordpress echos out a 0 randomly. die prevents it.
 		die();
 	}	
 
