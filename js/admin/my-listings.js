@@ -34,6 +34,10 @@ $(document).ready(function() {
         return aoData;
     }
 
+    $('#toggle_advanced').live('click', function () {
+       jQuery('#pls_admin_my_listings #advanced').toggle(); 
+    });
+
 });
 
 

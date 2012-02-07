@@ -3,6 +3,7 @@
   $listings = PL_Config::PL_API_LISTINGS('get');
   PL_Form::generate($listings['args'], false, "POST", "pls_admin_my_listings");
 ?>
+<a id="toggle_advanced" href="#">Toggle Advanced Search</a>
 <div id="container" style="width: 99%">
   <table id="placester_listings_list" class="widefat post fixed placester_properties" cellspacing="0">
     <thead>

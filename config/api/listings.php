@@ -10,6 +10,7 @@ $PL_API_LISTINGS = array(
 		'args' => array(
 			'listing_ids',
 			'listing_types' => array(
+				'group' => 'advanced',
 				'type' => 'multiselect',
 				'options' => array(
 					'sublet' => 'Sublet',
@@ -159,6 +160,7 @@ $PL_API_LISTINGS = array(
 			// ),
 			'zoning_types' => array(
 				'type' => 'multiselect',
+				'group' => 'advanced',
 				'options' => array(
 					'residential' => 'Residential',
 					'commercial' => 'Commercial'
@@ -166,6 +168,7 @@ $PL_API_LISTINGS = array(
 			),
 			'purchase_types' => array(
 				'type' => 'multiselect',
+				'group' => 'advanced',
 				'options' => array(
 					'sale' => 'Sale',
 					'rental' => 'Rental'
@@ -177,6 +180,7 @@ $PL_API_LISTINGS = array(
 			'location' => array(
 				'postal' => array(
 					'type' => 'multiselect',
+					'group' => 'basic',
 					'bound' => array(
 						'class' => 'PL_Listing',
 						'method' => 'locations_for_options',
@@ -185,6 +189,7 @@ $PL_API_LISTINGS = array(
 				),
 				'region'  => array(
 					'type' => 'multiselect',
+					'group' => 'basic',
 					'bound' => array(
 						'class' => 'PL_Listing',
 						'method' => 'locations_for_options',
@@ -193,6 +198,7 @@ $PL_API_LISTINGS = array(
 				),
 				'locality'  => array(
 					'type' => 'multiselect',
+					'group' => 'basic',
 					'bound' => array(
 						'class' => 'PL_Listing',
 						'method' => 'locations_for_options',
@@ -202,41 +208,41 @@ $PL_API_LISTINGS = array(
 			),
 			// binds to keys / values of all attributes (cur + uncur)
 			'metadata' => array(
-				'beds' => array('type' => 'text'),
-				'max_beds' => array('type' => 'text'),
-				'min_beds' => array('type' => 'text'),
-                'baths' => array('type' => 'text'),
-                'max_baths' => array('type' => 'text'),
-                'min_baths' => array('type' => 'text'),
-                'half_baths' => array('type' => 'text'),
-                'max_half_baths' => array('type' => 'text'),
-                'min_half_baths' => array('type' => 'text'),
-                'price' => array('type' => 'text'),
-                'max_price' => array('type' => 'text'),
-                'min_price' => array('type' => 'text'),
-                'sqft' => array('type' => 'text'),
-                'max_sqft' => array('type' => 'text'),
-                'min_sqft' => array('type' => 'text'),
-                'avail_on' => array('type' => 'date'),
-                'max_avail_on' => array('type' => 'date'),
-                'min_avail_on' => array('type' => 'date'),
-                'desc' => array('type' => 'checkbox'),
-                'lt_sz' => array('type' => 'text'),
-                'ngb_shop' => array('type' => 'checkbox'),
-                'ngb_hgwy' => array('type' => 'checkbox'),
-                'grnt_tops' => array('type' => 'checkbox'),
-                'ngb_med' => array('type' => 'checkbox'),
-                'ngb_trails' => array('type' => 'checkbox'),
-                'cent_ht' => array('type' => 'checkbox'),
-                'pk_spce' => array('type' => 'checkbox'),
-                'air_cond' => array('type' => 'checkbox'),
+				'beds' => array('type' => 'text','group' => 'basic'),
+				'max_beds' => array('type' => 'text', 'group' => 'advanced'),
+				'min_beds' => array('type' => 'text', 'group' => 'advanced'),
+                'baths' => array('type' => 'text', 'group' => 'basic'),
+                'max_baths' => array('type' => 'text', 'group' => 'advanced'),
+                'min_baths' => array('type' => 'text', 'group' => 'advanced'),
+                'half_baths' => array('type' => 'text', 'group' => 'basic'),
+                'max_half_baths' => array('type' => 'text', 'group' => 'advanced'),
+                'min_half_baths' => array('type' => 'text', 'group' => 'advanced'),
+                'price' => array('type' => 'text', 'group' => 'basic'),
+                'max_price' => array('type' => 'text', 'group' => 'advanced'),
+                'min_price' => array('type' => 'text', 'group' => 'advanced'),
+                'sqft' => array('type' => 'text', 'group' => 'basic'),
+                'max_sqft' => array('type' => 'text', 'group' => 'advanced'),
+                'min_sqft' => array('type' => 'text', 'group' => 'advanced'),
+                'avail_on' => array('type' => 'date', 'group' => 'advanced'),
+                'max_avail_on' => array('type' => 'date', 'group' => 'basic'),
+                'min_avail_on' => array('type' => 'date', 'group' => 'basic'),
+                'desc' => array('type' => 'checkbox', 'group' => 'advanced'),
+                'lt_sz' => array('type' => 'text', 'group' => 'advanced'),
+                'ngb_shop' => array('type' => 'checkbox', 'group' => 'advanced'),
+                'ngb_hgwy' => array('type' => 'checkbox', 'group' => 'advanced'),
+                'grnt_tops' => array('type' => 'checkbox', 'group' => 'advanced'),
+                'ngb_med' => array('type' => 'checkbox', 'group' => 'advanced'),
+                'ngb_trails' => array('type' => 'checkbox', 'group' => 'advanced'),
+                'cent_ht' => array('type' => 'checkbox', 'group' => 'advanced'),
+                'pk_spce' => array('type' => 'checkbox', 'group' => 'advanced'),
+                'air_cond' => array('type' => 'checkbox', 'group' => 'advanced'),
                 'lse_trms',// => array('type' => 'select','options' => array('per_mnt' => 'Per Month')),
-                'ngb_trans' => array('type' => 'checkbox'),
-                'off_den' => array('type' => 'checkbox'),
-                'frnshed' => array('type' => 'checkbox'),
-                'refrig' => array('type' => 'checkbox'),
-                'deposit' => array('type' => 'checkbox'),
-                'ngb_pubsch' => array('type' => 'checkbox'),
+                'ngb_trans' => array('type' => 'checkbox', 'group' => 'advanced'),
+                'off_den' => array('type' => 'checkbox', 'group' => 'advanced'),
+                'frnshed' => array('type' => 'checkbox', 'group' => 'advanced'),
+                'refrig' => array('type' => 'checkbox', 'group' => 'advanced'),
+                'deposit' => array('type' => 'checkbox', 'group' => 'advanced'),
+                'ngb_pubsch' => array('type' => 'checkbox', 'group' => 'advanced'),
 				'key',
 				'value'
 			),
@@ -246,7 +252,7 @@ $PL_API_LISTINGS = array(
 				'max_latitude',// => array('type' => 'text'),
 				'max_longitude'// => array('type' => 'text')
 			),
-			'include_disabled' => array('type' => 'checkbox'),
+			'include_disabled' => array('type' => 'checkbox', 'group' => 'basic'),
 			'address_mode',// => array('type' => 'select','options' => array('exact' => 'Exact','polygon' => 'Polygon')),
 			'limit', // => array('type' => 'text'),
 			'offset', // => array('type' => 'text'),

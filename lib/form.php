@@ -4,9 +4,26 @@ class PL_Form {
 	
 	public static function generate($items, $url = false, $method = 'GET', $id = 'pls_search_form') {
 		$form = '<form name="input" method="' . $method . '" class="complex-search" id="' . $id . '">';
+		$form_group = array();
 		foreach ($items as $key => $attributes) {
-			$form .= self::item($key, $attributes, $method);
+			if ( isset($attributes['type']) && isset($attributes['group']) ) {
+			 	$form_group[$attributes['group']][] = self::item($key, $attributes, $method);
+			 } elseif ( !isset($attributes['type']) && is_array($attributes) ) {
+				foreach ($attributes as $child_item => $attribute) {
+					if ( isset($attribute['group']) ) {
+						$form_group[$attribute['group']][] = PL_Form::item($child_item, $attribute, $method, $key);	
+					}
+				}
+			}
 		}	
+		krsort($form_group);
+		foreach ($form_group as $group => $elements) {
+			if( !empty($elements) ) {
+				$form .= "<section id='".$group."'>";
+				$form .= implode($elements, '');
+				$form .= "</section>";
+			}
+		}
 		$form .= '<section class="clear"></section>';
 		$form .= '<button id="' . $id . '_submit_button" type="submit">Submit</button>';
 		$form .= '</form>';
@@ -14,19 +31,6 @@ class PL_Form {
 	}
 
 	public static function item($item, $attributes, $method, $parent = false) {
-			
-		// if no type, need to traverse 1 level deeper. 
-		if( !isset($attributes['type']) && is_array($attributes) ) {
-			$items = '';
-			foreach ($attributes as $child_item => $attribute) {
-				$items .= PL_Form::item($child_item, $attribute, $method, $item);
-			}
-			return $items;
-		}
-
-		if ($item == 'max_beds') {
-			// pls_dump($item, $attributes, $method, $parent);
-		}
 		extract(self::prepare_item($item, $attributes, $method, $parent), EXTR_SKIP);
 		ob_start();
 		if ($type == 'checkbox') {

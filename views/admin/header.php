@@ -8,6 +8,9 @@
   .pls_search_form select {
     width: 190px;
   }
+  #pls_admin_my_listings #advanced {
+    display: none;
+  }
 </style>
 
 <?php function placester_admin_header( $current_page, $title_postfix = '' ) {
