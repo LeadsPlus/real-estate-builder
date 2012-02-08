@@ -2,7 +2,7 @@
 
 class PL_Form {
 	
-	public static function generate($items, $url = false, $method = 'GET', $id = 'pls_search_form') {
+	public static function generate($items, $url = false, $method = 'GET', $id = 'pls_search_form', $title = false) {
 		$form = '<form name="input" method="' . $method . '" class="complex-search" id="' . $id . '">';
 		$form_group = array();
 		foreach ($items as $key => $attributes) {
@@ -11,18 +11,16 @@ class PL_Form {
 			 } elseif ( !isset($attributes['type']) && is_array($attributes) ) {
 				foreach ($attributes as $child_item => $attribute) {
 					if ( isset($attribute['group']) ) {
-						$form_group[$attribute['group']][] = PL_Form::item($child_item, $attribute, $method, $key);	
+						$form_group[$attribute['group']][] = self::item($child_item, $attribute, $method, $key);	
 					}
 				}
 			}
 		}	
-		krsort($form_group);
 		foreach ($form_group as $group => $elements) {
-			if( !empty($elements) ) {
-				$form .= "<section id='".$group."'>";
-				$form .= implode($elements, '');
-				$form .= "</section>";
-			}
+			$form .= "<section class='form_group' id='".$group."'>";
+			$form .= $title ? "<h3>" . ucwords($group) . "</h3>" : '';
+			$form .= implode($elements, '');
+			$form .= "</section>";
 		}
 		$form .= '<section class="clear"></section>';
 		$form .= '<button id="' . $id . '_submit_button" type="submit">Submit</button>';
@@ -77,11 +75,23 @@ class PL_Form {
 					<input id="<?php echo $id ?>" type="<?php echo $type ?>" name="<?php echo $name ?>" <?php echo !empty($value) ? 'value="'.$value.'"' : ''; ?> />
 				</section>
 			<?php
+		} elseif ( $type == 'date') {
+			?>
+				<section id="<?php echo $id ?>" class="pls_search_form">
+					<label for="<?php echo $id ?>"><?php echo $text ?></label>	
+					<input id="<?php echo $id ?>" class="trigger_datepicker" type="<?php echo $type ?>" name="<?php echo $name ?>" <?php echo !empty($value) ? 'value="'.$value.'"' : ''; ?> />
+				</section>
+			<?php
 		}
 		return trim(ob_get_clean());
 	}
 
 	private function prepare_item($item, $attributes, $method, $parent) {
+
+		$text = $item;
+		if (isset($attributes['label'])) {
+			$text = $attributes['label'];
+		}
 
 		// properly set the name if an array
 		$name = $item;
@@ -114,7 +124,7 @@ class PL_Form {
 			}
 		}
 
-		return array('name' => $name, 'value' => $value, 'text' => $item, 'options' => $options, 'id' => $item, 'type' => $attributes['type'] );
+		return array('name' => $name, 'value' => $value, 'text' => $text, 'options' => $options, 'id' => $item, 'type' => $attributes['type'] );
 	}
 
 // class end

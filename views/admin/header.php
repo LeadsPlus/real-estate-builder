@@ -8,9 +8,17 @@
   .pls_search_form select {
     width: 190px;
   }
+  .form_group {
+    float: left;
+    clear: both;
+  }
   #pls_admin_my_listings #advanced {
     display: none;
   }
+  #toggle_advanced, #pls_admin_my_listings_submit_button {
+    float: right;
+  }
+
 </style>
 
 <?php function placester_admin_header( $current_page, $title_postfix = '' ) {

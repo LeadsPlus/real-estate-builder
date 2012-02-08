@@ -176,7 +176,6 @@ $PL_API_LISTINGS = array(
 			),
 			// binds to building id
 			'building_id',// => array('type' => 'text'),
-			// binds to locations
 			'location' => array(
 				'postal' => array(
 					'type' => 'multiselect',
@@ -318,9 +317,61 @@ $PL_API_LISTINGS = array(
 	'create' => array(
 		'request' => array(
 			'url' => 'https://api.placester.com/v2.0/listings',
-			'type' => 'GET'
+			'type' => 'POST'
 		),
 		'args' => array(
+			'listing_types' => array(
+				'label' => 'Listing Type',
+				'group' => 'Listing Type',
+				'type' => 'select',
+				'options' => array(
+					'sublet' => 'Sublet',
+					'res_sale' => 'Residential Sale',
+					'vac_rental' => 'Vacation Rental',
+					'res_rental' => 'Residential Rental',
+					'comm_rental' => 'Commercial Rental',
+					'comm_sale' => 'Commercial Sale',
+				)
+			),
+			'location' => array(
+				'address' => array('type' => 'text','group' => 'location', 'label' => 'Address'), 
+				'locality'  => array('type' => 'text','group' => 'location', 'label' => 'City'),
+				'region'  => array('type' => 'text','group' => 'location', 'label' => 'State'),
+				'postal' => array('type' => 'text','group' => 'location', 'label' => 'Zip Code'),
+				'unit'  => array('type' => 'text','group' => 'location', 'label' => 'Unit'),
+				'neighborhood'  => array('type' => 'text','group' => 'location', 'label' => 'Neighborhood'),
+				'country'  => array('type' => 'text','group' => 'location', 'label' => 'Country')
+			),
+			// // binds to keys / values of all attributes (cur + uncur)
+			'metadata' => array(
+				'beds' => array('type' => 'text','group' => 'basic details', 'label' => 'Bedrooms'),
+                'baths' => array('type' => 'text', 'group' => 'basic details', 'label' => 'Bathrooms'),
+                'half_baths' => array('type' => 'text', 'group' => 'basic details', 'label' => 'Half Bathrooms'),
+                'price' => array('type' => 'text', 'group' => 'basic details', 'label' => 'Price'),
+                'sqft' => array('type' => 'text', 'group' => 'basic details', 'label' => 'Square Feet'),
+                'avail_on' => array('type' => 'date', 'group' => 'basic details', 'label' => 'Available On'),
+                'desc' => array('type' => 'textarea', 'group' => 'description', 'label' => 'Description'),
+                'lse_trms' => array('type' => 'select', 'group' => 'Transaction Details','label' => 'Lease Terms', 'options' => array('per_mnt' => 'Per Month')),
+                'lt_sz' => array('type' => 'text', 'group' => 'Lot Details', 'label' => 'Lot Size'),
+                'ngb_pubsch' => array('type' => 'checkbox', 'group' => 'Neighborhood Amenities'),
+                'ngb_trans' => array('type' => 'checkbox', 'group' => 'Neighborhood Amenities'),
+                'ngb_med' => array('type' => 'checkbox', 'group' => 'Neighborhood Amenities'),
+                'ngb_trails' => array('type' => 'checkbox', 'group' => 'Neighborhood Amenities'),
+                'ngb_shop' => array('type' => 'checkbox', 'group' => 'Neighborhood Amenities'),
+                'ngb_hgwy' => array('type' => 'checkbox', 'group' => 'Neighborhood Amenities'),
+                'grnt_tops' => array('type' => 'checkbox', 'group' => 'Listing Amenities'),
+                'cent_ht' => array('type' => 'checkbox', 'group' => 'Listing Amenities'),
+                'pk_spce' => array('type' => 'checkbox', 'group' => 'Listing Amenities'),
+                'air_cond' => array('type' => 'checkbox', 'group' => 'Listing Amenities'),
+                'off_den' => array('type' => 'checkbox', 'group' => 'Listing Amenities'),
+                'frnshed' => array('type' => 'checkbox', 'group' => 'Listing Amenities'),
+                'refrig' => array('type' => 'checkbox', 'group' => 'Listing Amenities'),
+                'deposit' => array('type' => 'checkbox', 'group' => 'Listing Amenities'),
+			),
+			'uncur_data' => array(
+			),
+			'images' => array(
+			)
 		),
 		'returns' => array(
 		)

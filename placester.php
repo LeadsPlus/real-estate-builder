@@ -105,10 +105,9 @@ function placester_admin_menu() {
     $submenu['placester'] = array();
 
     add_submenu_page( 'placester', '','My Listings', 'edit_pages', 'placester_properties', array('PL_Router','my_listings'));
-    add_submenu_page( 'placester', '', 'Add Listing', 'edit_pages', 'placester_property_add', 'placester_admin_property_add_html' );
-	add_submenu_page( 'placester', '', 'RETS Import', 'edit_pages', 'placester_property_add', 'placester_admin_property_add_html' );
-    add_submenu_page( 'placester', '', 'Theme Gallery', 'edit_pages', 'placester_settings', 'placester_admin_settings_html' );    
-    add_submenu_page( 'placester', '', 'Settings', 'edit_pages', 'placester_settings', 'placester_admin_settings_html' );    
+    add_submenu_page( 'placester', '', 'Add Listing', 'edit_pages', 'placester_property_add', array('PL_Router','add_listings') );
+    // add_submenu_page( 'placester', '', 'Theme Gallery', 'edit_pages', 'placester_settings', 'placester_admin_settings_html' );    
+    // add_submenu_page( 'placester', '', 'Settings', 'edit_pages', 'placester_settings', 'placester_admin_settings_html' );    
 }
 
 

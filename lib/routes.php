@@ -22,6 +22,11 @@ class PL_Router {
 		self:: router('my-listings.php', array('test'=>'donkey'), false);
 	}
 
+	public function add_listings() {
+
+		self:: router('add-listing.php', array('test'=>'donkey'), false);
+	}
+
 	public function header() {
 		
 	}
