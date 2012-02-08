@@ -55,35 +55,35 @@ function placester_admin_menu() {
     // Add "Favorites" and "Roommates" menus to leads
     if ( current_user_can( 'placester_lead' ) ) {
         // Add Favorites menu
-        add_menu_page( 
-            'Favorite Properties',
-            'Favorites',
-            'add_favorites', 
-            'placester_favorite_properties', 
-            'placester_admin_favorite_properties_html', 
-            plugins_url( '/placester/images/icons/favorites.png'),
-            '2a' 
-        );
+        // add_menu_page( 
+        //     'Favorite Properties',
+        //     'Favorites',
+        //     'add_favorites', 
+        //     'placester_favorite_properties', 
+        //     'placester_admin_favorite_properties_html', 
+        //     plugins_url( '/placester/images/icons/favorites.png'),
+        //     '2a' 
+        // );
         // Add Roommates menu
-        add_menu_page( 
-            'Roommates',
-            'Roommates',
-            'add_roomates', 
-            'placester_roommates', 
-            'placester_admin_roommates_html', 
-            plugins_url( '/placester/images/icons/roommates.png'),
-            '2b' 
-        );
+        // add_menu_page( 
+        //     'Roommates',
+        //     'Roommates',
+        //     'add_roomates', 
+        //     'placester_roommates', 
+        //     'placester_admin_roommates_html', 
+        //     plugins_url( '/placester/images/icons/roommates.png'),
+        //     '2b' 
+        // );
         // Add Lead Profile menu
-        add_menu_page( 
-            'Lead Profile',
-            'Lead Profile',
-            'add_roomates', 
-            'placester_lead_profile', 
-            'placester_admin_lead_profile_html', 
-            plugins_url( '/placester/images/icons/roommates.png'),
-            '9' 
-        );
+        // add_menu_page( 
+        //     'Lead Profile',
+        //     'Lead Profile',
+        //     'add_roomates', 
+        //     'placester_lead_profile', 
+        //     'placester_admin_lead_profile_html', 
+        //     plugins_url( '/placester/images/icons/roommates.png'),
+        //     '9' 
+        // );
     }
 
     // Styles, scripts
