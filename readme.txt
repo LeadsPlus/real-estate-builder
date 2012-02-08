@@ -22,19 +22,19 @@ From the creators of http://placester.com: Create your fully functional real est
 
 **See it in Action**
 
-* Fully functional demo: [Columbus Theme](http://columbus.placester.net/)
-* Single property demo: [Bluestone Theme](http://bluestone.placester.net/)
-* Foundation is a blank theme ready for designers to make it beautiful: [Foundation Theme](http://foundation.placester.net/)
+* Fully functional demo: [Columbus Theme](http://columbus.placester.net/?utm_source=wordpress&utm_medium=theme&utm_campaign=columbus)
+* Single property demo: [Bluestone Theme](http://bluestone.placester.net/?utm_source=wordpress&utm_medium=theme&utm_campaign=bluestone)
+* Foundation is a blank theme ready for designers to make it beautiful: [Foundation Theme](http://foundation.placester.net/?utm_source=wordpress&utm_medium=theme&utm_campaign=foundation)
 
 This is the only plugin you need to create a powerful WordPress powered real estate website. Watch our quick demo about how to get started:
 http://www.youtube.com/watch?v=WZBha9cU0IM
 
 
 Check out premium themes available to hosted users:
-[Manchester Theme](http://manchester.placester.net/)
-[Tampa Theme](http://tampa.placester.net/)
-[Highland Theme](http://highland.placester.net/)
-[Slate Theme](http://slate.placester.net/)
+[Manchester Theme](http://manchester.placester.net/?utm_source=wordpress&utm_medium=theme&utm_campaign=manchester)
+[Tampa Theme](http://tampa.placester.net/?utm_source=wordpress&utm_medium=theme&utm_campaign=tampa)
+[Highland Theme](http://highland.placester.net/?utm_source=wordpress&utm_medium=theme&utm_campaign=highland)
+[Slate Theme](http://slate.placester.net/?utm_source=wordpress&utm_medium=theme&utm_campaign=slate)
 
 
 Find the latest themes and theme updates at [Placester.com/themes](https://placester.com/themes/)
@@ -165,9 +165,6 @@ In general - real-time. But if you use 3rd party property management services, t
 * Added support for India, South Africa, and United Kingdom
 * Fixed the Contact images bug
 * API updates
-
-= 0.3.6 = 
-* Bugfixes
 
 = 0.3.5 = 
 * Show hidden Contact hidden fields for all API types 
