@@ -3,7 +3,7 @@ Contributors: Placester
 Tags: real estate, realestate, home, housing, rentals, properties, neighborhood, map, mortgage, listing, listings, craigslist, rental, google map, mls, idx, rets, agent, broker, leasing, realty, realtor, placester, widget, buddypress
 Requires at least: 2.8
 Tested up to: 3.2.1
-Stable tag: 0.3.10
+Stable tag: 0.3.12
 
 Easily create and manage real estate sites powered by WordPress.
 
@@ -13,46 +13,48 @@ From the creators of http://placester.com: Create your fully functional real est
 
 * Free RETS integrations available, continuously updated so you don't have to.
 * Create / edit / update / search listings.
-* Every listing pages automatically created, great for SEO.
+* Set listings as "Featured" to highlight them in your sidebar throughout your site.
+* Every listing automatically has a unique landing page created - great for SEO.
+* Fully customizable sidebar layout and custom Placester real estate widgets.
 * Unlimited images per listing
-* Lead capture widget
+* Placester has themes free themes that work seamlessly with this free Placester plugin (hosted premium themes also available).
 
-Find the latest themes and theme updates at https://placester.com/themes/
 
-http://www.youtube.com/watch?v=WZBha9cU0IM
+**See it in Action**
 
-See it in action - fully functional demo:
-
-* http://plugin.placester.net/
-* http://allure-sample.placester.net/
-
-Check out premium themes available to hosted users:
-
-* http://allure-pro-sample.placester.net/
-* http://radient-pro-sample.placester.net/
+* Fully functional demo: [Columbus Theme](http://columbus.placester.net/)
+* Single property demo: [Bluestone Theme](http://bluestone.placester.net/)
+* Foundation is a blank theme ready for designers to make it beautiful: [Foundation Theme](http://foundation.placester.net/)
 
 This is the only plugin you need to create a powerful WordPress powered real estate website. Watch our quick demo about how to get started:
+http://www.youtube.com/watch?v=WZBha9cU0IM
 
 
+Check out premium themes available to hosted users:
+[Manchester Theme](http://manchester.placester.net/)
+[Tampa Theme](http://tampa.placester.net/)
+[Highland Theme](http://highland.placester.net/)
+[Slate Theme](http://slate.placester.net/)
 
 
-Highlights:
+Find the latest themes and theme updates at [Placester.com/themes](https://placester.com/themes/)
 
-* Easy setup - create a new account in one step,
-* Create and manage listing landing pages,
-* Populate your web site with the listing inventory from your property database company,
-* Tune the listings on the site for the target market,
-* Manage and track lead performance,
-* Customize layout using robust widgets and shortcodes ^,
-* Intuitive help tools,
-* Powerful search based on the Placester API and Google Maps,
-* Easily promote featured properties across your site,
-* Filter listings by any modality for promotion, focus on the clientele of interest,
-* Search engine optimized from top to bottom ^,
-* Social media service integrations ^,
-* Always up-to-date, Placester automatically update itself with the the latest features 
+
+**Highlights:**
+
+* Easy setup - create a new free Placester account in one step to automatically add your listings to your site. No credit card required.
+* Easily add listings - manually add listings to your website via the plugin admin panel.
+* Create and manage listing landing pages
+* Populate your web site with the listing inventory from your property database company
+* Tune the listings on the site for the target market
+* Customize sidebar layout using robust widgets
+* Powerful search based on the Placester API and Google Maps
+* Easily promote featured properties across your site
+* Search engine optimized from top to bottom ^
+* Always up-to-date, Placester automatically update itself with the the latest listings data
 
 Note ^: Feature requires a Placester-enabled theme.
+
 
 == Installation ==
 
@@ -61,15 +63,15 @@ Note ^: Feature requires a Placester-enabled theme.
 1. In WordPress admin, visit Plugins > Add New
 1. Search for "placester"
 1. Click the "Install Now" link and click "Ok" (if necessary) in the pop-up dialog.
-1. Once installed, click the "Activate Plugin" link
-1. Add your API key and configure the plugin via the "Placester" left-hand menu
+1. Once installed, click the "Activate Plugin" link.
+1. Via the "Placester" left-hand menu, and Plugin Settings tab, add your API key and configure the plugin.
 
 **Install via Upload:**
 
 1. In WordPress admin, visit "Plugins" > "Add New" > "Upload"
 1. Upload placester.zip file
 1. Once uploaded, click the "Activate Plugin" link
-1. Add your API key and configure the plugin via the "Placester" left-hand menu
+1. Via the "Placester" left-hand menu, and Plugin Settings tab, add your API key and configure the plugin.
 
 == Screenshots ==
 1. Admin Dashboard
@@ -89,7 +91,7 @@ Any professional seeking the competitive advantage of having a robust real estat
 
 = Are there any hidden costs or fees here? =
 
-Not unless you want there to be, that is Placester is your marketing partner. Our goal is to help you generate leads for your listing and help you easily create niche web sites for marketing purposes using our themes.
+Not unless you want there to be, that is Placester is your marketing partner. Our goal is to help you generate leads for your listing and help you easily create niche web sites for marketing purposes using our themes. There are additional themes available in Placester's [Advanced offering](https://placester.com/pricing/) which includes website hosting.
 
 = Which markets (countries) are supported? =
 
@@ -112,9 +114,9 @@ The data is yours, Placester seeks only to a cost-effective means to generate mo
 
 After installing the plugin simply follow the instructions in the plugin to obtain an API key and begin either adding listings or [notify us](mailto:support@placester.com) if you already work with a property database company so we can enable the integration for your account.
 
-= Wait, what about my listings, how do I make sure clients don't see actual addresses? =
+### = Wait, what about my listings, how do I make sure clients don't see actual addresses? =
 
-Simple, by default Placester only displays the block address so the client can explore the neighborhood, but they still need you for the showing or to finalize the deal.
+### Simple, by default Placester only displays the block address so the client can explore the neighborhood, but they still need you for the showing or to finalize the deal.
 
 = What is "SEO"? How do I get on to Google? =
 
@@ -130,7 +132,8 @@ Placester offers lots of tools on our platform powered by our robust API. So usi
 
 = Does this plugin work with Multi-site? =
 
-Yes it does, however seperate instances (API keys) must be used per site.
+Yes it does.
+### Yes it does, however separate instances (API keys) must be used per site.
 
 = How do I get support? =
 
@@ -142,15 +145,21 @@ Absolutely, [reach out](mailto:support@placester.com) to us and let us know what
 
 = How often do you update data? =
 
-In general real-time, but if you use 3rd party property management services, the updates will only be as recent as your provider allows.
+In general - real-time. But if you use 3rd party property management services, the updates will only be as recent as your provider allows.
 
 == Changelog ==
 
+= 0.3.12 =
+* Minor changes to WordPress function due to deprecation
+* Removed Roommates/Favorites/Leads sections in preparation for next version for plugin
+* Data type fixes for Placester themes
+* Admin panel fixes
+
 = 0.3.8 = 
 * Minor changes to contact / settings due to api changes
-* fixed timeout errors
-* fixed image uploading
-* fixed theme xml parsing errors
+* Fixed timeout errors
+* Fixed image uploading
+* Fixed theme xml parsing errors
 
 = 0.3.7 = 
 * Added support for India, South Africa, and United Kingdom
@@ -179,14 +188,12 @@ In general real-time, but if you use 3rd party property management services, the
 = 0.3.1 = 
 * Added support for listing delete
 * Added the ability to set the default listings map position and zoom
-* Corrected various bugs
 
 = 0.3 = 
 * Added better image management
 * Added support for countries (US and Canada)
 * Added support for displaying the exact address
 * Visual compatibility with Wordpress 3.2
-* Corrected various bugs
 
 = 0.2.1 = 
 * Added universal theme support
@@ -199,4 +206,3 @@ In general real-time, but if you use 3rd party property management services, the
 
 = 0.1.0 =
 * Initial release
-
