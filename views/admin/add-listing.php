@@ -1,5 +1,9 @@
+
+
 <?php 
 
+
+/*
 	//if id, then we're editing.
 	if (isset($_GET['id'])) {
 		// edit args are the same as create.
@@ -14,4 +18,4 @@
 		$listings = PL_Config::PL_API_LISTINGS('create');
 		PL_Form::generate($listings['args'], $listings['request']['url'], $listings['request']['type'], "pls_admin_add_listing", true);	
 	}
-	
+	*/
