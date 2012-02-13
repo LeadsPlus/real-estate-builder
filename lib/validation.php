@@ -22,11 +22,11 @@ class PL_Validate {
  		}
  		// Needs to be refactored. Strips out empty values from long, nested, params
  		foreach ($args as $arg => $value) {
- 			if (empty($value)) {
+ 			if (empty($value) || $value == 'false') {
  				unset($args[$arg]);
  			} elseif (is_array($value)) {
  				foreach ($value as $k => $v) {
- 					if (empty($v)) {
+ 					if (empty($v) || $v == 'false') {
  						unset($args[$arg][$k]);
  					}
  				}

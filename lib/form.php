@@ -2,8 +2,8 @@
 
 class PL_Form {
 	
-	public static function generate($items, $url = false, $method = 'GET', $id = 'pls_search_form', $title = false) {
-		$form = '<form name="input" method="' . $method . '" class="complex-search" id="' . $id . '">';
+	public static function generate($items, $url = false, $method = 'GET', $id = 'pls_search_form', $title = false, $include_submit = true) {
+		$form = '<form name="input" method="' . $method . '" url="' . $url . '" class="complex-search" id="' . $id . '">';
 		$form_group = array();
 		foreach ($items as $key => $attributes) {
 			if ( isset($attributes['type']) && isset($attributes['group']) ) {
@@ -17,13 +17,18 @@ class PL_Form {
 			}
 		}	
 		foreach ($form_group as $group => $elements) {
-			$form .= "<section class='form_group' id='".$group."'>";
-			$form .= $title ? "<h3>" . ucwords($group) . "</h3>" : '';
+			if (empty($group)) { $id = 'custom'; } else {$id = $group; }
+			$form .= "<section class='form_group' id='".str_replace(" ","_",$id)."'>";
+			if (!empty($group)) {
+				$form .= $title ? "<h3>" . ucwords($group) . "</h3>" : '';
+			}
 			$form .= implode($elements, '');
 			$form .= "</section>";
 		}
 		$form .= '<section class="clear"></section>';
-		$form .= '<button id="' . $id . '_submit_button" type="submit">Submit</button>';
+		if ($include_submit) {
+			$form .= '<button id="' . $id . '_submit_button" type="submit">Submit</button>';
+		}
 		$form .= '</form>';
 		echo $form;
 	}
@@ -33,22 +38,21 @@ class PL_Form {
 		ob_start();
 		if ($type == 'checkbox') {
 			?>
-				<section id="<?php echo $id ?>" class="pls_search_form">
+				<section id="<?php echo $id ?>" class="pls_search_form <?php echo $css ?>">
 					<input id="<?php echo $id ?>" type="<?php echo $type ?>" name="<?php echo $name ?>" value="true" <?php echo $value ? 'checked' : '' ?>/>
 					<label for="<?php echo $id ?>"><?php echo $text ?></label>	
 				</section>
 			<?php	
 		} elseif ($type == 'textarea') {
 			?>
-				<section id="<?php echo $id ?>" class="pls_search_form">
+				<section id="<?php echo $id ?>" class="pls_search_form <?php echo $css ?>">
 					<label for="<?php echo $id ?>"><?php echo $text ?></label>	
 					<textarea id="<?php echo $id ?>" rows="2" cols="20"><?php echo $value ?></textarea>
 				</section>
 			<?php
 		} elseif ($type == 'select') {
 			?>
-				<?php //pls_dump($value); ?>
-				<section id="<?php echo $id ?>" class="pls_search_form" >
+				<section id="<?php echo $id ?>" class="pls_search_form <?php echo $css ?>" >
 					<label for="<?php echo $id ?>"><?php echo $text ?></label>	
 					<select name="<?php echo $name ?>" id="<?php echo $id ?>" <?php echo ($type == 'multiselect' ? 'multiple="multiple"' : '') ?> >
 						<?php foreach ($options as $key => $text): ?>
@@ -58,8 +62,8 @@ class PL_Form {
 				</section>
 			<?php	
 		} elseif ($type == 'multiselect') {
-			?>	<?php //pls_dump($value) ?>
-				<section id="<?php echo $id ?>" class="pls_search_form" >
+			?>
+				<section id="<?php echo $id ?>" class="pls_search_form <?php echo $css ?>" >
 					<label for="<?php echo $id ?>"><?php echo $text ?></label>	
 					<select name="<?php echo $name ?>[]" id="<?php echo $id ?>" <?php echo ($type == 'multiselect' ? 'multiple="multiple"' : '') ?> >
 						<?php foreach ($options as $key => $text): ?>
@@ -70,16 +74,41 @@ class PL_Form {
 			<?php	
 		} elseif( $type == 'text' ) {
 			?>
-				<section id="<?php echo $id ?>" class="pls_search_form">
+				<section id="<?php echo $id ?>" class="pls_search_form <?php echo $css ?>">
 					<label for="<?php echo $id ?>"><?php echo $text ?></label>	
 					<input id="<?php echo $id ?>" type="<?php echo $type ?>" name="<?php echo $name ?>" <?php echo !empty($value) ? 'value="'.$value.'"' : ''; ?> />
 				</section>
 			<?php
 		} elseif ( $type == 'date') {
 			?>
-				<section id="<?php echo $id ?>" class="pls_search_form">
+				<section id="<?php echo $id ?>" class="pls_search_form <?php echo $css ?>">
 					<label for="<?php echo $id ?>"><?php echo $text ?></label>	
-					<input id="<?php echo $id ?>" class="trigger_datepicker" type="<?php echo $type ?>" name="<?php echo $name ?>" <?php echo !empty($value) ? 'value="'.$value.'"' : ''; ?> />
+					<input id="<?php echo $id ?>_picker" class="trigger_datepicker" type="text" name="<?php echo $name ?>" <?php echo !empty($value) ? 'value="'.$value.'"' : ''; ?> />
+				</section>
+			<?php
+		} elseif( $type == 'image' ) {
+			?>
+				<section id="<?php echo $id ?>" class="pls_search_form <?php echo $css ?>">
+					<label for="<?php echo $id ?>"><?php echo $text ?></label>	
+					<input id="fileupload" type="file" name="<?php echo $name ?>" /> 
+				</section>
+			<?php
+		} elseif ( $type == 'bundle' ) {
+				$bundle = '';
+				foreach (self::prepare_custom_item($options, $method) as $key => $form_items) {
+					$bundle .= "<section class='form_group' id='".$key."'>";
+					$bundle .= "<h3>" . ucwords($key) . "</h3>";
+					$bundle .= $form_items;
+					$bundle .= "</section>";
+				}
+			 echo $bundle;
+		} elseif ( $type == 'custom_data' ) {
+			?>
+				<section id="<?php echo $id ?>" class="pls_search_form <?php echo $css ?>">
+					<input type="text" name="custom_attribs[][type]" />
+					<input type="text" name="custom_attribs[][cat]" />
+					<input type="text" name="custom_attribs[][name]" />
+					<button id="<?php echo $id ?>">Add another</button>
 				</section>
 			<?php
 		}
@@ -88,15 +117,26 @@ class PL_Form {
 
 	private function prepare_item($item, $attributes, $method, $parent) {
 
+		// Sets text
 		$text = $item;
-		if (isset($attributes['label'])) {
-			$text = $attributes['label'];
-		}
+		if (isset($attributes['label'])) { $text = $attributes['label']; }
+
+		// generates css, want it about the 
+		// name to avoid the explode
+		$css = $item;
+		if (isset($attributes['css'])) { $css = $attributes['css'];}
 
 		// properly set the name if an array
+		//to handle property type bullshit
+		if (strpos($item, '.')) {
+			$exploded = explode('-', $item);
+			$item = $exploded[0];
+		}
 		$name = $item;
+		$id = $item;
 		if($parent) {
 			$name = $parent . '[' . $item . ']';
+			$id = $parent . '-' . $item; //finding brackets in ids is tricky for js
 		}
 
 		// get options, if there are any.
@@ -107,7 +147,6 @@ class PL_Form {
 		} else {
 			$options = array();
 		}
-
 
 		// get values
 		if ($method == 'GET') {
@@ -123,8 +162,19 @@ class PL_Form {
 				$value = isset($_POST[$item]) ? $_POST[$item] : null;	
 			}
 		}
+		return array('name' => $name, 'value' => $value, 'text' => $text, 'options' => $options, 'id' => $id, 'type' => $attributes['type'], 'css' => $css);
+	}
 
-		return array('name' => $name, 'value' => $value, 'text' => $text, 'options' => $options, 'id' => $item, 'type' => $attributes['type'] );
+	private function prepare_custom_item($options, $method) {
+		$custom_items = array();
+
+		foreach ($options as $key => $option) {
+			$form_types = PL_Config::PL_API_CUST_ATTR('get');
+			$form_types = $form_types['args']['attr_type']['options'];
+			$attributes = array('label' => $option['name'], 'type' => $form_types[$option['attr_type']]);
+			$custom_items[$option['cat']] = self::item($option['id'], $attributes, $method, 'metadata');
+		}
+		return $custom_items;
 	}
 
 // class end

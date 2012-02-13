@@ -15,17 +15,23 @@ class PL_Js_Helper {
 
 		// hack to force jquery to load properly. Needs to be removed once there's time to 
 		// sort out who is using what.
-    	wp_register_script( 'jquery2', 'http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js');
+    	wp_register_script( 'jquery2', 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js');
 	    wp_enqueue_script( 'jquery2' );
+	    
+		//    /
+		//    /		
 		
 		if ($hook == 'placester_page_placester_properties') {
-			self::register_enqueue_if_not('chosen', trailingslashit(PL_JS_LIB_URL) .  'chosen/chosen.jquery.min.js', array( 'jquery'));			
 			self::register_enqueue_if_not('datatables', trailingslashit(PL_JS_LIB_URL) .  'datatables/jquery.dataTables.js', array( 'jquery'));			
-			self::register_enqueue_if_not('my-listings', trailingslashit(PL_JS_URL) .  'admin/my-listings.js', array( 'jquery'));			
+			self::register_enqueue_if_not('my-listings', trailingslashit(PL_JS_URL) .  'admin/my-listings.js', array( 'jquery'));
+			self::register_enqueue_if_not('jquery-ui', trailingslashit(PL_JS_LIB_URL) .  'jquery-ui/js/jquery-ui-1.8.17.custom.min.js', array( 'jquery'));
 		}
 
 		if ($hook == 'placester_page_placester_property_add') {
 			self::register_enqueue_if_not('add-listing', trailingslashit(PL_JS_URL) .  'admin/add-listing.js', array( 'jquery'));			
+			self::register_enqueue_if_not('blueimp-jquery-widget', trailingslashit(PL_JS_LIB_URL) .  'blueimp/js/vendor/jquery.ui.widget.js', array( 'jquery'));			
+			self::register_enqueue_if_not('blueimp-iframe', trailingslashit(PL_JS_LIB_URL) .  'blueimp/js/jquery.iframe-transport.js', array( 'jquery'));			
+			self::register_enqueue_if_not('blueimp-file-upload', trailingslashit(PL_JS_LIB_URL) .  'blueimp/js/jquery.fileupload.js', array( 'jquery'));			
 		}
 		
 	}

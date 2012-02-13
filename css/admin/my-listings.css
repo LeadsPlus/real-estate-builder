@@ -1,0 +1,147 @@
+.wrapper .pls_search_form {
+  float: left;
+  padding: 5px;
+}
+.form_group {
+  float: left;
+  clear: both;
+  margin: 10px 0;
+}
+.form_group h3 {
+  float: left;
+  width: 100px;
+  margin: 10px 10px 10px 0;
+  height: 40px;
+}
+
+#Show_Filters {
+  margin-top:0px;
+  margin-bottom:-5px;
+}
+#Show_Filters h3 {
+  height: 20px;
+  font-weight: normal;
+  font-size:13px;
+}
+
+.row_actions {
+  display: none;
+}
+.row_actions a, .row_actions span {
+  padding-right: 10px;
+  float: left;
+}
+.red {
+    color: #BC0B0B;
+}
+tr.odd, tr.even {
+  height: 48px;
+}
+.address {
+  font-weight: bold;
+}
+section.pls_search_form {
+  height: 36px;
+}
+
+
+/**
+ * Styles used by Datatables object in Admin interface
+ */
+
+.paging_full_numbers { 
+  margin-top: 12px; 
+  text-align: right;
+  float: right;
+  padding-bottom: 10px;
+}
+
+.dataTables_info {
+  padding-top: 12px;
+  float: right;
+  margin-right: 10px;
+  font-size: 12px;
+  font-family: Georgia,"Times New Roman","Bitstream Charter",Times,serif;
+  font-style: italic;
+}
+
+.paging_full_numbers .first,
+.paging_full_numbers .last {
+  display: none;
+}
+
+.paging_full_numbers span a.paginate_button,
+.paging_full_numbers span a.paginate_active {
+  text-decoration: none;
+  padding: 3px 6px;
+  -moz-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid;
+  margin-right: 3px;
+  font-weight: bold;
+  font-size: 11px;
+}
+
+.paging_full_numbers span a.paginate_button {
+  border-color: #E3E3E3;
+  background: #EEE;
+  color: #21759B;
+  cursor: pointer;
+}
+
+.paging_full_numbers span a.paginate_active { 
+  color: #555;
+  background: #DFDFDF;
+  border-color: lightGrey;
+  cursor: auto;
+}
+
+.widefat thead tr th span {
+    padding-left: 15px; 
+    background: url('../../images/datatable/sorting.png') no-repeat 0 0;
+    float:left;
+    height: 16px;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+    filter: alpha(opacity=80);
+    -moz-opacity:0.8;
+    -khtml-opacity: 0.8;
+    opacity: 0.8;
+}
+.widefat thead tr th:hover {
+    cursor: pointer;
+}
+.widefat thead tr th:hover span {
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+    filter: alpha(opacity=100);
+    -moz-opacity:1.0;
+    -khtml-opacity: 1.0;
+    opacity: 1.0;
+}
+.widefat thead tr th.sorting_asc span {
+    background-position: 0 -16px;
+}
+.widefat thead tr th.sorting_desc span {
+    background-position: 0 -32px;
+}
+.widefat thead tr th.sorting_asc_disabled span {
+    background-position: 0 -48px;
+}
+.widefat thead tr th.sorting_desc_disabled span {
+    background-position: 0 -64px;
+}
+.widefat .odd {
+    background-color: #FCFCFC;
+}
+
+#placester_listings_list_processing {
+    float: left;
+    width: 16px;
+    height: 16px;
+    background: url(../../images/datatable/wpspin_light.gif) no-repeat 0 0;
+    text-indent: 20px;
+    margin: 10px 0 0 5px;
+    color: #444;
+}
+

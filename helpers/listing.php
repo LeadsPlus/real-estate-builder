@@ -6,11 +6,24 @@ class PL_Listing_Helper {
 
 	public function init() {
 		add_action('wp_ajax_datatable_ajax', array(__CLASS__, 'datatable_ajax' ) );
+		add_action('wp_ajax_add_listing', array(__CLASS__, 'add_listing_ajax' ) );
+		add_action('wp_ajax_add_temp_image', array(__CLASS__, 'add_temp_image' ) );
+		add_action('wp_ajax_filter_options', array(__CLASS__, 'filter_options' ) );
 	}
 	
-	public function results( $params = array() ) {
+	public function results($args = array()) {
 		$listings = PL_Listing::get($_GET);	
 		return $listings;
+	}
+
+	public function details($args = array()) {
+		$listing = PL_Listing::details($_GET);
+		return $listing;
+	}
+
+	public function custom_attributes($args = array()) {
+		$custom_attributes = PL_Custom_Attributes::get(array('attr_class' => '2'));
+		return $custom_attributes;
 	}
 
 	function datatable_ajax() {
@@ -31,22 +44,18 @@ class PL_Listing_Helper {
 		// build response for datatables.js
 		$listings = array();
 		foreach ($api_response['listings'] as $key => $listing) {
-			
 			$images = $listing['images'];
-			$listings[$key][] = ((is_array($images) && isset($images[0])) ? '<img width=75 height=75 src="' . $images[0]['url'] . '" />' : 'empty');
-			$listings[$key][] = $listing["location"]["address"];
-			$listings[$key][] = $listing["location"]["locality"];
-			$listings[$key][] = $listing["location"]["region"];
+			$listings[$key][] = ((is_array($images) && isset($images[0])) ? '<img width=50 height=50 src="' . $images[0]['url'] . '" />' : 'empty');
+			$listings[$key][] = '<a class="address" href="">' . $listing["location"]["address"] . ' ' . $listing["location"]["locality"] . ' ' . $listing["location"]["region"] . '</a><div class="row_actions"><a href=/wp-admin/admin.php?page=placester_property_add&id="' . $listing['id'] . '">Edit</a><span>|</span><a href=/wp-admin/admin.php?page=placester_property_add&id="' . $listing['id'] . '">View</a><span>|</span><a class="red" href=/wp-admin/admin.php?page=placester_property_add&id="' . $listing['id'] . '">Delete</a></div>';
 			$listings[$key][] = $listing["location"]["postal"];
-			$listings[$key][] = implode($listing["zoning_types"], ', ');
-			$listings[$key][] = implode($listing["purchase_types"], ', ');
+			$listings[$key][] = implode($listing["zoning_types"], ', ') . ' ' . implode($listing["purchase_types"], ', ');
 			$listings[$key][] = implode($listing["listing_types"], ', ');
 			$listings[$key][] = $listing["property_type"];
 			$listings[$key][] = $listing["cur_data"]["beds"];
 			$listings[$key][] = $listing["cur_data"]["baths"];
 			$listings[$key][] = $listing["cur_data"]["price"];
 			$listings[$key][] = $listing["cur_data"]["sqft"];
-			$listings[$key][] = $listing["cur_data"]["avail_on"];
+			$listings[$key][] = date('M d, Y',strtotime($listing["cur_data"]["avail_on"]));
 		}
 
 		// Required for datatables.js to function properly.
@@ -58,7 +67,69 @@ class PL_Listing_Helper {
 
 		//wordpress echos out a 0 randomly. die prevents it.
 		die();
+	}
+	
+	public function add_listing_ajax() {
+		$api_response = PL_Listing::create($_POST);
+		echo json_encode($api_response);
+		die();
 	}	
+
+	public function add_temp_image() {
+		$api_response = array();
+		if (isset($_FILES['images'])) {
+			foreach ($_FILES as $image) {
+				$api_response[] = PL_Listing::temp_image($_POST, $image['name'], $image['type'], $image['tmp_name']);
+			}
+		}		
+		echo json_encode($api_response);
+		die();
+	}
+
+	public function locations_for_options($return_only) {
+		$options = array('false' => 'Any');
+		$response = PL_Listing::locations();
+		if ($return_only && isset($response[$return_only])) {
+			foreach ($response[$return_only] as $key => $value) {
+				$options[$value] = $value;
+			}
+			return $options;	
+		} else {
+			return array();	
+		}
+	}
+
+	public function pricing_min_options($type = 'min') {
+		$api_response = PL_Listing::get();
+		$prices = array();
+		foreach ($api_response['listings'] as $key => $listing) {
+			$prices[] = $listing['cur_data']['price'];
+		}
+		sort($prices);
+		$range = ($prices[0] - end($prices))/10;
+		if ($type == 'max') {
+			$range = range($prices[0], end($prices), $range);
+			return $range;
+		} else {
+			$range = range($prices[0], end($prices), $range);
+			array_pop($range);
+			return $range;
+		}
+	}
+
+	public function filter_options () {
+		$option_name = 'pl_my_listings_filters';
+		$options = get_option($option_name);
+		if (isset($_POST['filter']) && isset($_POST['value']) && $options) {
+			$options[$_POST['filter']] = $_POST['value'];
+			update_option($option_name, $options);
+		} elseif (isset($_POST['filter']) && isset($_POST['value']) && !$options) {
+			$options = array($_POST['filter'] => $_POST['value']);
+			add_option($option_name, $options);
+		}
+		echo json_encode($options);
+		die();
+	}
 
 //end of class
 }

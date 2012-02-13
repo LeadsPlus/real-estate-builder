@@ -1,0 +1,8 @@
+.placester_icon {
+  background: url('../images/logo_30.png') no-repeat;
+}
+#placester-admin-menu {
+	border-bottom: #ccc 1px solid; 
+	padding-bottom: 0px;
+	margin-bottom: 15px;
+}

@@ -13,12 +13,13 @@ $PL_API_CUST_ATTR = array(
 			'attr_type' => array(
 				'type' => 'select',
 				'options' => array(
-					'0' => 'integer',
-					'1' => 'float',
+					'0' => 'text',
+					'1' => 'text',
 					'2' => 'text',
 					'3' => 'textarea',
 					'4' => 'date',
 					'5' => 'date',
+					'6' => 'checkbox',
 				)
 			),
 			'attr_class' => array(

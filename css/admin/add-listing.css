@@ -1,0 +1,8 @@
+.property_type-res_sale, .property_type-vac_rental, .property_type-res_rental, .property_type-comm_rental, .property_type-comm_sale {
+	display:none;
+}
+.red {
+	display: block;
+	color: white;
+	background: red;
+}

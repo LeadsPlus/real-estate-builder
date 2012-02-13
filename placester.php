@@ -27,23 +27,6 @@ Author URI: http://www.placester.com/
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-// new
-
-
-// include_once( 'core/init.php' );
-// include_once( 'core/util.php' );
-// include_once( 'core/webservice_client.php' );
-// include_once( 'core/settings_functions.php' );
-// include_once( 'core/listings_list_util.php' );
-// include_once( 'options/init.php' );
-// include_once( 'admin/init.php' );
-// include_once( 'admin/widgets.php' );
-// include_once( 'core/shortcodes.php');
-// include_once( 'core/leads.php' );
-// include_once( 'core/membership.php' );
-
-
-//definitions
 define( 'PL_PARENT_DIR', dirname(__FILE__) );
 define( 'PL_PARENT_URL', trailingslashit(plugins_url()) . 'placester/'  );
 
@@ -59,8 +42,15 @@ define( 'PL_JS_URL', trailingslashit(PL_PARENT_URL) . 'js/' );
 define( 'PL_JS_LIB_DIR', trailingslashit(PL_JS_DIR) . 'lib/' );
 define( 'PL_JS_LIB_URL', trailingslashit(PL_JS_URL) . 'lib/' );
 
+define( 'PL_CSS_DIR', trailingslashit(PL_PARENT_DIR) . 'css/' );
+define( 'PL_CSS_URL', trailingslashit(PL_PARENT_URL) . 'css/' );
+
+define( 'PL_CSS_ADMIN_DIR', trailingslashit(PL_CSS_DIR) . 'admin/' );
+define( 'PL_CSS_ADMIN_URL', trailingslashit(PL_CSS_URL) . 'admin/' );
+
 
 //config
+include_once('config/toggle_form_sections.php');
 include_once('config/api/custom_attributes.php');
 include_once('config/api/listings.php');
 include_once('lib/config.php');

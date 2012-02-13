@@ -5,7 +5,7 @@ class PL_Listing {
 	public function get($args = array()) {
 		$config = PL_Config::PL_API_LISTINGS('get');
 		$request = array_merge(array("api_key" => PL_Option_Helper::api_key()), PL_Validate::request($args, $config['args']));
-		$response = PL_HTTP::send_request($config['request']['url'], $request);
+		$response = PL_HTTP::send_request($config['request']['url'], $request, $config['request']['type']);
 		if (isset($response) && isset($response['listings'])) {
 			foreach ($response['listings'] as $key => $listing) {
 				$response['listings'][$key] = PL_Validate::attributes($listing, $config['returns']);
@@ -14,8 +14,11 @@ class PL_Listing {
 		return $response;
 	}
 
-	public function create() {
-		
+	public function create($args = array()) {
+		$config = PL_Config::PL_API_LISTINGS('create');
+		$request = array_merge(array("api_key" => PL_Option_Helper::api_key()), PL_Validate::request($args, $config['args']));
+		$response = PL_HTTP::send_request($config['request']['url'], $request, $config['request']['type']);
+		return $response;
 	}
 
 	public function update() {
@@ -26,8 +29,20 @@ class PL_Listing {
 		
 	}
 
-	public function details() {
-		
+	public function details($args = array()) {
+		$config = PL_Config::PL_API_LISTINGS('details');
+		$request = array_merge(array("api_key" => PL_Option_Helper::api_key()), PL_Validate::request($args, $config['args']));
+		$details_url = trailingslashit($config['request']['url']) . $request['id'];
+		$response = PL_HTTP::send_request($details_url, $request, $config['request']['type']);
+		return $response;	
+	}
+
+	public function temp_image ($args = array(), $file_name, $file_mime_type, $file_tmpname) {
+		$config = PL_Config::PL_API_LISTINGS('temp_image');
+		$request = array_merge(array("api_key" => PL_Option_Helper::api_key()), PL_Validate::request($args, $config['args']));
+		pls_dump($request);
+		$response = PL_HTTP::send_request_multipart($config['request']['url'], $request, $file_name, $file_mime_type, $file_tmpname);
+		return $response;	
 	}
 
 	public function locations($args = array()) {
@@ -36,18 +51,6 @@ class PL_Listing {
 		return PL_Validate::attributes(PL_HTTP::send_request($config['request']['url'], $request), $config['returns']);
 	}
 
-	public function locations_for_options($return_only) {
-		$options = array();
-		$response = self::locations();
-		if ($return_only && isset($response[$return_only])) {
-			foreach ($response[$return_only] as $key => $value) {
-				$options[$value] = $value;
-			}
-			return $options;	
-		} else {
-			return array();	
-		}
-	}
 
 // end of class
 }

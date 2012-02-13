@@ -170,8 +170,7 @@ Class PL_HTTP {
 	     
 	    $mime_boundary = md5(time());
 	     
-	    foreach ($request as $key => $value)
-	    {
+	    foreach ($request as $key => $value) {
 	        $data .= '--' . $mime_boundary . $eol;
 	        $data .= 'Content-Disposition: form-data; name="' . $key . '"' . $eol . $eol;
 	        $data .= $value . $eol;
@@ -190,14 +189,16 @@ Class PL_HTTP {
 	                      'header' => 'Content-Type: multipart/form-data; boundary=' . $mime_boundary . $eol,
 	                      'content' => $data
 	                   ));
-	    
-	   $ctx = stream_context_create($params);
+	    pls_dump($params);
+		$ctx = stream_context_create($params);
+		pls_dump($url);
+		$handle = @fopen($url, 'r', false, $ctx);
 
-	    $handle = @fopen($url, 'r', false, $ctx);
-	    if ( !$handle )
+	    if ( !$handle ) {
+	    	return 'handle is false';
 	    	return false;
-	        // throw new Exception('http_request_failed');
-
+	    }
+	    	
 	    stream_set_timeout( $handle, self::$timeout );
 
 	    $response = stream_get_contents($handle);
@@ -205,20 +206,17 @@ Class PL_HTTP {
 
 	    $o = json_decode($response);
 
-	    if (!isset($o->code))
-	    {}
-	    else if ($o->code == '201')
-	    {}
-	    else if ($o->code == '300')
-	        return false;
-	        //throw new ValidationException($o->message, $o->validations);
-	    else
-	        return false;
-	        // throw new Exception($o->message);
+	    if (!isset($o->code)){
+	    	return false;	
+	    } else if ($o->code == '201') {
+	    	return false;
+	    } else if ($o->code == '300') {
+	    	return false;
+	    } else {
+	    	return false;
+	    }
 
 	    return $o; 
-
-		}
 	}
 
 	function clear_cache() {
@@ -231,6 +229,7 @@ Class PL_HTTP {
 	        delete_option( $option->option_name );
 	    }
 	}
+}
 
 
 
