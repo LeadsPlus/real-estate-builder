@@ -1,3 +1,27 @@
+#titlewrap {
+	float:left;
+	clear:both;
+	margin-bottom: 20px;
+}
+.address {
+	float: left;
+	width: 100px;
+}
+#post_title, {
+	float: left;
+}
+input#post_title, label#post_title {
+	float: left;
+	height: 33px;
+}
+
+
+
+
+/* Actual Styles */
+.has-right-sidebar #post-body-content {
+	margin-right: 320px;	
+}
 .property_type-res_sale, .property_type-vac_rental, .property_type-res_rental, .property_type-comm_rental, .property_type-comm_sale {
 	display:none;
 }

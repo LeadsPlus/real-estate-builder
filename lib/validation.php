@@ -34,6 +34,10 @@ class PL_Validate {
  		}
 		return $args;
 	}
+
+	public function route ($args, $default = array()) {
+		return wp_parse_args($args, $default);
+	}
 	
 //ends class
 }

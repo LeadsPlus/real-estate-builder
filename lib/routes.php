@@ -13,26 +13,35 @@ class PL_Router {
 
 	}
 
+	public static function load_builder_partial($template, $params = array()) {
+		if (empty($params)) {
+			include(trailingslashit(PL_VIEWS_PART_DIR) . $template);
+		} else {
+			ob_start();
+				extract(PL_Validate::route($params, array('title' => 'Default', 'content' => '')) ) ;
+				include(trailingslashit(PL_VIEWS_PART_DIR) . $template);
+			echo ob_get_clean();
+		}
+	}
+	
 	private static function load_builder_view($template) {
 		include_once(trailingslashit(PL_VIEWS_ADMIN_DIR) . $template);
 	}
 	
 	public function my_listings() {
-
 		self:: router('my-listings.php', array('test'=>'donkey'), false);
 	}
 
 	public function add_listings() {
-
 		self:: router('add-listing.php', array('test'=>'donkey'), false);
 	}
 
-	public function header() {
-		
+	public function theme_gallery() {
+		self:: router('theme-gallery.php', array('test'=>'donkey'), false);
 	}
 
-	public function footer() {
-		
+	public function settings() {
+		self:: router('settings.php', array('test'=>'donkey'), false);
 	}
 
 //end of class

@@ -36,6 +36,9 @@ define( 'PL_VIEWS_URL', trailingslashit(PL_PARENT_URL) . 'views/' );
 define( 'PL_VIEWS_ADMIN_DIR', trailingslashit(PL_VIEWS_DIR) . 'admin/' );
 define( 'PL_VIEWS_ADMIN_URL', trailingslashit(PL_VIEWS_URL) . 'admin/' );
 
+define( 'PL_VIEWS_PART_DIR', trailingslashit(PL_VIEWS_DIR) . 'partials/' );
+define( 'PL_VIEWS_PART_URL', trailingslashit(PL_VIEWS_URL) . 'partials/' );
+
 define( 'PL_JS_DIR', trailingslashit(PL_PARENT_DIR) . 'js/' );
 define( 'PL_JS_URL', trailingslashit(PL_PARENT_URL) . 'js/' );
 
@@ -97,9 +100,8 @@ function placester_admin_menu() {
 
     add_submenu_page( 'placester', '','My Listings', 'edit_pages', 'placester_properties', array('PL_Router','my_listings'));
     add_submenu_page( 'placester', '', 'Add Listing', 'edit_pages', 'placester_property_add', array('PL_Router','add_listings') );
-    add_submenu_page( 'placester', '', 'Theme Gallery', 'edit_pages', 'placester_settings', 'placester_admin_settings_html' );    
-    add_submenu_page( 'placester', '', 'MLS Integration', 'edit_pages', 'placester_settings', 'placester_admin_settings_html' );    
-    add_submenu_page( 'placester', '', 'Settings', 'edit_pages', 'placester_settings', 'placester_admin_settings_html' );    
+    add_submenu_page( 'placester', '', 'Theme Gallery', 'edit_pages', 'placester_themes', array('PL_Router','theme_gallery') );    
+    add_submenu_page( 'placester', '', 'Settings', 'edit_pages', 'placester_settings', array('PL_Router','settings') );    
 }
 
 
