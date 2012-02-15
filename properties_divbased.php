@@ -4,7 +4,7 @@
  * Called by AJAX (div-based list) to get properties.
  */
 
-require( dirname( __FILE__ ) . '/../../../wp-load.php');
+// require( dirname( __FILE__ ) . '/../../../wp-load.php');
 include( 'properties_util.php' );
 wp();
 status_header( 200 );
@@ -51,8 +51,4 @@ foreach ( $response_properties as $i ) {
     array_push( $rows, convert_row($i, $fields, false ) );
 }
 
-echo json_encode(
-    array(
-        'total' => $response_total,
-        'properties' => $rows
-    ) );
+echo json_encode(array('total' => $response_total,'properties' => $rows) );

@@ -27,6 +27,8 @@ Author URI: https://www.placester.com/
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+define('PLS_PLUGIN_DIR', dirname(__FILE__)); 
+
 include_once( 'core/init.php' );
 include_once( 'core/util.php' );
 include_once( 'core/webservice_client.php' );

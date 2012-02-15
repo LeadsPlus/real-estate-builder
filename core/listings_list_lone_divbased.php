@@ -20,7 +20,7 @@ if ( $crop_description ) {
 
 }
 
-$datasource_url = "{$base_url}/properties_divbased.php?fields={$fields}";
+$datasource_url = "?fields={$fields}";
 
 list(
     $default_row_renderer,
@@ -58,7 +58,7 @@ ob_start();
 ?>
 <script>
 var placesterListLone_initialized = false;
-var placesterListLone_datasource_base_url = '<?php echo $datasource_url ?>';
+var placesterListLone_datasource_base_url = info.ajaxurl + '<?php echo $datasource_url ?>';
 var placesterListLone_datasource_url = placesterListLone_datasource_base_url;
 var placesterListLone_filter_query = '';
 var placesterListLone_sort_query = '<?php echo $sort_query ?>';
@@ -151,10 +151,12 @@ function placesterListLone_create() {
     };
 
     $.ajax( {
-        type: 'GET',
+        type: 'POST',
         url: placesterListLone_datasource_url,
+        data: {action : 'generate_search'},
         dataType: 'json',
         success: function(data) {
+            console.log(data);
             placesterListLone_setLoadingVisible(false);
             output = '';
             for (var n = 0; n < data.properties.length; n++) {
@@ -179,7 +181,7 @@ function placesterListLone_create() {
 
                 $('#<?php echo $pager_render_in_dom_element ?>').html(html);                    
         }
-    });
+    }, 'json');
 }
 function placesterListLone_empty (dom_object) {
 

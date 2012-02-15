@@ -8,7 +8,13 @@ class PL_Listings {
 	static function init() {
 		
 		add_action( 'wp_ajax_admin_datatable', array( __CLASS__, 'generate_datatable'  ));
+		add_action( 'wp_ajax_generate_search', array( __CLASS__, 'generate_search'  ));
 
+	}
+
+	static function generate_search(){
+		include(trailingslashit(PLS_PLUGIN_DIR) . 'properties_divbased.php');
+		die();
 	}
 
 	static function generate_datatable () {
