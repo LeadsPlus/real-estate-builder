@@ -9,18 +9,26 @@ class PL_Config {
 		return self::config_finder($PL_API_LISTINGS, $args, $num_args);
 	}
 
-	public function PL_API_CUST_ATTR ($key = false) {
+	public function PL_API_CUST_ATTR () {
 		global $PL_API_CUST_ATTR;
 		$args = func_get_args();
 		$num_args = func_num_args();
 		return self::config_finder($PL_API_CUST_ATTR, $args, $num_args);
 	}
 
-	public function PL_MY_LIST_FORM ($key = false) {	
+	public function PL_MY_LIST_FORM () {	
 		global $PL_MY_LIST_FORM;
 		$args = func_get_args();
 		$num_args = func_num_args();
 		return self::config_finder($PL_MY_LIST_FORM, $args, $num_args);
+	}
+
+	public function bundler ($config_function, $keys, $bundle) {	
+		$config_items = array();
+		foreach ($bundle as $key) {
+			$config_items[] = call_user_func_array(array(__CLASS__, $config_function), array_merge($keys,(array)$key));		
+		}
+		return $config_items;
 	}
 
 	private function config_finder($config, $args, $num_args) {
