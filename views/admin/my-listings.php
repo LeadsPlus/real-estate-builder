@@ -1,10 +1,10 @@
 <?php 
   //top filters, (that filter filters)
-  PL_Form::generate(PL_Config::PL_MY_LIST_FORM(), false, false, "pls_admin_my_listings_filters", true, false);  ?>
+  PL_Form::generate_form(PL_Config::PL_MY_LIST_FORM(), array('method' => "POST", 'title' => false, 'include_submit' => false) );  ?>
 <?php 
   // generates the search from
   $listings = PL_Config::PL_API_LISTINGS('get');  
-  PL_Form::generate($listings['args'], false, "POST", "pls_admin_my_listings", true, false);
+  PL_Form::generate_form($listings['args'], false, "POST", "pls_admin_my_listings", true, false);
 ?>
 <div id="container" style="width: 99%">
   <table id="placester_listings_list" class="widefat post fixed placester_properties" cellspacing="0">
