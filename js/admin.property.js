@@ -160,7 +160,7 @@ function map_create_marker(p)
  */
 jQuery(document).ready(function()
 {
-    jQuery("#available_on").datepicker();
+    jQuery("#available_on").datepicker({dateFormat:"yy-mm-dd"});
 });
 
 
