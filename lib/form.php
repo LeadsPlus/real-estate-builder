@@ -2,8 +2,9 @@
 
 class PL_Form {
 	
-	public static function generate($items, $url = false, $method = 'GET', $id = 'pls_search_form', $title = false, $include_submit = true) {
-		$form = '<form name="input" method="' . $method . '" url="' . $url . '" class="complex-search" id="' . $id . '">';
+	public static function generate_form($items, $args) {
+		extract(self::process_defaults($args), EXTR_SKIP);
+		$form = '';
 		$form_group = array();
 		foreach ($items as $key => $attributes) {
 			if ( isset($attributes['type']) && isset($attributes['group']) ) {
@@ -29,8 +30,15 @@ class PL_Form {
 		if ($include_submit) {
 			$form .= '<button id="' . $id . '_submit_button" type="submit">Submit</button>';
 		}
-		$form .= '</form>';
-		echo $form;
+		if ($wrap_form) {
+			$form = '<form name="input" method="' . $method . '" url="' . $url . '" class="complex-search" id="' . $id . '">' . $form . '</form>';
+		}
+		if ($echo_form) {
+			echo $form;
+		} else {
+			return $form;
+		}
+		
 	}
 
 	public static function item($item, $attributes, $method, $parent = false) {
@@ -175,6 +183,23 @@ class PL_Form {
 			$custom_items[$option['cat']] = self::item($option['id'], $attributes, $method, 'metadata');
 		}
 		return $custom_items;
+	}
+
+	private function process_defaults ($args){
+		/** Define the default argument array. */
+		$defaults = array(
+        	'url' => false,
+        	'method' => 'GET',
+        	'id' => 'pls_search_form',
+        	'title' => false,
+        	'include_submit' => true,
+        	'wrap_form' => true,
+        	'echo_form' => true
+        );
+
+		/** Merge the arguments with the defaults. */
+        $args = wp_parse_args( $args, $defaults );
+        return $args;
 	}
 
 // class end
