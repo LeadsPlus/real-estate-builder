@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function($) {
 
 	//property selectbox
 	$('select#compound_type').bind('change', function () {
@@ -36,37 +36,47 @@ $(document).ready(function() {
 	});
 	    
 	//create listing
-	$('#pls_admin_add_listing').live('submit', function(event) {
+	$('#add_listing_publish').live('click', function(event) {
         event.preventDefault();
        	
-       	jQuery('.red').remove();
+       	$('.red').remove();
 
         var form_values = {}
         form_values['request_url'] = jQuery(this).attr('url');
         form_values['action'] = 'add_listing';
-        jQuery.each(jQuery(this).serializeArray(), function(i, field) {
-        		form_values[field.name] = field.value;
+        $.each($('#add_listing_form').serializeArray(), function(i, field) {
+    		form_values[field.name] = field.value;
         });
-       var that = this;
-        jQuery.ajax({
+       var form = $('#add_listing_form');
+        $.ajax({
 			url: ajaxurl, //wordpress thing
 			type: "POST",
 			data: form_values,
 			dataType: "json",
 			success: function (response) {
-				if (response['validations']) {
-					jQuery(that).prepend('<h3 class="red">'+ response['message'] + '</h3>');
+				console.log(response);
+				if (response && response['validations']) {
+					var item_messages = [];
 					for(var key in response['validations']) {
 						var item = response['validations'][key];
 						if (typeof item == 'object') {
 							for( var k in item) {
-								jQuery("#" + key + '-' + k).prepend('<p class="red">' + response['human_names'][k] + ' ' + item[k].join(',') + '</p>');
+								if (typeof item[k] == 'string') {
+									var message = '<p class="red">' + response['human_names'][key] + ' ' + item[k] + '</p>';
+								} else {
+									var message = '<p class="red">' + response['human_names'][k] + ' ' + item[k].join(',') + '</p>';
+								}
+								$("#" + key + '-' + k).prepend(message);
+								item_messages.push(message);
 							}
 						} else {
-							jQuery("#" + key).prepend('<p class="red">'+item[key].join(',') + '</p>');
+							var message = '<p class="red">'+item[key].join(',') + '</p>';
+							$("#" + key).prepend(message);
+							item_messages.push(message);
 						}
 					} 
-				} else if (response['id']) {
+					$(form).prepend('<h3 class="red">'+ response['message'] + '</h3>' + item_messages.join(' '));
+				} else if (response && response['id']) {
 					console.log("YOU DID IT! HERES THE LINK: https://placester.com/listings/"+ response['id']);
 				}
 			}
