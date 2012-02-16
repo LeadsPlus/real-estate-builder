@@ -28,7 +28,13 @@ class PL_Config {
 		foreach ($bundle as $key) {
 			if (is_array($key)) {
 				foreach ($key as $k => $v) {
-					$config_items[$k][$v] = call_user_func_array(array(__CLASS__, $config_function), array_merge($keys,(array)$k,(array)$v));		
+					if (is_array($v)) {
+						foreach ($v as $item) {
+							$config_items[$k][$item] = call_user_func_array(array(__CLASS__, $config_function), array_merge($keys,(array)$k,(array)$item));			
+						}			
+					} else {
+						$config_items[$k][$v] = call_user_func_array(array(__CLASS__, $config_function), array_merge($keys,(array)$k,(array)$v));			
+					}
 				}
 			} else {
 				$config_items[$key] = call_user_func_array(array(__CLASS__, $config_function), array_merge($keys,(array)$key));		
