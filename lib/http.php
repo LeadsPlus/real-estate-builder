@@ -41,6 +41,7 @@ Class PL_HTTP {
 			case 'POST':
 			case 'PUT':
 				$response = wp_remote_post($url, array('body' => $request_string, 'timeout' => self::$timeout, 'method' => $method));
+				return json_decode($response['body']);
 				break;
 			
 			case 'DELETE':
@@ -61,6 +62,7 @@ Class PL_HTTP {
 	                $response = array();
 	                $response['headers']["status"] = 400;
 	            }
+	            return $response['body'];
 				break;
 			
 			case 'GET':
