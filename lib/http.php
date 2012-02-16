@@ -65,17 +65,12 @@ Class PL_HTTP {
 			
 			case 'GET':
 			default:
-				// self::clear_cache();
-				// pls_dump($url, $request_string);
 				$signature = base64_encode(sha1($url . $request_string, true));
 	        	$transient_id = 'pl_' . $signature;
 	        	$transient = get_transient($transient_id);
-	        	// var_dump($transient);
 	        	if ($transient) {
-					// pls_dump('here');
 					PL_Debug::add_msg('------- !!!USING CACHE!!! --------');    	    		
 					PL_Debug::add_msg($transient); 	
-					// pls_dump($transient);
 					return $transient;
 	        	} else {
 	            	$response = wp_remote_get($url . '?' . $request_string, array('timeout' => self::$timeout));
