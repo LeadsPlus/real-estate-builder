@@ -32,13 +32,13 @@
 
 			<div id="major-publishing-actions">
 				<div id="delete-action">
-					<a class="submitdelete deletion" href="http://wpsingle.com/wp-admin/post.php?post=725&amp;action=trash&amp;_wpnonce=cea3526a83">Move to Trash</a>
+					<a class="submitdelete deletion" href="admin.php?page=placester_properties">Cancel</a>
 				</div>
 
 				<div id="publishing-action">
 					<img src="http://wpsingle.com/wp-admin/images/wpspin_light.gif" class="ajax-loading" id="ajax-loading" alt="">
 					<input name="original_publish" type="hidden" id="original_publish" value="Publish">
-					<input type="submit" name="publish" id="publish" class="button-primary" value="Publish" tabindex="5" accesskey="p"></div>
+					<input type="submit" name="publish" id="add_listing_publish" class="button-primary" value="Publish" tabindex="5" accesskey="p"></div>
 				<div class="clear"></div>
 			</div>
 		</div>
