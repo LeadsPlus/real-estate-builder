@@ -19,9 +19,8 @@ class PL_Listing {
 	}
 
 	public function create($args = array()) {
-		$config = PL_Config::PL_API_LISTINGS('create');
-		$request = array_merge(array("api_key" => PL_Option_Helper::api_key()), PL_Validate::request($args, $config['args']));
-		$response = PL_HTTP::send_request($config['request']['url'], $request, $config['request']['type']);
+		$request = array_merge(array("api_key" => PL_Option_Helper::api_key()), PL_Validate::request($args, PL_Config::PL_API_LISTINGS('create', 'args')));
+		$response = PL_HTTP::send_request(PL_Config::PL_API_LISTINGS('create', 'request', 'url'), $request, PL_Config::PL_API_LISTINGS('create', 'request', 'type'));
 		return $response;
 	}
 
