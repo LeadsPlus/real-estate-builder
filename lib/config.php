@@ -26,7 +26,13 @@ class PL_Config {
 	public function bundler ($config_function, $keys, $bundle) {	
 		$config_items = array();
 		foreach ($bundle as $key) {
-			$config_items[] = call_user_func_array(array(__CLASS__, $config_function), array_merge($keys,(array)$key));		
+			if (is_array($key)) {
+				foreach ($key as $k => $v) {
+					$config_items[] = call_user_func_array(array(__CLASS__, $config_function), array_merge($keys,(array)$k,(array)$v));		
+				}
+			} else {
+				$config_items[] = call_user_func_array(array(__CLASS__, $config_function), array_merge($keys,(array)$key));		
+			}
 		}
 		return $config_items;
 	}
