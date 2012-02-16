@@ -15,10 +15,7 @@ Class PL_HTTP {
 	 */
 	function send_request($url, $request, $method = 'GET') {
 	    
-	    PL_Debug::add_msg('Endpoint Logged As: ' . $method . ' ' . $url);
-
 	    $request_string = '';
-	    
 	    foreach ($request as $key => $value) {
 	        if (is_array($value)) {
 	            if ( empty($value) ) {
@@ -38,35 +35,16 @@ Class PL_HTTP {
 	        }
 	    }
 
-	    PL_Debug::add_msg(array('-------','Request String Logged As: ', $request_string, '-------'));    
+	    PL_Debug::add_msg('Endpoint Logged As: ' . $method . ' ' . $url);
 
-	    // If the request is a get, attempt to retrieve the response
-	    // from the transient cache. POSTs and PUTs are ommited.
-	    $affects_cache = ($method != 'GET');
-
-	    if ($affects_cache) {
-	    	$response = false;
-	    } else {
-	        $signature = base64_encode(sha1($url . $request_string, true));
-	        $transient_id = 'pl_' . $signature;
-	        $response = get_transient($transient_id);
-	    }
-
-	    $response = !is_array( $response ) ? $response : false;
-	    
-	    if ($response === false) {
-
-	        if ($method == 'POST' || $method == 'PUT') {
-	            
-	            $response = wp_remote_post($url, array(
-	                    'body' => $request_string, 
-	                    'timeout' => self::$timeout,
-	                    'method' => $method
-	                ));
-
-	        } else if ($method == 'DELETE') {
-	            
-	            $ch = curl_init( $url );
+		switch ($method) {
+			case 'POST':
+			case 'PUT':
+				$response = wp_remote_post($url, array('body' => $request_string, 'timeout' => self::$timeout, 'method' => $method));
+				break;
+			
+			case 'DELETE':
+				$ch = curl_init( $url );
 	            curl_setopt($ch, CURLOPT_POSTFIELDS, $request_string);
 	            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 0);
 	            curl_setopt($ch, CURLOPT_HEADER, 0); 
@@ -83,69 +61,43 @@ Class PL_HTTP {
 	                $response = array();
 	                $response['headers']["status"] = 400;
 	            }
+				break;
+			
+			case 'GET':
+			default:
+				// self::clear_cache();
+				// pls_dump($url, $request_string);
+				$signature = base64_encode(sha1($url . $request_string, true));
+	        	$transient_id = 'pl_' . $signature;
+	        	$transient = get_transient($transient_id);
+	        	// var_dump($transient);
+	        	if ($transient) {
+					// pls_dump('here');
+					PL_Debug::add_msg('------- !!!USING CACHE!!! --------');    	    		
+					PL_Debug::add_msg($transient); 	
+					// pls_dump($transient);
+					return $transient;
+	        	} else {
+	            	$response = wp_remote_get($url . '?' . $request_string, array('timeout' => self::$timeout));
+					PL_Debug::add_msg('------- NO CACHE FOUND --------');    	    		
+	        		PL_Debug::add_msg($url . '?' . $request_string);    
+					PL_Debug::add_msg($response['body']); 	
 
-	        } else {
-	        	// pls_dump($url . '?' . $request_string);
-	        	error_log($url . '?' . $request_string);
-	            $response = wp_remote_get($url . '?' . $request_string, array(
-	                    'timeout' => self::$timeout
-	                ));
-	        }
-	    }
-
-	    PL_Debug::add_msg('-------');
-	    PL_Debug::add_msg('Response Logged as:');
-	    PL_Debug::add_msg($response);
-	    PL_Debug::add_msg('-------');
-
-	    /**
-	     *      Defines the caching behavior.
-	     *      
-	     *      Only cache get requests, requests without errors, and valid responses.
-	     */
-	    if ($affects_cache && !isset($response->errors) && $response['headers']["status"] === 200) {
-	        placester_clear_cache();
-	        return 0;
-	    } else {
-	        if (is_array($response) && isset($response['response']['code'] ) ) {   
-	            $response_code = $response['response']['code'];
-	        } else {
-	            // timeout?
-	            $response_code = '408';
-	        }
-
-	        // throw http-level exception if no response
-	        if (isset($response->errors))
-	            throw new Exception(json_encode($response->errors));
-	        if ( $response_code == '204' )
-	            return null;
-
-	        // decode response as an associative array, rather then 
-	        // an object.
-	        $o = json_decode($response['body'], TRUE);
-
-	        // TODO When would the body wouldn't contain anything?
-	        if ( !isset($o) && ( ($response_code != 200) && ($response_code != 201) ) ) {
-	            throw new Exception($response['response']['message']);
-	        }
-
-	        if (!isset($o->code))
-	        {}
-	        else if ($o->code == '201')
-	        {}
-	        else if (isset ($o->validations))
-	            throw new ValidationException($o->message, $o->validations);
-	        else
-	            return false;
-	        // throw new Exception($o->message);
-
-	        if ( isset($transient_id) ) {
-	            set_transient( $transient_id, $response, 3600 * 48 );
-	        }
-	        return $o;
-	        
-
-	    }            
+					if (is_array($response) && isset($response['headers']) && $response['headers']['status'] == 200 ) {
+						if (!empty($response['body'])) {
+							$body = json_decode($response['body'], TRUE);
+							set_transient( $transient_id, $body , 3600 * 48 );
+							return $body;
+						} else {
+							return false;
+						}
+					} else {
+						PL_Debug::add_msg('------- ERROR VALIDATING REQUEST. --------');    	    		
+						return false;
+					}
+	        	}
+				break;
+		}
 	}
 
 
@@ -217,6 +169,7 @@ Class PL_HTTP {
 	    }
 
 	    return $o; 
+
 	}
 
 	function clear_cache() {
