@@ -1,6 +1,6 @@
 <?php 
   //top filters, (that filter filters)
-  PL_Form::generate_form(PL_Config::PL_MY_LIST_FORM(), array('method' => "POST", 'title' => false, 'include_submit' => false) );  ?>
+  PL_Form::generate_form(PL_Config::PL_MY_LIST_FORM(), array('method' => "POST", 'title' => false, 'include_submit' => false, 'id' => 'pls_admin_my_listings_filters') );  ?>
 <?php 
   // generates the search from
   $listings = PL_Config::PL_API_LISTINGS('get');  

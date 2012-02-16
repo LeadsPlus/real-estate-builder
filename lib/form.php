@@ -18,8 +18,8 @@ class PL_Form {
 			}
 		}	
 		foreach ($form_group as $group => $elements) {
-			if (empty($group)) { $id = 'custom'; } else {$id = $group; }
-			$form .= "<section class='form_group' id='".str_replace(" ","_",$id)."'>";
+			if (empty($group)) { $section_id = 'custom'; } else {$section_id = $group; }
+			$form .= "<section class='form_group' id='".str_replace(" ","_",$section_id)."'>";
 			if (!empty($group)) {
 				$form .= $title ? "<h3>" . ucwords($group) . "</h3>" : '';
 			}

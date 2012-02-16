@@ -10,7 +10,6 @@
 $(document).ready(function($) {
 
     // Filter Filters
-
     handle_custom_filter_choices();
 
     $('#pls_admin_my_listings_filters input').live('change', function () {
@@ -29,9 +28,9 @@ $(document).ready(function($) {
             $.each(data, function (index, value) {
                 $('input#' + index).prop("checked", value === 'true');
                 if (value === 'true') {
-                    $('#pls_admin_my_listings section#' + index).slideDown();
+                    $('#pls_search_form section#' + index).slideDown();
                 } else {
-                    $('#pls_admin_my_listings section#' + index).slideUp();
+                    $('#pls_search_form section#' + index).slideUp();
                 }
             });
         }, "json");
