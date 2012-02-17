@@ -54,7 +54,6 @@ $(document).ready(function($) {
 			data: form_values,
 			dataType: "json",
 			success: function (response) {
-				console.log(response);
 				if (response && response['validations']) {
 					var item_messages = [];
 					for(var key in response['validations']) {
