@@ -84,7 +84,7 @@ class PL_Form {
 			?>
 				<section id="<?php echo $id ?>" class="pls_search_form <?php echo $css ?>">
 					<label for="<?php echo $id ?>"><?php echo $text ?></label>	
-					<input id="<?php echo $id ?>" type="<?php echo $type ?>" name="<?php echo $name ?>" <?php echo !empty($value) ? 'value="'.$value.'"' : ''; ?> />
+					<input id="<?php echo $id ?>" type="<?php echo $type ?>" name="<?php echo $name ?>" value="<?php echo $value ?>" />
 				</section>
 			<?php
 		} elseif ( $type == 'date') {
@@ -165,6 +165,7 @@ class PL_Form {
 			}
 		} else {
 			if ($parent) {
+				
 				$value = isset($_POST[$parent][$item]) ? $_POST[$parent][$item] : null;
 			} else {
 				$value = isset($_POST[$item]) ? $_POST[$item] : null;	
