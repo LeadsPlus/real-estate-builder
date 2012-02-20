@@ -1,5 +1,5 @@
 /*
- * jQuery File Upload Plugin Test 6.0
+ * jQuery File Upload Plugin Test 6.4
  * https://github.com/blueimp/jQuery-File-Upload
  *
  * Copyright 2010, Sebastian Tschan
@@ -59,6 +59,15 @@ $(function () {
 
     test('Widget initialization', function () {
         ok($('#fileupload').fileupload().data('fileupload'));
+    });
+
+    test('Data attribute options', function () {
+        $('#fileupload').attr('data-url', 'http://example.org');
+        $('#fileupload').fileupload();
+        strictEqual(
+            $('#fileupload').fileupload('option', 'url'),
+            'http://example.org'
+        );
     });
 
     test('File input initialization', function () {
@@ -216,6 +225,30 @@ $(function () {
         ok(
             dropZone.data('events').dragover.length,
             'Adds dragover event listener after setting dropZone option'
+        );
+        fu.fileupload('option', 'dropZone', 'body');
+        strictEqual(
+            fu.fileupload('option', 'dropZone')[0],
+            document.body,
+            'Allow a query string as parameter for the dropZone option'
+        );
+        fu.fileupload('option', 'dropZone', document);
+        strictEqual(
+            fu.fileupload('option', 'dropZone')[0],
+            document,
+            'Allow a document element as parameter for the dropZone option'
+        );
+        fu.fileupload('option', 'fileInput', ':file');
+        strictEqual(
+            fu.fileupload('option', 'fileInput')[0],
+            $(':file')[0],
+            'Allow a query string as parameter for the fileInput option'
+        );
+        fu.fileupload('option', 'fileInput', $(':file')[0]);
+        strictEqual(
+            fu.fileupload('option', 'fileInput')[0],
+            $(':file')[0],
+            'Allow a document element as parameter for the fileInput option'
         );
     });
 
@@ -912,6 +945,108 @@ $(function () {
                     'DELETE',
                     'Passes over deletion request type parameter'
                 );
+            }
+        });
+        $('#fileupload').data('fileupload')._renderDownload([{
+            name: 'test',
+            delete_url: 'test',
+            delete_type: 'DELETE'
+        }]).appendTo($('#fileupload .files')).show()
+            .find('.delete input').click();
+        $('#fileupload .fileupload-buttonbar .delete').click();
+    });
+
+    asyncTest('added', function () {
+        expect(1);
+        var param = {files: [{name: 'test'}]};
+        $('#fileupload').fileupload({
+            added: function (e, data) {
+                start();
+                strictEqual(
+                    data.files[0].name,
+                    param.files[0].name,
+                    'Triggers added callback'
+                );
+            },
+            send: function () {
+                return false;
+            }
+        }).fileupload('add', param);
+    });
+
+    asyncTest('started', function () {
+        expect(1);
+        var param = {files: [{name: 'test'}]};
+        $('#fileupload').fileupload({
+            started: function (e) {
+                start();
+                ok('Triggers started callback');
+                return false;
+            },
+            sent: function (e, data) {
+                return false;
+            }
+        }).fileupload('send', param);
+    });
+
+    asyncTest('sent', function () {
+        expect(1);
+        var param = {files: [{name: 'test'}]};
+        $('#fileupload').fileupload({
+            sent: function (e, data) {
+                start();
+                strictEqual(
+                    data.files[0].name,
+                    param.files[0].name,
+                    'Triggers sent callback'
+                );
+                return false;
+            }
+        }).fileupload('send', param);
+    });
+
+    asyncTest('completed', function () {
+        expect(1);
+        var param = {files: [{name: 'test'}]};
+        $('#fileupload').fileupload({
+            completed: function (e, data) {
+                start();
+                ok('Triggers completed callback');
+                return false;
+            }
+        }).fileupload('send', param);
+    });
+
+    asyncTest('failed', function () {
+        expect(1);
+        var param = {files: [{name: 'test'}]};
+        $('#fileupload').fileupload({
+            failed: function (e, data) {
+                start();
+                ok('Triggers failed callback');
+                return false;
+            }
+        }).fileupload('send', param).abort();
+    });
+
+    asyncTest('stopped', function () {
+        expect(1);
+        var param = {files: [{name: 'test'}]};
+        $('#fileupload').fileupload({
+            stopped: function (e, data) {
+                start();
+                ok('Triggers stopped callback');
+                return false;
+            }
+        }).fileupload('send', param);
+    });
+
+    asyncTest('destroyed', function () {
+        expect(1);
+        $('#fileupload').fileupload({
+            destroyed: function (e, data) {
+                start();
+                ok(true, 'Triggers destroyed callback');
             }
         });
         $('#fileupload').data('fileupload')._renderDownload([{
