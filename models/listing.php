@@ -43,7 +43,6 @@ class PL_Listing {
 	public function temp_image ($args = array(), $file_name, $file_mime_type, $file_tmpname) {
 		$config = PL_Config::PL_API_LISTINGS('temp_image');
 		$request = array_merge(array("api_key" => PL_Option_Helper::api_key()), PL_Validate::request($args, $config['args']));
-		pls_dump($request);
 		$response = PL_HTTP::send_request_multipart($config['request']['url'], $request, $file_name, $file_mime_type, $file_tmpname);
 		return $response;	
 	}

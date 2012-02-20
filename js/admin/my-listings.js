@@ -28,9 +28,9 @@ $(document).ready(function($) {
             $.each(data, function (index, value) {
                 $('input#' + index).prop("checked", value === 'true');
                 if (value === 'true') {
-                    $('#pls_search_form section#' + index).slideDown();
+                    $('#pls_admin_my_listings section#' + index).slideDown();
                 } else {
-                    $('#pls_search_form section#' + index).slideUp();
+                    $('#pls_admin_my_listings section#' + index).slideUp();
                 }
             });
         }, "json");

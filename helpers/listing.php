@@ -17,7 +17,31 @@ class PL_Listing_Helper {
 	}
 
 	public function details($args = array()) {
-		$listing = PL_Listing::details($_GET);
+		$listing = PL_Listing::details($args);
+		//rename cur_data to metadata due to api weirdness;
+		$listing['metadata'] = $listing['cur_data'];
+		unset($listing['cur_data']);
+		//set compound type using combination of zoning type, purchase type, and listing type
+		if (!empty($listing['zoning_types']) && !empty($listing['purchase_types']) ) {
+			//residential + commercial + rental + sale combos are handled in zoning / purhcase types
+			if ($listing['zoning_types'][0] == 'residential' && $listing['purchase_types'][0] == 'rental') {
+				$listing['compound_type'] = 'res_rental';
+			}
+			if ($listing['zoning_types'][0] == 'residential' && $listing['purchase_types'][0] == 'sale') {
+				$listing['compound_type'] = 'res_sale';
+			}
+			if ($listing['zoning_types'][0] == 'commercial' && $listing['purchase_types'][0] == 'rental') {
+				$listing['compound_type'] = 'comm_rental';
+			}
+			if ($listing['zoning_types'][0] == 'commercial' && $listing['purchase_types'][0] == 'sale') {
+				$listing['compound_type'] = 'comm_sale';
+			}
+		} elseif (!empty($listing['listing_types'])) {
+			if ($listing['listing_types'][0] == 'sublet')  {
+				$listing['compound_type'] = 'sublet';
+			}
+		}
+
 		return $listing;
 	}
 
@@ -46,7 +70,7 @@ class PL_Listing_Helper {
 		foreach ($api_response['listings'] as $key => $listing) {
 			$images = $listing['images'];
 			$listings[$key][] = ((is_array($images) && isset($images[0])) ? '<img width=50 height=50 src="' . $images[0]['url'] . '" />' : 'empty');
-			$listings[$key][] = '<a class="address" href="">' . $listing["location"]["address"] . ' ' . $listing["location"]["locality"] . ' ' . $listing["location"]["region"] . '</a><div class="row_actions"><a href=/wp-admin/admin.php?page=placester_property_add&id="' . $listing['id'] . '">Edit</a><span>|</span><a href=/wp-admin/admin.php?page=placester_property_add&id="' . $listing['id'] . '">View</a><span>|</span><a class="red" href=/wp-admin/admin.php?page=placester_property_add&id="' . $listing['id'] . '">Delete</a></div>';
+			$listings[$key][] = '<a class="address" href="/wp-admin/admin.php?page=placester_property_add&id=' . $listing['id'] . '">' . $listing["location"]["address"] . ' ' . $listing["location"]["locality"] . ' ' . $listing["location"]["region"] . '</a><div class="row_actions"><a href="/wp-admin/admin.php?page=placester_property_add&id="' . $listing['id'] . '">Edit</a><span>|</span><a href=/wp-admin/admin.php?page=placester_property_add&id="' . $listing['id'] . '">View</a><span>|</span><a class="red" href=/wp-admin/admin.php?page=placester_property_add&id="' . $listing['id'] . '">Delete</a></div>';
 			$listings[$key][] = $listing["location"]["postal"];
 			$listings[$key][] = implode($listing["zoning_types"], ', ') . ' ' . implode($listing["purchase_types"], ', ');
 			$listings[$key][] = implode($listing["listing_types"], ', ');

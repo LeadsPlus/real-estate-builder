@@ -33,7 +33,11 @@ class PL_Router {
 	}
 
 	public function add_listings() {
-		self:: router('add-listing.php', array('test'=>'donkey'), false);
+		if (isset($_GET['id'])) {
+			$_POST = PL_Listing_Helper::details($_GET);
+			// pls_dump($_POST);
+		}
+		self:: router('add-listing.php', array(), false);
 	}
 
 	public function theme_gallery() {

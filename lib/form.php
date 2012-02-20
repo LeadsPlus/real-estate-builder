@@ -98,7 +98,7 @@ class PL_Form {
 			?>
 				<section id="<?php echo $id ?>" class="pls_search_form <?php echo $css ?>">
 					<label for="<?php echo $id ?>"><?php echo $text ?></label>	
-					<input id="fileupload" type="file" name="<?php echo $name ?>" /> 
+					<input id="fileupload" type="file" name="images" name="<?php echo $name ?>" multiple /> 
 				</section>
 			<?php
 		} elseif ( $type == 'bundle' ) {

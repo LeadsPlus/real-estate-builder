@@ -1,15 +1,21 @@
 $(document).ready(function($) {
 
 	//property selectbox
+	set_property_type();
+
 	$('select#compound_type').bind('change', function () {
-		jQuery('#property_type-sublet').hide()
-		jQuery('#property_type-res_sale').hide()
-		jQuery('#property_type-vac_rental').hide()
-		jQuery('#property_type-res_rental').hide()
-		jQuery('#property_type-comm_rental').hide()
-		jQuery('#property_type-comm_sale').hide()
-		jQuery('#property_type-' + jQuery(this).val() ).show();
+		set_property_type();
 	});
+
+	function set_property_type() {
+		$('#property_type-sublet').hide()
+		$('#property_type-res_sale').hide()
+		$('#property_type-vac_rental').hide()
+		$('#property_type-res_rental').hide()
+		$('#property_type-comm_rental').hide()
+		$('#property_type-comm_sale').hide()
+		$('#property_type-' + $('select#compound_type').val() ).show();
+	}
 
 	// duplicates the custom attribute form.
 	$('button#custom_data').live('click', function (event) {
@@ -26,6 +32,7 @@ $(document).ready(function($) {
 
 	$('#fileupload').fileupload({
 		dataType: 'json',
+		sequentialUploads: true,
 		url: ajaxurl,
 		formData: {action : "add_temp_image"},
 		done: function (e, data) {
@@ -34,20 +41,29 @@ $(document).ready(function($) {
 		    });
 		}
 	});
+
+	$("input#metadata-avail_on_picker").datepicker({
+        showOtherMonths: true,
+        numberOfMonths: 2,
+        selectOtherMonths: true
+	});
 	    
 	//create listing
 	$('#add_listing_publish').live('click', function(event) {
         event.preventDefault();
-       	
+       	//hide all previous validation issues
        	$('.red').remove();
-
+       	//set default values required for the form to work. 
         var form_values = {}
         form_values['request_url'] = jQuery(this).attr('url');
         form_values['action'] = 'add_listing';
+        //get each of the form values, set key/values in array based off name attribute
         $.each($('#add_listing_form').serializeArray(), function(i, field) {
     		form_values[field.name] = field.value;
         });
+        //set context of the form.
        var form = $('#add_listing_form');
+       //ajax request for creating the listing. 
         $.ajax({
 			url: ajaxurl, //wordpress thing
 			type: "POST",

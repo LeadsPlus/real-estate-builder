@@ -16,12 +16,11 @@ class PL_Css_Helper {
 
 		//always load these
 		self::register_enqueue_if_not('global-css', trailingslashit(PL_CSS_URL) .  'global.css');		
-		self::register_enqueue_if_not('chosen', trailingslashit(PL_JS_LIB_URL) .  'chosen/chosen.css');		
-
+		self::register_enqueue_if_not('jquery-ui', trailingslashit(PL_JS_LIB_URL) .  'jquery-ui/css/smoothness/jquery-ui-1.8.17.custom.css');		
 
 		if ($hook == 'placester_page_placester_properties') {
 			self::register_enqueue_if_not('my-listings', trailingslashit(PL_CSS_ADMIN_URL) .  'my-listings.css');		
-			self::register_enqueue_if_not('jquery-ui', trailingslashit(PL_JS_LIB_URL) .  'jquery-ui/css/smoothness/jquery-ui-1.8.17.custom.css');		
+			
 		}
 
 		if ($hook == 'placester_page_placester_property_add') {
