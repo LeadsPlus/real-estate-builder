@@ -110,8 +110,9 @@ Class PL_HTTP {
 	 * @return array
 	 */
 	function send_request_multipart($url, $request, $file_name, $file_mime_type, $file_tmpname) {
-
-	    $binary_length = filesize($file_tmpname);
+		unset($request['action']);
+		// pls_dump($url, $request, $file_name, $file_mime_type, $file_tmpname);
+	    $binary_length = filesize($file_tmpname);	
 	    $binary_data = fread(fopen($file_tmpname, "r"), $binary_length);
 
 	    $eol = "\r\n";
@@ -134,18 +135,15 @@ Class PL_HTTP {
 	    $data .= "--" . $mime_boundary . "--" . $eol . $eol; // Finish with two eols
 	     
 	    $params = array('http' => array(
-	                      'method' => 'POST',
-	                      'header' => 'Content-Type: multipart/form-data; boundary=' . $mime_boundary . $eol,
-	                      'content' => $data
-	                   ));
-	    pls_dump($params);
+					    'method' => 'POST',
+					    'header' => 'Content-Type: multipart/form-data; boundary=' . $mime_boundary . $eol,
+					    'content' => $data));
+		pls_dump($params);
 		$ctx = stream_context_create($params);
-		pls_dump($url);
-		$handle = @fopen($url, 'r', false, $ctx);
+		$handle = fopen($url, 'r', false, $ctx);
 
 	    if ( !$handle ) {
-	    	return 'handle is false';
-	    	return false;
+	    	return 'Could not open stream. Could be credential issue.';
 	    }
 	    	
 	    stream_set_timeout( $handle, self::$timeout );
