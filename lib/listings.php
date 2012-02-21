@@ -9,6 +9,7 @@ class PL_Listings {
 		
 		add_action( 'wp_ajax_admin_datatable', array( __CLASS__, 'generate_datatable'  ));
 		add_action( 'wp_ajax_nopriv_generate_search', array( __CLASS__, 'generate_search'  ));
+		add_action( 'wp_ajax_generate_search', array( __CLASS__, 'generate_search'  ));
 
 	}
 
