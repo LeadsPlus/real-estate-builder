@@ -5,12 +5,16 @@ class PL_Router {
 	private static function router($template, $params, $wrap = false) {
 		
 		ob_start();
-			extract($params);
+			// delete_option('placester_api_key');
+			extract($params, EXTR_SKIP);
 			self::load_builder_view('header.php');
-			self::load_builder_view($template);
+			if (!PL_Option_Helper::api_key()) {
+				do_action('sign-up-action');
+				self::load_builder_view('sign-up.php');	
+			}
+			self::load_builder_view($template);	
 			self::load_builder_view('footer.php');
 		echo ob_get_clean();
-
 	}
 
 	public static function load_builder_partial($template, $params = array()) {
@@ -35,7 +39,6 @@ class PL_Router {
 	public function add_listings() {
 		if (isset($_GET['id'])) {
 			$_POST = PL_Listing_Helper::details($_GET);
-			// pls_dump($_POST);
 		}
 		self:: router('add-listing.php', array(), false);
 	}
@@ -45,7 +48,7 @@ class PL_Router {
 	}
 
 	public function settings() {
-		self:: router('settings.php', array('test'=>'donkey'), false);
+		self:: router('settings.php', array(), false);
 	}
 
 //end of class

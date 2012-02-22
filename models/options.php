@@ -8,8 +8,13 @@ class PL_Options {
 	}
 
 
-	public function set () {
-
+	public function set ($option, $value) {
+		if (get_option($option)) {
+			return update_option($option, $value);
+		} elseif (condition) {
+			return add_option($option, $value);
+		}
+		
 	}
 
 }

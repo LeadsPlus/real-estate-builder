@@ -56,6 +56,7 @@ define( 'PL_CSS_ADMIN_URL', trailingslashit(PL_CSS_URL) . 'admin/' );
 include_once('config/toggle_form_sections.php');
 include_once('config/api/custom_attributes.php');
 include_once('config/api/listings.php');
+include_once('config/api/users.php');
 include_once('lib/config.php');
 
 //lib
@@ -69,6 +70,7 @@ include_once('lib/validation.php');
 include_once('models/listing.php');
 include_once('models/custom_attribute.php');
 include_once('models/options.php');
+include_once('models/user.php');
 
 //helpers
 include_once('helpers/listing.php');
@@ -78,13 +80,11 @@ include_once('helpers/compatibility.php');
 include_once('helpers/css.php');
 include_once('helpers/js.php');
 include_once('helpers/header.php');
+include_once('helpers/user.php');
 // end new
 
 register_activation_hook( __FILE__, 'placester_activate' );
 register_deactivation_hook( __FILE__, 'placester_deactivate' );
-
-
-
 
 add_action( 'admin_menu', 'placester_admin_menu' );
 function placester_admin_menu() {
@@ -100,8 +100,8 @@ function placester_admin_menu() {
     $submenu['placester'] = array();
 
     add_submenu_page( 'placester', '','My Listings', 'edit_pages', 'placester_properties', array('PL_Router','my_listings'));
-    add_submenu_page( 'placester', '', 'Add Listing', 'edit_pages', 'placester_property_add', array('PL_Router','add_listings') );
-    add_submenu_page( 'placester', '', 'Theme Gallery', 'edit_pages', 'placester_themes', array('PL_Router','theme_gallery') );    
+    // add_submenu_page( 'placester', '', 'Add Listing', 'edit_pages', 'placester_property_add', array('PL_Router','add_listings') );
+    // add_submenu_page( 'placester', '', 'Theme Gallery', 'edit_pages', 'placester_themes', array('PL_Router','theme_gallery') );    
     add_submenu_page( 'placester', '', 'Settings', 'edit_pages', 'placester_settings', array('PL_Router','settings') );    
 }
 

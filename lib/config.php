@@ -16,6 +16,13 @@ class PL_Config {
 		return self::config_finder($PL_API_CUST_ATTR, $args, $num_args);
 	}
 
+	public function PL_API_USERS () {
+		global $PL_API_USERS;
+		$args = func_get_args();
+		$num_args = func_num_args();
+		return self::config_finder($PL_API_USERS, $args, $num_args);
+	}
+
 	public function PL_MY_LIST_FORM () {	
 		global $PL_MY_LIST_FORM;
 		$args = func_get_args();
