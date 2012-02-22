@@ -8,4 +8,10 @@ class PL_User {
 		$response = PL_Validate::attributes($response, PL_Config::PL_API_USERS('whoami', 'returns'));
 		return $response;
 	}
+
+	public function create($args = array()) {
+		$request = PL_Validate::request($args, PL_Config::PL_API_USERS('setup', 'args') );
+		$response = PL_HTTP::send_request(PL_Config::PL_API_USERS('setup', 'request', 'url'), $request, PL_Config::PL_API_USERS('setup', 'request', 'type'));
+		return $response;
+	}
 }

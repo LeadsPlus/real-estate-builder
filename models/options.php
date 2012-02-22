@@ -7,11 +7,10 @@ class PL_Options {
 		return get_option($option);
 	}
 
-
 	public function set ($option, $value) {
 		if (get_option($option)) {
 			return update_option($option, $value);
-		} elseif (condition) {
+		} else {
 			return add_option($option, $value);
 		}
 		

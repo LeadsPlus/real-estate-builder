@@ -5,13 +5,38 @@ $(document).ready(function($) {
 		return false;
 	});
 
+	$('#new_email').bind('click', function () {
+		$.post(ajaxurl, {action: 'new_api_key_view'}, function(data, textStatus, xhr) {
+  			//optional stuff to do after success
+  			$("#existing_placester_dialog" ).dialog("open");
+  			$('#existing_placester_dialog').html(data);
+  			$('#existing_placester_dialog').dialog('option', 'title', '	<h2>Welcome to the RE Website Builder Set Up Wizard</h2>');
+			$('#existing_placester_dialog').dialog('option', 'buttons', {
+				1:{
+					text: "Cancel", 
+					click: function (){
+						$(this).dialog("close")
+					}
+				},
+				2:{
+					text:"Confirm Email",
+					click: function () {
+						new_sign_up();
+					}
+				}
+			});
+			return false;
+		});
+		
+	});
+
 	$( "#existing_placester_dialog" ).dialog({
 		autoOpen: false,
 		draggable: false,
 		modal: true,
 		title: false,
 		width: 700,
-		title: "Use Existing Placester Account",
+		title: "<h2>Use an existing Placester account</h2>",
 		buttons: {
 				"Close": function() {
 					$( this ).dialog( "close" );
@@ -35,34 +60,4 @@ $(document).ready(function($) {
 			$('#api_key_validation').hide();
 		};
 	});
-
-	function check_api_key (api_key) {
-		$('#api_key_success').hide();
-		$('#api_key_validation').hide();
-		if (api_key.length == 40) {
-			var data = {action : "check_placester_api_key",api_key: api_key};
-			$('#api_key_success').html('Checking....').show();
-			$.ajax({
-				url: ajaxurl, //wordpress thing
-				type: "POST",
-				data: data,
-				dataType: "json",
-				success: function (response) {
-					$('#api_key_success').hide();
-					if (response && response['message']) {
-						if (response['result']) {
-							$('#api_key_success').html(response['message']).show();			
-							setTimeout(function () {
-								window.location.href=window.location.href;
-							}, 1000);
-						} else {
-							$('#api_key_validation').html(response['message']).show();			
-						};
-					};		
-				}
-			});
-		} else {
-			$('#api_key_validation').html('Invalid Placester API Entered. Not 40 Characters long.').show();
-		}
-	}
 });

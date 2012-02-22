@@ -5,7 +5,7 @@
 			<div class="header-wrapper">
 				<h2>This plugin is linked to <?php echo $email ?> <span class="check-icon"></span></h2>	
 				<a class="button-secondary" href='https://placester.com/user/login'>Login to Placester.com</a>
-				<a class="button-secondary" href='https://placester.com/user/password/new'>Reset Password</a>	
+				<a class="button-secondary" href='https://placester.com/user/password/new'>Forgot Password?</a>	
 				<a class="button-secondary" id="new_email" >Change to a New Email Address</a>	
 				<a class="button-secondary" id="existing_placester" href="#">Change to an Existing Placester Account</a>	
 			</div>
@@ -77,7 +77,7 @@
 							<span>Placester.com Account Details</span>
 						</h3>
 						<div class="inside">
-							<div>Plugin not Set Up!</div>
+							<div class="not-set-up"><h2>Plugin not Set Up! <a href="#">Get Started.</a></h2></div>
 						</div>
 						<div class="clear"></div>
 					</div>	
