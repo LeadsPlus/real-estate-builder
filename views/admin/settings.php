@@ -22,7 +22,7 @@
 							<div class="personal-column">
 								<h3>Personal Details</h3>
 								<div class="third">
-									<?php if ($user['headshot']): ?>
+									<?php if (isset($user['headshot'])): ?>
 										<img src="<?php echo $user['headshot'] ?>" alt="" width=100 height=90>
 									<?php else: ?>
 										<img src="" alt="">
@@ -40,7 +40,7 @@
 							<div class="company-column">
 								<h3>Company Details</h3>
 								<div class="third">
-									<?php if ($logo): ?>
+									<?php if (isset($logo)): ?>
 										<img src="<?php echo $logo ?>" alt="" width=100 height=90>
 									<?php else: ?>
 										<img src="" alt="">
@@ -69,5 +69,19 @@
 			</form>
 		<?php else: ?>
 			<h2>This plugin is not set up! Click anywhere to start</h2>
+			<form action="">
+				<div id="" class="meta-box-sortables ui-sortable">
+					<div id="div" class="postbox ">
+						<div class="handlediv" title="Click to toggle"><br></div>
+						<h3 class="hndle">
+							<span>Placester.com Account Details</span>
+						</h3>
+						<div class="inside">
+							<div>Plugin not Set Up!</div>
+						</div>
+						<div class="clear"></div>
+					</div>	
+				</div>
+			</form>
 		<?php endif ?>
 	</div>
