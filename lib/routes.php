@@ -10,7 +10,7 @@ class PL_Router {
 			self::load_builder_view('header.php');
 			if (!PL_Option_Helper::api_key()) {
 				do_action('sign-up-action');
-				self::load_builder_view('sign-up.php');	
+				self::load_builder_partial('sign-up.php');	
 			}
 			self::load_builder_view($template);	
 			self::load_builder_view('footer.php');
