@@ -130,14 +130,18 @@ class PL_Listing_Helper {
 			$prices[] = $listing['cur_data']['price'];
 		}
 		sort($prices);
-		$range = ($prices[0] - end($prices))/10;
-		if ($type == 'max') {
-			$range = range($prices[0], end($prices), $range);
-			return $range;
+		if (is_array($prices) && !empty($prices)) {
+			$range = ($prices[0] - end($prices))/10;
+			if ($type == 'max') {
+				$range = range($prices[0], end($prices), $range);
+				return $range;
+			} else {
+				$range = range($prices[0], end($prices), $range);
+				array_pop($range);
+				return $range;
+			}
 		} else {
-			$range = range($prices[0], end($prices), $range);
-			array_pop($range);
-			return $range;
+			return array();
 		}
 	}
 

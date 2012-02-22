@@ -7,13 +7,15 @@ $(document).ready(function($) {
 		title: false,
 		width: 700,
 		buttons: {
+				"Use Existing Placester API Key": function() {
+					
+				},
 				"Close Setup Wizard": function() {
 					$( this ).dialog( "close" );
 				},
 				"Next: Select MLS Integration": function() {
 					$( this ).dialog( "close" );
 				}
-				
 			}
 	});
 
