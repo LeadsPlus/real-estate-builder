@@ -106,7 +106,11 @@ class PL_Form {
 				foreach (self::prepare_custom_item($options, $method) as $key => $form_items) {
 					$bundle .= "<section class='form_group' id='".$key."'>";
 					$bundle .= "<h3>" . ucwords($key) . "</h3>";
-					$bundle .= $form_items;
+					if (is_array($form_items)) {
+						$bundle .= implode($form_items, '');	
+					} else {
+						$bundle .= $form_items;	
+					}
 					$bundle .= "</section>";
 				}
 			 echo $bundle;
@@ -176,12 +180,11 @@ class PL_Form {
 
 	private function prepare_custom_item($options, $method) {
 		$custom_items = array();
-
 		foreach ($options as $key => $option) {
 			$form_types = PL_Config::PL_API_CUST_ATTR('get');
 			$form_types = $form_types['args']['attr_type']['options'];
 			$attributes = array('label' => $option['name'], 'type' => $form_types[$option['attr_type']]);
-			$custom_items[$option['cat']] = self::item($option['id'], $attributes, $method, 'metadata');
+			$custom_items[$option['cat']][] = self::item($option['id'], $attributes, $method, 'metadata');
 		}
 		return $custom_items;
 	}
