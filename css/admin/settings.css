@@ -23,6 +23,9 @@
 	margin-right: 10px;
 }
 
+.inside {
+	margin-bottom: 20px;
+}
 
 #api_key_validation {
 	display: none;
@@ -43,3 +46,10 @@
 	margin: 150px auto;
 }
 
+#cache_message {
+	color: green;
+	font-weight: bold;
+	font-size: 16px;
+	margin-top: 15px; 
+	padding-left: 10px; 
+}

@@ -72,13 +72,11 @@ Class PL_HTTP {
 	        	$transient = get_transient($transient_id);
 	        	if ($transient) {
 					PL_Debug::add_msg('------- !!!USING CACHE!!! --------');    	    		
-					PL_Debug::add_msg($transient); 	
 					return $transient;
 	        	} else {
 	            	$response = wp_remote_get($url . '?' . $request_string, array('timeout' => self::$timeout));
 					PL_Debug::add_msg('------- NO CACHE FOUND --------');    	    		
-	        		PL_Debug::add_msg($url . '?' . $request_string);    
-					PL_Debug::add_msg($response['body']); 	
+	        		PL_Debug::add_msg($url . '?' . $request_string);    	
 
 					if (is_array($response) && isset($response['headers']) && $response['headers']['status'] == 200 ) {
 						if (!empty($response['body'])) {
@@ -169,13 +167,19 @@ Class PL_HTTP {
 
 	function clear_cache() {
 	    global $wpdb;
-	    $placester_options = $wpdb->get_results(
-	        'SELECT option_name FROM ' . $wpdb->prefix . 'options ' .
-	        "WHERE option_name LIKE '_transient_pl_%'");
-
+	    $placester_options = $wpdb->get_results('SELECT option_name FROM ' . $wpdb->prefix . 'options ' ."WHERE option_name LIKE '_transient_pl_%'");
 	    foreach ($placester_options as $option) {
 	        delete_option( $option->option_name );
 	    }
+	}
+
+	function num_items_cached () {
+		global $wpdb;
+	    $placester_options = $wpdb->get_results('SELECT option_name FROM ' . $wpdb->prefix . 'options ' ."WHERE option_name LIKE '_transient_pl_%'");		
+	    if ($placester_options && is_array($placester_options)) {
+	    	return count($placester_options);
+	    }
+	    return 0;
 	}
 }
 

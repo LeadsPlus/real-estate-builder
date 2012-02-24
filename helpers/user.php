@@ -9,6 +9,7 @@ class PL_Helper_User {
 		add_action('wp_ajax_existing_api_key_view', array(__CLASS__, 'existing_api_key_view' ) );
 		add_action('wp_ajax_new_api_key_view', array(__CLASS__, 'new_api_key_view' ) );
 		add_action('wp_ajax_create_account', array(__CLASS__, 'create_account' ) );
+		add_action('wp_ajax_user_empty_cache', array(__CLASS__, 'empty_cache' ) );
 	}
 
 	public static function set_admin_email (){
@@ -47,6 +48,16 @@ class PL_Helper_User {
 		} else {
 			echo json_encode(array(false, 'No Email Provided'));
 		}
+		die();
+	}
+
+	public function get_cached_items() {
+		return array('num_cached_items' => PL_Http::num_items_cached());
+	}
+
+	public function empty_cache() {
+		PL_Http::clear_cache();
+		echo json_encode(array('result' => true, 'message' => 'You\'ve successfully cleared your cache'));
 		die();
 	}
 }

@@ -1,4 +1,5 @@
 <?php extract(PL_Helper_User::whoami()); ?>
+<?php extract(PL_Helper_User::get_cached_items()); ?>
 <?php PL_Router::load_builder_partial('existing-placester.php') ?>
 	<div class="wrap">
 		<?php if (PL_Option_Helper::api_key() && isset($email)): ?>
@@ -84,4 +85,10 @@
 				</div>
 			</form>
 		<?php endif ?>
+			<div class="header-wrapper">
+				<h2>You currently have <span id="num_cached_items"><?php echo $num_cached_items; ?></span> request(s) cached.</h2>
+				<a class="button-secondary" id="clear_cache" >Empty the Cache</a>		
+				<div id="cache_message"></div>
+			</div>
+			<p>Learn more about cacheing <a href="#">here</a></p>
 	</div>
