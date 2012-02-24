@@ -4,7 +4,7 @@ global $PL_API_LISTINGS;
 $PL_API_LISTINGS = array(
 	'get' => array(
 		'request' => array(
-			'url' => 'https://api.placester.com/v2.0/listings',
+			'url' => 'https://api.placester.com/v2/listings',
 			'type' => 'GET'
 		),
 		'args' => array(
@@ -433,7 +433,7 @@ $PL_API_LISTINGS = array(
 	),
 	'details' => array(
 		'request' => array(
-			'url' => 'https://placester.com/api/v2.0/listings/',
+			'url' => 'https://placester.com/api/v2/listings/',
 			'type' => 'GET'
 		),
 		'args' => array(),
@@ -494,7 +494,7 @@ $PL_API_LISTINGS = array(
 	),
 	'create' => array(
 		'request' => array(
-			'url' => 'https://api.placester.com/v2.0/listings',
+			'url' => 'https://api.placester.com/v2/listings',
 			'type' => 'POST'
 		),
 		'args' => array(
@@ -725,7 +725,7 @@ $PL_API_LISTINGS = array(
 	),
 	'temp_image' => array(
 		'request' => array(
-			'url' => 'https://placester.com/api/v2.0/listings/media/temp/image',
+			'url' => 'https://placester.com/api/v2/listings/media/temp/image',
 			'type' => 'POST'
 		),
 		'args' => array(
@@ -735,7 +735,7 @@ $PL_API_LISTINGS = array(
 	),
 	'update' => array(
 		'request' => array(
-			'url' => 'https://api.placester.com/v2.0/listings',
+			'url' => 'https://api.placester.com/v2/listings',
 			'type' => 'PUT'
 		),
 		'args' => array(),
@@ -743,7 +743,7 @@ $PL_API_LISTINGS = array(
 	),
 	'delete' => array(
 		'request' => array(
-			'url' => 'https://api.placester.com/v2.0/listings',
+			'url' => 'https://api.placester.com/v2/listings',
 			'type' => 'DELETE'
 		),
 		'args' => array(),
@@ -751,7 +751,7 @@ $PL_API_LISTINGS = array(
 	),
 	'get.locations' => array(
 		'request' => array(
-			'url' => 'https://placester.com/api/v2.0/listings/locations/',
+			'url' => 'https://placester.com/api/v2/listings/locations/',
 			'type' => 'GET'
 		),
 		'args' => array(
