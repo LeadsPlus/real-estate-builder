@@ -19,7 +19,7 @@
 							<span>Placester.com Account Details</span>
 						</h3>
 						<div class="inside">
-							<p>Here's your account details being pulled directly from Placester.com. You may edit your <a href="https://placester.com/user/profile">personal information</a> and  <a href="https://placester.com/company/settings">company information</a> any time on Placester.com. Some themes may automatically use this information to save you time entering data. However, you should always enter information directly into a theme when available so you have more control over the look of your website.</p>
+							<p>Here's your account details being pulled directly from Placester.com. You may edit your <a href="https://placester.com/user/profile">personal information</a> and  <a href="https://placester.com/company/settings">company information</a> any time on Placester.com. Some themes may automatically use this information (to save you time entering data). However, you can always enter information directly into a theme so you have more control over the look of your website.</p>
 							<div class="personal-column">
 								<h3>Personal Details</h3>
 								<div class="third">
@@ -90,5 +90,5 @@
 				<a class="button-secondary" id="clear_cache" >Empty the Cache</a>		
 				<div id="cache_message"></div>
 			</div>
-			<p>Learn more about cacheing <a href="#">here</a></p>
+			<p>Cacheing speeds up your real estate website by storing data locally rather then pulling it in from Placester everytime it's needed. If you've recently updated a lot of your data, and don't see it appearing in your website try emptying the cache. Learn more about cacheing <a href="#">here</a></p>
 	</div>
