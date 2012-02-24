@@ -41,7 +41,7 @@ $(document).ready(function($) {
             showOtherMonths: true,
             numberOfMonths: 2,
             selectOtherMonths: true
-        });
+    });
 
     var my_listings_datatable = $('#placester_listings_list').dataTable( {
             "bFilter": false,
