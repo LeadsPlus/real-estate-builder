@@ -12,7 +12,10 @@ class PL_Listing_Helper {
 	}
 	
 	public function results($args = array()) {
-		$listings = PL_Listing::get($_GET);	
+		if (empty($args)) {
+			$args = $_GET;
+		}
+		$listings = PL_Listing::get($args);	
 		return $listings;
 	}
 
