@@ -35,7 +35,7 @@ Class PL_HTTP {
 	        }
 	    }
 
-	    PL_Debug::add_msg('Endpoint Logged As: ' . $method . ' ' . $url);
+	    PL_Debug::add_msg('Endpoint Logged As: ' . $method . ' ' . $url . '?' . $request_string);
 
 		switch ($method) {
 			case 'POST':
