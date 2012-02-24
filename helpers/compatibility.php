@@ -12,3 +12,4 @@ function placester_location_list () {
 function placester_listings_list () {}
 class Placester_Contact_Widget { function widget() {}}
 function placester_get_user_details() {}
+function placester_get_property_url () {}
