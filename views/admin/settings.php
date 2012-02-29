@@ -1,6 +1,6 @@
 <?php extract(PL_Helper_User::whoami()); ?>
+<?php extract(PL_Page_Helper::get_types()); ?>
 <?php extract(PL_Helper_User::get_cached_items()); ?>
-<?php PL_Router::load_builder_partial('existing-placester.php') ?>
 	<div class="wrap">
 		<?php if (PL_Option_Helper::api_key() && isset($email)): ?>
 			<div class="header-wrapper">
@@ -86,9 +86,18 @@
 			</form>
 		<?php endif ?>
 			<div class="header-wrapper">
+				<h2>You have <span id="num_placester_pages"><?php echo $total_pages; ?></span> listing pages created.</h2>	
+				<a class="button-secondary" id="delete_pages" >Delete all pages</a>	
+				<div class="ajax_message" id="regenerate_message"></div>
+			</div>
+			<div class="clear"></div>
+			<p>Listing pages are found by indexed by search engines like Google and Bing. Once you're listing pages are indexed they can be found by searchers.</p>
+
+			<div class="header-wrapper">
 				<h2>You currently have <span id="num_cached_items"><?php echo $num_cached_items; ?></span> request(s) cached.</h2>
 				<a class="button-secondary" id="clear_cache" >Empty the Cache</a>		
 				<div id="cache_message"></div>
 			</div>
 			<p>Cacheing speeds up your real estate website by storing data locally rather then pulling it in from Placester everytime it's needed. If you've recently updated a lot of your data, and don't see it appearing in your website try emptying the cache. Learn more about cacheing <a href="#">here</a></p>
-	</div>
+		</div>
+	<?php PL_Router::load_builder_partial('existing-placester.php') ?>
