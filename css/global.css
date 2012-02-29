@@ -1,3 +1,25 @@
+/*headers on specific pages*/
+.header-wrapper {
+	float: left;
+	width: 100%
+}
+.header-wrapper a {
+	float: left;
+	margin: 13px 0 0 10px;
+}
+.header-wrapper h2 {
+	float: left;
+}
+
+/*ajax maessages*/
+.ajax_message {
+	font-size: 14px;
+	margin: 15px 0 0 10px;
+	color: green;
+	font-weight: bold;
+}
+
+
 .placester_icon {
   background: url('../images/logo_30.png') no-repeat;
 }
