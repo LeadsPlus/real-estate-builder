@@ -12,10 +12,17 @@ class PL_Listing_Helper {
 	}
 	
 	public function results($args = array()) {
-		if (empty($args)) {
+		if (!is_array($args)) {
+			$args = wp_parse_args($args);
+		} elseif (empty($args)) {
 			$args = $_GET;
 		}
 		$listings = PL_Listing::get($args);	
+		foreach ($listings['listings'] as $key => $listing) {
+			$listings['listings'][$key]['cur_data']['url'] = PL_Page_Helper::get_url($listing['id']);
+			$listings['listings'][$key]['location']['full_address'] = $listing['location']['address'] . ' ' . $listing['location']['locality'] . ' ' . $listing['location']['region'];
+		}
+		// pls_dump($listings['listings']);
 		return $listings;
 	}
 
@@ -73,7 +80,7 @@ class PL_Listing_Helper {
 		foreach ($api_response['listings'] as $key => $listing) {
 			$images = $listing['images'];
 			$listings[$key][] = ((is_array($images) && isset($images[0])) ? '<img width=50 height=50 src="' . $images[0]['url'] . '" />' : 'empty');
-			$listings[$key][] = '<a class="address" href="/wp-admin/admin.php?page=placester_property_add&id=' . $listing['id'] . '">' . $listing["location"]["address"] . ' ' . $listing["location"]["locality"] . ' ' . $listing["location"]["region"] . '</a><div class="row_actions"><a href="/wp-admin/admin.php?page=placester_property_add&id="' . $listing['id'] . '">Edit</a><span>|</span><a href=/wp-admin/admin.php?page=placester_property_add&id="' . $listing['id'] . '">View</a><span>|</span><a class="red" href=/wp-admin/admin.php?page=placester_property_add&id="' . $listing['id'] . '">Delete</a></div>';
+			$listings[$key][] = '<a class="address" href="/wp-admin/admin.php?page=placester_property_add&id=' . $listing['id'] . '">' . $listing["location"]["address"] . ' ' . $listing["location"]["locality"] . ' ' . $listing["location"]["region"] . '</a><div class="row_actions"><a href="/wp-admin/admin.php?page=placester_property_add&id="' . $listing['id'] . '">Edit</a><span>|</span><a href=' . PL_Page_Helper::get_url($listing['id']) . '">View</a><span>|</span><a class="red" href=/wp-admin/admin.php?page=placester_property_add&id="' . $listing['id'] . '">Delete</a></div>';
 			$listings[$key][] = $listing["location"]["postal"];
 			$listings[$key][] = implode($listing["zoning_types"], ', ') . ' ' . implode($listing["purchase_types"], ', ');
 			$listings[$key][] = implode($listing["listing_types"], ', ');
