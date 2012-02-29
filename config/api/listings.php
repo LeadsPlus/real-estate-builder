@@ -252,8 +252,8 @@ $PL_API_LISTINGS = array(
 						'15' => '15',
 					)
 				),
-				'max_beds' => array('type' => 'text', 'group' => 'advanced', 'label' => 'Max Beds'),
-				'min_beds' => array('type' => 'text', 'group' => 'advanced', 'label' => 'Min Beds'),
+				'max_beds' => array(),// => array('type' => 'text', 'group' => 'advanced', 'label' => 'Max Beds'),
+				'min_beds' => array(),//=> array('type' => 'text', 'group' => 'advanced', 'label' => 'Min Beds'),
                 'baths' => array(
                 	'label' => 'Baths',
 	                'type' => 'select',
@@ -277,8 +277,8 @@ $PL_API_LISTINGS = array(
 						'15' => '15',
 					)
 	            ),
-                'max_baths' => array('type' => 'text', 'group' => 'advanced', 'label' => 'Max Baths'),
-                'min_baths' => array('type' => 'text', 'group' => 'advanced', 'label' => 'Min Baths'),
+                'max_baths' => array(),// => array('type' => 'text', 'group' => 'advanced', 'label' => 'Max Baths'),
+                'min_baths' => array(),//=> array('type' => 'text', 'group' => 'advanced', 'label' => 'Min Baths'),
                 'half_baths' => array(
                 	'label' => 'Half Baths',
 	                'type' => 'select',
