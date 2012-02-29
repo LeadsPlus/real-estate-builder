@@ -6,11 +6,11 @@ class PL_Js_Helper {
 
 	public function init() {
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'admin' ));
+		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'frontend' ));
 	}	
 
 	public function admin ($hook) {
 		$pages = array('placester_page_placester_properties', 'placester_page_placester_property_add', 'placester_page_placester_settings');
-
 		if (!in_array($hook, $pages)) { return; }
 
 		// hack to force jquery to load properly. Needs to be removed once there's time to 
@@ -42,6 +42,10 @@ class PL_Js_Helper {
 			self::register_enqueue_if_not('blueimp-file-upload', trailingslashit(PL_JS_LIB_URL) .  'blueimp/js/jquery.fileupload.js', array( 'jquery'));			
 		}
 		
+	}
+
+	public function frontend() {
+		self::register_enqueue_if_not('datatables', trailingslashit(PL_JS_LIB_URL) .  'datatables/jquery.dataTables.js', array( 'jquery'));			
 	}
 
 	private function register_enqueue_if_not($name, $path, $dependencies = array(), $version = null, $in_footer = false) {
