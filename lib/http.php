@@ -19,7 +19,7 @@ Class PL_HTTP {
 	    foreach ($request as $key => $value) {
 	        if (is_array($value)) {
 	            if ( empty($value) ) {
-	                $request_string .= (strlen($request_string) > 0 ? '&' : '') . urlencode($key) . '[]=';
+	                // $request_string .= (strlen($request_string) > 0 ? '&' : '') . urlencode($key) . '[]=';
 	            }
 	            foreach ($value as $k => $v) {
 	            	if (is_array($v)) {
@@ -41,7 +41,7 @@ Class PL_HTTP {
 			case 'POST':
 			case 'PUT':
 				$response = wp_remote_post($url, array('body' => $request_string, 'timeout' => self::$timeout, 'method' => $method));
-				return json_decode($response['body']);
+				return json_decode($response['body'], TRUE);
 				break;
 			
 			case 'DELETE':
@@ -70,6 +70,7 @@ Class PL_HTTP {
 				$signature = base64_encode(sha1($url . $request_string, true));
 	        	$transient_id = 'pl_' . $signature;
 	        	$transient = get_transient($transient_id);
+	        	// pls_dump($url . '?' . $request_string);
 	        	if ($transient) {
 					PL_Debug::add_msg('------- !!!USING CACHE!!! --------');    	    		
 					return $transient;
@@ -77,6 +78,7 @@ Class PL_HTTP {
 	            	$response = wp_remote_get($url . '?' . $request_string, array('timeout' => self::$timeout));
 					PL_Debug::add_msg('------- NO CACHE FOUND --------');    	    		
 	        		PL_Debug::add_msg($url . '?' . $request_string);    	
+
 
 					if (is_array($response) && isset($response['headers']) && $response['headers']['status'] == 200 ) {
 						if (!empty($response['body'])) {
