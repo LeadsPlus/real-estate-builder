@@ -38,6 +38,7 @@ class PL_Listing {
 		$request = array_merge(array("api_key" => PL_Option_Helper::api_key()), PL_Validate::request($args, $config['args']));
 		$details_url = trailingslashit($config['request']['url']) . $request['id'];
 		$response = PL_HTTP::send_request($details_url, $request, $config['request']['type']);
+		$response = PL_Validate::attributes($response, $config['returns']);
 		return $response;	
 	}
 
