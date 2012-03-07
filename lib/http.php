@@ -13,7 +13,7 @@ Class PL_HTTP {
 	 * @param string $method
 	 * @return array
 	 */
-	function send_request($url, $request, $method = 'GET') {
+	function send_request($url, $request, $method = 'GET', $allow_cache = true) {
 	    
 	    $request_string = '';
 	    foreach ($request as $key => $value) {
@@ -40,7 +40,10 @@ Class PL_HTTP {
 		switch ($method) {
 			case 'POST':
 			case 'PUT':
+				// pls_dump($url);
+				// pls_dump($request_string);
 				$response = wp_remote_post($url, array('body' => $request_string, 'timeout' => self::$timeout, 'method' => $method));
+				// pls_dump($response);
 				return json_decode($response['body'], TRUE);
 				break;
 			
@@ -71,7 +74,7 @@ Class PL_HTTP {
 	        	$transient_id = 'pl_' . $signature;
 	        	$transient = get_transient($transient_id);
 	        	// pls_dump($url . '?' . $request_string);
-	        	if ($transient) {
+	        	if ($allow_cache && $transient) {
 					PL_Debug::add_msg('------- !!!USING CACHE!!! --------');    	    		
 					return $transient;
 	        	} else {
