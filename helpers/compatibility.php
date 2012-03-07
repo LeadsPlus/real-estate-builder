@@ -10,6 +10,5 @@ function placester_location_list () {
  	return $locations;
 }
 function placester_listings_list () {}
-class Placester_Contact_Widget { function widget() {}}
 function placester_get_user_details() {}
 function placester_get_property_url ($placester_id) {return PL_Page_Helper::get_url($placester_id); }
