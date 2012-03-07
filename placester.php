@@ -3,7 +3,7 @@
 Plugin Name: Real Estate Website Builder
 Description: Quickly create a lead generating real estate website for your real property.
 Plugin URI: https://placester.com/
-Author: Placester, Inc.
+Author: Placester.com, Matt Barba
 Version: 0.3.12
 Author URI: https://www.placester.com/
 */
@@ -36,6 +36,9 @@ define( 'PL_VIEWS_URL', trailingslashit(PL_PARENT_URL) . 'views/' );
 define( 'PL_VIEWS_ADMIN_DIR', trailingslashit(PL_VIEWS_DIR) . 'admin/' );
 define( 'PL_VIEWS_ADMIN_URL', trailingslashit(PL_VIEWS_URL) . 'admin/' );
 
+define( 'PL_VIEWS_CLIENT_DIR', trailingslashit(PL_VIEWS_DIR) . 'client/' );
+define( 'PL_VIEWS_CLIENT_URL', trailingslashit(PL_VIEWS_URL) . 'client/' );
+
 define( 'PL_VIEWS_PART_DIR', trailingslashit(PL_VIEWS_DIR) . 'partials/' );
 define( 'PL_VIEWS_PART_URL', trailingslashit(PL_VIEWS_URL) . 'partials/' );
 
@@ -45,11 +48,17 @@ define( 'PL_JS_URL', trailingslashit(PL_PARENT_URL) . 'js/' );
 define( 'PL_JS_LIB_DIR', trailingslashit(PL_JS_DIR) . 'lib/' );
 define( 'PL_JS_LIB_URL', trailingslashit(PL_JS_URL) . 'lib/' );
 
+define( 'PL_JS_PUB_DIR', trailingslashit(PL_JS_DIR) . 'public/' );
+define( 'PL_JS_PUB_URL', trailingslashit(PL_JS_URL) . 'public/' );
+
 define( 'PL_CSS_DIR', trailingslashit(PL_PARENT_DIR) . 'css/' );
 define( 'PL_CSS_URL', trailingslashit(PL_PARENT_URL) . 'css/' );
 
 define( 'PL_CSS_ADMIN_DIR', trailingslashit(PL_CSS_DIR) . 'admin/' );
 define( 'PL_CSS_ADMIN_URL', trailingslashit(PL_CSS_URL) . 'admin/' );
+
+define( 'PL_CSS_CLIENT_DIR', trailingslashit(PL_CSS_DIR) . 'client/' );
+define( 'PL_CSS_CLIENT_URL', trailingslashit(PL_CSS_URL) . 'client/' );
 
 
 //config
@@ -57,6 +66,7 @@ include_once('config/toggle_form_sections.php');
 include_once('config/api/custom_attributes.php');
 include_once('config/api/listings.php');
 include_once('config/api/users.php');
+include_once('config/api/people.php');
 
 //lib
 include_once('lib/config.php');
@@ -66,12 +76,14 @@ include_once('lib/debug.php');
 include_once('lib/form.php');
 include_once('lib/validation.php');
 include_once('lib/pages.php');
+include_once('lib/membership.php');
 
 //models
 include_once('models/listing.php');
 include_once('models/custom_attribute.php');
 include_once('models/options.php');
 include_once('models/user.php');
+include_once('models/people.php');
 
 //helpers
 include_once('helpers/listing.php');
@@ -83,7 +95,8 @@ include_once('helpers/js.php');
 include_once('helpers/header.php');
 include_once('helpers/user.php');
 include_once('helpers/pages.php');
-// end new
+include_once('helpers/people.php');
+
 
 register_activation_hook( __FILE__, 'placester_activate' );
 register_deactivation_hook( __FILE__, 'placester_deactivate' );
@@ -106,119 +119,3 @@ function placester_admin_menu() {
     // add_submenu_page( 'placester', '', 'Theme Gallery', 'edit_pages', 'placester_themes', array('PL_Router','theme_gallery') );    
     add_submenu_page( 'placester', '', 'Settings', 'edit_pages', 'placester_settings', array('PL_Router','settings') );    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

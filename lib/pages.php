@@ -32,18 +32,40 @@ class PL_Pages {
 
 	//create listing page
 	function manage_listing ($api_listing) {
-		$post_id = self::details($api_listing['id']);
-		$type = self::$property_post_type;
-		$title = $api_listing['location']['address'];
-		$name = $api_listing['id'];
-		$content = json_encode($api_listing);
-		$status = 'publish';
-		$taxonomies = array('zip_code' => $api_listing['location']['postal']);
-		return self::manage($post_id,$type, $title, $name, $content, $status, null, $taxonomies);
+		$page_details = array();
+		$page_details['post_id'] = self::details($api_listing['id']);
+		$page_details['type'] = self::$property_post_type;
+		$page_details['title'] = $api_listing['location']['address'];
+		$page_details['name'] = $api_listing['id'];
+		$page_details['content'] = json_encode($api_listing);
+		$page_details['taxonomies'] = array('zip_code' => $api_listing['location']['postal']);
+		return self::manage($page_details);
+	}
+
+	function create_once ($pages_to_create, $force_template) {
+
+		foreach ($pages_to_create as $page_info) {
+			$page = get_page_by_title($page_info['title']);
+			if (!isset($page->ID)) {
+				$page_details = array();
+				$page_details['title'] = $page_info['title'];
+				if (isset($page_info['template'])) {
+					$page_details['page_meta'] = array('_wp_page_template', $page_info['template']);
+				}
+				self::manage($page_details);
+			} else {
+				if (isset($page_info['template'])) {
+					delete_post_meta( $page->ID, '_wp_page_template' );
+    				add_post_meta( $page->ID, '_wp_page_template', $page_info['template']);
+				}
+			}
+		}
 	}
 
 	//create page
-	function manage ($post_id = false, $type, $title, $name, $content, $status = 'publish', $post_meta = array(), $taxonomies = array()) {
+	function manage ($args = array()) {
+		$defaults = array('post_id' => false, 'type' => 'page', 'title' => '', 'name' => false, 'content' => ' ', 'status' => 'publish', 'post_meta' => array(), 'taxonomies' => array());
+		extract(wp_parse_args($args, $defaults));
 		$post = array(
                  'post_type'   => $type,
                  'post_title'  => $title,
@@ -56,11 +78,15 @@ class PL_Pages {
 
             if ($post_id <= 0) {
             	$post_id = wp_insert_post($post);
-            	foreach ($post_meta as $key => $value) {
-            		add_post_meta($post_id, $key, $value, TRUE);
+            	if (!empty($post_meta)) {
+            		foreach ($post_meta as $key => $value) {
+            			add_post_meta($post_id, $key, $value, TRUE);
+            		}
             	}
-            	foreach ($taxonomies as $taxonomy => $term) {
-            		wp_set_object_terms($post_id, $term, $taxonomy);
+            	if (!empty($taxonomies)) {
+	            	foreach ($taxonomies as $taxonomy => $term) {
+	            		wp_set_object_terms($post_id, $term, $taxonomy);
+	            	}
             	}
             } else {	
                 $post['ID'] = $post_id;

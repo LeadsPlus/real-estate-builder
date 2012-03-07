@@ -22,15 +22,23 @@ class PL_Listing_Helper {
 			$listings['listings'][$key]['cur_data']['url'] = PL_Page_Helper::get_url($listing['id']);
 			$listings['listings'][$key]['location']['full_address'] = $listing['location']['address'] . ' ' . $listing['location']['locality'] . ' ' . $listing['location']['region'];
 		}
-		// pls_dump($listings['listings']);
 		return $listings;
+	}
+
+	public function many_details($property_ids) {
+		$response = array();
+		foreach ($property_ids as $id) {
+			$response['listings'][] = self::details(array('id' => $id) );
+		}
+		$response['total'] = count($property_ids);
+		return $response;
 	}
 
 	public function details($args = array()) {
 		$listing = PL_Listing::details($args);
 		//rename cur_data to metadata due to api weirdness;
 		$listing['metadata'] = $listing['cur_data'];
-		unset($listing['cur_data']);
+		// unset($listing['cur_data']);
 		//set compound type using combination of zoning type, purchase type, and listing type
 		if (!empty($listing['zoning_types']) && !empty($listing['purchase_types']) ) {
 			//residential + commercial + rental + sale combos are handled in zoning / purhcase types

@@ -46,6 +46,8 @@ class PL_Js_Helper {
 
 	public function frontend() {
 		self::register_enqueue_if_not('datatables', trailingslashit(PL_JS_LIB_URL) .  'datatables/jquery.dataTables.js', array( 'jquery'));			
+		self::register_enqueue_if_not('leads', trailingslashit(PL_JS_PUB_URL) .  'leads.js', array( 'jquery'));			
+		self::register_enqueue_if_not('membership', trailingslashit(PL_JS_PUB_URL) .  'membership.js', array( 'jquery'));
 	}
 
 	private function register_enqueue_if_not($name, $path, $dependencies = array(), $version = null, $in_footer = false) {

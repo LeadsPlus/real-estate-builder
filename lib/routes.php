@@ -2,7 +2,7 @@
 
 class PL_Router {
 
-	private static function router($template, $params, $wrap = false) {
+	private static function router($template, $params, $wrap = false, $directory = PL_VIEWS_ADMIN_DIR) {
 		
 		ob_start();
 			// delete_option('placester_api_key');
@@ -12,7 +12,7 @@ class PL_Router {
 				do_action('sign-up-action');
 				self::load_builder_partial('sign-up.php');	
 			}
-			self::load_builder_view($template);	
+			self::load_builder_view($template, $directory);	
 			self::load_builder_view('footer.php');
 		echo ob_get_clean();
 	}
@@ -28,8 +28,8 @@ class PL_Router {
 		}
 	}
 	
-	private static function load_builder_view($template) {
-		include_once(trailingslashit(PL_VIEWS_ADMIN_DIR) . $template);
+	private static function load_builder_view($template, $directory = PL_VIEWS_ADMIN_DIR) {
+		include_once(trailingslashit($directory) . $template);
 	}
 	
 	public function my_listings() {
