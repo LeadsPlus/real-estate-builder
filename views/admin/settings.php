@@ -86,6 +86,12 @@
 			</form>
 		<?php endif ?>
 			<div class="header-wrapper">
+				<h2>You've generated <span id="num_user_accounts"><?php echo $num_cached_items; ?></span> potential clients with your website.</h2>
+				<a class="button-secondary" href="http://placester.com/people" >View Clients on Placester.com</a>		
+			</div>
+			<p> Learn more about cacheing <a href="#">here</a></p>
+
+			<div class="header-wrapper">
 				<h2>You have <span id="num_placester_pages"><?php echo $total_pages; ?></span> listing pages created.</h2>	
 				<a class="button-secondary" id="delete_pages" >Delete all pages</a>	
 				<div class="ajax_message" id="regenerate_message"></div>
