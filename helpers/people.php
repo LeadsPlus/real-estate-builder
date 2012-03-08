@@ -26,6 +26,9 @@ class PL_People_Helper {
 		$wp_user = PL_Membership::get_user();
 		$placester_id = get_user_meta($wp_user->ID, 'placester_api_id');
 		if (is_array($placester_id)) { $placester_id = implode($placester_id, ''); }
+		if (empty($placester_id)) {
+			return array();
+		}
 		return PL_People::details(array('id' => $placester_id));
 	}
 
