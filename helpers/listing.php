@@ -28,7 +28,10 @@ class PL_Listing_Helper {
 	public function many_details($property_ids) {
 		$response = array();
 		foreach ($property_ids as $id) {
-			$response['listings'][] = self::details(array('id' => $id) );
+			$listing = self::details(array('id' => $id) );
+			$listing['cur_data']['url'] = PL_Page_Helper::get_url($listing['id']);
+			$listing['location']['full_address'] = $listing['location']['address'] . ' ' . $listing['location']['locality'] . ' ' . $listing['location']['region'];
+			$response['listings'][] = $listing;
 		}
 		$response['total'] = count($property_ids);
 		return $response;
