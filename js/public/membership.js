@@ -41,16 +41,16 @@ jQuery(document).ready(function($) {
         $this = $(this);
         username = $(this).find('#user_login').val();
         password = $(this).find('#user_pass').val();
-
+    
         return login_user(username, password);
     });
     
-    $("#pl_register_lead_link").fancybox({
+    $(".pl_register_lead_link").fancybox({
         'hideOnContentClick': false,
         'scrolling' : true
     });
-
-    $("#pl_login_link").fancybox({
+    
+    $(".pl_login_link").fancybox({
         'hideOnContentClick': false,
         'scrolling' : true
     });

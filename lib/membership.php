@@ -581,12 +581,12 @@ class PL_Membership {
 
         /** The login or logout link. */
         if ( ! is_user_logged_in() )
-            $loginout_link = '<a id="pl_login_link" href="#pl_login_form">Log in</a>';
+            $loginout_link = '<a class="pl_login_link" href="#pl_login_form">Log in</a>';
         else
             $loginout_link = '<a href="' . esc_url( wp_logout_url($_SERVER['REQUEST_URI']) ) . '" id="pl_logout_link">Log out</a>';
 
         /** The register link. */
-        $register_link = '<a id="pl_register_lead_link" href="#pl_lead_register_form">Register</a>';
+        $register_link = '<a class="pl_register_lead_link" href="#pl_lead_register_form">Register</a>';
 
         /** The profile link. */
         $profile_link = '<a id="pl_lead_profile_link" target="_blank" href="' . self::get_client_area_url() . '">My Account</a>';
