@@ -1,0 +1,43 @@
+.personal-column, .company-column {
+	width: 48%;
+	float: left;
+}
+.personal-column {
+	margin-right: 20px;
+}
+.third {
+	float: left;	
+	width: 30%;
+	margin-right: 10px;
+}
+
+.inside {
+	margin-bottom: 20px;
+}
+
+#api_key_validation {
+	display: none;
+	color: red;
+	font-weight: bold;
+}
+#api_key_success {
+	display: none;
+	color: green;
+	font-weight: bold;
+}
+.existing_placester_modal_api_key {
+	width: 400px;
+}
+
+.not-set-up {
+	width: 350px;
+	margin: 150px auto;
+}
+
+#cache_message {
+	color: green;
+	font-weight: bold;
+	font-size: 16px;
+	margin-top: 15px; 
+	padding-left: 10px; 
+}

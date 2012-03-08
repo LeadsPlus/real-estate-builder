@@ -1,0 +1,36 @@
+/*headers on specific pages*/
+.header-wrapper {
+	float: left;
+	width: 100%
+}
+.header-wrapper a {
+	float: left;
+	margin: 13px 0 0 10px;
+}
+.header-wrapper h2 {
+	float: left;
+}
+
+/*ajax maessages*/
+.ajax_message {
+	font-size: 14px;
+	margin: 15px 0 0 10px;
+	color: green;
+	font-weight: bold;
+}
+
+
+.placester_icon {
+  background: url('../images/logo_30.png') no-repeat;
+}
+#placester-admin-menu {
+	border-bottom: #ccc 1px solid; 
+	padding-bottom: 0px;
+	margin-bottom: 15px;
+}
+h3.hndle {
+	font-size: 15px;
+	font-family: Georgia,"Times New Roman","Bitstream Charter",Times,serif;
+	font-weight: normal;
+	padding: 7px 10px;
+}

@@ -1,0 +1,62 @@
+#titlewrap {
+	float:left;
+	clear:both;
+	margin-bottom: 20px;
+}
+
+
+
+
+.property-type-selects {float:left;clear:both; margin-bottom: 15px}
+section#property_type-sublet.pls_search_form {margin: 0 0 0 10px}
+section#property_type-sublet.pls_search_form, section#property_type-sublet.pls_search_form select, section#property_type-sublet.pls_search_form label {
+	float: left;
+	font-size: 20px;
+}
+section#compound_type.pls_search_form, section#compound_type.pls_search_form select, section#compound_type.pls_search_form label {
+	float: left;
+	font-size: 20px;
+}
+
+
+section#location.form_group section {
+	float: left;
+	width: 190px;
+	padding: 10px;
+
+}
+
+section#basic_details.form_group section {
+	float: left;
+	width: 190px;
+	padding: 10px;
+
+}
+
+.address {
+	float: left;
+	width: 100px;
+}
+#post_title, {
+	float: left;
+}
+input#post_title, label#post_title {
+	float: left;
+	height: 33px;
+}
+
+
+
+
+/* Actual Styles */
+.has-right-sidebar #post-body-content {
+	margin-right: 320px;	
+}
+.property_type-res_sale, .property_type-vac_rental, .property_type-res_rental, .property_type-comm_rental, .property_type-comm_sale {
+	display:none;
+}
+.red {
+	display: block;
+	color: white;
+	background: red;
+}
