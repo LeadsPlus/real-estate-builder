@@ -25,10 +25,12 @@ class PL_Membership {
     public function get_favorite_ids () {
         $person = PL_People_Helper::person_details();
         $ids = array();
-        foreach ($person['fav_listings'] as $fav_listings) {
-            $ids[] = $fav_listings['id'];
-        }
-        return $ids;
+				if (isset($person['fav_listings'])) {
+				  foreach ( (array) $person['fav_listings'] as $fav_listings) {
+				      $ids[] = $fav_listings['id'];
+				  }
+				}
+			  return $ids;
     }
 
     public function ajax_add_favorite_property () {
@@ -548,7 +550,7 @@ class PL_Membership {
     function is_favorite_property ($property_id) {
         $person = PL_People_Helper::person_details();
         // pls_dump($property_id, $person['fav_listings']);
-        if ( is_array($person['fav_listings']) ) {
+        if ( isset($person['fav_listings']) && is_array($person['fav_listings']) ) {
             foreach ($person['fav_listings'] as $fav_listing) {
                 if ($fav_listing['id'] == $property_id) {
                     return true;
