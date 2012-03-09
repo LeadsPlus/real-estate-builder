@@ -37,7 +37,7 @@ class PL_Pages {
 		$page_details['type'] = self::$property_post_type;
 		$page_details['title'] = $api_listing['location']['address'];
 		$page_details['name'] = $api_listing['id'];
-		$page_details['content'] = json_encode($api_listing);
+		$page_details['content'] = serialize($api_listing);
 		$page_details['taxonomies'] = array('zip_code' => $api_listing['location']['postal']);
 		return self::manage($page_details);
 	}
