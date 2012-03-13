@@ -91,7 +91,7 @@ class PL_Listing_Helper {
 		foreach ($api_response['listings'] as $key => $listing) {
 			$images = $listing['images'];
 			$listings[$key][] = ((is_array($images) && isset($images[0])) ? '<img width=50 height=50 src="' . $images[0]['url'] . '" />' : 'empty');
-			$listings[$key][] = '<a class="address" href="/wp-admin/admin.php?page=placester_property_add&id=' . $listing['id'] . '">' . $listing["location"]["address"] . ' ' . $listing["location"]["locality"] . ' ' . $listing["location"]["region"] . '</a><div class="row_actions"><a href="/wp-admin/admin.php?page=placester_property_add&id="' . $listing['id'] . '">Edit</a><span>|</span><a href=' . PL_Page_Helper::get_url($listing['id']) . '">View</a><span>|</span><a class="red" href=/wp-admin/admin.php?page=placester_property_add&id="' . $listing['id'] . '">Delete</a></div>';
+			$listings[$key][] = '<a class="address" href="/wp-admin/admin.php?page=placester_property_add&id=' . $listing['id'] . '">' . $listing["location"]["address"] . ' ' . $listing["location"]["locality"] . ' ' . $listing["location"]["region"] . '</a><div class="row_actions"><a href="/wp-admin/admin.php?page=placester_property_add&id=' . $listing['id'] . '" >Edit</a><span>|</span><a href=' . PL_Page_Helper::get_url($listing['id']) . '>View</a><span>|</span><a class="red" href="/wp-admin/admin.php?page=placester_property_add&id=' . $listing['id'] . '">Delete</a></div>';
 			$listings[$key][] = $listing["location"]["postal"];
 			$listings[$key][] = implode($listing["zoning_types"], ', ') . ' ' . implode($listing["purchase_types"], ', ');
 			$listings[$key][] = implode($listing["listing_types"], ', ');
@@ -115,6 +115,11 @@ class PL_Listing_Helper {
 	}
 	
 	public function add_listing_ajax() {
+		foreach ($_POST as $key => $value) {
+			if (is_int(strpos($key, 'property_type')) && $value !== 'false') {
+				$_POST['property_type'] = $value;
+			}
+		}
 		$api_response = PL_Listing::create($_POST);
 		echo json_encode($api_response);
 		die();

@@ -21,7 +21,7 @@ jQuery(function ($) {
         sequentialUploads: true,
         done: function (e, data) {
             $.each(data.result, function (index, file) {
-                $('#fileupload-holder-message').append('<li><div><img width="100px" height="100px" src="'+file.url+'" ><a id="remove_image">Remove</a><input id="hidden_images" type="hidden" name="images['+$('#hidden_images').length+'][filename]" value="'+file.name+'"></div><li>');
+                $('#fileupload-holder-message').append('<li class="image_container"><div><img width="100px" height="100px" src="'+file.url+'" ><a id="remove_image">Remove</a><input id="hidden_images" type="hidden" name="images['+$('#hidden_images').length+'][filename]" value="'+file.name+'"></div><li>');
             });
         }
         // url: ajaxurl,

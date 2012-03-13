@@ -5,18 +5,67 @@
 }
 
 
+section#compound_type.pls_search_form {
+	float: left;
+	font-size: 18px;
+	margin: 0 0 15px 0
+}
+section#compound_type.pls_search_form select {
+	font-size: 18px;
+	width: 300px
+}
+section#compound_type.pls_search_form label {
+	margin: 8px 78px 0 0;
+}
+
+/* property type */
+section#property_type-sublet.pls_search_form,
+section#property_type-res_sale.pls_search_form,
+section#property_type-res_rental.pls_search_form,
+section#property_type-vac_rental.pls_search_form,
+section#property_type-comm_sale.pls_search_form,
+section#property_type-comm_rental.pls_search_form {
+	width: 500px;
+	padding: 0px;
+	margin: 15px 0 10px 0;
+}
+
+section#property_type-sublet.pls_search_form select,
+section#property_type-res_sale.pls_search_form select,
+section#property_type-res_rental.pls_search_form select,
+section#property_type-vac_rental.pls_search_form select,
+section#property_type-comm_sale.pls_search_form select,
+section#property_type-comm_rental.pls_search_form select,
+section#property_type-sublet.pls_search_form select {
+	float: left;
+	font-size: 18px;
+	width: 300px;
+}
+section#property_type-sublet.pls_search_form label,
+section#property_type-res_sale.pls_search_form label,
+section#property_type-res_rental.pls_search_form label,
+section#property_type-vac_rental.pls_search_form label,
+section#property_type-comm_sale.pls_search_form label,
+section#property_type-comm_rental.pls_search_form label,
+section#property_type-sublet.pls_search_form label {
+ margin: 0px 30px 0 0;
+ float: left;
+ font-size: 18px;
+ width: 150px;
+}
+
+section.form_group,section.form_group h3 {
+	width: 98%;
+	margin: 7px 0px !important;
+}
+#description .pls_search_form {
+	width: 100%;
+}
+section.pls_search_form textarea {
+	width: 97%;
+}
 
 
-.property-type-selects {float:left;clear:both; margin-bottom: 15px}
-section#property_type-sublet.pls_search_form {margin: 0 0 0 10px}
-section#property_type-sublet.pls_search_form, section#property_type-sublet.pls_search_form select, section#property_type-sublet.pls_search_form label {
-	float: left;
-	font-size: 20px;
-}
-section#compound_type.pls_search_form, section#compound_type.pls_search_form select, section#compound_type.pls_search_form label {
-	float: left;
-	font-size: 20px;
-}
 
 
 section#location.form_group section {
@@ -26,11 +75,22 @@ section#location.form_group section {
 
 }
 
-section#basic_details.form_group section {
+.form_group {
 	float: left;
+	clear: both;
+}
+.form_group section {
+	float: left;
+	clear: right;
 	width: 190px;
 	padding: 10px;
-
+	height: 40px
+}
+.pls_search_form select, .pls_search_form input {
+	width: 190px;
+}
+.pls_search_form input[type="checkbox"] {
+	width: 20px;
 }
 
 .address {

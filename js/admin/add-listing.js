@@ -2,20 +2,34 @@ $(document).ready(function($) {
 
 	//property selectbox
 	set_property_type();
+	$('div#res_sale_details_admin_ui').show().find('input, select').prop('disabled', false);
 
 	$('select#compound_type').bind('change', function () {
 		set_property_type();
 	});
 
 	function set_property_type() {
-		$('#property_type-sublet').hide()
-		$('#property_type-res_sale').hide()
-		$('#property_type-vac_rental').hide()
-		$('#property_type-res_rental').hide()
-		$('#property_type-comm_rental').hide()
-		$('#property_type-comm_sale').hide()
-		$('#property_type-' + $('select#compound_type').val() ).show();
+		$('#property_type-sublet').hide().find('input, select').prop('disabled', true);
+		$('#property_type-res_sale').hide().find('input, select').prop('disabled', true);
+		$('#property_type-vac_rental').hide().find('input, select').prop('disabled', true);
+		$('#property_type-res_rental').hide().find('input, select').prop('disabled', true);
+		$('#property_type-comm_rental').hide().find('input, select').prop('disabled', true);
+		$('#property_type-comm_sale').hide().find('input, select').prop('disabled', true);
+		$('#property_type-' + $('select#compound_type').val() ).show().find('input, select').prop('disabled', false);
+
+		$('div#res_sale_details_admin_ui').hide().find('input, select').prop('disabled', true);
+		$('div#res_rental_details_admin_ui').hide().find('input, select').prop('disabled', true);
+		$('div#vac_rental_details_admin_ui').hide().find('input, select').prop('disabled', true);
+		$('div#sublet_details_admin_ui').hide().find('input, select').prop('disabled', true);
+		$('div#comm_rental_details_admin_ui').hide().find('input, select').prop('disabled', true);
+		$('div#comm_sale_details_admin_ui').hide().find('input, select').prop('disabled', true);
+		$('#' + $('select#compound_type').val() + '_details_admin_ui' ).show().find('input, select').prop('disabled', false);
 	}
+
+	$('#remove_image').live('click', function (event) {
+		event.preventDefault();
+		$(this).closest('.image_container').remove();
+	});	
 
 	// duplicates the custom attribute form.
 	$('button#custom_data').live('click', function (event) {
@@ -46,9 +60,11 @@ $(document).ready(function($) {
         form_values['request_url'] = $(this).attr('url');
         form_values['action'] = 'add_listing';
         //get each of the form values, set key/values in array based off name attribute
-        $.each($('#add_listing_form').serializeArray(), function(i, field) {
+        $.each($('#add_listing_form:visible').serializeArray(), function(i, field) {
+        	console.log(field.name + ' / ' + field.value + ' / ');
     		form_values[field.name] = field.value;
         });
+        console.log('asdf');
         //set context of the form.
        var form = $('#add_listing_form');
        //ajax request for creating the listing. 
