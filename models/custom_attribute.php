@@ -10,8 +10,9 @@ class PL_Custom_Attributes {
 			foreach ($response as $attribute => $value) {
 		 		$response[$attribute] = PL_Validate::attributes($value, $config['returns']);
 		 	}
+		 	return $response;
 		}
-		return $response;
+		return array();
 	}
 
 	public function create() {
