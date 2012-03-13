@@ -2,8 +2,7 @@ $(document).ready(function($) {
 
 	//property selectbox
 	set_property_type();
-	$('div#res_sale_details_admin_ui').show().find('input, select').prop('disabled', false);
-
+	
 	$('select#compound_type').bind('change', function () {
 		set_property_type();
 	});
