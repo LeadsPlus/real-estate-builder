@@ -80,6 +80,6 @@ $(document).ready(function($) {
 
 	$('.wrapper').live('click', function() {
 		$( "#signup_wizard" ).dialog( "open" );
-		return false;
 	});
+	
 });

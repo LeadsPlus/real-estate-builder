@@ -122,12 +122,35 @@ class PL_Listing_Helper {
 
 	public function add_temp_image() {
 		$api_response = array();
-		if (isset($_FILES['images'])) {
+		if (isset($_FILES['files'])) {
 			foreach ($_FILES as $image) {
+				if (isset($image['name']) && is_array($image['name']) && (count($image['name']) == 1))  {
+					$image['name'] = implode($image['name']);
+				}
+				if (isset($image['type']) && is_array($image['type']) && (count($image['type']) == 1))  {
+					$image['type'] = implode($image['type']);
+				}
+				if (isset($image['tmp_name']) && is_array($image['tmp_name']) && (count($image['tmp_name']) == 1))  {
+					$image['tmp_name'] = implode($image['tmp_name']);
+				}
+				if (isset($image['size']) && is_array($image['size']) && (count($image['size']) == 1))  {
+					$image['size'] = implode($image['size']);
+				}
 				$api_response[] = PL_Listing::temp_image($_POST, $image['name'], $image['type'], $image['tmp_name']);
 			}
+			$response = array();
+			if (!empty($api_response)) {
+				foreach ($api_response as $key => $value) {
+					$response[$key]['name']	= $value['filename'];
+					$response[$key]['url'] = $value['url'];
+				}
+				
+				// pls_dump($api_response);
+			}
 		}		
-		echo json_encode($api_response);
+		header('Vary: Accept');
+		header('Content-type: application/json');
+		echo json_encode($response);
 		die();
 	}
 

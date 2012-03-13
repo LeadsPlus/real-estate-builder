@@ -18,13 +18,14 @@ Class PL_HTTP {
 	    $request_string = '';
 	    foreach ($request as $key => $value) {
 	        if (is_array($value)) {
-	            if ( empty($value) ) {
+	            if (empty($value) ) {
 	                // $request_string .= (strlen($request_string) > 0 ? '&' : '') . urlencode($key) . '[]=';
 	            }
 	            foreach ($value as $k => $v) {
 	            	if (is_array($v)) {
-	            		
-	            		$request_string .= (strlen($request_string) > 0 ? '&' : '') . urlencode($key) . '[' . $k . ']=' . urlencode(implode($v, ','));
+	            		foreach ($v as $i => $j) {
+	            			$request_string .= (strlen($request_string) > 0 ? '&' : '') . urlencode($key) . '[' . $k . ']['.$i.']=' . urlencode($j);
+	            		}
 	            	} else {
 		            	$request_string .= (strlen($request_string) > 0 ? '&' : '') . urlencode($key) . '[' . $k . ']=' . urlencode($v);	
 	            	}
@@ -43,7 +44,6 @@ Class PL_HTTP {
 				// pls_dump($url);
 				// pls_dump($request_string);
 				$response = wp_remote_post($url, array('body' => $request_string, 'timeout' => self::$timeout, 'method' => $method));
-				// pls_dump($response);
 				return json_decode($response['body'], TRUE);
 				break;
 			
@@ -115,52 +115,40 @@ Class PL_HTTP {
 	function send_request_multipart($url, $request, $file_name, $file_mime_type, $file_tmpname) {
 		unset($request['action']);
 		// pls_dump($url, $request, $file_name, $file_mime_type, $file_tmpname);
-	    $binary_length = filesize($file_tmpname);	
-	    $binary_data = fread(fopen($file_tmpname, "r"), $binary_length);
 
-	    $eol = "\r\n";
-	    $data = '';
-	     
-	    $mime_boundary = md5(time());
-	     
-	    foreach ($request as $key => $value) {
-	        $data .= '--' . $mime_boundary . $eol;
-	        $data .= 'Content-Disposition: form-data; name="' . $key . '"' . $eol . $eol;
-	        $data .= $value . $eol;
-	    }
+		$wp_upload_dir = wp_upload_dir();
+		$file_location = trailingslashit($wp_upload_dir['path']) . $file_name;
+		// pls_dump($file_location);
+		move_uploaded_file($file_tmpname, $file_location);
 
-	    $data .= '--' . $mime_boundary . $eol;
-	    $data .= 'Content-Disposition: form-data; name="file"; filename="' . $file_name . '"' . $eol;
-	    $data .= 'Content-Type: ' . $file_mime_type . $eol;
-	    $data .= 'Content-Length: ' . $binary_length . $eol;
-	    $data .= 'Content-Transfer-Encoding: binary' . $eol . $eol;
-	    $data .= $binary_data . $eol;
-	    $data .= "--" . $mime_boundary . "--" . $eol . $eol; // Finish with two eols
-	     
-	    $params = array('http' => array(
-					    'method' => 'POST',
-					    'header' => 'Content-Type: multipart/form-data; boundary=' . $mime_boundary . $eol,
-					    'content' => $data));
-		pls_dump($params);
-		$ctx = stream_context_create($params);
-		$handle = fopen($url, 'r', false, $ctx);
 
-	    if ( !$handle ) {
-	    	return 'Could not open stream. Could be credential issue.';
-	    }
-	    	
-	    stream_set_timeout( $handle, self::$timeout );
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_HEADER, 0);
+		curl_setopt($ch, CURLOPT_VERBOSE, 0);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/4.0 (compatible;)");
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_URL, $url );
+		//most importent curl assues @filed as file field
+		$post_array = array(
+			"file"=>"@".$file_location
+		);
+		$post_array = array_merge($post_array, $request);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $post_array); 
+		$response = curl_exec($ch);
+		if ($response === false) {
+			// dumps error
+			// var_dump(curl_error($ch));
+		}
 
-	    $response = stream_get_contents($handle);
-	    fclose($handle);
+	    $o = json_decode($response, true);
+	    return $o;
 
-	    $o = json_decode($response);
-
-	    if (!isset($o->code)){
+	    if (!isset($o['code'])){
 	    	return false;	
-	    } else if ($o->code == '201') {
+	    } else if ($o['code'] == '201') {
 	    	return false;
-	    } else if ($o->code == '300') {
+	    } else if ($o['code'] == '300') {
 	    	return false;
 	    } else {
 	    	return false;

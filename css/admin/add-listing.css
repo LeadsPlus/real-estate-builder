@@ -60,3 +60,22 @@ input#post_title, label#post_title {
 	color: white;
 	background: red;
 }
+
+
+
+/* Uploading Images */
+#fileupload-holder-message li {
+	float: left;
+	list-style-type: none;
+	padding: 10px;
+}
+#fileupload-holder-message img {
+	float: left;
+	clear: both;
+}
+#fileupload-holder-message a#remove_image {
+	float: left;
+	font-size: 16px;
+	margin: 10px 0 0 21px;
+	clear: both;	
+}

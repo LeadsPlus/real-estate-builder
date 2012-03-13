@@ -1,5 +1,5 @@
 <div class="wrap">
-	<form name="" action="" method="" id="add_listing_form"> 
+	<form action="wp-admin/admin-ajax.php" method="POST" enctype="multipart/form-data" id="add_listing_form">  
 		<div id="poststuff" class="metabox-holder has-right-sidebar">
 			<div id="side-info-column" class="inner-sidebar"> <!-- Right Sidebar -->
 				<div id="side-sortables" class="meta-box-sortables ui-sortable">
@@ -19,7 +19,7 @@
 					<div class="clear"></div>
 					<?php PL_Router::load_builder_partial('admin-box.php', array('title' => 'Location', 'content' => PL_Form::generate_form( PL_Config::bundler('PL_API_LISTINGS',$keys = array('create', 'args'),$bundle = array('location')), array('method'=>'POST', 'include_submit' => false, 'wrap_form' => false, 'echo_form' => false) ) ) ) ?>
 					<?php PL_Router::load_builder_partial('admin-box.php', array('title' => 'Basic Details', 'content' => PL_Form::generate_form( PL_Config::bundler('PL_API_LISTINGS', $keys = array('create', 'args'), $bundle = array( array('metadata' => array('beds', 'baths', 'half_baths', 'avail_on'), 'sqft') ) ),array('method'=>'POST', 'include_submit' => false, 'wrap_form' => false, 'echo_form' => false) ) ) ) ?>
-					<?php PL_Router::load_builder_partial('admin-box.php', array('title' => 'Images', 'content' => PL_Form::item('images', PL_Config::PL_API_LISTINGS('create', 'args', 'images'), 'POST' ) ) ) ?>
+					<?php PL_Router::load_builder_partial('admin-box.php', array('title' => 'Images', 'content' => PL_Router::load_builder_partial('add-listing-image.php', array(), true) ) ) ?>
 					<?php PL_Router::load_builder_partial('admin-box.php', array('title' => 'Advanced Details')) ?>
 					<?php //PL_Router::load_builder_partial('wysiwyg.php');?>
 				</div>

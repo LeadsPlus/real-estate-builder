@@ -20,27 +20,15 @@ $(document).ready(function($) {
 	// duplicates the custom attribute form.
 	$('button#custom_data').live('click', function (event) {
 		event.preventDefault();
-		var html = jQuery(this).closest('section').clone();
-		jQuery(this).html('Remove').attr('id', 'custom_data_remove');
-		jQuery(this).closest(".form_group").append(html);
+		var html = $(this).closest('section').clone();
+		$(this).html('Remove').attr('id', 'custom_data_remove');
+		$(this).closest(".form_group").append(html);
 	});	
 
 	$('button#custom_data_remove').live('click', function (event) {
 		event.preventDefault();
-		jQuery(this).closest('section').remove();
+		$(this).closest('section').remove();
 	});	
-
-	$('#fileupload').fileupload({
-		dataType: 'json',
-		sequentialUploads: true,
-		url: ajaxurl,
-		formData: {action : "add_temp_image"},
-		done: function (e, data) {
-		    $.each(data.result, function (index, file) {
-		        $('<p/>').text(file.name).appendTo(document.body);
-		    });
-		}
-	});
 
 	$("input#metadata-avail_on_picker").datepicker({
         showOtherMonths: true,
@@ -55,7 +43,7 @@ $(document).ready(function($) {
        	$('.red').remove();
        	//set default values required for the form to work. 
         var form_values = {}
-        form_values['request_url'] = jQuery(this).attr('url');
+        form_values['request_url'] = $(this).attr('url');
         form_values['action'] = 'add_listing';
         //get each of the form values, set key/values in array based off name attribute
         $.each($('#add_listing_form').serializeArray(), function(i, field) {

@@ -43,14 +43,13 @@ class PL_Pages {
 	}
 
 	function create_once ($pages_to_create, $force_template) {
-
 		foreach ($pages_to_create as $page_info) {
 			$page = get_page_by_title($page_info['title']);
 			if (!isset($page->ID)) {
 				$page_details = array();
 				$page_details['title'] = $page_info['title'];
 				if (isset($page_info['template'])) {
-					$page_details['page_meta'] = array('_wp_page_template', $page_info['template']);
+					$page_details['post_meta'] = array('_wp_page_template' => $page_info['template']);
 				}
 				self::manage($page_details);
 			} else {
@@ -108,5 +107,7 @@ class PL_Pages {
 	function create_taxonomies() {
 			// register_taxonomy('zip_code', self::$property_post_type, array('hierarchical' => TRUE,'label' => __('Zip Codes'), 'public' => TRUE,'show_ui' => TRUE,'query_var' => true,'rewrite' => array('slug' => 'properties/zip', 'with_front' => false) ) );
 			register_post_type(self::$property_post_type, array('labels' => array('name' => __( 'Properties' ),'singular_name' => __( 'property' )),'public' => true,'has_archive' => true, 'rewrite' => array('slug' => 'properties', 'with_front' => false)));
+			// register_post_type('client', array('labels' => array('name' => __( 'client' ),'singular_name' => __( 'client' )),'public' => true,'has_archive' => true, 'rewrite' => array('slug' => 'client', 'with_front' => false)));
+			// register_post_type('search', array('labels' => array('name' => __( 'search' ),'singular_name' => __( 'search' )),'public' => true,'has_archive' => true, 'rewrite' => array('slug' => 'search', 'with_front' => false)));
 	}
 }

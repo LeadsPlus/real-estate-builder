@@ -15,6 +15,7 @@ class PL_Js_Helper {
 
 		// hack to force jquery to load properly. Needs to be removed once there's time to 
 		// sort out who is using what.
+    	wp_dequeue_script( 'jquery' );
     	wp_register_script( 'jquery2', 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js');
 	    wp_enqueue_script( 'jquery2' );
 	    
@@ -35,11 +36,20 @@ class PL_Js_Helper {
 			self::register_enqueue_if_not('my-listings', trailingslashit(PL_JS_URL) .  'admin/settings.js', array( 'jquery'));	
 		}
 
-		if ($hook == 'placester_page_placester_property_add') {
-			self::register_enqueue_if_not('add-listing', trailingslashit(PL_JS_URL) .  'admin/add-listing.js', array( 'jquery'));			
-			self::register_enqueue_if_not('blueimp-jquery-widget', trailingslashit(PL_JS_LIB_URL) .  'blueimp/js/vendor/jquery.ui.widget.js', array( 'jquery'));			
+		if ($hook == 'placester_page_placester_property_add') {						
+			// self::register_enqueue_if_not('blueimp-jquery-widget', trailingslashit(PL_JS_LIB_URL) .  'blueimp/js/vendor/jquery.ui.widget.js', array( 'jquery'));			
+			// self::register_enqueue_if_not('blueimp-tmpl', trailingslashit(PL_JS_LIB_URL) .  'blueimp/js/vendor/tmpl.min.js', array( 'jquery'));			
+			// self::register_enqueue_if_not('blueimp-load-image', trailingslashit(PL_JS_LIB_URL) .  'blueimp/js/vendor/load-image.min.js', array( 'jquery'));			
+			// self::register_enqueue_if_not('blueimp-canvas-to-blob', trailingslashit(PL_JS_LIB_URL) .  'blueimp/js/vendor/canvas-to-blob.min.js', array( 'jquery'));			
+			// self::register_enqueue_if_not('blueimp-bootstrap', trailingslashit(PL_JS_LIB_URL) .  'blueimp/js/vendor/bootstrap.min.js', array( 'jquery'));			
+			// self::register_enqueue_if_not('blueimp-image-gallery', trailingslashit(PL_JS_LIB_URL) .  'blueimp/js/vendor/bootstrap-image-gallery.min.js', array( 'jquery'));			
 			self::register_enqueue_if_not('blueimp-iframe', trailingslashit(PL_JS_LIB_URL) .  'blueimp/js/jquery.iframe-transport.js', array( 'jquery'));			
 			self::register_enqueue_if_not('blueimp-file-upload', trailingslashit(PL_JS_LIB_URL) .  'blueimp/js/jquery.fileupload.js', array( 'jquery'));			
+			// self::register_enqueue_if_not('blueimp-ip', trailingslashit(PL_JS_LIB_URL) .  'blueimp/js/jquery.fileupload-ip.js', array( 'jquery'));			
+			// self::register_enqueue_if_not('blueimp-ui', trailingslashit(PL_JS_LIB_URL) .  'blueimp/js/jquery.fileupload-ui.js', array( 'jquery'));			
+			self::register_enqueue_if_not('blueimp-locale', trailingslashit(PL_JS_LIB_URL) .  'blueimp/js/locale.js', array( 'jquery'));			
+			self::register_enqueue_if_not('blueimp-main', trailingslashit(PL_JS_LIB_URL) .  'blueimp/js/main.js', array( 'jquery'));			
+			self::register_enqueue_if_not('add-listing', trailingslashit(PL_JS_URL) .  'admin/add-listing.js', array( 'jquery'));			
 		}
 		
 	}

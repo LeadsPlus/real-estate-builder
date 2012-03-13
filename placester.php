@@ -117,7 +117,7 @@ function placester_admin_menu() {
     $submenu['placester'] = array();
 
     add_submenu_page( 'placester', '','Listings', 'edit_pages', 'placester_properties', array('PL_Router','my_listings'));
-    // add_submenu_page( 'placester', '', 'Add Listing', 'edit_pages', 'placester_property_add', array('PL_Router','add_listings') );
+    add_submenu_page( 'placester', '', 'Add Listing', 'edit_pages', 'placester_property_add', array('PL_Router','add_listings') );
     // add_submenu_page( 'placester', '', 'Theme Gallery', 'edit_pages', 'placester_themes', array('PL_Router','theme_gallery') );    
     add_submenu_page( 'placester', '', 'Settings', 'edit_pages', 'placester_settings', array('PL_Router','settings') );    
 }
