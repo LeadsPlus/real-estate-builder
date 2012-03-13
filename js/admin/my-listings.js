@@ -25,14 +25,18 @@ $(document).ready(function($) {
             params['value'] = value;
         }
         $.post(ajaxurl,params, function(data) {
-            $.each(data, function (index, value) {
-                $('input#' + index).prop("checked", value === 'true');
-                if (value === 'true') {
-                    $('#pls_admin_my_listings section#' + index).slideDown();
-                } else {
-                    $('#pls_admin_my_listings section#' + index).slideUp();
-                }
-            });
+            if (data) {
+                $.each(data, function (index, value) {
+                    $('input#' + index).prop("checked", value === 'true');
+                    if (value === 'true') {
+                        $('#pls_admin_my_listings section#' + index).slideDown();
+                    } else {
+                        $('#pls_admin_my_listings section#' + index).slideUp();
+                    }
+                });
+            } else {
+                $('.form_group').slideUp();
+            };
         }, "json");
     }    
 
