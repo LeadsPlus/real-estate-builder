@@ -117,8 +117,11 @@ class PL_Form {
 		} elseif ( $type == 'custom_data' ) {
 			?>
 				<section id="<?php echo $id ?>" class="pls_search_form <?php echo $css ?>">
-					<input type="text" name="custom_attribs[][type]" />
+					<label for="">Category Name</label>
 					<input type="text" name="custom_attribs[][cat]" />
+					<label for="">Label Name</label>
+					<input type="text" name="custom_attribs[][type]" />
+					<label for="">Information Type</label>
 					<input type="text" name="custom_attribs[][name]" />
 					<button id="<?php echo $id ?>">Add another</button>
 				</section>

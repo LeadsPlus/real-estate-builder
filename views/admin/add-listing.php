@@ -176,7 +176,19 @@
 							 	'echo_form' => false
 						 	) 
 						 ) ) ) ?>
-					<?php PL_Router::load_builder_partial('admin-box.php', array('title' => 'Custom Details')) ?>
+					<?php /* PL_Router::load_builder_partial('admin-box.php',
+						 array('title' => 'Custom Details',
+						 	 'content' => PL_Form::generate_form(
+						 	 	 PL_Config::bundler('PL_API_LISTINGS',
+						 	 	 	 $keys = array('create', 'args'), 
+						 	 	 	 $bundle = array('custom_data')
+						 		),
+						 	array('method'=>'POST', 
+							 	'include_submit' => false, 
+							 	'wrap_form' => false, 
+							 	'echo_form' => false
+						 	) 
+						 ) ) ) */ ?>
 				</div>
 			</div>
 		</div>

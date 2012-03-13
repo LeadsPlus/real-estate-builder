@@ -65,6 +65,10 @@ section.pls_search_form textarea {
 	width: 97%;
 }
 
+section.pls_search_form.custom_data {
+	width: 700px;
+}
+
 
 
 
