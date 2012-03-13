@@ -35,7 +35,7 @@ $(document).ready(function($) {
                     }
                 });
             } else {
-                $('.form_group').slideUp();
+                $('#pls_admin_my_listings .form_group').slideUp();
             };
         }, "json");
     }    
