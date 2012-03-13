@@ -30,8 +30,6 @@ class PL_Css_Helper {
 
 		if ($hook == 'placester_page_placester_property_add') {
 			self::register_enqueue_if_not('add-listing', trailingslashit(PL_CSS_ADMIN_URL) .  'add-listing.css');			
-			// self::register_enqueue_if_not('fileupload-ui', trailingslashit(PL_JS_LIB_URL) .  'blueimp/css/jquery.fileupload-ui.css');			
-			// self::register_enqueue_if_not('fileupload-css', trailingslashit(PL_JS_LIB_URL) .  'blueimp/css/style.css');			
 		}
 	}
 

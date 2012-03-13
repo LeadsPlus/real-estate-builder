@@ -26,6 +26,17 @@ $(document).ready(function($) {
 		$('#' + $('select#compound_type').val() + '_details_admin_ui' ).show().find('input, select').prop('disabled', false);
 	}
 
+	// Initialize the jQuery File Upload widget:
+    $('#add_listing_form').fileupload({
+        formData: {action: 'add_temp_image'},
+        sequentialUploads: true,
+        done: function (e, data) {
+            $.each(data.result, function (index, file) {
+                $('#fileupload-holder-message').append('<li class="image_container"><div><img width="100px" height="100px" src="'+file.url+'" ><a id="remove_image">Remove</a><input id="hidden_images" type="hidden" name="images['+$('#hidden_images').length+'][filename]" value="'+file.name+'"></div><li>');
+            });
+        }
+    });
+
 	$('#remove_image').live('click', function (event) {
 		event.preventDefault();
 		$(this).closest('.image_container').remove();
