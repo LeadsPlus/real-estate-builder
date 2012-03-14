@@ -163,7 +163,6 @@ class PL_Form {
 			$options = array();
 		}
 
-		// get values
 		if ($method == 'GET') {
 			if ($parent) {
 				$value = isset($_GET[$parent][$item]) ? $_GET[$parent][$item] : null;
@@ -172,7 +171,6 @@ class PL_Form {
 			}
 		} else {
 			if ($parent) {
-				
 				$value = isset($_POST[$parent][$item]) ? $_POST[$parent][$item] : null;
 			} else {
 				$value = isset($_POST[$item]) ? $_POST[$item] : null;	

@@ -7,6 +7,18 @@
             <input type="file" name="files[]" multiple >
         </span>
         <div class="clear"></div>
-        <div id="fileupload-holder-message"></div>
+        <div id="fileupload-holder-message">
+            <?php if (isset($images)): ?>
+                <?php foreach ($images as $key => $image): ?>
+                <li class="image_container">
+                    <div>
+                        <img width="100px" height="100px" src="<?php echo $image['url'] ?>" >
+                        <a id="remove_image">Remove</a>
+                        <input id="hidden_images" type="hidden" name="images[<?php echo $key ?>][image_id]" value="<?php echo $image['id'] ?>">
+                    </div>
+                <li>
+            <?php endforeach ?>
+            <?php endif ?>
+        </div>
         <div class="clear"></div>
     </div>

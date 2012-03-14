@@ -159,7 +159,15 @@
 							 	'title' => true
 						 	) 
 						 ) ) ) ?>
-					<?php PL_Router::load_builder_partial('admin-box.php', array('title' => 'Images', 'content' => PL_Router::load_builder_partial('add-listing-image.php', array(), true) ) ) ?>
+					<?php PL_Router::load_builder_partial('admin-box.php',
+						array('title' => 'Images',
+							 'content' => PL_Router::load_builder_partial(
+							 	'add-listing-image.php',
+							 	array('images' => @$_POST['images']),
+							 	true
+							 ) 
+						) 
+					) ?>
 					<?php PL_Router::load_builder_partial('admin-box.php',
 						 array('title' => 'Description',
 						 	 'content' => PL_Form::generate_form(
