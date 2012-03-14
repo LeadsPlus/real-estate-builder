@@ -27,6 +27,7 @@ Author URI: https://www.placester.com/
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+define('PL_PLUGIN_VERSION','1.0.1');
 
 define( 'PL_PARENT_DIR', dirname(__FILE__) );
 define( 'PL_PARENT_URL', trailingslashit(plugins_url()) . 'placester/'  );
@@ -120,18 +121,4 @@ function placester_admin_menu() {
     add_submenu_page( 'placester', '', 'Add Listing', 'edit_pages', 'placester_property_add', array('PL_Router','add_listings') );
     // add_submenu_page( 'placester', '', 'Theme Gallery', 'edit_pages', 'placester_themes', array('PL_Router','theme_gallery') );    
     add_submenu_page( 'placester', '', 'Settings', 'edit_pages', 'placester_settings', array('PL_Router','settings') );    
-}
-
-add_action('wp_footer', 'force_rewrite_update');
-add_action('admin_footer', 'force_rewrite_update');
-function force_rewrite_update () {
-	$data = get_plugin_data(__FILE__);
-	if (isset($data['Version'])) {
-		$old_version = get_option('pl_plugin_version');
-		if ($old_version != $data['Version']) {
-			update_option('pl_plugin_version', $data['Version']);
-			global $wp_rewrite;
-			$wp_rewrite->flush_rules();
-		}
-	}
 }
