@@ -128,7 +128,7 @@ class PL_Listing_Helper {
 	public function add_temp_image() {
 		$api_response = array();
 		if (isset($_FILES['files'])) {
-			foreach ($_FILES as $image) {
+			foreach ($_FILES as $key => $image) {
 				if (isset($image['name']) && is_array($image['name']) && (count($image['name']) == 1))  {
 					$image['name'] = implode($image['name']);
 				}
@@ -141,16 +141,16 @@ class PL_Listing_Helper {
 				if (isset($image['size']) && is_array($image['size']) && (count($image['size']) == 1))  {
 					$image['size'] = implode($image['size']);
 				}
-				$api_response[] = PL_Listing::temp_image($_POST, $image['name'], $image['type'], $image['tmp_name']);
+				$api_response[$key] = PL_Listing::temp_image($_POST, $image['name'], $image['type'], $image['tmp_name']);
+				$api_response[$key]['orig_name'] = $image['name'];
 			}
 			$response = array();
 			if (!empty($api_response)) {
 				foreach ($api_response as $key => $value) {
 					$response[$key]['name']	= $value['filename'];
+					$response[$key]['orig_name'] = $value['orig_name'];
 					$response[$key]['url'] = $value['url'];
 				}
-				
-				// pls_dump($api_response);
 			}
 		}		
 		header('Vary: Accept');

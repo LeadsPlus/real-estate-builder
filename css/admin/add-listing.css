@@ -4,7 +4,6 @@
 	margin-bottom: 20px;
 }
 
-
 section#compound_type.pls_search_form {
 	float: left;
 	font-size: 18px;
@@ -41,6 +40,7 @@ section#property_type-sublet.pls_search_form select {
 	font-size: 18px;
 	width: 300px;
 }
+
 section#property_type-sublet.pls_search_form label,
 section#property_type-res_sale.pls_search_form label,
 section#property_type-res_rental.pls_search_form label,
@@ -58,6 +58,21 @@ section.form_group,section.form_group h3 {
 	width: 98%;
 	margin: 7px 0px !important;
 }
+
+.image_upload_bg {
+	background-color: #F1F1F1;
+	border: 1px solid #DFDFDF;
+	width: 100px;
+	height: 100px;
+}
+.wpspinner {
+	background-image: url('../../images/datatable/wpspin_light.gif');
+	background-repeat:no-repeat;
+	width: 16px;
+	height: 16px;
+	margin: 38px auto;
+}
+
 #description .pls_search_form {
 	width: 100%;
 }
@@ -109,10 +124,6 @@ input#post_title, label#post_title {
 	height: 33px;
 }
 
-
-
-
-/* Actual Styles */
 .has-right-sidebar #post-body-content {
 	margin-right: 320px;	
 }

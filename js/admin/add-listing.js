@@ -3,18 +3,23 @@ $(document).ready(function($) {
 	//property selectbox
 	set_property_type();
 	
-	$('select#compound_type').bind('change', function () {
-		set_property_type();
-	});
+	//if we're editing, disable listing type.
+	if ($('#add_listing_form').attr('method') == 'PUT') {
+		$('select#compound_type').prop('disabled', true);
+	} else {
+		$('select#compound_type').bind('change', function () {
+			set_property_type();
+		});
+	};
 
 	function set_property_type() {
-		$('#property_type-sublet').hide().find('input, select').prop('disabled', true);
-		$('#property_type-res_sale').hide().find('input, select').prop('disabled', true);
-		$('#property_type-vac_rental').hide().find('input, select').prop('disabled', true);
-		$('#property_type-res_rental').hide().find('input, select').prop('disabled', true);
-		$('#property_type-comm_rental').hide().find('input, select').prop('disabled', true);
-		$('#property_type-comm_sale').hide().find('input, select').prop('disabled', true);
-		$('#property_type-' + $('select#compound_type').val() ).show().find('input, select').prop('disabled', false);
+		$('#property_type-sublet').hide().find('select').prop('disabled', true);
+		$('#property_type-res_sale').hide().find('select').prop('disabled', true);
+		$('#property_type-vac_rental').hide().find('select').prop('disabled', true);
+		$('#property_type-res_rental').hide().find('select').prop('disabled', true);
+		$('#property_type-comm_rental').hide().find('select').prop('disabled', true);
+		$('#property_type-comm_sale').hide().find('select').prop('disabled', true);
+		$('#property_type-' + $('select#compound_type').val() ).show().find('select').prop('disabled', false);
 
 		$('div#res_sale_details_admin_ui').hide().find('input, select').prop('disabled', true);
 		$('div#res_rental_details_admin_ui').hide().find('input, select').prop('disabled', true);
@@ -29,9 +34,17 @@ $(document).ready(function($) {
     $('#add_listing_form').fileupload({
         formData: {action: 'add_temp_image'},
         sequentialUploads: true,
+        submit: function (e, data) {
+        	$.each(data.files, function (index, file) {
+        		var id = file.fileName.replace(/( )|(\.)|(\))|(\()/g,'');
+                $('#fileupload-holder-message').append('<div id="image_container_remove"><li class="image_container"><div class="image_upload_bg"><div class="wpspinner" id="'+id+'"></div><a id="remove_image">Loading...</a></div></li></div>');
+            });	
+        },
         done: function (e, data) {
             $.each(data.result, function (index, file) {
-                $('#fileupload-holder-message').append('<li class="image_container"><div><img width="100px" height="100px" src="'+file.url+'" ><a id="remove_image">Remove</a><input id="hidden_images" type="hidden" name="images['+$('#hidden_images').length+'][filename]" value="'+file.name+'"></div><li>');
+            	var id = '#' + file.orig_name.replace(/( )|(\.)|(\))|(\()/g,'');
+            	$(id).parentsUntil('#image_container_remove').remove();
+                $('#fileupload-holder-message').append('<li class="image_container"><div><img width="100px" height="100px" src="'+file.url+'" ><a id="remove_image">Remove</a><input id="hidden_images" type="hidden" name="images['+$('#hidden_images').length+'][filename]" value="'+file.name+'"></div></li>');
             });
         }
     });
@@ -41,24 +54,27 @@ $(document).ready(function($) {
 		$(this).closest('.image_container').remove();
 	});	
 
-	// duplicates the custom attribute form.
-	$('button#custom_data').live('click', function (event) {
-		event.preventDefault();
-		var html = $(this).closest('section').clone();
-		$(this).html('Remove').attr('id', 'custom_data_remove');
-		$(this).closest(".form_group").append(html);
-	});	
-
-	$('button#custom_data_remove').live('click', function (event) {
-		event.preventDefault();
-		$(this).closest('section').remove();
-	});	
-
+	
 	$("input#metadata-avail_on_picker").datepicker({
         showOtherMonths: true,
         numberOfMonths: 2,
         selectOtherMonths: true
 	});
+
+	// duplicates the custom attribute form.
+	// $('button#custom_data').live('click', function (event) {
+	// 	event.preventDefault();
+	// 	var html = $(this).closest('section').clone();
+	// 	$(this).html('Remove').attr('id', 'custom_data_remove');
+	// 	$(this).closest(".form_group").append(html);
+	// });	
+
+	// $('button#custom_data_remove').live('click', function (event) {
+	// 	event.preventDefault();
+	// 	$(this).closest('section').remove();
+	// });	
+
+	
 	    
 	//create listing
 	$('#add_listing_publish').live('click', function(event) {
