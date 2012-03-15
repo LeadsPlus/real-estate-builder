@@ -570,33 +570,49 @@ class PL_Membership {
      * TODO If logged in and not lead display something informing them 
      * of what they need to do to register a lead account
      */
-    function placester_lead_control_panel( $atts ) {
+    function placester_lead_control_panel( $args ) {
         $defaults = array(
             'loginout' => true,
             'profile' => true,
             'register' => true,
+            'container_tag' => false,
+            'container_class' => false,
+            'anchor_tag' => false,
+            'anchor_class' => false,
+            'separator' => ' | '
         );
-
-        $args = wp_parse_args( $atts, $defaults );
+        $args = wp_parse_args( $args, $defaults );
         extract( $args, EXTR_SKIP );
 
         $is_lead = current_user_can( 'placester_lead' );
 
         /** The login or logout link. */
-        if ( ! is_user_logged_in() )
+        if ( ! is_user_logged_in() ) {
             $loginout_link = '<a class="pl_login_link" href="#pl_login_form">Log in</a>';
-        else
+        } else {
             $loginout_link = '<a href="' . esc_url( wp_logout_url($_SERVER['REQUEST_URI']) ) . '" id="pl_logout_link">Log out</a>';
+        }
+        if ($anchor_tag) {
+            $loginout_link = "<{$anchor_tag} class={$anchor_class}>" . $loginout_link . "</{$anchor_tag}>";
+        }    
+
 
         /** The register link. */
         $register_link = '<a class="pl_register_lead_link" href="#pl_lead_register_form">Register</a>';
+        if ($anchor_tag) {
+            $register_link = "<{$anchor_tag} class={$anchor_class}>" . $register_link . "</{$anchor_tag}>";
+        }
 
         /** The profile link. */
         $profile_link = '<a id="pl_lead_profile_link" target="_blank" href="' . self::get_client_area_url() . '">My Account</a>';
+        if ($anchor_tag) {
+            $profile_link = "<{$anchor_tag} class={$anchor_class}>" . $profile_link . "</{$anchor_tag}>";
+        }
+        // var_dump($profile_link);
 
         $loginout_link = ( $loginout ) ? $loginout_link : '';
-        $register_link = ( $register ) ? ( empty($loginout_link) ? $register_link : ' | ' . $register_link ) : '';
-        $profile_link = ( $profile ) ? ( empty($loginout_link) ? $profile_link : ' | ' . $profile_link ) : '';
+        $register_link = ( $register ) ? ( empty($loginout_link) ? $register_link : $separator . $register_link ) : '';
+        $profile_link = ( $profile ) ? ( empty($loginout_link) ? $profile_link : $separator . $profile_link ) : '';
 
         if ( ! is_user_logged_in() ) {
             $args = array( 
@@ -605,13 +621,16 @@ class PL_Membership {
             );
             /** Get the login form. */
             $login_form = wp_login_form( $args );
-
+            if ($container_tag) {
+                return "<{$container_tag} class={$container_class}>" . $loginout_link . $register_link . "</{$container_tag}>" . self::generate_lead_reg_form() . "<div style='display:none;'>{$login_form}</div>";
+            }
             return $loginout_link . $register_link . self::generate_lead_reg_form() . "<div style='display:none;'>{$login_form}</div>";
         } else {
-
             /** Remove the link to the profile if the current user is not a lead. */
             $extra = $is_lead ? $profile_link : "";
-
+            if ($container_tag) {
+                return "<{$container_tag} class={$container_class}>" . "</{$container_tag}>" . $loginout_link . $extra;
+            }
             return $loginout_link . $extra;
         }
     }
