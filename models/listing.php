@@ -29,8 +29,13 @@ class PL_Listing {
 		
 	}
 
-	public function delete() {
-		
+	public function delete($args = array()) {
+		$config = PL_Config::PL_API_LISTINGS('delete');
+		$request = array_merge(array("api_key" => PL_Option_Helper::api_key()), PL_Validate::request($args, $config['args']));
+		$delete_url = trailingslashit($config['request']['url']) . $request['id'];
+		$response = PL_HTTP::send_request($delete_url, $request, $config['request']['type']);
+		$response = PL_Validate::attributes($response, $config['returns']);
+		return $response;	
 	}
 
 	public function details($args = array()) {

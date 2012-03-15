@@ -56,16 +56,7 @@ Class PL_HTTP {
 	            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
 	            $response = curl_exec($ch);
 	            curl_close($ch);
-
-	            if (!$response) {
-	                $response = array();
-	                $response['headers']["status"] = 200;
-	            }
-	            else {
-	                $response = array();
-	                $response['headers']["status"] = 400;
-	            }
-	            return $response['body'];
+	            return json_decode($response, true);
 				break;
 			
 			case 'GET':
@@ -136,6 +127,7 @@ Class PL_HTTP {
 		$post_array = array_merge($post_array, $request);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $post_array); 
 		$response = curl_exec($ch);
+		curl_close($ch);
 		if ($response === false) {
 			// dumps error
 			// var_dump(curl_error($ch));

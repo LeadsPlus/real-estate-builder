@@ -74,19 +74,60 @@ $(document).ready(function($) {
             }
         });
     
+    // hide/show action links in rows
+    $('tr.odd, tr.even').live('mouseover', function(event) {
+        $(this).find(".row_actions").show();
+    });
+    $('tr.odd, tr.even').live('mouseout', function(event) {
+        $(this).find(".row_actions").hide();
+    });
+
+
+    var delete_listing_confirm = $("#delete_listing_confirm" )
+    delete_listing_confirm.dialog({
+        autoOpen:false,
+        title: '<h2>Delete Listing</h2> ',
+        buttons: {
+            1:{
+                text: "Cancel", 
+                click: function (){
+                    $(this).dialog("close")
+                }
+            },
+            2:{
+                text:"Permanently Delete",
+                click: function () {
+                    $.post(ajaxurl, {action: "delete_listing", id: $('span#delete_listing_address').attr('ref')}, function(data, textStatus, xhr) {
+                        console.log(data);
+                        if (data) {
+                            if (data.response) {
+                                $('#delete_response_message').html(data.message).removeClass('red').addClass('green');
+                                setTimeout(function () {
+                                    window.location.href = window.location.href;
+                                }, 750);
+                            } else {
+                                $('#delete_response_message').html(data.message).removeClass('green').addClass('red');
+                            };
+                        };
+                    }, 'json');
+                }
+            }
+        }
+    });
+    $('#pls_delete_listing').live('click', function(event) {
+        event.preventDefault();
+        var property_id = $(this).attr('ref');
+        var address = $(this).parentsUntil('tr').children('.address').text();
+        $('span#delete_listing_address').html(address);
+        $('span#delete_listing_address').attr('ref',property_id);
+        delete_listing_confirm.dialog("open");
+        
+    });
+
     // prevents default on search button
     $('#pls_admin_my_listings').live('change', function(event) {
         event.preventDefault();
         my_listings_datatable.fnDraw();
-    });
-
-    // prevents default on search button
-    $('tr.odd, tr.even').live('mouseover', function(event) {
-        $(this).find(".row_actions").show();
-    });
-    // prevents default on search button
-    $('tr.odd, tr.even').live('mouseout', function(event) {
-        $(this).find(".row_actions").hide();
     });
     // parses search form and adds parameters to aoData
     function my_listings_search_params (aoData) {

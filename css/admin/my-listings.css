@@ -66,6 +66,18 @@ section.pls_search_form {
   height: 36px;
 }
 
+span#delete_listing_address {
+  font-weight: bold;
+}
+
+div#delete_response_message.red {
+  color: red;
+  font-weight: bold;
+}
+div#delete_response_message.green {
+  color: green;
+  font-weight: bold;
+}
 
 /**
  * Styles used by Datatables object in Admin interface

@@ -40,3 +40,7 @@
     </tfoot>
   </table>
 </div>
+<div style="display:none" id="delete_listing_confirm">
+  <div id="delete_response_message"></div>
+  <div>Are you sure you want to permanently delete <span id="delete_listing_address"></span>?</div>  
+</div>

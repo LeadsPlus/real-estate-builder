@@ -821,7 +821,9 @@ $PL_API_LISTINGS = array(
 			'url' => 'https://api.placester.com/v2/listings',
 			'type' => 'DELETE'
 		),
-		'args' => array(),
+		'args' => array(
+			'id' => array()
+		),
 		'returns' => array()
 	),
 	'get.locations' => array(
