@@ -24,14 +24,16 @@ jQuery(document).ready(function($) {
         };
 
         $.post(info.ajaxurl, data, function(response) {
-            // If request successfull empty the form
-
             if (response) {             
                 $('#form_message_box').html(response);
                 $('#form_message_box').fadeIn('fast');
             } else {
-                $('#form_message_box').html('You have been successfully signed up. Please login.');
+                $('#form_message_box').html('You have been successfully signed up. This page will refresh momentarily.');
                 $('#form_message_box').fadeIn('fast');
+                setTimeout(function () {
+                    window.location.href = window.location.href;
+                }, 700);
+                return true;
             }
         });
 

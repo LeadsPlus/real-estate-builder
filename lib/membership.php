@@ -113,13 +113,15 @@ class PL_Membership {
                 $lead_object['errors'][] = 'placester_create_failed';                    
             }
             
-                
             // If the API call was successfull, inform the user of his 
             // password and set the password change nag
             if ( empty( $lead_object['errors'] ) ) {
                 update_user_meta( $wordpress_user_id, 'placester_api_id', $response['id'] );
                 wp_new_user_notification( $wordpress_user_id);
             }
+
+            //login user if successfully sign up.
+            wp_set_auth_cookie($wordpress_user_id, true, is_ssl());
         } else {
             //failure
             $lead_object['errors'][] = 'wp_user_create_failed';
