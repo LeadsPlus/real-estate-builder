@@ -98,27 +98,28 @@ class PL_Membership {
     static function create_lead($lead_object) {
         $wordpress_user_id = self::create_wordpress_user_lead($lead_object);
         if ( !is_wp_error($wordpress_user_id) ) {
-            //success, wordpress user created.
-            // try to insert into placester.
+        
+            //force blog to be set immediately or MU throws errors.
+            $blogs = get_blogs_of_user($wordpress_user_id);
+            $first_blog = current($blogs);
+            update_user_meta( $wordpress_user_id, 'primary_blog', $first_blog->userblog_id );
+            
             $response = PL_People_Helper::add_person($lead_object);
-            // pls_dump($response);
-
             if (isset($response['code'])) {
                 $lead_object['errors'][] = $response['message'];
                 foreach ($response['validations'] as $key => $validation) {
                     $lead_object['errors'][] = $response['human_names'][$key] . implode($validation, ' and ');    
                 }
-                // wp_delete_user( $user_id );
                 $lead_object['errors'][] = 'placester_create_failed';                    
             }
+            
                 
-                // If the API call was successfull, inform the user of his 
-                // password and set the password change nag
-                if ( empty( $lead_object['errors'] ) ) {
-                    // Save its API id
-                    update_user_meta( $wordpress_user_id, 'placester_api_id', $response['id'] );
-                    wp_new_user_notification( $wordpress_user_id);
-                }
+            // If the API call was successfull, inform the user of his 
+            // password and set the password change nag
+            if ( empty( $lead_object['errors'] ) ) {
+                update_user_meta( $wordpress_user_id, 'placester_api_id', $response['id'] );
+                wp_new_user_notification( $wordpress_user_id);
+            }
         } else {
             //failure
             $lead_object['errors'][] = 'wp_user_create_failed';
