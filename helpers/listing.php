@@ -28,6 +28,9 @@ class PL_Listing_Helper {
 
 	public function many_details($property_ids) {
 		$response = array();
+		if (empty($property_ids)) {
+			return array('listings' => array(), 'total' => 0);
+		}
 		foreach ($property_ids as $id) {
 			$listing = self::details(array('id' => $id) );
 			$listing['cur_data']['url'] = PL_Page_Helper::get_url($listing['id']);
