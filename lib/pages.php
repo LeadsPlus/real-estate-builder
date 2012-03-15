@@ -7,6 +7,8 @@ class PL_Pages {
 
 	function init() {
 		add_action('init', array(__CLASS__, 'create_taxonomies'));
+		add_action('wp_footer', array(__CLASS__,'force_rewrite_update'));
+		add_action('admin_footer', array(__CLASS__,'force_rewrite_update'));
 	}
 
 
@@ -110,4 +112,16 @@ class PL_Pages {
 			// register_post_type('client', array('labels' => array('name' => __( 'client' ),'singular_name' => __( 'client' )),'public' => true,'has_archive' => true, 'rewrite' => array('slug' => 'client', 'with_front' => false)));
 			// register_post_type('search', array('labels' => array('name' => __( 'search' ),'singular_name' => __( 'search' )),'public' => true,'has_archive' => true, 'rewrite' => array('slug' => 'search', 'with_front' => false)));
 	}
+
+	function force_rewrite_update () {
+		if ( PL_PLUGIN_VERSION ) {
+			$old_version = get_option('pl_plugin_version');
+			if ($old_version != PL_PLUGIN_VERSION) {
+				update_option('pl_plugin_version', PL_PLUGIN_VERSION);
+				global $wp_rewrite;
+				$wp_rewrite->flush_rules();
+			}
+		}
+	}
+
 }
