@@ -44,6 +44,9 @@ class PL_Listing {
 	public function details($args = array()) {
 		$config = PL_Config::PL_API_LISTINGS('details');
 		$request = array_merge(array("api_key" => PL_Option_Helper::api_key()), PL_Validate::request($args, $config['args']));
+		if ( defined('HOSTED_PLUGIN_KEY') ) {
+			$request['hosted_key'] = HOSTED_PLUGIN_KEY;
+		}
 		$details_url = trailingslashit($config['request']['url']) . $request['id'];
 		$response = PL_HTTP::send_request($details_url, $request, $config['request']['type']);
 		$response = PL_Validate::attributes($response, $config['returns']);
@@ -60,6 +63,9 @@ class PL_Listing {
 	public function locations($args = array()) {
 		$config = PL_Config::PL_API_LISTINGS('get.locations');
 		$request = array_merge(array("api_key" => PL_Option_Helper::api_key()), PL_Validate::request($args, $config['args']));
+		if ( defined('HOSTED_PLUGIN_KEY') ) {
+			$request['hosted_key'] = HOSTED_PLUGIN_KEY;
+		}
 		return PL_Validate::attributes(PL_HTTP::send_request($config['request']['url'], $request), $config['returns']);
 	}
 
