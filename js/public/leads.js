@@ -4,8 +4,8 @@ jQuery(document).ready(function() {
     $('#pl_add_favorite:not(.guest)').live('click', function(e) {
             e.preventDefault();
 
-            $spinner = $(this).parent().find(".pl_spinner");
-            $spinner.show();
+            var spinner = $(this).parent().find(".pl_spinner");
+            spinner.show();
 
             property_id = $(this).attr('href');
 
@@ -13,19 +13,24 @@ jQuery(document).ready(function() {
                 action: 'add_favorite_property',
                 property_id: property_id.substr(1),
             };
-
+            var that = this;
+            console.log('add_favorite_property');
             $.post(info.ajaxurl, data, function(response) {
-                $spinner.hide();
-                if ( response = 'success' ) {
-                    $('#pl_add_favorite').hide();
-                    $('#pl_remove_favorite').show();
+                spinner.hide();
+                if ( response.id ) {
+                    $(that).hide();
+                    if ($(that).attr('id') == 'pl_add_favorite') {
+                        $(that).parent().find('#pl_remove_favorite').show();
+                    } else {
+                        $(that).parent().find('#pl_add_favorite').show();
+                    };
                 }
-            });
+            },'json');
     });
 
-    $('#pl_remove_favorite').click(function(e) {
+    $('#pl_remove_favorite').live('click',function(e) {
         e.preventDefault();
-        
+        var that = this;
         $spinner = $(this).parent().find(".pl_spinner");
         $spinner.show();
 
@@ -41,8 +46,10 @@ jQuery(document).ready(function() {
             if ( response != 'errors' ) {
                 $('#pl_add_favorite').show();
                 $('#pl_remove_favorite').hide();
+
+                $(that).closest('tr').remove();
             }
-        });
+        },'json');
 
     });
         

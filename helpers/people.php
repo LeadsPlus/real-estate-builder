@@ -43,7 +43,16 @@ class PL_People_Helper {
 		return PL_People::update(array('id' => $placester_person['id'], 'fav_listing_ids' => $new_favorites ) );
 	}	
 
-	public function unassociate_property($args) {
-		return PL_People::update($args);
+	public function unassociate_property($property_id) {
+		$placester_person = self::person_details();
+		$new_favorites = array();
+		if (is_array($placester_person['fav_listings'])) {
+			foreach ($placester_person['fav_listings'] as $fav_listings) {
+				if ($fav_listings['id'] != $property_id) {
+					$new_favorites[] = $fav_listings['id'];
+				}
+			}
+		}
+		return PL_People::update(array('id' => $placester_person['id'], 'fav_listing_ids' => $new_favorites ) );
 	}	
 }

@@ -13,13 +13,13 @@ Class PL_HTTP {
 	 * @param string $method
 	 * @return array
 	 */
-	function send_request($url, $request, $method = 'GET', $allow_cache = true) {
+	function send_request($url, $request, $method = 'GET', $allow_cache = true, $allow_empty_values = false) {
 	    
 	    $request_string = '';
 	    foreach ($request as $key => $value) {
 	        if (is_array($value)) {
-	            if (empty($value) ) {
-	                // $request_string .= (strlen($request_string) > 0 ? '&' : '') . urlencode($key) . '[]=';
+	            if (empty($value) && $allow_empty_values ) {
+	                $request_string .= (strlen($request_string) > 0 ? '&' : '') . urlencode($key) . '[]=';
 	            }
 	            foreach ($value as $k => $v) {
 	            	if (is_array($v)) {
@@ -41,8 +41,6 @@ Class PL_HTTP {
 		switch ($method) {
 			case 'POST':
 			case 'PUT':
-				// pls_dump($url);
-				// pls_dump($request_string);
 				$response = wp_remote_post($url, array('body' => $request_string, 'timeout' => self::$timeout, 'method' => $method));
 				return json_decode($response['body'], TRUE);
 				break;

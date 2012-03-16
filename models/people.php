@@ -10,9 +10,13 @@ class PL_People {
 
 	public function update($args = array()) {
 		$request = array_merge(array("api_key" => PL_Option_Helper::api_key()), PL_Validate::request($args, PL_Config::PL_API_PEOPLE('create', 'args') ) );
+		if (isset($args['fav_listing_ids']) && empty($args['fav_listing_ids'])) {
+			$request['fav_listing_ids'] = array();
+		}
 		$update_url = trailingslashit(PL_Config::PL_API_PEOPLE('create', 'request', 'url')) . $request['id'];
 		unset($request['id']);
-		$response = PL_HTTP::send_request($update_url, $request, 'PUT');
+
+		$response = PL_HTTP::send_request($update_url, $request, 'PUT', false, true);
 		return $response;
 	}
 

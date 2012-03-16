@@ -13,7 +13,7 @@ class PL_Membership {
 
         add_action( 'wp_ajax_add_favorite_property', array(__CLASS__,'ajax_add_favorite_property'));
         add_action( 'wp_ajax_nopriv_add_favorite_property', array(__CLASS__,'ajax_add_favorite_property'));
-        add_action( 'wp_ajax_remove_favorite_property', array(__CLASS__,'ajax_add_remove_property'));
+        add_action( 'wp_ajax_remove_favorite_property', array(__CLASS__,'ajax_remove_favorite_property'));
 
         add_shortcode('favorite_link_toggle', array(__CLASS__,'placester_favorite_link_toggle'));
         add_shortcode('lead_user_navigation', array(__CLASS__,'placester_lead_control_panel'));
@@ -44,9 +44,11 @@ class PL_Membership {
     }
 
     public function ajax_remove_favorite_property () {
-        $api_response = PL_People_Helper::unassociate_property();
-        echo json_encode($api_response);
-        die();
+        if ($_POST['property_id']) {
+            $api_response = PL_People_Helper::unassociate_property($_POST['property_id']);
+            echo json_encode($api_response);
+            die();   
+        }
     }
 
     static function get_client_area_url () {
