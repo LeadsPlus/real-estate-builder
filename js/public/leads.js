@@ -14,7 +14,6 @@ jQuery(document).ready(function() {
                 property_id: property_id.substr(1),
             };
             var that = this;
-            console.log('add_favorite_property');
             $.post(info.ajaxurl, data, function(response) {
                 spinner.hide();
                 if ( response.id ) {
