@@ -5,6 +5,9 @@ class PL_Listing {
 	public function get($args = array()) {
 		// merge incoming args with preset options, basically api key at this point.
 		$request = array_merge(array("api_key" => PL_Option_Helper::api_key()), PL_Validate::request($args, PL_Config::PL_API_LISTINGS('get', 'args')));
+		if ( defined('HOSTED_PLUGIN_KEY') ) {
+			$request['hosted_key'] = HOSTED_PLUGIN_KEY;
+		}
 		// sent request, use details from config.
 		$response = PL_HTTP::send_request(PL_Config::PL_API_LISTINGS('get', 'request', 'url'), $request, PL_Config::PL_API_LISTINGS('get', 'request', 'type'));
 		// validate response. 
