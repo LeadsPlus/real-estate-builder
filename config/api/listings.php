@@ -362,6 +362,7 @@ $PL_API_LISTINGS = array(
 					'method' => 'custom_attributes',
 				)
 			),
+			'total_images' => array(),
 			'box' => array(
 				'min_latitude' => array(),// => array('type' => 'text'),
 				'min_longitude' => array(),// => array('type' => 'text'),
