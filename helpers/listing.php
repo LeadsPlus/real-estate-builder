@@ -18,6 +18,7 @@ class PL_Listing_Helper {
 		} elseif (empty($args)) {
 			$args = $_GET;
 		}
+		pls_dump($args);
 		$listings = PL_Listing::get($args);	
 		foreach ($listings['listings'] as $key => $listing) {
 			$listings['listings'][$key]['cur_data']['url'] = PL_Page_Helper::get_url($listing['id']);

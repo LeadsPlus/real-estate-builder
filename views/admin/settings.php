@@ -1,6 +1,8 @@
 <?php extract(PL_Helper_User::whoami()); ?>
 <?php extract(PL_Page_Helper::get_types()); ?>
 <?php extract(PL_Helper_User::get_cached_items()); ?>
+<?php extract(PL_Helper_User::get_global_filters()); ?>
+<?php $_POST = $filters; ?>
 	<div class="wrap">
 		<?php if (PL_Option_Helper::api_key() && isset($email)): ?>
 			<div class="header-wrapper">
@@ -111,5 +113,37 @@
 				<div id="cache_message"></div>
 			</div>
 			<p>Cacheing speeds up your real estate website by storing data locally rather then pulling it in from Placester everytime it's needed. If you've recently updated a lot of your data, and don't see it appearing in your website try emptying the cache. Learn more about cacheing <a href="#">here</a></p>
+
+			<div class="<?php echo !empty($filters['location']) ? 'filters_active' : '' ?>">
+				<div class="header-wrapper">
+					<h2>Global Listing Search Filters</h2>
+					<a class="button-secondary" id="save_global_filters" >Save Global Filters</a>
+					<?php if (!empty($filters['location'])): ?>
+						<div class="global_filter_active">Global Filters are Active!</div>
+					<?php endif ?>
+					<div id="global_filter_message"></div>
+				</div>
+				<p>Global listing search filters limit all the search results returned to your website. This is helpful if you have listings of many different types or locations created but only want this website to display a subset of them. For example, to only show properties in Boston.</p>
+				<div class="search_filter_content">
+					<?php //pls_dump($filters) ?>
+					<?php 
+						PL_Form::generate_form(
+					 	 	PL_Config::bundler('PL_API_LISTINGS',
+					 	 	 	$keys = array('get', 'args'), 
+					 	 	 	$bundle = array( 
+					 	 	 		array('location' => array('address', 'locality', 'region', 'postal')),
+					 	 	 	)
+					 		),
+						 	array('method'=>'POST', 
+							 	'include_submit' => false, 
+							 	'wrap_form' => true, 
+							 	'echo_form' => true,
+							 	'title' => true
+						 	) 
+						);
+					 ?>
+				</div>	
+			</div>
+			
 		</div>
 	<?php PL_Router::load_builder_partial('existing-placester.php') ?>

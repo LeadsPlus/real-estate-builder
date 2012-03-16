@@ -36,5 +36,14 @@ class PL_Option_Helper {
 	    return $url_slug;
 	}
 
+	public function set_global_filters ($args) {
+		extract(wp_parse_args($args, array('filters' => array())));
+		return PL_Options::set('pls_global_search_filters', $filters);		
+	}
+
+	public function get_global_filters () {
+		return PL_Options::get('pls_global_search_filters');		
+	}
+
 //end of class
 }

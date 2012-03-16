@@ -10,6 +10,7 @@ class PL_Helper_User {
 		add_action('wp_ajax_new_api_key_view', array(__CLASS__, 'new_api_key_view' ) );
 		add_action('wp_ajax_create_account', array(__CLASS__, 'create_account' ) );
 		add_action('wp_ajax_user_empty_cache', array(__CLASS__, 'empty_cache' ) );
+		add_action('wp_ajax_user_save_global_filters', array(__CLASS__, 'set_global_filters' ) );
 	}
 
 	public static function set_admin_email (){
@@ -34,6 +35,23 @@ class PL_Helper_User {
 	public function set_placester_api_key() {
 		$result = PL_Option_Helper::set_api_key($_POST['api_key']);
 		echo json_encode($result);
+		die();
+	}
+
+	public function get_global_filters () {
+		$response = PL_Option_Helper::get_global_filters();
+		return array('filters' => $response);
+	}
+
+	public function set_global_filters () {
+		unset($_POST['action']);
+		$global_search_filters = PL_Validate::request($_POST, PL_Config::PL_API_LISTINGS('get', 'args'));
+		$response = PL_Option_Helper::set_global_filters(array('filters' => $global_search_filters));
+		if ($response) {
+			echo json_encode(array('result' => true, 'message' => 'You successfully updated the global search filters'));
+		} else {
+			echo json_encode(array('result' => false, 'message' => 'Change not saved or not change detected. Please try again.'));
+		}
 		die();
 	}
 
