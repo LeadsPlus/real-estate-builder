@@ -18,7 +18,10 @@ class PL_Listing_Helper {
 		} elseif (empty($args)) {
 			$args = $_GET;
 		}
-		pls_dump($args);
+		//respect global filters
+		$global_filters = PL_Helper_User::get_global_filters();
+		$args = wp_parse_args($global_filters['filters'], $args);
+
 		$listings = PL_Listing::get($args);	
 		foreach ($listings['listings'] as $key => $listing) {
 			$listings['listings'][$key]['cur_data']['url'] = PL_Page_Helper::get_url($listing['id']);
