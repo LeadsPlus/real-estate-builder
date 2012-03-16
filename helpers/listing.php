@@ -26,12 +26,14 @@ class PL_Listing_Helper {
 		return $listings;
 	}
 
-	public function many_details($property_ids) {
+	public function many_details($args) {
+		extract(wp_parse_args($args, array('property_ids' => array(), 'limit' => '50', 'offset' => '0')));
 		$response = array();
 		if (empty($property_ids)) {
 			return array('listings' => array(), 'total' => 0);
 		}
-		foreach ($property_ids as $id) {
+		$use_property_ids = array_slice($property_ids, $offset, $limit);
+		foreach ($use_property_ids as $id) {
 			$listing = self::details(array('id' => $id) );
 			$listing['cur_data']['url'] = PL_Page_Helper::get_url($listing['id']);
 			$listing['location']['full_address'] = $listing['location']['address'] . ' ' . $listing['location']['locality'] . ' ' . $listing['location']['region'];
