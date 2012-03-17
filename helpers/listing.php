@@ -140,6 +140,9 @@ class PL_Listing_Helper {
 		}
 		$api_response = PL_Listing::create($_POST);
 		echo json_encode($api_response);
+		if ($api_response['id']) {
+			PL_HTTP::clear_cache();
+		}
 		die();
 	}	
 
@@ -151,6 +154,9 @@ class PL_Listing_Helper {
 		}
 		$api_response = PL_Listing::update($_POST);
 		echo json_encode($api_response);
+		if ($api_response['id']) {
+			PL_HTTP::clear_cache();
+		}
 		die();
 	}	
 

@@ -78,6 +78,7 @@ $(document).ready(function($) {
 	    
 	//create listing
 	$('#add_listing_publish').live('click', function(event) {
+		$('#loading_overlay').show();
         event.preventDefault();
        	//hide all previous validation issues
        	$('.red').remove();
@@ -103,6 +104,7 @@ $(document).ready(function($) {
 			data: form_values,
 			dataType: "json",
 			success: function (response) {
+				$('#loading_overlay').hide();
 				if (response && response['validations']) {
 					var item_messages = [];
 					for(var key in response['validations']) {

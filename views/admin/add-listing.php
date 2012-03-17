@@ -1,4 +1,10 @@
 <div class="wrap">
+	<?php if (isset($_GET['id'])): ?>
+		<div id="loading_overlay" style="display:none">Updating Listing...</div>	
+	<?php else: ?>
+		<div id="loading_overlay" style="display:none">Creating Listing...</div>	
+	<?php endif ?>
+	
 	<div id="manage_listing_message"></div>
 	<form action="wp-admin/admin-ajax.php" method="<?php echo isset($_GET['id']) ? 'PUT' : 'POST' ?>" enctype="multipart/form-data" id="add_listing_form">  
 		<?php if (isset($_GET['id'])): ?>
