@@ -28,8 +28,11 @@ class PL_Listing {
 		return $response;
 	}
 
-	public function update() {
-		
+	public function update($args = array()) {
+		$request = array_merge(array("api_key" => PL_Option_Helper::api_key()), PL_Validate::request($args, PL_Config::PL_API_LISTINGS('create', 'args')));
+		$update_url = trailingslashit( PL_Config::PL_API_LISTINGS('update', 'request', 'url') ) . $args['id'];
+		$response = PL_HTTP::send_request($update_url, $request, PL_Config::PL_API_LISTINGS('update', 'request', 'type'));
+		return $response;	
 	}
 
 	public function delete($args = array()) {

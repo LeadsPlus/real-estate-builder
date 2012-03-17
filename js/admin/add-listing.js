@@ -84,13 +84,16 @@ $(document).ready(function($) {
        	//set default values required for the form to work. 
         var form_values = {}
         form_values['request_url'] = $(this).attr('url');
-        form_values['action'] = 'add_listing';
+        if ($('#add_listing_form').attr('method') == 'POST') {
+        	form_values['action'] = 'add_listing';	
+        } else {
+        	form_values['action'] = 'update_listing';	
+        };
+        
         //get each of the form values, set key/values in array based off name attribute
         $.each($('#add_listing_form:visible').serializeArray(), function(i, field) {
-        	console.log(field.name + ' / ' + field.value + ' / ');
     		form_values[field.name] = field.value;
         });
-        console.log('asdf');
         //set context of the form.
        var form = $('#add_listing_form');
        //ajax request for creating the listing. 
@@ -122,9 +125,13 @@ $(document).ready(function($) {
 					} 
 					$(form).prepend('<h3 class="red">'+ response['message'] + '</h3>' + item_messages.join(' '));
 				} else if (response && response['id']) {
-					console.log("YOU DID IT! HERES THE LINK: https://placester.com/listings/"+ response['id']);
+					if (form_values['action'] == 'add_listing') {
+						$('#manage_listing_message').html('<div id="message" class="updated below-h2"><p> Listing successfully created! You may <a href="/properties/'+response['id']+'" class="button-secondary">View</a> or <a href="/wp-admin/admin.php?page=placester_property_add&id='+response['id']+'" class="button-secondary">Edit</a></p></div>')
+					} else {
+						$('#manage_listing_message').html('<div id="message" class="updated below-h2"><p> Listing successfully updated! You may <a href="/properties/'+response['id']+'" class="button-secondary">View</a> or <a href="/wp-admin/admin.php?page=placester_property_add&id='+response['id']+'" class="button-secondary">Edit</a></p></div>')
+					}
 				}
 			}
-		});
+		}, 'json');
     });
 });

@@ -1,5 +1,9 @@
 <div class="wrap">
+	<div id="manage_listing_message"></div>
 	<form action="wp-admin/admin-ajax.php" method="<?php echo isset($_GET['id']) ? 'PUT' : 'POST' ?>" enctype="multipart/form-data" id="add_listing_form">  
+		<?php if (isset($_GET['id'])): ?>
+			<input type="hidden" name="id" value="<?php echo $_GET['id'] ?>">
+		<?php endif ?>
 		<div id="poststuff" class="metabox-holder has-right-sidebar">
 			<div id="side-info-column" class="inner-sidebar"> <!-- Right Sidebar -->
 				<div id="side-sortables" class="meta-box-sortables ui-sortable">

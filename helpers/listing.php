@@ -7,6 +7,7 @@ class PL_Listing_Helper {
 	public function init() {
 		add_action('wp_ajax_datatable_ajax', array(__CLASS__, 'datatable_ajax' ) );
 		add_action('wp_ajax_add_listing', array(__CLASS__, 'add_listing_ajax' ) );
+		add_action('wp_ajax_update_listing', array(__CLASS__, 'update_listing_ajax' ) );
 		add_action('wp_ajax_add_temp_image', array(__CLASS__, 'add_temp_image' ) );
 		add_action('wp_ajax_filter_options', array(__CLASS__, 'filter_options' ) );
 		add_action('wp_ajax_delete_listing', array(__CLASS__, 'delete_listing_ajax' ) );
@@ -48,6 +49,7 @@ class PL_Listing_Helper {
 	}
 
 	public function details($args = array()) {
+		$args['address_mode'] = 'exact';
 		$listing = PL_Listing::details($args);
 		//rename cur_data to metadata due to api weirdness;
 		$listing['metadata'] = $listing['cur_data'];
@@ -137,6 +139,17 @@ class PL_Listing_Helper {
 			}
 		}
 		$api_response = PL_Listing::create($_POST);
+		echo json_encode($api_response);
+		die();
+	}	
+
+	public function update_listing_ajax() {
+		foreach ($_POST as $key => $value) {
+			if (is_int(strpos($key, 'property_type')) && $value !== 'false') {
+				$_POST['property_type'] = $value;
+			}
+		}
+		$api_response = PL_Listing::update($_POST);
 		echo json_encode($api_response);
 		die();
 	}	
