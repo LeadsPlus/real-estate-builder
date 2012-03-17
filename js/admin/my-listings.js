@@ -12,7 +12,8 @@ $(document).ready(function($) {
     // Filter Filters
     handle_custom_filter_choices();
 
-    $('#pls_admin_my_listings_filters input').live('change', function () {
+    $('#pls_admin_my_listings_filters input').live('change', function (event) {
+        event.preventDefault();
         handle_custom_filter_choices($(this).attr('id'), $(this).is(":checked"));   
     });
     
@@ -70,9 +71,17 @@ $(document).ready(function($) {
             ], 
             "fnServerParams": function ( aoData ) {
                 aoData.push( { "name": "action", "value" : "datatable_ajax"} );
+                aoData.push( { "name": "sSearch", "value" : $('input#address_search').val() })
                 aoData = my_listings_search_params(aoData);
             }
         });
+
+    var address_timer;
+    $('input#address_search').live('keyup', function () {
+        clearTimeout(address_timer);
+        address_timer = setTimeout(function () {my_listings_datatable.fnDraw();}, 700);
+        
+    });
     
     // hide/show action links in rows
     $('tr.odd, tr.even').live('mouseover', function(event) {
@@ -136,8 +145,6 @@ $(document).ready(function($) {
         });
         return aoData;
     }
-
-
 
 });
 

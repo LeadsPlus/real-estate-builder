@@ -20,6 +20,12 @@
     text-shadow: rgba(255, 255, 255, 1) 0 1px 0
 }
 
+.pls_search_form.address_search {
+  /*width: 310px;*/
+  float: right !important;
+  font-size: 18px;
+}
+
 .wrapper .pls_search_form {
   float: left;
   padding: 5px;
@@ -39,6 +45,7 @@
 #Show_Filters {
   margin-top:0px;
   margin-bottom:-5px;
+  width: 100%;
 }
 #Show_Filters h3 {
   height: 20px;

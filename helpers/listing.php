@@ -83,11 +83,17 @@ class PL_Listing_Helper {
 
 	function datatable_ajax() {
 		$response = array();
+		//exact addresses should be shown. 
+		$_POST['address_mode'] = 'exact';
 
 		// Sorting
 		$columns = array('images','location.address', 'location.locality', 'location.region', 'location.postal', 'zoning_types', 'purchase_types', 'listing_types', 'property_type', 'cur_data.beds', 'cur_data.baths', 'cur_data.price', 'cur_data.sqft', 'cur_data.avail_on');
 		$_POST['sort_by'] = $columns[$_POST['iSortCol_0']];
 		$_POST['sort_type'] = $_POST['sSortDir_0'];
+		
+		// text searching on address
+		$_POST['location']['address'] = @$_POST['sSearch'];
+		$_POST['location']['address_match'] = 'like';
 
 		// Pagination
 		$_POST['limit'] = $_POST['iDisplayLength'];

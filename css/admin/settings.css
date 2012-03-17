@@ -1,3 +1,7 @@
+.header-wrapper {
+	margin-top: 10px;
+}
+
 .search_filter_content section.form_group {
 	float: left;
 	clear:both;

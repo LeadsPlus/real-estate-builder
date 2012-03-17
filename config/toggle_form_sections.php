@@ -32,4 +32,9 @@ $PL_MY_LIST_FORM = array(
 		'group' => 'Show Filters',
 		'type' => 'checkbox'
 	),
+	'address_search' => array(
+		'label' => 'Address Search',
+		'group' => 'Show Filters',
+		'type' => 'text'
+	)
 );
