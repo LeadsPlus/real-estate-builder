@@ -10,7 +10,7 @@ class PL_Js_Helper {
 	}	
 
 	public function admin ($hook) {
-		$pages = array('placester_page_placester_properties', 'placester_page_placester_property_add', 'placester_page_placester_settings');
+		$pages = array('placester_page_placester_properties', 'placester_page_placester_property_add', 'placester_page_placester_settings', 'placester_page_placester_support');
 		if (!in_array($hook, $pages)) { return; }
 
 		// hack to force jquery to load properly. Needs to be removed once there's time to 

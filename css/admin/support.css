@@ -1,0 +1,21 @@
+.support_wrapper {
+	width: 500px;
+	margin: 50px auto;
+    font-family: "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",sans-serif;
+    font-weight: normal;
+    text-shadow: rgba(255, 255, 255, 1) 0 1px 0;
+    text-align: center;
+}
+.support_wrapper h1 {
+	font-size: 40px;
+	font-family: "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",sans-serif;
+    font-weight: normal;
+    text-shadow: rgba(255, 255, 255, 1) 0 1px 0;
+    margin-bottom: 40px;
+}
+.support_wrapper h3 {
+	font-size: 26px;
+	font-family: "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",sans-serif;
+    font-weight: normal;
+    text-shadow: rgba(255, 255, 255, 1) 0 1px 0
+}

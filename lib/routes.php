@@ -53,5 +53,9 @@ class PL_Router {
 		self:: router('settings.php', array(), false);
 	}
 
+	public function support() {
+		self:: router('support.php', array(), false);
+	}
+
 //end of class
 }

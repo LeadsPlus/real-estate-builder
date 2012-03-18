@@ -121,4 +121,5 @@ function placester_admin_menu() {
     add_submenu_page( 'placester', '', 'Add Listing', 'edit_pages', 'placester_property_add', array('PL_Router','add_listings') );
     // add_submenu_page( 'placester', '', 'Theme Gallery', 'edit_pages', 'placester_themes', array('PL_Router','theme_gallery') );    
     add_submenu_page( 'placester', '', 'Settings', 'edit_pages', 'placester_settings', array('PL_Router','settings') );    
+    add_submenu_page( 'placester', '', 'Support', 'edit_pages', 'placester_support', array('PL_Router','support') );    
 }
