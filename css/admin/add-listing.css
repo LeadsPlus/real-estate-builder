@@ -121,7 +121,7 @@ section#location.form_group section {
 	clear: right;
 	width: 190px;
 	padding: 10px;
-	height: 40px
+	min-height: 40px
 }
 .pls_search_form select, .pls_search_form input {
 	width: 190px;
@@ -149,9 +149,20 @@ input#post_title, label#post_title {
 	display:none;
 }
 .red {
+	background-color: #FFEBE8;
+	border: 1px solid #C00;
+	padding: 3px;
 	display: block;
-	color: white;
-	background: red;
+}
+
+#message.error h3 {
+	margin: 5px 0px;
+}
+#message.error p.red {
+	color: inherit !important;
+	background: inherit !important;
+	border: none !important;
+	margin: 3px 0px;
 }
 
 
