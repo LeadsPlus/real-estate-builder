@@ -6,6 +6,12 @@ $(document).ready(function($) {
 	//if we're editing, disable listing type.
 	if ($('#add_listing_form').attr('method') == 'PUT') {
 		$('select#compound_type').prop('disabled', true);
+		$('select#property_type-sublet').prop('disabled', true)
+		$('select#property_type-res_sale').prop('disabled', true)
+		$('select#property_type-vac_rental').prop('disabled', true)
+		$('select#property_type-res_rental').prop('disabled', true)
+		$('select#property_type-comm_rental').prop('disabled', true)
+		$('select#property_type-comm_sale').prop('disabled', true)
 	} else {
 		$('select#compound_type').bind('change', function () {
 			set_property_type();
@@ -27,6 +33,7 @@ $(document).ready(function($) {
 		$('div#sublet_details_admin_ui').hide().find('input, select').prop('disabled', true);
 		$('div#comm_rental_details_admin_ui').hide().find('input, select').prop('disabled', true);
 		$('div#comm_sale_details_admin_ui').hide().find('input, select').prop('disabled', true);
+		$('div#park_rental_details_admin_ui').hide().find('input, select').prop('disabled', true);
 		$('#' + $('select#compound_type').val() + '_details_admin_ui' ).show().find('input, select').prop('disabled', false);
 	}
 
@@ -58,7 +65,8 @@ $(document).ready(function($) {
 	$("input#metadata-avail_on_picker").datepicker({
         showOtherMonths: true,
         numberOfMonths: 2,
-        selectOtherMonths: true
+        selectOtherMonths: true,
+        dateFormat: "yy-mm-dd"
 	});
 
 	// duplicates the custom attribute form.
@@ -91,13 +99,21 @@ $(document).ready(function($) {
         	form_values['action'] = 'update_listing';	
         };
         
+        console.log($('#add_listing_form :input[value]').serializeArray());
         //get each of the form values, set key/values in array based off name attribute
-        $.each($('#add_listing_form:visible').serializeArray(), function(i, field) {
+        $.each($('#add_listing_form :input[value]').serializeArray(), function(i, field) {
+        	// console.log(field);
     		form_values[field.name] = field.value;
+    		if (field.name == "metadata[avail_on]") {
+    			console.log(field.value);
+    			console.log(form_values);
+    		};
+    		
         });
         //set context of the form.
        var form = $('#add_listing_form');
-       //ajax request for creating the listing. 
+       //ajax request for creating the listing.
+       // console.log(form_values); 
         $.ajax({
 			url: ajaxurl, //wordpress thing
 			type: "POST",
@@ -125,7 +141,7 @@ $(document).ready(function($) {
 							item_messages.push(message);
 						}
 					} 
-					$(form).prepend('<h3 class="red">'+ response['message'] + '</h3>' + item_messages.join(' '));
+					$(form).prepend('<div id="message" class="error"><h3>'+ response['message'] + '</h3>' + item_messages.join(' ') + '</div>');
 				} else if (response && response['id']) {
 					if (form_values['action'] == 'add_listing') {
 						$('#manage_listing_message').html('<div id="message" class="updated below-h2"><p> Listing successfully created! You may <a href="/properties/'+response['id']+'" class="button-secondary">View</a> or <a href="/wp-admin/admin.php?page=placester_property_add&id='+response['id']+'" class="button-secondary">Edit</a></p></div>')
