@@ -2,47 +2,38 @@
 <?php //pls_dump(wp_widget_rss_output('https://placester.com/themes/feed/')) ?>
 <?php  
 
-	$rss =fetch_feed('https://placester.com/themes/feed/');
+	$response = wp_remote_get("http://corporate.com/theme-api/", array('timeout' => 10));
 
-	if ( !$rss->get_item_quantity() ) {
-		echo '<ul><li>' . __( 'An error has occurred; the feed is probably down. Try again later.' ) . '</li></ul>';
-		$rss->__destruct();
-		unset($rss);
-		return;
+	foreach (json_decode($response['body']) as $key => $theme) {
+		// pls_dump($theme);
 	}
 
-	echo '<ul>';
-	$items = 100;
-	foreach ( $rss->get_items(0, $items) as $item ) {
-		$link = $item->get_link();
-		pls_dump($item);
-		while ( stristr($link, 'http') != $link )
-			$link = substr($link, 1);
-		$link = esc_url(strip_tags($link));
-		$title = esc_attr(strip_tags($item->get_title()));
-		if ( empty($title) )
-			$title = __('Untitled');
+	
 
-		$desc = str_replace( array("\n", "\r"), ' ', esc_attr( strip_tags( @html_entity_decode( $item->get_description(), ENT_QUOTES, get_option('blog_charset') ) ) ) );
-		$desc = wp_html_excerpt( $desc, 360 );
-
-		// Append ellipsis. Change existing [...] to [&hellip;].
-		if ( '[...]' == substr( $desc, -5 ) )
-			$desc = substr( $desc, 0, -5 ) . '[&hellip;]';
-		elseif ( '[&hellip;]' != substr( $desc, -10 ) )
-			$desc .= ' [&hellip;]';
-
-		$desc = esc_html( $desc );
+?>
 
 
-		if ( $link == '' ) {
-			echo "<li>$title{$date}{$summary}{$author}</li>";
-		} else {
-			echo "<li><a class='rsswidget' href='$link' title='$desc'>$title</a></li>";
-		}
-	}
-	echo '</ul>';
-	$rss->__destruct();
-	unset($rss);
-
-
+<form class="search-form filter-form" action="" method="get">
+	<!-- <p class="search-box">
+		<label class="screen-reader-text" for="theme-search-input">Search Installed Themes:</label>
+		<input type="text" id="theme-search-input" name="s" value="">
+		<input type="submit" name="" id="search-submit" class="button" value="Search Installed Themes">	<a id="filter-click" href="?filter=1">Feature Filter</a>
+	</p> -->
+	<br class="clear">
+	<table id="availablethemes" cellspacing="0" cellpadding="0">
+		<tbody id="the-list" class="list:themes">
+			<tr>
+				<td class="available-theme top left">
+					<a href="http://foundation.wpmulti.com/?preview=1&amp;template=chapman&amp;stylesheet=chapman&amp;preview_iframe=1&amp;TB_iframe=true&amp;width=640&amp;height=328" class="thickbox thickbox-preview screenshot">
+						<img src="http://foundation.wpmulti.com/wp-content/themes/chapman/screenshot.png" alt="">
+					</a>
+					<h3>Arthur Chapman Real Estate 1.0.0 by <a href="https://www.placester.com" title="Visit author homepage">The Placester Team</a></h3>
+					<p class="description">This is a custom WordPress theme created by Placester for Arthur Chapman Real Estate. Use with <a href="https://placester.com/">Placester</a>‘s <a href="wordpress.org/extend/plugins/placester/">Real Estate Builder plugin</a>.</p>
+					<span class="action-links"><a href="themes.php?action=activate&amp;template=chapman&amp;stylesheet=chapman&amp;_wpnonce=b9a7560b6c" class="activatelink" title="Activate “Arthur Chapman Real Estate”">Activate</a> | <a href="http://foundation.wpmulti.com/?preview=1&amp;template=chapman&amp;stylesheet=chapman&amp;preview_iframe=1&amp;TB_iframe=true&amp;width=640&amp;height=328" class="thickbox thickbox-preview" title="Preview “Arthur Chapman Real Estate”">Preview</a></span>
+					<p>All of this theme’s files are located in <code>/themes/chapman</code>.</p>
+					<p>Tags: blue, red, green, right-sidebar, fixed-width, custom-menu</p>
+				</td>
+			</tr>
+		</tbody>
+	</table>		
+</form>
