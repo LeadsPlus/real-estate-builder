@@ -84,15 +84,6 @@ class PL_Logging {
 	 }
 
 	 function activation () {
-	 	self::events();
-
-	 	ob_start();
-	 	?>
-	 		<script type="text/javascript">
-	 			// mixpanel.track("activation");
-	 		</script>	
-	 	<?php
-	 	echo ob_get_clean();
 
 	 }
 }
