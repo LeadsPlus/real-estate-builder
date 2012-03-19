@@ -41,6 +41,35 @@ class PL_Router {
 	public function add_listings() {
 		if (isset($_GET['id'])) {
 			$_POST = PL_Listing_Helper::details($_GET);
+			switch ($_POST['compound_type']) {
+				case 'res_sale':
+					$_POST['property_type-res_sale'] = $_POST['property_type'];
+					break;
+
+				case 'res_rental':
+					$_POST['property_type-res_rental'] = $_POST['property_type'];
+					break;
+
+				case 'vac_rental':
+					$_POST['property_type-vac_rental'] = $_POST['property_type'];
+					break;					
+
+				case 'comm_sale':
+					$_POST['property_type-comm_sale'] = $_POST['property_type'];
+					break;
+
+				case 'comm_rental':
+					$_POST['property_type-comm_rental'] = $_POST['property_type'];
+					break;
+
+				case 'sublet':
+					$_POST['property_type-sublet'] = $_POST['property_type'];
+					break;
+				
+				default:
+					# code...
+					break;
+			}
 		}
 		self:: router('add-listing.php', array(), false);
 	}
