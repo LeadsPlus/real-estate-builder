@@ -90,6 +90,7 @@ $(document).ready(function($) {
         event.preventDefault();
        	//hide all previous validation issues
        	$('.red').remove();
+       	$('#message').remove();
        	//set default values required for the form to work. 
         var form_values = {}
         form_values['request_url'] = $(this).attr('url');
