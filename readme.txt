@@ -1,9 +1,9 @@
 === Plugin Name ===
-Contributors: Placester Matt Barba
+Contributors: Placester, Matt Barba
 Tags: real estate, realestate, home, housing, rentals, properties, neighborhood, map, mortgage, listing, listings, craigslist, rental, google map, mls, idx, rets, agent, broker, leasing, realty, realtor, placester, widget, buddypress
 Requires at least: 2.8
 Tested up to: 3.2.1
-Stable tag: 0.3.12
+Stable tag: 1.0.1
 
 Easily create and manage real estate sites powered by WordPress.
 
@@ -11,12 +11,12 @@ Easily create and manage real estate sites powered by WordPress.
 
 From the creators of http://placester.com: Create your fully functional real estate website with a single plugin. Some of the features include: 
 
-* Free RETS integrations available, continuously updated so you don't have to.
+* RETS integrations available, continuously updated with you MLS.
 * Create / edit / update / search listings.
 * Set listings as "Featured" to highlight them in your sidebar throughout your site.
 * Every listing automatically has a unique landing page created - great for SEO.
 * Fully customizable sidebar layout and custom Placester real estate widgets.
-* Unlimited images per listing
+* Unlimited images per listing.
 * Placester has themes free themes that work seamlessly with this free Placester plugin (hosted premium themes also available).
 
 
@@ -74,14 +74,11 @@ Note ^: Feature requires a Placester-enabled theme.
 1. Via the "Placester" left-hand menu, and Plugin Settings tab, add your API key and configure the plugin.
 
 == Screenshots ==
-1. Admin Dashboard
-2. Active Listings 
-3. Create Listing Screen
-4. Setting screen
-5. Custom Layout Controls
-6. Custom property list controls
-7. Custom map controls
-8. Support Built in!
+1. Listing Index
+2. Add/Edit Listings
+3. Basic Home Page
+4. Listing Search
+
 
 == Frequently Asked Questions ==
 
@@ -148,6 +145,9 @@ Absolutely, [reach out](mailto:support@placester.com) to us and let us know what
 In general - real-time. But if you use 3rd party property management services, the updates will only be as recent as your provider allows.
 
 == Changelog ==
+
+= 1.0.1 =
+* Complete groundup rewrite of core functionality.
 
 = 0.3.12 =
 * Minor changes to WordPress function due to deprecation
