@@ -21,7 +21,7 @@ class PL_Logging {
 
 	 function start () {
 	 	$hook = self::$hook;
-	 	$pages = array('placester_page_placester_properties', 'placester_page_placester_property_add', 'placester_page_placester_settings', 'placester_page_placester_support');
+	 	$pages = array('placester_page_placester_properties', 'placester_page_placester_property_add', 'placester_page_placester_settings', 'placester_page_placester_support', 'placester_page_placester_theme_gallery');
 		if (!in_array($hook, $pages)) { return; }
 
 	 	ob_start();
@@ -44,7 +44,7 @@ class PL_Logging {
 
 	 function events () {
 	 	$hook = self::$hook;
-	 	$pages = array('placester_page_placester_properties', 'placester_page_placester_property_add', 'placester_page_placester_settings', 'placester_page_placester_support');
+	 	$pages = array('placester_page_placester_properties', 'placester_page_placester_property_add', 'placester_page_placester_settings', 'placester_page_placester_support', 'placester_page_placester_theme_gallery');
 		if (!in_array($hook, $pages)) { return; }
 
 	 	ob_start();
@@ -80,6 +80,20 @@ class PL_Logging {
 		 		</script>	
 		 	<?php	
 	 	}
+
+	 	if ($hook == 'placester_page_placester_theme_gallery') {
+		 	?>
+		 		<script type="text/javascript">
+		 			$(document).ready(function($) {
+		 				mixpanel.track("Theme Gallery: View");		
+		 				$('#theme_gallery_placester').bind('click', function () {
+		 					mixpanel.track("Theme Gallery: To Placester");		
+		 				});
+			 		});
+		 		</script>	
+		 	<?php	
+	 	}
+
 	 	echo ob_get_clean();
 	 }
 

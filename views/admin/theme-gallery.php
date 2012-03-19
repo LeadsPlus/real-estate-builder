@@ -8,11 +8,7 @@
 		// pls_dump($theme);
 	}
 
-	
-
-?>
-
-
+/*	
 <form class="search-form filter-form" action="" method="get">
 	<!-- <p class="search-box">
 		<label class="screen-reader-text" for="theme-search-input">Search Installed Themes:</label>
@@ -37,3 +33,34 @@
 		</tbody>
 	</table>		
 </form>
+*/
+
+?>
+
+<style type="text/css">
+	.support_wrapper {
+	width: 600px;
+	margin: 50px auto;
+    font-family: "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",sans-serif;
+    font-weight: normal;
+    text-shadow: rgba(255, 255, 255, 1) 0 1px 0;
+    text-align: center;
+}
+.support_wrapper h1 {
+	font-size: 40px;
+	font-family: "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",sans-serif;
+    font-weight: normal;
+    text-shadow: rgba(255, 255, 255, 1) 0 1px 0;
+    margin-bottom: 40px;
+}
+.support_wrapper h3 {
+	font-size: 26px;
+	font-family: "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",sans-serif;
+    font-weight: normal;
+    text-shadow: rgba(255, 255, 255, 1) 0 1px 0
+}
+</style>
+<div class="support_wrapper">
+	<h1>Looking for Real Estate Themes?</h1>
+	<h3>Check them at the <a id="theme_gallery_placester" href="https://placester.com/themes/">theme gallery</a></h3>
+</div>
