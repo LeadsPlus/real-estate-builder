@@ -100,16 +100,10 @@ $(document).ready(function($) {
         	form_values['action'] = 'update_listing';	
         };
         
-        console.log($('#add_listing_form :input[value]').serializeArray());
         //get each of the form values, set key/values in array based off name attribute
         $.each($('#add_listing_form :input[value]').serializeArray(), function(i, field) {
-        	// console.log(field);
     		form_values[field.name] = field.value;
-    		if (field.name == "metadata[avail_on]") {
-    			console.log(field.value);
-    			console.log(form_values);
-    		};
-    		
+    			
         });
         //set context of the form.
        var form = $('#add_listing_form');
