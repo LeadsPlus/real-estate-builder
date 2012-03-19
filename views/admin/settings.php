@@ -2,6 +2,7 @@
 <?php extract(PL_Page_Helper::get_types()); ?>
 <?php extract(PL_Helper_User::get_cached_items()); ?>
 <?php extract(PL_Helper_User::get_global_filters()); ?>
+<?php extract(array('error_logging' => PL_Option_Helper::get_log_errors())); ?>
 <?php $_POST = $filters; ?>
 	<div class="wrap">
 		<?php if (PL_Option_Helper::api_key() && isset($email)): ?>
@@ -144,6 +145,18 @@
 					 ?>
 				</div>	
 			</div>
+
+			<div class="header-wrapper">
+				<h2>Other Settings</h2>
+				<div id="error_logging_message"></div>
+			</div>
+			<ul>
+				<li>
+					<input id="error_logging_click" type="checkbox" name="error_logging" <?php echo $error_logging ? 'checked="checked"' : '' ?>>
+					<label for="error_logging">You can help improve Placester. Allow the Real Estate Website Builder Plugin to anonymously report errors and usage information so we can fix errors and add new features.</label>
+				</li>
+			</ul>
+
 			
 		</div>
 	<?php PL_Router::load_builder_partial('existing-placester.php') ?>

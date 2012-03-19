@@ -99,6 +99,7 @@ include_once('helpers/header.php');
 include_once('helpers/user.php');
 include_once('helpers/pages.php');
 include_once('helpers/people.php');
+include_once('helpers/logging.php');
 
 
 register_activation_hook( __FILE__, 'placester_activate' );

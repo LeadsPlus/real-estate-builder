@@ -114,4 +114,23 @@
 			};
 		}, 'json');
 	});
+
+	$('#error_logging_click').live('click', function() {
+		var request = {
+			report_errors: $(this).is(':checked'),
+			action: 'ajax_log_errors'
+		}
+		$.post(ajaxurl, request, function(data, textStatus, xhr) {
+		  if (data && data.result) {
+			$('#error_logging_message').html(data.message);
+			$('#error_logging_message').removeClass();
+			$('#error_logging_message').addClass('green');
+		  } else {
+		  	$('#error_logging_message').html(data.message);
+		  	$('#error_logging_message').removeClass();
+		  	$('#error_logging_message').addClass('red');
+		  };
+		}, 'json');
+		
+	});
 });

@@ -11,6 +11,7 @@ class PL_Helper_User {
 		add_action('wp_ajax_create_account', array(__CLASS__, 'create_account' ) );
 		add_action('wp_ajax_user_empty_cache', array(__CLASS__, 'empty_cache' ) );
 		add_action('wp_ajax_user_save_global_filters', array(__CLASS__, 'set_global_filters' ) );
+		add_action('wp_ajax_ajax_log_errors', array(__CLASS__, 'ajax_log_errors' ) );
 	}
 
 	public static function set_admin_email (){
@@ -76,6 +77,25 @@ class PL_Helper_User {
 	public function empty_cache() {
 		PL_Http::clear_cache();
 		echo json_encode(array('result' => true, 'message' => 'You\'ve successfully cleared your cache'));
+		die();
+	}
+
+	public function ajax_log_errors () {
+		if ( $_POST['report_errors'] == 'true') {
+			$report_errors = 1;
+		} else {
+			$report_errors = 0;
+		}
+		$api_response = PL_Option_Helper::set_log_errors($report_errors);
+		if ($api_response) {
+			if ($report_errors) {
+				echo json_encode(array('result' => true, 'message' => 'You successfully turned on error reporting'));
+			} else {
+				echo json_encode(array('result' => true, 'message' => 'You successfully turned off errror reporting'));
+			}
+		} else {
+			echo json_encode(array('result' => false, 'message' => 'There was an error. Please true again.'));
+		}
 		die();
 	}
 }

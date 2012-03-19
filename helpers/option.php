@@ -45,5 +45,19 @@ class PL_Option_Helper {
 		return PL_Options::get('pls_global_search_filters');		
 	}
 
+
+	public function set_log_errors ($report_errors = 1) {
+		$response = PL_Options::set('pls_log_errors', $report_errors);
+		return $response;
+	}
+
+	public function get_log_errors () {
+		$response = PL_Options::get('pls_log_errors');	
+		if ($response == NULL) {
+			return true;
+		}
+		return $response;
+	}
+
 //end of class
 }
