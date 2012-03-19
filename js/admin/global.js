@@ -64,15 +64,17 @@ function new_sign_up() {
 		if (data) {	
 			console.log(data);
 			if (data['validations']) {
+				mixpanel.track("SignUp: Validation issue on signup");			
 				var message = parse_validation(data);
 				$('#api_key_success').html('');
 				$('#api_key_validation').html(message.join(', ')).show();
 			} else if(data['api_key']) {
 				$('#api_key_success').html('Success! Setting up plugin.');
+				mixpanel.track("SignUp: Successful Signup");			
 				$.post(ajaxurl, {action: 'set_placester_api_key', api_key: data['api_key']}, function(response, textStatus, xhr) {
-					console.log(response);
 					if (response['result']) {
 						$('#api_key_success').html(response['message']).show();
+						mixpanel.track("SignUp: API key installed");			
 						setTimeout(function () {
 							window.location.href=window.location.href;
 						}, 1000);

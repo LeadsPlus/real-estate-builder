@@ -16,6 +16,7 @@ $(document).ready(function($) {
 		},
 		3 : {
 			text: "Confirm",
+			id: 'confirm_email_button',
 			click: function() {
 				 new_sign_up();
 			}
