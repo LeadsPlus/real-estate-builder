@@ -6,7 +6,6 @@ class PL_Logging {
 	static $hook;
 
 	 function init() {
-	 	delete_option('placester_api_key');
 	 	$logging_option = PL_Option_Helper::get_log_errors();
 	 	if ($logging_option) {
 			add_action('admin_footer', array(__CLASS__, 'events'));
