@@ -2,11 +2,11 @@
 <?php //pls_dump(wp_widget_rss_output('https://placester.com/themes/feed/')) ?>
 <?php  
 
-	$response = wp_remote_get("http://corporate.com/theme-api/", array('timeout' => 10));
+	// $response = wp_remote_get("http://corporate.com/theme-api/", array('timeout' => 10));
 
-	foreach (json_decode($response['body']) as $key => $theme) {
-		// pls_dump($theme);
-	}
+	// foreach (json_decode($response['body']) as $key => $theme) {
+	// 	pls_dump($theme);
+	// }
 
 /*	
 <form class="search-form filter-form" action="" method="get">
