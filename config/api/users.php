@@ -28,7 +28,8 @@ $PL_API_USERS = array(
 			'provider' => array(
 				'id' => false,
 				'name' => false,
-				'website' => false
+				'website' => false,
+				'disclaimer_on' => array()
 			),
 			'user' => array(
 				'id' => false,
