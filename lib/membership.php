@@ -631,7 +631,7 @@ class PL_Membership {
             /** Remove the link to the profile if the current user is not a lead. */
             $extra = $is_lead ? $profile_link : "";
             if ($container_tag) {
-                return "<{$container_tag} class={$container_class}>" . "</{$container_tag}>" . $loginout_link . $extra;
+                return "<{$container_tag} class={$container_class}>" . $loginout_link . $extra . "</{$container_tag}>";
             }
             return $loginout_link . $extra;
         }
