@@ -131,6 +131,24 @@
 		  	$('#error_logging_message').addClass('red');
 		  };
 		}, 'json');
-		
+	});
+
+
+	$('#block_address').live('click', function() {
+		var request = {
+			use_block_address: $(this).is(':checked'),
+			action: 'ajax_block_address'
+		}
+		$.post(ajaxurl, request, function(data, textStatus, xhr) {
+		  if (data && data.result) {
+			$('#block_address_messages').html(data.message);
+			$('#block_address_messages').removeClass();
+			$('#block_address_messages').addClass('green');
+		  } else {
+		  	$('#block_address_messages').html(data.message);
+		  	$('#block_address_messages').removeClass();
+		  	$('#block_address_messages').addClass('red');
+		  };
+		}, 'json');
 	});
 });

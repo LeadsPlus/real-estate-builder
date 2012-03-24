@@ -3,6 +3,7 @@
 <?php extract(PL_Helper_User::get_cached_items()); ?>
 <?php extract(PL_Helper_User::get_global_filters()); ?>
 <?php extract(array('error_logging' => PL_Option_Helper::get_log_errors())); ?>
+<?php extract(array('block_address' => PL_Option_Helper::get_block_address())); ?>
 <?php $_POST = $filters; ?>
 	<div class="wrap">
 		<?php if (PL_Option_Helper::api_key() && isset($email)): ?>
@@ -145,6 +146,18 @@
 					 ?>
 				</div>	
 			</div>
+
+			<div class="header-wrapper">
+				<h2>Listings Settings</h2>
+				<div class="ajax_message" id="block_address_messages"></div>
+			</div>
+			<div class="clear"></div>
+			<ul>
+				<li>
+					<input id="block_address" type="checkbox" name="block_address" <?php echo $block_address ? 'checked="checked"' : '' ?>>
+					<label for="block_address">Use <b>Block Addresses</b> rather then exact addresses. Using block addresses will switch over all the addresses in your website to the nearest block, rather then exact address.</label>
+				</li>
+			</ul>
 
 			<div class="header-wrapper">
 				<h2>Other Settings</h2>
