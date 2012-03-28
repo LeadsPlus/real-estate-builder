@@ -59,5 +59,18 @@ class PL_Option_Helper {
 		return $response;
 	}
 
+	public function set_block_address ($block_address = 0) {
+		$response = PL_Options::set('pls_block_address', $block_address);
+		return $response;
+	}
+
+	public function get_block_address () {
+		$response = PL_Options::get('pls_block_address');	
+		if ($response == NULL) {
+			return true;
+		}
+		return $response;
+	}
+
 //end of class
 }

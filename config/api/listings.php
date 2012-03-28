@@ -339,7 +339,7 @@ $PL_API_LISTINGS = array(
                 'desc' => array('type' => 'checkbox', 'group' => 'advanced', 'label' => 'Has Description'),
                 'ngb_shop' => array(),
                 'ngb_hgwy' => array(),
-                '	' => array('type' => 'checkbox', 'group' => 'amenities', 'label' => 'Garnite Countertops'),
+                'grnt_tops' => array('type' => 'checkbox', 'group' => 'amenities', 'label' => 'Granite Countertops'),
                 'ngb_med' => array(),
                 'ngb_trails' => array(),
                 'cent_ht' => array('type' => 'checkbox', 'group' => 'amenities', 'label' => 'Central Heat'),

@@ -23,6 +23,13 @@ class PL_Listing_Helper {
 		$global_filters = PL_Helper_User::get_global_filters();
 		$args = wp_parse_args($global_filters['filters'], $args);
 
+		//respect block address setting
+		if (PL_Option_Helper::get_block_address()) {
+			$args['address_mode'] = 'exact';
+		} else {
+			$args['address_mode'] = 'polygon';
+		}
+
 		$listings = PL_Listing::get($args);	
 		foreach ($listings['listings'] as $key => $listing) {
 			$listings['listings'][$key]['cur_data']['url'] = PL_Page_Helper::get_url($listing['id']);
@@ -49,7 +56,14 @@ class PL_Listing_Helper {
 	}
 
 	public function details($args = array()) {
-		$args['address_mode'] = 'exact';
+		
+		//respect block address setting
+		if (PL_Option_Helper::get_block_address()) {
+			$args['address_mode'] = 'exact';
+		} else {
+			$args['address_mode'] = 'polygon';
+		}
+
 		$listing = PL_Listing::details($args);
 		//rename cur_data to metadata due to api weirdness;
 		$listing['metadata'] = $listing['cur_data'];
