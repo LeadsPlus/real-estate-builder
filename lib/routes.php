@@ -75,7 +75,11 @@ class PL_Router {
 	}
 
 	public function theme_gallery() {
-		self:: router('theme-gallery.php', array('test'=>'donkey'), false);
+		if (isset($_GET['theme_url'])) {
+			self:: router('install-theme.php', array('test'=>'donkey'), false);	
+		} else {
+			self:: router('theme-gallery.php', array('test'=>'donkey'), false);	
+		}
 	}
 
 	public function settings() {

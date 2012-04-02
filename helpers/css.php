@@ -35,6 +35,10 @@ class PL_Css_Helper {
 		if ($hook == 'placester_page_placester_support') {
 			self::register_enqueue_if_not('support', trailingslashit(PL_CSS_ADMIN_URL) .  'support.css');			
 		}
+
+		if ($hook == 'placester_page_placester_theme_gallery') {
+			self::register_enqueue_if_not('support', trailingslashit(PL_CSS_ADMIN_URL) .  'theme-gallery.css');			
+		}
 	}
 
 	private function register_enqueue_if_not($name, $path, $dependencies = array()) {

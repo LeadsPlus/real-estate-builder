@@ -40,7 +40,7 @@
       }
       ?>
       <div class='clear'></div>
-      <div id="icon-options-general" class="icon32 placester_icon"><br /></div>
+      <!-- <div id="icon-options-general" class="icon32 placester_icon"><br /></div> -->
       <h2 id="placester-admin-menu">
         <?php
         $current_title = '';
