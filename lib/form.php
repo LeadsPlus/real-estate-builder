@@ -176,6 +176,11 @@ class PL_Form {
 				$value = isset($_POST[$item]) ? $_POST[$item] : null;	
 			}
 		}
+
+		if (!$value && isset($attributes['bound']) && isset($attributes['bound']['default']) ) {
+			$value = $attributes['bound']['default'];
+		} 
+
 		return array('name' => $name, 'value' => $value, 'text' => $text, 'options' => $options, 'id' => $id, 'type' => $attributes['type'], 'css' => $css);
 	}
 
