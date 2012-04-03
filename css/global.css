@@ -15,6 +15,13 @@
 .header-wrapper h2 {
 	float: left;
 }
+#MLS_Integrations {
+	margin-left: 10px;
+	color: red;
+	border-color: red red white;
+}
+
+
 
 /*ajax maessages*/
 .ajax_message {
@@ -38,4 +45,104 @@ h3.hndle {
 	font-family: Georgia,"Times New Roman","Bitstream Charter",Times,serif;
 	font-weight: normal;
 	padding: 7px 10px;
+}
+
+
+/* global modal styling */
+
+/* Cleaning up jqueryUI's styles */
+.ui-widget-header {
+	border: none !important;
+	background: none !important;
+}
+.ui-dialog-content {
+	padding-top: 0px !important;
+}
+.ui-dialog-title h2 {
+	margin: 5px 0 !important;
+}
+.ui-widget-overlay {
+	opacity: 0.1 !important;
+	-moz-opacity: 0.1 !important;
+	filter:alpha(opacity=0.1);
+}
+/*    end     */
+
+/* Plugin specific styles */
+.ui-dialog .ui-dialog-titlebar h3 {
+	font-size: 22px;
+	font-family: Georgia,"Times New Roman","Bitstream Charter",Times,serif;
+	font-weight: normal;
+	padding: 0px 0px;
+	margin: 10px 0;
+}
+.ui-dialog .ui-dialog-content p.message {
+	background-color: #FFFBCC;
+	border:1px solid #E6DB55;
+	color: #555;
+	line-height: 19px;
+	padding: 5px 0;
+	text-align: center;
+	font-size: 12px;
+	margin: 3px 0px;
+}
+.ui-dialog .ui-dialog-content p {
+	line-height: 17px;
+	font-size: 13px;
+	margin: 15px 0px;
+}
+
+.ui-dialog .ui-dialog-content a {
+	text-decoration: none;
+	color: #21759B;
+}
+.ui-dialog .ui-dialog-content a:hover {
+	color: #D54E21;
+}
+.ui-dialog .ui-dialog-content p.large_green_button {
+	text-align: center;
+	font-weight: 600;
+	color: white;
+	text-decoration: none;
+	padding: 10px 20px;
+	background: #86B229;
+	background: -moz-linear-gradient(top, #A0CC42 0%, #86B229 50%, #6E9910);
+	background: -webkit-gradient(linear, left top, left bottom, from(#A0CC42), color-stop(0.5, #86B229), to(#6E9910));
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border: 1px solid #6F961C;
+	text-shadow: 0px 2px 1px rgba(0, 0, 0, 0.4), 0px 1px 0px rgba(255, 255, 255, 0.3);
+}
+.ui-dialog .ui-dialog-content .red {
+	color: red;
+	font-weight: bold;
+}
+.ui-dialog .ui-dialog-content .green {
+	color: green;
+	font-weight: bold;
+}
+
+.ui-dialog .ui-dialog-buttonpane button {
+	padding: 10px 20px;
+	float: left;
+}
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+	width: 100%;
+}
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset button:last-child {
+	float: right;
+	text-align: center;
+	min-width: 150px;
+	color: white;
+	text-decoration: none;
+	padding: 10px 20px;
+	background: #86B229;
+	background: -moz-linear-gradient(top, #A0CC42 0%, #86B229 50%, #6E9910);
+	background: -webkit-gradient(linear, left top, left bottom, from(#A0CC42), color-stop(0.5, #86B229), to(#6E9910));
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border: 1px solid #6F961C;
+	text-shadow: 0px 2px 1px rgba(0, 0, 0, 0.4), 0px 1px 0px rgba(255, 255, 255, 0.3);
 }
