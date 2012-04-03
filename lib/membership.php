@@ -581,7 +581,9 @@ class PL_Membership {
             'container_class' => false,
             'anchor_tag' => false,
             'anchor_class' => false,
-            'separator' => ' | '
+            'separator' => ' | ',
+            'inside_pre_tag' => false,
+            'inside_post_tag' => false
         );
         $args = wp_parse_args( $args, $defaults );
         extract( $args, EXTR_SKIP );
@@ -595,20 +597,20 @@ class PL_Membership {
             $loginout_link = '<a href="' . esc_url( wp_logout_url($_SERVER['REQUEST_URI']) ) . '" id="pl_logout_link">Log out</a>';
         }
         if ($anchor_tag) {
-            $loginout_link = "<{$anchor_tag} class={$anchor_class}>" . $loginout_link . "</{$anchor_tag}>";
+            $loginout_link = "<{$anchor_tag} class={$anchor_class}>" . $inside_pre_tag . $loginout_link . $inside_post_tag . "</{$anchor_tag}>";
         }    
 
 
         /** The register link. */
         $register_link = '<a class="pl_register_lead_link" href="#pl_lead_register_form">Register</a>';
         if ($anchor_tag) {
-            $register_link = "<{$anchor_tag} class={$anchor_class}>" . $register_link . "</{$anchor_tag}>";
+            $register_link = "<{$anchor_tag} class={$anchor_class}>" . $inside_pre_tag . $register_link . $inside_post_tag . "</{$anchor_tag}>";
         }
 
         /** The profile link. */
         $profile_link = '<a id="pl_lead_profile_link" target="_blank" href="' . self::get_client_area_url() . '">My Account</a>';
         if ($anchor_tag) {
-            $profile_link = "<{$anchor_tag} class={$anchor_class}>" . $profile_link . "</{$anchor_tag}>";
+            $profile_link = "<{$anchor_tag} class={$anchor_class}>" . $inside_pre_tag . $profile_link . $inside_post_tag . "</{$anchor_tag}>";
         }
         // var_dump($profile_link);
 
