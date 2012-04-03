@@ -57,6 +57,9 @@ define( 'PL_JS_PUB_URL', trailingslashit(PL_JS_URL) . 'public/' );
 define( 'PL_CSS_DIR', trailingslashit(PL_PARENT_DIR) . 'css/' );
 define( 'PL_CSS_URL', trailingslashit(PL_PARENT_URL) . 'css/' );
 
+define( 'PL_IMG_DIR', trailingslashit(PL_PARENT_DIR) . 'images/' );
+define( 'PL_IMG_URL', trailingslashit(PL_PARENT_URL) . 'images/' );
+
 define( 'PL_CSS_ADMIN_DIR', trailingslashit(PL_CSS_DIR) . 'admin/' );
 define( 'PL_CSS_ADMIN_URL', trailingslashit(PL_CSS_URL) . 'admin/' );
 

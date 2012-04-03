@@ -37,15 +37,6 @@ $(document).ready(function($) {
 					
 				} else {
 					window.location.href = "/wp-admin/admin.php?page=placester_theme_gallery&theme_url=" + data.url;
-
-					// $( "#install_theme_overlay" ).dialog({title: "<h2>Allowed</h2>"});
-					// $( "#install_theme_overlay" ).dialog('open');
-					
-
-					// $.post(ajaxurl, {action: 'install_theme', theme_url: data.url }, function(data, textStatus, xhr) {
-					//   console.log(data);
-					//   $('#theme_install_message').html(data);
-					// });
 				};
 		    }
 		});

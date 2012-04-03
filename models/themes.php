@@ -13,7 +13,13 @@ class PL_Themes {
 		}
 			
 		include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
-		// require_once(ABSPATH . 'wp-admin/admin-header.php');
+
+		
+		// $title = sprintf( __('Installing Theme: %s'), $api->name . ' ' . $api->version );
+		// $nonce = 'install-theme_' . $theme;
+		// $url = 'update.php?action=install-theme&theme=' . $theme;
+		// $type = 'web'; //Install theme type, From Web or an Upload.
+		
 		$upgrader = new Theme_Upgrader( new Theme_Installer_Skin( compact('title', 'url', 'nonce', 'plugin', 'api') ) );
 		$upgrader->install($_POST['theme_url']);
 		include(ABSPATH . 'wp-admin/admin-footer.php');

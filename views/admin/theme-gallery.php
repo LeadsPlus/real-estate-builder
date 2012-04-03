@@ -18,18 +18,20 @@
 		<tbody id="the-list" class="list:themes">
 			<tr>
 				<?php foreach (json_decode($response['body'], true) as $key => $theme): ?>
+					<?php //pls_dump($theme['price']) ?>
 					<td class="available-theme top left">
-						<a href="<?php echo $theme['demo_link'] ?>" class="thickbox thickbox-preview screenshot">
+						<?php if (isset($theme['price']) && is_array($theme['price']) && $theme['price'][0] == 'Premium'): ?>
+							<img class="premium-ribbon" src="<?php echo PL_IMG_URL ?>themes/premium-ribbon.png" alt="">
+						<?php endif ?>
+						<a target="_blank" href="<?php echo $theme['demo_link'][0] ?>" class="">
 							<?php echo $theme['thumbnail'] ?>
 						</a>
 						<h3><?php echo $theme['title'] ?> <a href="https://www.placester.com" title="Visit author homepage">The Placester Team</a></h3>
 						<p class="description"><?php echo $theme['excerpt'] ?></p>
 						<span class="action-links">
-							<a id="install_theme" href="<?php echo implode($theme['download_link'],'') ?>" class="" title="">Install</a>
-							|
-							<a href="themes.php?action=activate&amp;template=chapman&amp;stylesheet=chapman&amp;_wpnonce=b9a7560b6c" class="activatelink" title="Activate “Arthur Chapman Real Estate”">Activate</a>
+							<a id="install_theme" target="_blank" href="<?php echo implode($theme['download_link'],'') ?>" class="" title="">Install</a>
 							| 
-							<a href="http://foundation.wpmulti.com/?preview=1&amp;template=chapman&amp;stylesheet=chapman&amp;preview_iframe=1&amp;TB_iframe=true&amp;width=640&amp;height=328" class="thickbox thickbox-preview" title="Preview “Arthur Chapman Real Estate”">Preview</a>
+							<a href="<?php echo $theme['demo_link'][0] ?>" target="_blank" title="Demo">Live Demo</a>
 						</span>
 						<!-- <p>Tags: blue, red, green, right-sidebar, fixed-width, custom-menu</p> -->
 					</td>

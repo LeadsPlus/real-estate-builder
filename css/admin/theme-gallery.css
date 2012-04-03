@@ -4,3 +4,8 @@
 .theme-search-header {
 	float: left
 }
+.premium-ribbon {
+	width: auto !important;
+	position: absolute;
+	margin: 10px 0 0 150px;
+}
