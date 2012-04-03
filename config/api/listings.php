@@ -683,7 +683,7 @@ $PL_API_LISTINGS = array(
 					'bound' => array(
 						'class' => 'PL_Listing_Helper',
 						'method' => 'supported_countries',
-						'default' => 'US'
+						'default' => array('PL_Listing_Helper','convert_default_country')
 					)
 				 )
 			),

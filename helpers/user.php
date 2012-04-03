@@ -13,6 +13,7 @@ class PL_Helper_User {
 		add_action('wp_ajax_user_save_global_filters', array(__CLASS__, 'set_global_filters' ) );
 		add_action('wp_ajax_ajax_log_errors', array(__CLASS__, 'ajax_log_errors' ) );
 		add_action('wp_ajax_ajax_block_address', array(__CLASS__, 'ajax_block_address' ) );
+		add_action('wp_ajax_ajax_default_address', array(__CLASS__, 'set_default_country' ) );
 	}
 
 	public static function set_admin_email (){
@@ -119,5 +120,28 @@ class PL_Helper_User {
 			echo json_encode( array('result' => false, 'message' => 'There was an error. Please try again.') );
 		}
 		die();
+	}
+
+	public function set_default_country () {
+		if (isset($_POST['country'])) {
+			$response = PL_Option_Helper::set_default_country($_POST['country']);
+			if ($response) {
+				echo json_encode(array('result' => true, 'message' => 'You successfully saved the default country'));
+			} else {
+				echo json_encode(array('result' => true, 'message' => 'Thats already your default country'));
+			}
+		} else {
+			echo json_encode( array('result' => false, 'message' => 'There was an error. Country was not provided') );
+		}
+		die();
+	}
+
+	public function get_default_country () {
+		$response = PL_Option_Helper::get_default_country();
+		if (empty($response)) {
+			return array('default_country' => 'US');
+		} 
+		return array('default_country' => $response);
+		
 	}
 }	

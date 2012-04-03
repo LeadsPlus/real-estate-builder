@@ -82,3 +82,10 @@
 	border-color: #E6DB55;
 	padding: 10px;
 }
+
+
+.set_default_country {
+	float: left;
+	width: 150px;
+	margin-top: 12px;
+}

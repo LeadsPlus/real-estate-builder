@@ -178,7 +178,12 @@ class PL_Form {
 		}
 
 		if (!$value && isset($attributes['bound']) && isset($attributes['bound']['default']) ) {
-			$value = $attributes['bound']['default'];
+			if (is_array($attributes['bound']['default'])) {
+				$value = call_user_func($attributes['bound']['default']);
+			} else {
+				$value = $attributes['bound']['default'];	
+			}
+			
 		} 
 
 		return array('name' => $name, 'value' => $value, 'text' => $text, 'options' => $options, 'id' => $id, 'type' => $attributes['type'], 'css' => $css);

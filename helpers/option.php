@@ -72,5 +72,14 @@ class PL_Option_Helper {
 		return $response;
 	}
 
+	public function set_default_country ($default_country) {
+		return PL_Options::set('pls_default_country', $default_country);
+	}
+
+	public function get_default_country () {
+		$response = PL_Options::get('pls_default_country');	
+		return $response;
+	}
+
 //end of class
 }
