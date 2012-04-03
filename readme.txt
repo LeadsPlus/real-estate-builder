@@ -12,6 +12,7 @@ Easily create and manage real estate sites powered by WordPress.
 From the creators of http://placester.com: Create your fully functional real estate website with a single plugin. Some of the features include: 
 
 * RETS integrations available, continuously updated with you MLS.
+* Full international listing support (240+ countries!)
 * Create / edit / update / search listings.
 * Set listings as "Featured" to highlight them in your sidebar throughout your site.
 * Every listing automatically has a unique landing page created - great for SEO.
