@@ -7,13 +7,14 @@ $(document).ready(function($) {
 		    type: 'GET',
 		    dataType: 'jsonp',
 		    success: function(data) {
+		    	console.log(data);
 	        	$( "#install_theme_overlay" ).dialog({
 					autoOpen: false,
 					draggable: false,
 					modal: true,
 					width: 700,
 				});
-				if (data && data.type == 'register') {
+				if (data && data.type == 'subscribe') {
 					$( "#install_theme_overlay" ).dialog({title: "<h3>Start your free trial and start the download</h3>"});
 					$( "#install_theme_overlay" ).dialog('open');
 				} else {

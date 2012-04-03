@@ -1,3 +1,8 @@
+/* */
+.left {
+	float: left;
+}
+
 /*headers on specific pages*/
 .header-wrapper {
 	float: left;
