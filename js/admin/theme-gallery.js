@@ -15,7 +15,7 @@ $(document).ready(function($) {
 					width: 700,
 				});
 				if (data && data.type == 'subscribe') {
-					$( "#install_theme_overlay" ).dialog({title: "<h3>Start your free trial and start the download</h3>"});
+					$( "#install_theme_overlay" ).dialog({title: "<h3>Start your 30 day free trial and begin the download</h3>"});
 					$( "#install_theme_overlay" ).dialog('open');
 				} else {
 					window.location.href = "/wp-admin/admin.php?page=placester_theme_gallery&theme_url=" + data.url;
