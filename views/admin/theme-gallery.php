@@ -43,8 +43,13 @@
 
 <div style="display:none">
 	<div id="install_theme_overlay">
-		<h1>Oh really?</h1>
-		<div id="theme_install_message"></div>
+		<p class="message">Already a ProTools Premium member? <a href="">Sign in</a></p>
+		<p><span id="theme_name">This theme</span> is only available to <a href="">ProTools Premium</a> members. Signing up for ProTools Premium gives you unlimited access to our theme gallery, an MLS Integration of your choice, and the option of hosting up to 5 websites with Placester. We offer a 30 day free trial. Get started now.</p>
+		<a href="https://placester.com/user/register/premium/">
+			<p class="large_green_button" id="for_themes">
+				See Plans & Pricing
+			</p>
+		</a>	
 	</div>
 </div>
 

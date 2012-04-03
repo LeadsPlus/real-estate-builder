@@ -2,16 +2,16 @@ $(document).ready(function($) {
 
 	var main_buttons = {
 		1 : {
+			text: "Close Setup Wizard",
+			click: function() {
+				 $( this ).dialog( "close" );
+			}
+		},
+		2 : {
 			text: "Use Existing Placester API Key",
 			classes: "left",
 			click: function() {
 				 existing_api_key();
-			}
-		},
-		2 : {
-			text: "Close Setup Wizard",
-			click: function() {
-				 $( this ).dialog( "close" );
 			}
 		},
 		3 : {
@@ -25,16 +25,16 @@ $(document).ready(function($) {
 
 	var existing_api_key_buttons = {
 		1 : {
+			text: "Close Setup Wizard",
+			click: function() {
+				 $( this ).dialog( "close" );
+			}
+		},
+		2 : {
 			text: "Use a new Email address",
 			classes: "left",
 			click: function() {
 				 new_api_key();
-			}
-		},
-		2 : {
-			text: "Close Setup Wizard",
-			click: function() {
-				 $( this ).dialog( "close" );
 			}
 		},
 		3 : {
@@ -52,7 +52,7 @@ $(document).ready(function($) {
 			if (result) {
 				$('#signup_wizard').html(result);
 				$('#existing_placester_dialog').show();
-				$('#signup_wizard').dialog('option', 'title', '	<h2>Use an Existing Placester API Key</h2>');
+				$('#signup_wizard').dialog('option', 'title', '	<h3>Use an Existing Placester API Key</h3>');
 				$('#signup_wizard').dialog('option', 'buttons', existing_api_key_buttons);
 			};
 		});
@@ -64,7 +64,7 @@ $(document).ready(function($) {
 			if (result) {
 				$('#signup_wizard').html(result);
 				$('#signup_wizard').show();
-				$('#signup_wizard').dialog('option', 'title', '	<h2>Welcome to the RE Website Builder Set Up Wizard</h2>');
+				$('#signup_wizard').dialog('option', 'title', '	<h3>Welcome to the RE Website Builder Set Up Wizard</h3>');
 				$('#signup_wizard').dialog('option', 'buttons', main_buttons);
 			};
 		});
@@ -74,7 +74,7 @@ $(document).ready(function($) {
 		autoOpen: true,
 		draggable: false,
 		modal: true,
-		title: '<h2>Welcome to the RE Website Builder Set Up Wizard</h2>',
+		title: '<h3>Welcome to the RE Website Builder Set Up Wizard</h3>',
 		width: 700,
 		buttons: main_buttons
 	});

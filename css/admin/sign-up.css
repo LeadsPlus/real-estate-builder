@@ -1,34 +1,30 @@
-/* Cleaning up jqueryUI's styles */
-.ui-widget-header {
-	border: none !important;
-	background: none !important;
+.ui-dialog-content div#confirm_email section#email {
+	float:left;
 }
-.ui-dialog-content {
-	padding-top: 0px !important;
-}
-.ui-dialog-title h2 {
-	margin: 5px 0 !important;
-}
-.ui-widget-overlay {
-	opacity: 0.1 !important;
-	-moz-opacity: 0.1 !important;
-	filter:alpha(opacity=0.1);
-}
-/*    end     */
-
-.left {
+.ui-dialog-content div#confirm_email label {
 	float: left;
-}
-p.wizard-explination {
-	font-size: 10px;
-}
-.ui-dialog-content .steps li {
-	float: left;
-	margin-right: 15px; 
-}
-.right-arrow {
-	margin-left: 10px; 	
-}
-.active {
 	font-weight: bold;
+	vertical-align: middle;
+	margin: 8px 10px 0px 0px;
+	font-size: 16px;
 }
+.ui-dialog-content div#confirm_email input {
+	width: 450px;
+	font-size: 20px;
+}
+
+.ui-dialog-content div#api_key_form {
+	float:left;
+}
+.ui-dialog-content div#api_key_form label {
+	float: left;
+	font-weight: bold;
+	vertical-align: middle;
+	margin: 8px 10px 0px 0px;
+	font-size: 16px;
+}
+.ui-dialog-content div#api_key_form input {
+	width: 450px;
+	font-size: 20px;
+}
+
