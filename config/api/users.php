@@ -62,6 +62,7 @@ $PL_API_USERS = array(
 			'about' => array(),
 			'slogan' => array(),
 			'has_group' => array(),
+			'source' => 'wordpress',
 			'password'  => array('label' => 'Password','type' => 'password'),
 			'password_confirmation'  => array('label' => 'Confirm Password','type' => 'confirm_password'),
 			'location' => array(
