@@ -87,6 +87,9 @@ class PL_Listing_Helper {
 			if ($listing['listing_types'][0] == 'sublet')  {
 				$listing['compound_type'] = 'sublet';
 			}
+			if (!empty($listing['purchase_types']) && $listing['purchase_types'][0] == 'rental' && $listing['listing_types'][0] == 'vacation') {
+				$listing['compound_type'] = 'vac_rental';
+			}
 		}
 
 		return $listing;
@@ -168,7 +171,7 @@ class PL_Listing_Helper {
 		}
 		$api_response = PL_Listing::update($_POST);
 		echo json_encode($api_response);
-		if ($api_response['id']) {
+		if (isset($api_response['id'])) {
 			PL_HTTP::clear_cache();
 		}
 		die();
