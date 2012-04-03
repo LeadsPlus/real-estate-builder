@@ -57,7 +57,9 @@
                 $current_title = $title;
             }
 
-            $v .= "<a href='admin.php?page=$slug' style='font-size: 15px' class='nav-tab $style'>$title</a>";
+            $id = str_replace(' ', '_', $title);
+
+            $v .= "<a href='admin.php?page=$slug' style='font-size: 15px' class='nav-tab $style' id='$id'>$title</a>";
         }
 
         echo $current_title;

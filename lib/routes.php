@@ -90,5 +90,9 @@ class PL_Router {
 		self:: router('support.php', array(), false);
 	}
 
+	public function integrations() {
+		self:: router('integrations.php', array(), false);
+	}
+
 //end of class
 }

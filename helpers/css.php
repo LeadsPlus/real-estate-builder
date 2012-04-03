@@ -10,7 +10,7 @@ class PL_Css_Helper {
 	}
 
 	function admin ($hook) {
-		$pages = array('placester_page_placester_properties', 'placester_page_placester_property_add', 'placester_page_placester_settings', 'placester_page_placester_support', 'placester_page_placester_theme_gallery');
+		$pages = array('placester_page_placester_properties', 'placester_page_placester_property_add', 'placester_page_placester_settings', 'placester_page_placester_support', 'placester_page_placester_theme_gallery', 'placester_page_placester_integrations');
 
 		if (!in_array($hook, $pages)) { return; }
 

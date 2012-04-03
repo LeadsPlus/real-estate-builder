@@ -130,4 +130,5 @@ function placester_admin_menu() {
     }
     add_submenu_page( 'placester', '', 'Settings', 'edit_pages', 'placester_settings', array('PL_Router','settings') );    
     add_submenu_page( 'placester', '', 'Support', 'edit_pages', 'placester_support', array('PL_Router','support') );    
+    add_submenu_page( 'placester', '', 'MLS Integrations', 'edit_pages', 'placester_integrations', array('PL_Router','integrations') );    
 }
