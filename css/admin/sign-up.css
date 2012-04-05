@@ -12,7 +12,9 @@
 	width: 450px;
 	font-size: 20px;
 }
-
+.ui-dialog-content div#confirm_email section.pls_search_form.email {
+	width: auto !important;
+}
 .ui-dialog-content div#api_key_form {
 	float:left;
 }
