@@ -430,7 +430,10 @@ $PL_API_LISTINGS = array(
 			),
 			'images' => false,
 			'tracker_url' => false,
-			'rets' => array()
+			'rets' => array(
+				'aname' => false,
+				'oname' => false
+			)
 		)
 	),
 	'details' => array(
