@@ -1,4 +1,4 @@
-jQuery(document).ready(function() {
+jQuery(document).ready(function($) {
 
     // Don't ajaxify the add to favorites link for guests
     $('#pl_add_favorite:not(.guest)').live('click', function(e) {
