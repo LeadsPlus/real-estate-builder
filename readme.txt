@@ -140,6 +140,9 @@ In general - real-time. But if you use 3rd party property management services, t
 
 == Changelog ==
 
+= 1.0.3 =
+* Updated listing return spec to account for id
+
 = 1.0.2 =
 * Added theme gallery for 1 click theme installation 
 * Added full international support with default country
