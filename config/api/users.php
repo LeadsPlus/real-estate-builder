@@ -31,7 +31,8 @@ $PL_API_USERS = array(
 				'website' => false,
 				'first_logo' => false,
 				'second_logo' => false,
-				'disclaimer_on' => array()
+				'disclaimer_on' => array(),
+				'last_import' => false
 			),
 			'user' => array(
 				'id' => false,
