@@ -378,6 +378,7 @@ $PL_API_LISTINGS = array(
 			'sort_type' => array()// => array('type' => 'select','options' => array('asc' => 'Ascending','desc' =>'Decending'))
 		),
 		'returns' => array(
+			'id' => false,
 			'property_type' => false,
 			'zoning_types' => false,
 			'purchase_types' => false,
@@ -443,6 +444,7 @@ $PL_API_LISTINGS = array(
 		),
 		'args' => array(),
 		'returns' => array(
+			'id' => false,
 			'property_type' => false,
 			'zoning_types' => false,
 			'purchase_types' => false,
