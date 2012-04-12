@@ -142,6 +142,7 @@ In general - real-time. But if you use 3rd party property management services, t
 
 = 1.0.3 =
 * Updated listing return spec to account for id
+* Correct date formatting in listings index
 
 = 1.0.2 =
 * Added theme gallery for 1 click theme installation 
