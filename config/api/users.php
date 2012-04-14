@@ -76,5 +76,17 @@ $PL_API_USERS = array(
 		),
 		'returns' => array(
 		)
+	),
+	'subscriptions' => array(
+		'request' => array(
+			'url' => 'http://api.placester.com/v2/subscriptions',
+			'type' => 'GET'
+		),
+		'args' => array(),
+		'returns' => array(
+			'next_charge_at' => false,
+			'price' => false,
+			'plan' => false
+		)
 	)
 );

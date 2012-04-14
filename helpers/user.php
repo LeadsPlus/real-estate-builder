@@ -14,10 +14,16 @@ class PL_Helper_User {
 		add_action('wp_ajax_ajax_log_errors', array(__CLASS__, 'ajax_log_errors' ) );
 		add_action('wp_ajax_ajax_block_address', array(__CLASS__, 'ajax_block_address' ) );
 		add_action('wp_ajax_ajax_default_address', array(__CLASS__, 'set_default_country' ) );
+		add_action('wp_ajax_subscriptions', array(__CLASS__, 'ajax_subscriptions' ) );
 	}
 
 	public static function set_admin_email (){
 		$_POST['email'] = get_option('admin_email');
+	}
+
+	public static function ajax_subscriptions() {
+		echo json_encode(PL_User::subscriptions());
+		die();
 	}
 
 	public static function whoami($args = array()) {
