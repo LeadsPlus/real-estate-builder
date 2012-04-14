@@ -86,7 +86,8 @@ $PL_API_USERS = array(
 		'returns' => array(
 			'next_charge_at' => false,
 			'price' => false,
-			'plan' => false
+			'plan' => false,
+			'eligible_for_trial' => false
 		)
 	)
 );
