@@ -23,9 +23,20 @@
 	padding: 10px 15px;
 	margin: 10px 76px 0 0;
 }
+.rets_form form #message.error {
+	margin-right: 20px;
+}
+.rets_form form #message.error ul li {
+	margin-left: 15px;
+	list-style-type: disc;
+}
+
 
 h3.get_started {
 	margin-top: 30px;
+}
+#rets_form_message {
+	margin: 10px inherit;
 }
 
 .help_prompt {

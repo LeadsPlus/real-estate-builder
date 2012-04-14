@@ -107,6 +107,7 @@ include_once('helpers/pages.php');
 include_once('helpers/people.php');
 include_once('helpers/logging.php');
 include_once('helpers/compliance.php');
+include_once('helpers/integrations.php');
 
 
 register_activation_hook( __FILE__, 'placester_activate' );

@@ -10,8 +10,9 @@ class PL_Integration {
 	}
 
 	public function create($args = array()) {
-		$request = PL_Validate::request($args, PL_Config::PL_API_INTEGRATION('setup', 'args') );
-		$response = PL_HTTP::send_request(PL_Config::PL_API_INTEGRATION('setup', 'request', 'url'), $request, PL_Config::PL_API_INTEGRATION('setup', 'request', 'type'));
+		$request = PL_Validate::request($args, PL_Config::PL_API_INTEGRATION('create', 'args') );
+		$request = array_merge($request, array("api_key" => PL_Option_Helper::api_key() ) );
+		$response = PL_HTTP::send_request(PL_Config::PL_API_INTEGRATION('create', 'request', 'url'), $request, PL_Config::PL_API_INTEGRATION('create', 'request', 'type'));
 		return $response;
 	}
 }
