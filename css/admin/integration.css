@@ -1,0 +1,47 @@
+.rets_form {
+	float: left;
+}
+.rets_form form {
+	width: 400px
+}
+.rets_form form .pls_search_form {
+	float: left;
+	height: 30px;
+	width: 100%;
+}
+.rets_form form .pls_search_form input {
+	float: right;
+	margin-right: 78px;
+}
+.rets_form form .pls_search_form label {
+	float: left;
+	width: 130px;
+	text-align: right;
+}
+.rets_form form #pls_search_form_submit_button {
+	float: right;
+	padding: 10px 15px;
+	margin: 10px 76px 0 0;
+}
+
+h3.get_started {
+	margin-top: 30px;
+}
+
+.help_prompt {
+	padding: 10px;
+	float: left;
+	border: 1px solid #E6DB55;
+	background-color: lightYellow;
+}
+.help_prompt ul li {
+	margin-left: 15px;
+	list-style-type: disc;
+}
+.help_prompt .real_person h3 {
+	margin: 25px inherit 5px inherit;
+}
+.help_prompt .real_person h4 {
+	margin: 5px inherit;
+	font-weight: normal;
+}

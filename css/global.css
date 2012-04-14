@@ -15,10 +15,11 @@
 .header-wrapper h2 {
 	float: left;
 }
-#MLS_Integrations {
+#MLS_Integration {
 	margin-left: 10px;
-	color: red;
-	border-color: red red white;
+	color: #333;
+	background-color: #FFEBE8;
+	border-color: #C00 #C00 white;
 }
 
 

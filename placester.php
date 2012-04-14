@@ -73,6 +73,7 @@ include_once('config/api/custom_attributes.php');
 include_once('config/api/listings.php');
 include_once('config/api/users.php');
 include_once('config/api/people.php');
+include_once('config/api/integration.php');
 
 //lib
 include_once('lib/config.php');
@@ -91,6 +92,7 @@ include_once('models/options.php');
 include_once('models/user.php');
 include_once('models/people.php');
 include_once('models/themes.php');
+include_once('models/integration.php');
 
 //helpers
 include_once('helpers/listing.php');
@@ -130,5 +132,5 @@ function placester_admin_menu() {
     }
     add_submenu_page( 'placester', '', 'Settings', 'edit_pages', 'placester_settings', array('PL_Router','settings') );    
     add_submenu_page( 'placester', '', 'Support', 'edit_pages', 'placester_support', array('PL_Router','support') );    
-    // add_submenu_page( 'placester', '', 'MLS Integrations', 'edit_pages', 'placester_integrations', array('PL_Router','integrations') );    
+    add_submenu_page( 'placester', '', 'MLS Integration', 'edit_pages', 'placester_integrations', array('PL_Router','integrations') );    
 }
