@@ -14,7 +14,9 @@ class PL_Helper_User {
 		add_action('wp_ajax_ajax_log_errors', array(__CLASS__, 'ajax_log_errors' ) );
 		add_action('wp_ajax_ajax_block_address', array(__CLASS__, 'ajax_block_address' ) );
 		add_action('wp_ajax_ajax_default_address', array(__CLASS__, 'set_default_country' ) );
+		add_action('wp_ajax_whoami', array(__CLASS__, 'ajax_whoami' ) );
 		add_action('wp_ajax_subscriptions', array(__CLASS__, 'ajax_subscriptions' ) );
+		add_action('wp_ajax_start_subscription_trial', array(__CLASS__, 'start_subscription_trial' ) );
 	}
 
 	public static function set_admin_email (){
@@ -23,6 +25,16 @@ class PL_Helper_User {
 
 	public static function ajax_subscriptions() {
 		echo json_encode(PL_User::subscriptions());
+		die();
+	}
+
+	public static function start_subscription_trial() {
+		echo json_encode(PL_User::start_subscription_trial());
+		die();
+	}
+
+	public static function ajax_whoami() {
+		echo json_encode(PL_User::whoami());
 		die();
 	}
 

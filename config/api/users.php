@@ -89,5 +89,13 @@ $PL_API_USERS = array(
 			'plan' => false,
 			'eligible_for_trial' => false
 		)
+	),
+	'start_subscriptions' => array(
+		'request' => array(
+			'url' => 'http://api.placester.com/v2/subscriptions',
+			'type' => 'POST'
+		),
+		'args' => array(),
+		'returns' => array()
 	)
 );

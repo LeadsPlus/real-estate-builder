@@ -35,9 +35,18 @@
 h3.get_started {
 	margin-top: 30px;
 }
+p.import-message {
+	vertical-align: middle;
+	line-height: 20px;
+}
 #rets_form_message {
 	margin: 10px inherit;
 }
+.large_green_button {
+	width: 300px;
+	margin: 15px auto !important;
+}
+
 
 .help_prompt {
 	padding: 10px;

@@ -3,9 +3,27 @@ jQuery(document).ready(function($) {
 	$('#pls_search_form').live('submit', function(event) {
 		event.preventDefault();
 		$('#rets_form_message').removeClass('red');
-		$('#rets_form_message').html('Checking RETS information...');
 		$('#message.error').remove();
 
+		$('#rets_form_message').html('Checking Account Status...');
+
+		$.post(ajaxurl, {action: 'subscriptions'}, function(data, textStatus, xhr) {
+		  console.log(data);
+		  if (data && data.plan && data.plan == 'pro') {
+		  	console.log('pro yo');
+		  	check_mls_credentials();
+		  } else if (data && data.eligible_for_trial) {
+		  	console.log('prompt free trial');
+		  	prompt_free_trial('Start your 60 day free trial to complete the MLS integration', check_mls_credentials, display_cancel_message);
+		  } else {
+		  	console.log('not eligible');
+		  };
+		},'json');		
+	});
+
+	function check_mls_credentials () {
+		$('#rets_form_message').html('Checking RETS information...');
+		
 		var form_values = {action: 'create_integration'};
 		$.each($(this).serializeArray(), function(i, field) {
     		form_values[field.name] = field.value;
@@ -44,6 +62,11 @@ jQuery(document).ready(function($) {
 			};
 
 		}, 'json');
-		
-	});
+	}
+
+	function display_cancel_message () {
+		$('#rets_form_message').html('');
+		$('#pls_search_form').prepend('<div id="message" class="error"><h3>Sorry, this feature requires a premium subscription</h3><p>However, you can test the MLS integration feature for free by creating a website <a href="https://placester.com" target="_blank">placester.com</a></p></div>');
+	}
+
 });
