@@ -48,6 +48,28 @@ p.import-message {
 }
 
 
+div.c4 {
+	float: left;
+	width: 220px;
+	margin: 0px 10px 15px 0;
+	border-right: 1px solid #DFDFDF;
+}
+div.c4.omega {
+	margin-right: 0px !important;
+	border-right: none;
+}
+div.c4 .large-number {
+	font-size: 40px;
+	font-weight: bold;
+	text-align: center;
+}
+div.c4 .label {
+	width: 100%;
+	text-align: center;
+	font-size: 16px;
+}
+
+
 .help_prompt {
 	padding: 10px;
 	float: left;

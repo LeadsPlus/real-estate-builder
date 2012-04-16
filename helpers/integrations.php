@@ -27,7 +27,8 @@ class PL_Integration_Helper {
 		$integration = PL_Integration::get();
 		$whoami = PL_User::whoami();
 		$listings = PL_Listing::get();
-		return array('integration_status' => array('integration' => $integration, 'whoami' => $whoami, 'listings' => $listings));
+		$locations = PL_Listing::locations();
+		return array('integration_status' => array('integration' => $integration, 'whoami' => $whoami, 'listings' => $listings, 'locations' => $locations));
 	}
 
 //end of class

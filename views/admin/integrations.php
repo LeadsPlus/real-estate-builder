@@ -6,11 +6,31 @@
 			</div>
 		<?php endif ?>
 		<?php if (!empty($integration_status['whoami']['provider']['id'])): ?>
-			<?php pls_dump($integration_status) ?>
 			<div class="header-wrapper">
 				<h2>Your website is linked to <?php echo $integration_status['whoami']['provider']['name'] ?></h2>
-				<p class="import-message">(Last import was <?php echo date_format(date_create($integration_status['whoami']['provider']['last_import']), "jS F, Y g:i A.") ?>)</p>
 			</div>
+			<p class="import-message">(Last import was <?php echo date_format(date_create($integration_status['whoami']['provider']['last_import']), "jS F, Y g:i A.") ?>)</p>
+			<?php echo PL_Router::load_builder_partial('admin-box-top.php', array('title' => 'Listing Stats')); ?>
+				<div>
+					<div class="c4">
+						<p class="large-number"><?php echo number_format($integration_status['listings']['total']); ?></p>
+						<p class="label">Listings</p>
+					</div>
+					<div class="c4">
+						<p class="large-number"><?php echo count($integration_status['locations']['locality']) ?></p>
+						<p class="label">Cities</p>
+					</div>
+					<div class="c4">
+						<p class="large-number"><?php echo count($integration_status['locations']['postal']) ?></p>
+						<p class="label">Zips</p>
+					</div>
+					<div class="c4 omega">
+						<p class="large-number"><?php echo count($integration_status['locations']['region']) ?></p>
+						<p class="label">States</p>
+					</div>
+				</div>
+			<?php echo PL_Router::load_builder_partial('admin-box-bottom.php'); ?>
+			<p>Looking for multiple MLS integrations? Drop us a note at <a mailto="support@placester.com">support@placester.com</a> or give us a ring at (800) 728-8391 and we'll get you set up.</p>
 		<?php endif ?>
 		<?php if (empty($integration_status['integration']['id']) && empty($integration_status['whoami']['provider']['id']) ): ?>
 			<div class="header-wrapper">
@@ -39,5 +59,6 @@
 			</div>
 			<div class="clear"></div>	
 		<?php endif ?>
+		<?php //pls_dump($integration_status['locations']) ?>
 		<?php echo PL_Router::load_builder_partial('free-trial.php'); ?>		
 	</div>
