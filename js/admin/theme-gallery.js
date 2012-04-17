@@ -1,7 +1,9 @@
 $(document).ready(function($) {
+	var that = {};
 	$('#install_theme').live('click', function (event) {
 		event.preventDefault();
 		var link = 'https://placester.com/wordpress/themes/download/' + $(this).attr('href');
+		that['download_link'] = link;
 		$.ajax({
 		    url: link,
 		    type: 'GET',
@@ -23,13 +25,12 @@ $(document).ready(function($) {
 		});
 	});
 	function premium_theme_success () {
-		var link = 'https://placester.com/wordpress/themes/download/' + $(this).attr('href');
+		var link = that.download_link;
 		$.ajax({
 		    url: link,
 		    type: 'GET',
 		    dataType: 'jsonp',
 		    success: function(data) {
-		    	console.log(data);
 	        	$( "#install_theme_overlay" ).dialog({
 					autoOpen: false,
 					draggable: false,
@@ -37,7 +38,7 @@ $(document).ready(function($) {
 					width: 700,
 				});
 				if (data && data.type == 'subscribe') {
-					prompt_free_trial('Start your 60 day free trial and begin the download', check_mls_credentials, display_cancel_message);
+					prompt_free_trial('Start your 60 day free trial and begin the download', premium_theme_success, premium_theme_cancel);
 				} else {
 					window.location.href = "/wp-admin/admin.php?page=placester_theme_gallery&theme_url=" + encodeURIComponent(data.url);
 				};

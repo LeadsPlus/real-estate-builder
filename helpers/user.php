@@ -17,6 +17,7 @@ class PL_Helper_User {
 		add_action('wp_ajax_whoami', array(__CLASS__, 'ajax_whoami' ) );
 		add_action('wp_ajax_subscriptions', array(__CLASS__, 'ajax_subscriptions' ) );
 		add_action('wp_ajax_start_subscription_trial', array(__CLASS__, 'start_subscription_trial' ) );
+		add_action('wp_ajax_update_user', array(__CLASS__, 'ajax_update_user' ) );
 	}
 
 	public static function set_admin_email (){
@@ -57,6 +58,26 @@ class PL_Helper_User {
 		$result = PL_Option_Helper::set_api_key($_POST['api_key']);
 		echo json_encode($result);
 		die();
+	}
+
+	public function ajax_update_user () {
+		$response = array('result' => false, 'message' => 'There was an error. Please try again.');
+		$whoami = self::whoami();
+		$_POST['id'] = $whoami['user']['id'];
+		$_POST['email'] = $whoami['user']['email'];
+		$api_response = self::update_user($_POST);
+		if ($api_response['id']) {
+			$response = array('result' => true, 'message' => 'Account successfully updated.');
+			echo json_encode($response);
+		} elseif ($api_response['validations']) {
+			echo json_encode($api_response);
+		}
+		die();
+	}
+
+	public function update_user ($args = array()) {
+		$response = PL_User::update($args);
+		return $response;
 	}
 
 	public function get_global_filters () {
