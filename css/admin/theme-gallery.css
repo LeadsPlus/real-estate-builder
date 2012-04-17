@@ -14,3 +14,7 @@ p#for_themes {
 	width: 200px;
 	margin: 20px auto;
 }
+p.large_green_button {
+	width: 300px;
+	margin: 15px auto !important;
+}
