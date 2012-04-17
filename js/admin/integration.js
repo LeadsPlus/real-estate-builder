@@ -10,7 +10,6 @@ jQuery(document).ready(function($) {
 		$.post(ajaxurl, {action: 'subscriptions'}, function(data, textStatus, xhr) {
 		  console.log(data);
 		  if (data && data.plan && data.plan == 'pro') {
-		  	console.log('pro yo');
 		  	check_mls_credentials();
 		  } else if (data && data.eligible_for_trial) {
 		  	console.log('prompt free trial');
@@ -25,9 +24,11 @@ jQuery(document).ready(function($) {
 		$('#rets_form_message').html('Checking RETS information...');
 		
 		var form_values = {action: 'create_integration'};
-		$.each($(this).serializeArray(), function(i, field) {
+		$.each($('#pls_search_form').serializeArray(), function(i, field) {
     		form_values[field.name] = field.value;
         });
+
+        console.log(form_values);
 
 		$.post(ajaxurl, form_values, function(data, textStatus, xhr) {
 		  	console.log(data);
