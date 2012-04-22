@@ -81,5 +81,14 @@ class PL_Option_Helper {
 		return $response;
 	}
 
+	public function set_translations ($dictionary) {
+		return PL_Options::set('pls_amenity_dictionary', $dictionary);
+	}
+
+	public function get_translations () {
+		$response = PL_Options::get('pls_amenity_dictionary');	
+		return $response;
+	}
+
 //end of class
 }
