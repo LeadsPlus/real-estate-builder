@@ -20,6 +20,7 @@ $PL_API_CUST_ATTR = array(
 					'4' => 'date',
 					'5' => 'date',
 					'6' => 'checkbox',
+					'7' => 'text'
 				)
 			),
 			'attr_class' => array(
