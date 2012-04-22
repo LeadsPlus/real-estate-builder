@@ -30,11 +30,32 @@
   float: left;
   padding: 5px;
 }
+section.pls_search_form {
+  height: 36px;
+}
+
 .form_group {
   float: left;
   clear: both;
   margin: 10px 0;
 }
+.form_group section.pls_search_form {
+  width: 150px;
+  float: left;
+}
+.form_group section.pls_search_form label {
+  width: 120px;
+  float: left;
+}
+.form_group section.pls_search_form input {
+  width: 150px;
+  float: left;
+}
+.form_group section.pls_search_form input[type="checkbox"] {
+  width: 20px;
+  float: left;
+}
+
 .form_group h3 {
   float: left;
   width: 100px;
@@ -69,9 +90,7 @@ tr.odd, tr.even {
 .address {
   font-weight: bold;
 }
-section.pls_search_form {
-  height: 36px;
-}
+
 
 span#delete_listing_address {
   font-weight: bold;

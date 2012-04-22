@@ -195,7 +195,7 @@ class PL_Form {
 			$form_types = PL_Config::PL_API_CUST_ATTR('get');
 			$form_types = $form_types['args']['attr_type']['options'];
 			$attributes = array('label' => $option['name'], 'type' => $form_types[$option['attr_type']]);
-			$custom_items[$option['cat']][] = self::item($option['id'], $attributes, $method, 'metadata');
+			$custom_items[$option['cat']][] = self::item($option['key'], $attributes, $method, 'metadata');
 		}
 		return $custom_items;
 	}
