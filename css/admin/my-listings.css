@@ -20,11 +20,34 @@
     text-shadow: rgba(255, 255, 255, 1) 0 1px 0
 }
 
-.pls_search_form.address_search {
-  /*width: 310px;*/
+
+/* Search Filter Filters*/
+.form_group#Show_Filters .pls_search_form.address_search {
+  width: 400px;
   float: right !important;
   font-size: 18px;
 }
+.form_group#Show_Filters .pls_search_form.address_search label {
+  float: none;
+  width: auto !important;
+}
+.form_group#Show_Filters .pls_search_form.address_search input {
+  float: none;
+  width: auto !important;
+}
+.form_group#Show_Filters section.pls_search_form {
+  width: 120px;
+  float: left;
+}
+.form_group#Show_Filters section.pls_search_form label {
+  width: 95px;
+  float: left;
+}
+.form_group#Show_Filters section.pls_search_form input[type="checkbox"] {
+  width: 20px;
+  float: left;
+}
+/*Search filter filters*/
 
 .wrapper .pls_search_form {
   float: left;
@@ -33,21 +56,20 @@
 section.pls_search_form {
   height: 36px;
 }
-
 .form_group {
   float: left;
   clear: both;
   margin: 10px 0;
 }
 .form_group section.pls_search_form {
-  width: 150px;
+  width: 200px;
   float: left;
 }
 .form_group section.pls_search_form label {
-  width: 120px;
+  width: 170px;
   float: left;
 }
-.form_group section.pls_search_form input {
+.form_group section.pls_search_form input, .form_group section.pls_search_form select {
   width: 150px;
   float: left;
 }

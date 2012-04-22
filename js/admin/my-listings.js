@@ -32,11 +32,11 @@ $(document).ready(function($) {
                     if (value === 'true') {
                         $('#pls_admin_my_listings section#' + index).slideDown();
                     } else {
-                        $('#pls_admin_my_listings section#' + index).slideUp();
+                        $('#pls_admin_my_listings section#' + index).hide();
                     }
                 });
             } else {
-                $('#pls_admin_my_listings .form_group').slideUp();
+                $('#pls_admin_my_listings .form_group').hide();
             };
         }, "json");
     }    
