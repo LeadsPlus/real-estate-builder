@@ -224,12 +224,14 @@ class PL_Listing_Helper {
 	}
 
 	public function locations_for_options($return_only) {
-		$options = array('false' => 'Any');
+		$options = array();
 		$response = PL_Listing::locations();
 		if ($return_only && isset($response[$return_only])) {
 			foreach ($response[$return_only] as $key => $value) {
 				$options[$value] = $value;
 			}
+			ksort($options);
+			$options = array_merge(array('false' => 'Any'), $options);
 			return $options;	
 		} else {
 			return array();	
