@@ -379,9 +379,9 @@ $PL_API_LISTINGS = array(
 		),
 		'returns' => array(
 			'id' => false,
-			'property_type' => false,
-			'zoning_types' => false,
-			'purchase_types' => false,
+			'property_type' => array(),
+			'zoning_types' => array(),
+			'purchase_types' => array(),
 			'listing_types' => false,
 			'building_id' => false,
 			'cur_data' => array(
