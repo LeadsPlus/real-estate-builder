@@ -3,7 +3,7 @@ Contributors: Placester, Matt Barba
 Tags: real estate, realestate, home, housing, rentals, properties, neighborhood, map, mortgage, listing, listings, craigslist, rental, google map, mls, idx, rets, agent, broker, leasing, realty, realtor, placester, widget, buddypress
 Requires at least: 2.8
 Tested up to: 3.2.1
-Stable tag: 1.0.2
+Stable tag: 1.0.4
 
 Easily create and manage real estate sites powered by WordPress.
 
@@ -139,6 +139,13 @@ Absolutely, [reach out](mailto:support@placester.com) to us and let us know what
 In general - real-time. But if you use 3rd party property management services, the updates will only be as recent as your provider allows.
 
 == Changelog ==
+
+= 1.0.4 =
+* Added RETS integration form
+
+= 1.0.3 =
+* Updated listing return spec to account for id
+* Correct date formatting in listings index
 
 = 1.0.2 =
 * Added theme gallery for 1 click theme installation 

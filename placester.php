@@ -4,7 +4,7 @@ Plugin Name: Real Estate Website Builder
 Description: Quickly create a lead generating real estate website for your real property.
 Plugin URI: https://placester.com/
 Author: Placester.com, Matt Barba
-Version: 1.0.2
+Version: 1.0.4
 Author URI: https://www.placester.com/
 */
 
@@ -27,7 +27,7 @@ Author URI: https://www.placester.com/
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-define('PL_PLUGIN_VERSION','1.0.3');
+define('PL_PLUGIN_VERSION','1.0.4');
 
 define( 'PL_PARENT_DIR', dirname(__FILE__) );
 define( 'PL_PARENT_URL', trailingslashit(plugins_url()) . 'placester/'  );
@@ -73,6 +73,7 @@ include_once('config/api/custom_attributes.php');
 include_once('config/api/listings.php');
 include_once('config/api/users.php');
 include_once('config/api/people.php');
+include_once('config/api/integration.php');
 
 //lib
 include_once('lib/config.php');
@@ -91,6 +92,7 @@ include_once('models/options.php');
 include_once('models/user.php');
 include_once('models/people.php');
 include_once('models/themes.php');
+include_once('models/integration.php');
 
 //helpers
 include_once('helpers/listing.php');
@@ -105,6 +107,7 @@ include_once('helpers/pages.php');
 include_once('helpers/people.php');
 include_once('helpers/logging.php');
 include_once('helpers/compliance.php');
+include_once('helpers/integrations.php');
 
 
 register_activation_hook( __FILE__, 'placester_activate' );
@@ -130,5 +133,5 @@ function placester_admin_menu() {
     }
     add_submenu_page( 'placester', '', 'Settings', 'edit_pages', 'placester_settings', array('PL_Router','settings') );    
     add_submenu_page( 'placester', '', 'Support', 'edit_pages', 'placester_support', array('PL_Router','support') );    
-    // add_submenu_page( 'placester', '', 'MLS Integrations', 'edit_pages', 'placester_integrations', array('PL_Router','integrations') );    
+    add_submenu_page( 'placester', '', 'MLS Integration', 'edit_pages', 'placester_integrations', array('PL_Router','integrations') );    
 }

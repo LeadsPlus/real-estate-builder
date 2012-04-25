@@ -15,12 +15,29 @@
 .header-wrapper h2 {
 	float: left;
 }
-#MLS_Integrations {
+#MLS_Integration {
 	margin-left: 10px;
-	color: red;
-	border-color: red red white;
+	color: #333;
+	background-color: #FFEBE8;
+	border-color: #C00 #C00 white;
 }
 
+.prem_form {
+	width: 320px;
+	float: left;
+	clear: both;
+	margin-top: 5px;
+}
+.prem_form label {
+	float: left;
+	width: 100px;
+	text-align: right;
+	margin-right: 10px;
+}
+.prem_form input {
+	width: 200px;
+	float: right;
+}
 
 
 /*ajax maessages*/
@@ -30,6 +47,10 @@
 	color: green;
 	font-weight: bold;
 }
+.ajax_message.red {
+	color: red;
+}
+
 
 
 .placester_icon {
@@ -113,7 +134,15 @@ h3.hndle {
 	-webkit-border-radius: 5px;
 	border: 1px solid #6F961C;
 	text-shadow: 0px 2px 1px rgba(0, 0, 0, 0.4), 0px 1px 0px rgba(255, 255, 255, 0.3);
+	font-size: 17px !important;
+
 }
+.ui-dialog .ui-dialog-content p.large_green_button span {
+	display: block;
+	font-size: 11px;
+	font-weight: normal;
+}
+
 .ui-dialog .ui-dialog-content .red {
 	color: red;
 	font-weight: bold;

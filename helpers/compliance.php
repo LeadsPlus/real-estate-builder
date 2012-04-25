@@ -11,6 +11,7 @@ class PL_Compliance {
 			$response = array();
 
 			if ( $context == 'listings') {
+				$response['last_import'] = date_format(date_create($provider['last_import']), "jS F, Y g:i A.");
 				if (isset($provider['disclaimer_on']['listings']) && !empty($provider['disclaimer_on']['listings'])) {
 					$response['disclaimer'] = $provider['disclaimer'];	
 					$response['img'] = $provider['first_logo'];
@@ -22,6 +23,7 @@ class PL_Compliance {
 					$response['office_name'] = $office_name;
 				}
 			} elseif ( $context == 'search') {
+				$response['last_import'] = date_format(date_create($provider['last_import']), "jS F, Y g:i A.");
 				if (isset($provider['disclaimer_on']['search']) && !empty($provider['disclaimer_on']['search'])) {
 					$response['disclaimer'] = $provider['disclaimer'];	
 					$response['img'] = $provider['first_logo'];
@@ -33,7 +35,6 @@ class PL_Compliance {
 					$response['office_name'] = $office_name;
 				}
 			} elseif ( $context == 'inline_search') {
-
 				if (isset($provider['disclaimer_on']['inline_search']) && !empty($provider['disclaimer_on']['inline_search'])) {
 					$response['disclaimer'] = $provider['disclaimer'];	
 					$response['img'] = $provider['second_logo'];

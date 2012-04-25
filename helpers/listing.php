@@ -135,7 +135,7 @@ class PL_Listing_Helper {
 			$listings[$key][] = $listing["cur_data"]["baths"];
 			$listings[$key][] = $listing["cur_data"]["price"];
 			$listings[$key][] = $listing["cur_data"]["sqft"];
-			$listings[$key][] = date('M d, Y',strtotime($listing["cur_data"]["avail_on"]));
+			$listings[$key][] = $listing["cur_data"]["avail_on"] ? date_format(date_create($listing["cur_data"]["avail_on"]), "jS F, Y g:i A.") : 'n/a';
 		}
 
 		// Required for datatables.js to function properly.

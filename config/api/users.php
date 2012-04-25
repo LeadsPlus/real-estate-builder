@@ -31,7 +31,8 @@ $PL_API_USERS = array(
 				'website' => false,
 				'first_logo' => false,
 				'second_logo' => false,
-				'disclaimer_on' => array()
+				'disclaimer_on' => array(),
+				'last_import' => false
 			),
 			'user' => array(
 				'id' => false,
@@ -75,5 +76,59 @@ $PL_API_USERS = array(
 		),
 		'returns' => array(
 		)
+	),
+	'update' => array(
+		'request' => array(
+			'url' => 'https://placester.com/api/v2/users',
+			'type' => 'PUT'
+		),
+		'args' => array(
+			'email' => array(
+				'label' => 'Email Address',
+				'type' => 'text',
+				'group' => 'required'
+			),
+			'first_name'  => array('label' => 'First Name','type' => 'text'),
+			'last_name'  => array('label' => 'Last Name','type' => 'text'),
+			'phone'  => array('label' => 'Phone Number','type' => 'text'),
+			'website' => array(),
+			'about' => array(),
+			'slogan' => array(),
+			'has_group' => array(),
+			'source' => 'wordpress',
+			'password'  => array('label' => 'Password','type' => 'password'),
+			'password_confirmation'  => array('label' => 'Confirm Password','type' => 'confirm_password'),
+			'location' => array(
+				'address' => array('label' => 'Street','type' => 'text'),
+				'postal' => array('label' => 'Zip','type' => 'text'),
+				'region'  => array('label' => 'State','type' => 'text'),
+				'locality'  => array('label' => 'City','type' => 'text'),
+				'country'  => array('label' => 'Country','type' => 'text')
+			)
+		),
+		'returns' => array(
+			'id' => false
+		)
+	),
+	'subscriptions' => array(
+		'request' => array(
+			'url' => 'http://api.placester.com/v2/subscriptions',
+			'type' => 'GET'
+		),
+		'args' => array(),
+		'returns' => array(
+			'next_charge_at' => false,
+			'price' => false,
+			'plan' => false,
+			'eligible_for_trial' => false
+		)
+	),
+	'start_subscriptions' => array(
+		'request' => array(
+			'url' => 'http://api.placester.com/v2/subscriptions',
+			'type' => 'POST'
+		),
+		'args' => array(),
+		'returns' => array()
 	)
 );

@@ -25,7 +25,7 @@ class PL_Css_Helper {
 		}
 
 		if ($hook == 'placester_page_placester_settings') {
-			self::register_enqueue_if_not('my-listings', trailingslashit(PL_CSS_ADMIN_URL) .  'settings.css');					
+			self::register_enqueue_if_not('settings', trailingslashit(PL_CSS_ADMIN_URL) .  'settings.css');					
 		}
 
 		if ($hook == 'placester_page_placester_property_add') {
@@ -38,6 +38,10 @@ class PL_Css_Helper {
 
 		if ($hook == 'placester_page_placester_theme_gallery') {
 			self::register_enqueue_if_not('support', trailingslashit(PL_CSS_ADMIN_URL) .  'theme-gallery.css');			
+		}
+
+		if ($hook == 'placester_page_placester_integrations') {
+			self::register_enqueue_if_not('integrations', trailingslashit(PL_CSS_ADMIN_URL) .  'integration.css');					
 		}
 	}
 
