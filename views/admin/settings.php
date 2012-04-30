@@ -135,7 +135,7 @@
 			</div>
 			<p>Setting the default country will change the default option in the country selector everywhere in the plguin. This is most convenient when creating a website with listings in a specific country.</p>
 
-			<div class="<?php echo !empty($filters) ? 'filters_active' : '' ?>">
+			<div id="global_filter_wrapper" class="<?php echo !empty($filters) ? 'filters_active' : '' ?>">
 				<div class="header-wrapper">
 					<h2>Global Listing Search Filters</h2>
 					<a class="button-secondary" id="remove_global_filters" >Remove All Filters</a>
@@ -145,7 +145,7 @@
 					<div id="global_filter_message_remove"></div>
 				</div>
 				<p>Global listing search filters limit all the search results returned to your website. This is helpful if you have listings of many different types or locations created but only want this website to display a subset of them. For example, to only show properties in Boston.</p>
-									<?php //pls_dump($filters) ?> 
+				<?php //pls_dump($filters) ?> 
 				<div class="global_filters tagchecklist">
 					<?php if (!empty($filters)): ?>
 						<p class="label">Active Filters:</p>	
@@ -153,7 +153,7 @@
 					<form action="" id="active_filters">
 						<?php if (!empty($filters)): ?>
 							<?php foreach ($filters as $key => $filter): ?>
-								<span>
+								<span id="active_filter_item">
 									<a href="#"  id="remove_filter"></a>
 									<span class="global_dark_label"><?php echo ucwords(str_replace('_', ' ', $key)) ?></span> : <?php echo ucwords(str_replace('_', ' ', $filter)) ?>
 									<input type="hidden" name="<?php echo $key ?>" value="<?php echo $filter ?>">	

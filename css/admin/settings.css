@@ -99,6 +99,9 @@
 .global_filter_col.filter_button {
 	margin-top: 5px;
 }
+.global_filter_col.red, .global_filter_col.green {
+	margin-top: 3px;
+}
 #active_filters {
 	float: left;
 	margin: 0px 0px 10px 0;
