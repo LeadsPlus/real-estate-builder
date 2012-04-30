@@ -99,7 +99,7 @@
 		//property_type filters have their . switched out to - because 
 		//of jquerys issues finding "."
 		active_filter = active_filter.replace(".","-");
-		console.log(active_filter);
+		// console.log(active_filter);
 		$('#gloal_filter_form').find('.currently_active_filter').removeClass('currently_active_filter').hide();
 		$('#gloal_filter_form').find('section.' + active_filter).show().addClass('currently_active_filter');
 	}
@@ -108,9 +108,16 @@
 		$('#global_filter_message').html('');
 		$('#global_filter_message').removeClass('red');
 		$('#global_filter_message').removeClass('green');
-		var key = $('#selected_global_filter').val();
+		var key = $('.currently_active_filter select, .currently_active_filter input').attr('name');
 		var value = $('.currently_active_filter select, .currently_active_filter input').val();
+		
+		console.log(key);
+		console.log(value);
+
 		var current_form_values = {};
+		
+		// console.log( $('.currently_active_filter select').find("option:selected").parent() );
+		
 		$.each($('#active_filters').serializeArray(), function(i, field) {
 			current_form_values[field.name] = field.value;
         });
@@ -123,7 +130,7 @@
 				current_form_values[key] = value;
 				current_form_values['action'] = 'user_save_global_filters';
 				$.post(ajaxurl, current_form_values, function(data, textStatus, xhr) {
-					console.log(data);
+					// console.log(data);
 					if (data && data.result) {
 						$('#global_filter_message').removeClass('red');
 						$('#global_filter_message').html(data.message);
@@ -179,7 +186,7 @@
  		$('#global_filter_message_remove').addClass('green');
 		$('#global_filter_message_remove').html('Working....');
  		$.post(ajaxurl, {action: 'user_remove_all_global_filters'}, function(data, textStatus, xhr) {
- 			console.log(data);
+ 			// console.log(data);
  			if (data && data.result) {
 				$('#global_filter_message_remove').html(data.message);
 				$('#global_filter_message_remove').addClass('green');

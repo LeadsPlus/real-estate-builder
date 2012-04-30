@@ -151,15 +151,7 @@
 						<p class="label">Active Filters:</p>	
 					<?php endif ?>
 					<form action="" id="active_filters">
-						<?php if (!empty($filters)): ?>
-							<?php foreach ($filters as $key => $filter): ?>
-								<span id="active_filter_item">
-									<a href="#"  id="remove_filter"></a>
-									<span class="global_dark_label"><?php echo ucwords(str_replace('_', ' ', $key)) ?></span> : <?php echo ucwords(str_replace('_', ' ', $filter)) ?>
-									<input type="hidden" name="<?php echo $key ?>" value="<?php echo $filter ?>">	
-								</span>
-							<?php endforeach ?>
-						<?php endif ?>
+						<?php PL_Settings_Helper::display_global_filters($filters); ?>
 					</form>	
 				</div>
 				<div class="clear"></div>
