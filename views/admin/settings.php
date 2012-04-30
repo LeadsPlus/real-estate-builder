@@ -135,34 +135,49 @@
 			</div>
 			<p>Setting the default country will change the default option in the country selector everywhere in the plguin. This is most convenient when creating a website with listings in a specific country.</p>
 
-			<div class="<?php echo !empty($filters['location']) ? 'filters_active' : '' ?>">
+			<div class="<?php echo !empty($filters) ? 'filters_active' : '' ?>">
 				<div class="header-wrapper">
 					<h2>Global Listing Search Filters</h2>
-					<a class="button-secondary" id="save_global_filters" >Save Global Filters</a>
-					<?php if (!empty($filters['location'])): ?>
+					<a class="button-secondary" id="remove_global_filters" >Remove All Filters</a>
+					<?php if (!empty($filters)): ?>
 						<div class="global_filter_active">Global Filters are Active!</div>
 					<?php endif ?>
-					<div id="global_filter_message"></div>
+					<div id="global_filter_message_remove"></div>
 				</div>
 				<p>Global listing search filters limit all the search results returned to your website. This is helpful if you have listings of many different types or locations created but only want this website to display a subset of them. For example, to only show properties in Boston.</p>
+									<?php //pls_dump($filters) ?> 
+				<div class="global_filters tagchecklist">
+					<?php if (!empty($filters)): ?>
+						<p class="label">Active Filters:</p>	
+					<?php endif ?>
+					<form action="" id="active_filters">
+						<?php if (!empty($filters)): ?>
+							<?php foreach ($filters as $key => $filter): ?>
+								<span>
+									<a href="#"  id="remove_filter"></a>
+									<span class="global_dark_label"><?php echo ucwords(str_replace('_', ' ', $key)) ?></span> : <?php echo ucwords(str_replace('_', ' ', $filter)) ?>
+									<input type="hidden" name="<?php echo $key ?>" value="<?php echo $filter ?>">	
+								</span>
+							<?php endforeach ?>
+						<?php endif ?>
+					</form>	
+				</div>
+				<div class="clear"></div>
 				<div class="search_filter_content">
-					<?php //pls_dump($filters) ?>
-					<?php 
-						PL_Form::generate_form(
-					 	 	PL_Config::bundler('PL_API_LISTINGS',
-					 	 	 	$keys = array('get', 'args'), 
-					 	 	 	$bundle = array( 
-					 	 	 		array('location' => array('address', 'locality', 'region', 'postal')),
-					 	 	 	)
-					 		),
-						 	array('method'=>'POST', 
-							 	'include_submit' => false, 
-							 	'wrap_form' => true, 
-							 	'echo_form' => true,
-							 	'title' => true
-						 	) 
-						);
-					 ?>
+					<div class="global_filter_col">
+						<?php PL_Listing_Helper::get_listing_attributes(); ?>	
+					</div>
+					<div class="global_filter_col form_item">
+						<form action="" id="gloal_filter_form">
+							<?php echo PL_Form::item('compound_type', PL_Config::PL_API_LISTINGS('create', 'args', 'compound_type'), 'POST'); ?>
+							<?php PL_Form::generate_form( PL_Config::bundler('PL_API_LISTINGS', array('create', 'args'), array('property_type-sublet','property_type-res_sale','property_type-res_rental','property_type-vac_rental','property_type-comm_sale','property_type-comm_rental')), array('method'=>'POST', 'include_submit' => false, 'wrap_form' => false, 'echo_form' => true) ); ?>
+							<?php PL_Form::generate_form( PL_Config::PL_API_LISTINGS('get', 'args'), array('method'=>'POST', 'include_submit' => false, 'wrap_form' => false, 'echo_form' => true, 'title' => false, 'id' => 'gloal_filter_form' ) ); ?>		
+						</form>
+					</div>
+					<div class="global_filter_col filter_button">
+						<a class="button-secondary" id="add-single-filter">Add Filter</a>	
+					</div>
+					<div class="global_filter_col" id="global_filter_message"></div>
 				</div>	
 			</div>
 

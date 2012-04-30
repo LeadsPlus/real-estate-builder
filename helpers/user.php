@@ -11,6 +11,7 @@ class PL_Helper_User {
 		add_action('wp_ajax_create_account', array(__CLASS__, 'create_account' ) );
 		add_action('wp_ajax_user_empty_cache', array(__CLASS__, 'empty_cache' ) );
 		add_action('wp_ajax_user_save_global_filters', array(__CLASS__, 'set_global_filters' ) );
+		add_action('wp_ajax_user_remove_all_global_filters', array(__CLASS__, 'remove_all_global_filters' ) );
 		add_action('wp_ajax_ajax_log_errors', array(__CLASS__, 'ajax_log_errors' ) );
 		add_action('wp_ajax_ajax_block_address', array(__CLASS__, 'ajax_block_address' ) );
 		add_action('wp_ajax_ajax_default_address', array(__CLASS__, 'set_default_country' ) );
@@ -80,6 +81,16 @@ class PL_Helper_User {
 		return $response;
 	}
 
+	public function remove_all_global_filters () {
+		$response = PL_Option_Helper::set_global_filters(array('filters' => array()));
+		if ($response) {
+			echo json_encode(array('result' => true, 'message' => 'You successfully removed all global search filters'));
+		} else {
+			echo json_encode(array('result' => false, 'message' => 'Change not saved or no change detected. Please try again.'));
+		}
+		die();
+	}
+
 	public function get_global_filters () {
 		$response = PL_Option_Helper::get_global_filters();
 		return array('filters' => $response);
@@ -92,7 +103,7 @@ class PL_Helper_User {
 		if ($response) {
 			echo json_encode(array('result' => true, 'message' => 'You successfully updated the global search filters'));
 		} else {
-			echo json_encode(array('result' => false, 'message' => 'Change not saved or not change detected. Please try again.'));
+			echo json_encode(array('result' => false, 'message' => 'Change not saved or no change detected. Please try again.'));
 		}
 		die();
 	}

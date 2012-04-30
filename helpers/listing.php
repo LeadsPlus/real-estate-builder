@@ -274,6 +274,37 @@ class PL_Listing_Helper {
 		die();
 	}
 
+	public function get_listing_attributes() {
+		$options = array();
+		$attributes = PL_Config::PL_API_LISTINGS('get', 'args');
+		foreach ($attributes as $key => $attribute) {
+			if ( isset($attribute['label']) ) {
+				$options['basic'][$key] = $attribute['label'];
+			} else {
+				foreach ($attribute as $k => $v) {
+					if (isset( $v['label'])) {
+						$options[$key][$k] = $v['label'];
+					}
+				}
+			}
+		}
+		$option_html = '';
+		foreach ($options as $group => $value) {
+			ob_start();
+			?>
+			<optgroup label="<?php echo ucwords($group) ?>">
+				<?php foreach ($value as $value => $label): ?>
+					<option value="<?php echo $value ?>"><?php echo $label ?></option>
+				<?php endforeach ?>
+			</optgroup>
+			<?php
+			$option_html .= ob_get_clean();
+		}
+
+		$option_html = '<select id="selected_global_filter">' . $option_html . '</select>';
+		echo $option_html;
+	}
+
 	public function convert_default_country() {
 		$country_array = PL_Helper_User::get_default_country();
 		if ($country_array['default_country']) {
