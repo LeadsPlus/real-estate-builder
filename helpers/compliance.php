@@ -9,6 +9,7 @@ class PL_Compliance {
 		if (!empty($whoami['provider']['disclaimer_on']) || !empty($whoami['provider']['office_on']) || !empty($whoami['provider']['agent_on'])) {
 			$provider = $whoami['provider'];
 			$response = array();
+// pls_dump($provider);
 
 			if ( $context == 'listings') {
 				$response['last_import'] = date_format(date_create($provider['last_import']), "jS F, Y g:i A.");
@@ -22,6 +23,7 @@ class PL_Compliance {
 				if (isset($provider['office_on']['listings']) && !empty($provider['office_on']['listings']) && $office_name) {
 					$response['office_name'] = $office_name;
 				}
+
 			} elseif ( $context == 'search') {
 				$response['last_import'] = date_format(date_create($provider['last_import']), "jS F, Y g:i A.");
 				if (isset($provider['disclaimer_on']['search']) && !empty($provider['disclaimer_on']['search'])) {
@@ -34,10 +36,13 @@ class PL_Compliance {
 				if (isset($provider['office_on']['search']) && !empty($provider['office_on']['search']) && $office_name) {
 					$response['office_name'] = $office_name;
 				}
+
 			} elseif ( $context == 'inline_search') {
 				if (isset($provider['disclaimer_on']['inline_search']) && !empty($provider['disclaimer_on']['inline_search'])) {
 					$response['disclaimer'] = $provider['disclaimer'];	
-					$response['img'] = $provider['second_logo'];
+				}
+				if (isset($provider['second_logo']['inline_search']) && !empty($provider['second_logo']['inline_search'])) {
+				  $response['img'] = $provider['second_logo'];
 				}
 				if (isset($provider['agent_on']['inline_search']) && !empty($provider['agent_on']['inline_search']) && $agent_name) {
 					$response['agent_name'] = $agent_name;
@@ -47,6 +52,7 @@ class PL_Compliance {
 					$response['office_name'] = $office_name;
 				}
 			}
+			
 			return $response;
 		} 
 		return false;
