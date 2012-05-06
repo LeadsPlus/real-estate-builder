@@ -17,10 +17,7 @@ class PL_Js_Helper {
 		// sort out who is using what.
     	wp_dequeue_script( 'jquery' );
     	wp_register_script( 'jquery2', 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js');
-	    wp_enqueue_script( 'jquery2' );
-	    
-		//    /
-		//    /		
+	    wp_enqueue_script( 'jquery2' );	
 		
 		self::register_enqueue_if_not('jquery-ui', trailingslashit(PL_JS_LIB_URL) .  'jquery-ui/js/jquery-ui-1.8.17.custom.min.js', array( 'jquery'));
 		self::register_enqueue_if_not('global', trailingslashit(PL_JS_URL) .  'admin/global.js', array( 'jquery-ui'));
@@ -34,7 +31,10 @@ class PL_Js_Helper {
 		}
 
 		if ($hook == 'placester_page_placester_settings') {
-			self::register_enqueue_if_not('my-listings', trailingslashit(PL_JS_URL) .  'admin/settings.js', array( 'jquery'));	
+			self::register_enqueue_if_not('settings', trailingslashit(PL_JS_URL) .  'admin/settings.js', array( 'jquery'));	
+			self::register_enqueue_if_not('settings-polygon', trailingslashit(PL_JS_URL) .  'admin/settings-polygon.js', array( 'jquery'));	
+			self::register_enqueue_if_not('new-colorpicker', trailingslashit(PL_JS_URL) .  'lib/colorpicker/js/colorpicker.js', array( 'jquery'));	
+			self::register_enqueue_if_not('google-maps', 'http://maps.googleapis.com/maps/api/js?sensor=false', array( 'jquery'));	
 		}
 
 		if ($hook == 'placester_page_placester_property_add') {						
