@@ -274,9 +274,9 @@ $(document).ready(function($) {
 	var polygon_listings_datatable = $('#polygon_listings_list').dataTable( {
             "bFilter": false,
             "bProcessing": true,
-            "bServerSide": true,
             "sServerMethod": "POST",
             "sAjaxSource": ajaxurl, 
+            "iDisplayLength" : 5,
             "aoColumns" : [
                 { sWidth: '90px' },    //name
                 { sWidth: '90px' },    //type
@@ -318,14 +318,13 @@ $(document).ready(function($) {
 					    fillOpacity: data[item].settings.fill.opacity
 					  });
 					polygon.setMap(map);
-					customTxt = "<div>"+data[item].name+"</div>"
+					customTxt = data[item].name;
 		            var bounds = new google.maps.LatLngBounds();
 		            var polygonCoords = polygon.getPath();
 		            for (p = 0; p < polygonCoords.length; p++) {
 					  bounds.extend(polygonCoords.getAt(p));
 					}
-					var center = bounds.getCenter();
-		            other_text = new TxtOverlay(center,customTxt,"customBox",map );
+		            other_text = new TxtOverlay(bounds.getCenter(),customTxt,"polygon_text_area",map );
 					other_polygons.push(polygon);
 					other_polygons.push(other_text);
 				};

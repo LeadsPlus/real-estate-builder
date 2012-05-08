@@ -139,7 +139,7 @@
 .polygon_controls {
 	position: absolute;
 	background: white;
-	width: 500px;
+	width: 550px;
 }
 #polygon_listings_list_length {
 	display: none;
@@ -192,11 +192,12 @@
 	height : 25px;
 	margin-right: 7px;
 }
-
- .customBox {
- 	font-size: 16px;
+.polygon_text_area {
+ 	font-size: 14px;
  	text-shadow: #FFF 1px 1px 2px;
     position: absolute;
+    text-align: center;
+    font-weight: bold;
 }
 
 

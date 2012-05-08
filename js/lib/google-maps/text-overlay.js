@@ -54,11 +54,8 @@ $(document).ready(function($) {
 
 
 	    var div = this.div_;
-	    div.style.left = position.x + 'px';
-	    div.style.top = position.y + 'px';
-
-
-
+	    div.style.left = (position.x - (div.clientWidth/2)) + 'px';
+	    div.style.top = (position.y - (div.clientHeight/2)) + 'px';
 	}
 	//Optional: helper methods for removing and toggling the text overlay.  
 	TxtOverlay.prototype.onRemove = function(){
