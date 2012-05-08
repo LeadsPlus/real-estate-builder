@@ -187,6 +187,11 @@
 				<div class="ajax_message" id="polygon_ajax_messages"></div>
 				<div class="clear"></div>
 				<div id="polygon_map"></div>
+				<div class="map_address">
+					<label for="map_address_input">Address</label>
+					<input type="text" id="map_address_input">
+					<a href="#" id="start_map_address_search" class="button">Search</a>
+				</div>
 				<div class="polygon_list">
 					<?php echo PL_Router::load_builder_partial('settings-polygon-create.php'); ?>
 					<h3>Neighborhoods</h3>

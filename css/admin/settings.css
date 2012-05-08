@@ -128,13 +128,21 @@
 
 
 .polygon_wrapper {
-
+	position: relative;
 }
 .polygon_wrapper #polygon_map {
 	margin: 10px 0 0 0;
 	width: 500px;
 	height: 300px;
 	float: left;
+}
+.polygon_wrapper .map_address {
+	position: absolute;
+	top: 273px;
+	left: 197px;
+	z-index: 100;
+	background-color: white;
+	padding: 10px 5px;
 }
 .polygon_controls {
 	position: absolute;

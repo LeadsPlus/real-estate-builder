@@ -11,14 +11,24 @@ $(document).ready(function($) {
 
 	google.maps.event.addDomListener(window, 'load', initialize);
 	function initialize() {
-	  var chicago = new google.maps.LatLng(41.879535, -87.624333);
-	  var myOptions = {
-	    zoom: 7,
-	    center: chicago,
-	    mapTypeId: google.maps.MapTypeId.ROADMAP
-	  };
-
-	  map = new google.maps.Map(document.getElementById('polygon_map'), myOptions);
+	  var styles = [
+		  {
+		    stylers: [
+		      { visibility: "simplified" }
+		    ]
+		  }
+		];
+		var polygonMapType = new google.maps.StyledMapType(styles,{name: "polygon"});
+		var chicago = new google.maps.LatLng(41.879535, -87.624333);
+		var myOptions = {
+			zoom: 3,
+			center: chicago,
+			mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'polygon_map']
+		};
+		
+		map = new google.maps.Map(document.getElementById('polygon_map'), myOptions);
+		map.mapTypes.set('polygon', polygonMapType);
+		map.setMapTypeId('polygon');
 
 	  var polyOptions = {
 	    strokeColor: '#000000',
@@ -338,4 +348,18 @@ $(document).ready(function($) {
 					other_polygons[j].setMap(null);
 				};
 	});
+
+	$('#start_map_address_search').live('click', function (event) {
+		event.preventDefault();
+		geocoder = new google.maps.Geocoder();
+		var address = document.getElementById("map_address_input").value;
+	    geocoder.geocode( { 'address': address}, function(results, status) {
+		      if (status == google.maps.GeocoderStatus.OK) {
+		        map.setCenter(results[0].geometry.location);
+		        map.setZoom(13);
+		      } else {
+		        alert("Geocode was not successful for the following reason: " + status);
+		      }
+		    });
+		});
 });
