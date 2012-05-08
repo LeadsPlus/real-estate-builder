@@ -110,7 +110,10 @@ include_once('helpers/compliance.php');
 include_once('helpers/integrations.php');
 include_once('helpers/custom_attributes.php');
 include_once('helpers/settings.php');
+include_once('helpers/taxonomy.php');
 
+//third-party scripts
+include_once('third-party/tax-meta-class/tax-meta-class.php');
 
 register_activation_hook( __FILE__, 'placester_activate' );
 register_deactivation_hook( __FILE__, 'placester_deactivate' );

@@ -127,6 +127,78 @@
 }
 
 
+.polygon_wrapper {
+
+}
+.polygon_wrapper #polygon_map {
+	margin: 10px 0 0 0;
+	width: 500px;
+	height: 300px;
+	float: left;
+}
+.polygon_controls {
+	position: absolute;
+	background: white;
+	width: 500px;
+}
+#polygon_listings_list_length {
+	display: none;
+}
+#polygon_listings_list_next {
+	float: right;
+	clear: both;
+}
+#polygon_listings_list_info {
+	float: right;
+	clear: both;
+}
+.polygon_wrapper .polygon_list {
+	float: left;
+	margin: 0 0 0 10px;
+}
+.polygon_list {
+	position: relative;
+}
+.polygon_list .polygons {
+	width: 500px;
+	height: 255px;
+	float: left;	
+	overflow: auto;
+}
+.polygon_list .polygons ul {
+	padding-left: 18px;
+}
+.polygon_list .polygons ul li {
+	list-style-type: decimal;
+}
+.form-item {
+	clear: both;
+}
+.form-item select, .form-item input, .form-item label {
+	float: left;
+}
+.another_colorpicker {
+	float: left;
+}
+.show_neighborhood_areas {
+	margin: 10px 0 0 0;
+}
+.show_neighborhood_areas span {
+	float: left;
+	margin-right: 10px;
+}
+.show_neighborhood_areas form section {
+	float: left;
+	height : 25px;
+	margin-right: 7px;
+}
+
+ .customBox {
+ 	font-size: 16px;
+ 	text-shadow: #FFF 1px 1px 2px;
+    position: absolute;
+}
+
 
 
 
