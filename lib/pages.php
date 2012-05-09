@@ -134,6 +134,8 @@ class PL_Pages {
 				update_option('pl_plugin_version', PL_PLUGIN_VERSION);
 				global $wp_rewrite;
 				$wp_rewrite->flush_rules();
+				PL_HTTP::clear_cache();
+				self::delete_all();
 			}
 		}
 	}
