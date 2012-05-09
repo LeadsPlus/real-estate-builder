@@ -53,6 +53,7 @@ class PL_Listing {
 		$details_url = trailingslashit($config['request']['url']) . $request['id'];
 		$response = PL_HTTP::send_request($details_url, $request, $config['request']['type']);
 		$response = PL_Validate::attributes($response, $config['returns']);
+		PL_Pages::manage_listing($response);
 		return $response;	
 	}
 
