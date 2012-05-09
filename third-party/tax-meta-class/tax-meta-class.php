@@ -1063,7 +1063,9 @@ class Tax_Meta_Class {
    * @access public 
    */
   public function save( $term_id ) {
-    
+    if (!isset($_POST['taxonomy'])) {
+      return;
+    }
     $taxnow = $_POST['taxonomy'];
     if ( ! isset( $term_id )                            // Check Revision
     || ( ! in_array( $taxnow, $this->_meta_box['pages'] ) )              // Check if current taxonomy type is supported.

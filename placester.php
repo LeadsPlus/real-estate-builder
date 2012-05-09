@@ -114,6 +114,7 @@ include_once('helpers/taxonomy.php');
 
 //third-party scripts
 include_once('third-party/tax-meta-class/tax-meta-class.php');
+include_once('third-party/convex-hull/convex-hull.php');
 
 register_activation_hook( __FILE__, 'placester_activate' );
 register_deactivation_hook( __FILE__, 'placester_deactivate' );

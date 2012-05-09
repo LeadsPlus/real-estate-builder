@@ -11,13 +11,7 @@ $(document).ready(function($) {
 
 	google.maps.event.addDomListener(window, 'load', initialize);
 	function initialize() {
-	  var styles = [
-		  {
-		    stylers: [
-		      { visibility: "simplified" }
-		    ]
-		  }
-		];
+	  	var styles = [{stylers: [{ visibility: "simplified" }]}];
 		var polygonMapType = new google.maps.StyledMapType(styles,{name: "polygon"});
 		var chicago = new google.maps.LatLng(41.879535, -87.624333);
 		var myOptions = {
@@ -30,15 +24,10 @@ $(document).ready(function($) {
 		map.mapTypes.set('polygon', polygonMapType);
 		map.setMapTypeId('polygon');
 
-	  var polyOptions = {
-	    strokeColor: '#000000',
-	    strokeOpacity: 1.0,
-	    strokeWeight: 3,
-	    editable: true
-	  }
-	  poly = new google.maps.Polyline(polyOptions);
-	  poly.setMap(map);
-	  google.maps.event.addListener(map, 'click', addLatLng);
+		var polyOptions = {strokeColor: '#000000',strokeOpacity: 1.0,strokeWeight: 3,editable: true}
+		poly = new google.maps.Polyline(polyOptions);
+		poly.setMap(map);
+		google.maps.event.addListener(map, 'click', addLatLng);
 	}
 
 	function addLatLng(event) {
@@ -284,6 +273,7 @@ $(document).ready(function($) {
 	var polygon_listings_datatable = $('#polygon_listings_list').dataTable( {
             "bFilter": false,
             "bProcessing": true,
+            "bServerSide": true,
             "sServerMethod": "POST",
             "sAjaxSource": ajaxurl, 
             "iDisplayLength" : 5,

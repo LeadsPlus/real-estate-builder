@@ -13,7 +13,8 @@ class PL_Taxonomy_Helper {
 		add_action('wp_ajax_delete_polygon', array(__CLASS__, 'delete_polygon'));
 		add_action('wp_ajax_get_polygons_datatable', array(__CLASS__, 'get_polygons_datatable'));
 		add_action('wp_ajax_get_polygon', array(__CLASS__, 'get_polygon'));
-		add_action('wp_ajax_get_polygons_by_type', array(__CLASS__, 'get_polygons_by_type'));
+		add_action('wp_ajax_get_polygons_by_type', array(__CLASS__, 'ajax_get_polygons_by_type'));
+		add_action('wp_ajax_find_hull', array(__CLASS__, 'ajax_find_hull'));
 	}
 
 	function register_taxonomies () {
@@ -26,6 +27,41 @@ class PL_Taxonomy_Helper {
 		register_taxonomy('beds', 'property', array('hierarchical' => TRUE,'label' => __('Beds'), 'public' => TRUE,'show_ui' => TRUE,'query_var' => true,'rewrite' => true ) );
 		register_taxonomy('baths', 'property', array('hierarchical' => TRUE,'label' => __('Baths'), 'public' => TRUE,'show_ui' => TRUE,'query_var' => true,'rewrite' => true ) );
 		register_taxonomy('half-baths', 'property', array('hierarchical' => TRUE,'label' => __('Half-baths'), 'public' => TRUE,'show_ui' => TRUE,'query_var' => true,'rewrite' => true ) );
+	}
+
+	function ajax_find_hull () {
+		$settings = isset($_POST['settings']) ? $_POST['settings'] : array();
+		$points = isset($_POST['points']) ? $_POST['points'] : array();
+		$response = self::find_hull($points, $settings);
+		echo json_encode($response);
+		die();
+	}
+
+	function find_hull ($items = array(), $settings = array()) {
+		extract(wp_parse_args($settings, array('include_listings' => false)));
+		$response = array();
+		if (!empty($items)) {
+			$points = array();
+			foreach ($items as $key => $point) {
+				$points[] = array($point['lat'], $point['lng']);
+			}
+			$hull = new ConvexHull( $points );
+			$response['polygon'] = $hull->getHullPoints();
+		} else {
+			$response['polygon'] = array();
+		}
+		if ($include_listings) {
+			if (!empty($response['polygon'])) {
+				$request = '';
+				foreach ($response['polygon'] as $key => $point) {
+					$request .= 'polygon['.$key. '][0]=' . $point[0] .'&';
+					$request .= 'polygon['.$key .'][1]=' . $point[1] .'&';
+				}
+			}
+			$api_listings = PL_Listing_Helper::results($request);
+			$response['listings'] = $api_listings['listings'];
+		}
+		return $response;
 	}
 
 	function update_polygon () {
@@ -94,8 +130,10 @@ class PL_Taxonomy_Helper {
 		die();
 	}
 
-	function get_polygons_by_type () {
-		$type = $_POST['type'];
+	function get_polygons_by_type ($type = false) {
+		if (!$type) {
+			$type = $_POST['type'];
+		}
 		$response = array();
 		$polygons = PL_Option_Helper::get_polygons();
 		foreach ($polygons as $key => $polygon) {
@@ -103,7 +141,11 @@ class PL_Taxonomy_Helper {
 				$response[] = $polygon;
 			}
 		}
-		echo json_encode($response);
+		return $response;
+	}
+
+	function ajax_get_polygons_by_type ($type = false) {
+		echo json_encode(self::get_polygons_by_type($type));
 		die();
 	}
 
