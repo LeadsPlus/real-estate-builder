@@ -26,6 +26,7 @@ class PL_Css_Helper {
 
 		if ($hook == 'placester_page_placester_settings') {
 			self::register_enqueue_if_not('settings', trailingslashit(PL_CSS_ADMIN_URL) .  'settings.css');					
+			self::register_enqueue_if_not('colorpicker', trailingslashit(PL_JS_URL) .  'lib/colorpicker/css/colorpicker.css');					
 		}
 
 		if ($hook == 'placester_page_placester_property_add') {

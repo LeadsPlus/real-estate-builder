@@ -36,6 +36,25 @@ class PL_Option_Helper {
 	    return $url_slug;
 	}
 
+	public function set_polygons ($add = false, $remove_id = false) {
+		$polygons = PL_Options::get('pls_polygons', array() );
+		if ($add) {
+			$polygons[] = $add;
+		}
+		if ($remove_id !== false) {
+			if (isset($polygons[$remove_id])) {
+				unset($polygons[$remove_id]);
+
+			}
+		}
+		$response = PL_Options::set('pls_polygons', $polygons);
+		return $response;
+	}
+
+	public function get_polygons () {
+		return PL_Options::get('pls_polygons', array());	
+	}
+
 	public function set_global_filters ($args) {
 		extract(wp_parse_args($args, array('filters' => array())));
 		return PL_Options::set('pls_global_search_filters', $filters);		

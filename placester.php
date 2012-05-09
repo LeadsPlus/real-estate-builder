@@ -27,7 +27,7 @@ Author URI: https://www.placester.com/
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-define('PL_PLUGIN_VERSION','1.0.4');
+define('PL_PLUGIN_VERSION','1.0.5');
 
 define( 'PL_PARENT_DIR', dirname(__FILE__) );
 define( 'PL_PARENT_URL', trailingslashit(plugins_url()) . 'placester/'  );
@@ -110,7 +110,11 @@ include_once('helpers/compliance.php');
 include_once('helpers/integrations.php');
 include_once('helpers/custom_attributes.php');
 include_once('helpers/settings.php');
+include_once('helpers/taxonomy.php');
 
+//third-party scripts
+include_once('third-party/tax-meta-class/tax-meta-class.php');
+include_once('third-party/convex-hull/convex-hull.php');
 
 register_activation_hook( __FILE__, 'placester_activate' );
 register_deactivation_hook( __FILE__, 'placester_deactivate' );

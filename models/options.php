@@ -3,8 +3,8 @@
 
 class PL_Options {
 	
-	public function get ($option) {
-		return get_option($option, NULL);
+	public function get ($option, $default = false) {
+		return get_option($option, $default);
 	}
 
 	public function set ($option, $value) {
