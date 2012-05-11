@@ -14,7 +14,8 @@ class PL_Taxonomy_Helper {
 		add_action('wp_ajax_get_polygons_datatable', array(__CLASS__, 'get_polygons_datatable'));
 		add_action('wp_ajax_get_polygon', array(__CLASS__, 'get_polygon'));
 		add_action('wp_ajax_get_polygons_by_type', array(__CLASS__, 'ajax_get_polygons_by_type'));
-		add_action('wp_ajax_find_hull', array(__CLASS__, 'ajax_find_hull'));
+		add_action('wp_ajax_nopriv_lifestyle_polygon', array(__CLASS__, 'lifestyle_polygon'));
+		add_action('wp_ajax_lifestyle_polygon', array(__CLASS__, 'lifestyle_polygon'));
 	}
 
 	function register_taxonomies () {
@@ -29,22 +30,27 @@ class PL_Taxonomy_Helper {
 		register_taxonomy('half-baths', 'property', array('hierarchical' => TRUE,'label' => __('Half-baths'), 'public' => TRUE,'show_ui' => TRUE,'query_var' => true,'rewrite' => true ) );
 	}
 
-	function ajax_find_hull () {
-		$settings = isset($_POST['settings']) ? $_POST['settings'] : array();
-		$points = isset($_POST['points']) ? $_POST['points'] : array();
-		$response = self::find_hull($points, $settings);
+	function lifestyle_polygon () {
+		$request = wp_parse_args(wp_kses_post($_POST), array('location' => '', 'radius' => '', 'types' => ''));
+		$places_response = PL_Google_Places_Helper::search($request);
+		$points = array();
+		foreach ($places_response as $place) {
+			$points[] = array($place['geometry']['location']['lat'], $place['geometry']['location']['lng']);
+		}
+		if (!empty($points)) {
+			$hull_response = self::find_hull($points, array('include_listings' => true));
+		} else {
+			$hull_response = array();
+		}
+		$response = array_merge($hull_response, array('places' => $places_response));
 		echo json_encode($response);
 		die();
 	}
 
-	function find_hull ($items = array(), $settings = array()) {
+	function find_hull ($points = array(), $settings = array()) {
 		extract(wp_parse_args($settings, array('include_listings' => false)));
 		$response = array();
-		if (!empty($items)) {
-			$points = array();
-			foreach ($items as $key => $point) {
-				$points[] = array($point['lat'], $point['lng']);
-			}
+		if (!empty($points)) {
 			$hull = new ConvexHull( $points );
 			$response['polygon'] = $hull->getHullPoints();
 		} else {
@@ -137,6 +143,7 @@ class PL_Taxonomy_Helper {
 		$response = array();
 		$polygons = PL_Option_Helper::get_polygons();
 		foreach ($polygons as $key => $polygon) {
+			$polygon['permalink'] = get_term_link( $polygon['slug'], $polygon['tax'] );
 			if ($polygon['tax'] == $type) {
 				$response[] = $polygon;
 			}
