@@ -151,6 +151,21 @@ class PL_Taxonomy_Helper {
 		return $response;
 	}
 
+	function get_polygon_detail ($args = array()) {
+		extract(wp_parse_args($args, array('tax' => false, 'slug' => false)));
+		$response = array();
+		$polygons = PL_Option_Helper::get_polygons();
+		if ($slug && $tax) {
+			foreach ($polygons as $key => $polygon) {
+				if ($polygon['slug'] == $slug && $polygon['tax'] == $tax) {
+					$polygon['permalink'] = get_term_link( $polygon['slug'], $polygon['tax'] );
+					return $polygon;
+				}
+			}
+		}
+		return array();
+	}
+
 	function ajax_get_polygons_by_type ($type = false) {
 		echo json_encode(self::get_polygons_by_type($type));
 		die();
