@@ -74,6 +74,7 @@ include_once('config/api/listings.php');
 include_once('config/api/users.php');
 include_once('config/api/people.php');
 include_once('config/api/integration.php');
+include_once('config/third-party/google-places.php');
 
 //lib
 include_once('lib/config.php');
@@ -93,6 +94,7 @@ include_once('models/user.php');
 include_once('models/people.php');
 include_once('models/themes.php');
 include_once('models/integration.php');
+include_once('models/google-places.php');
 
 //helpers
 include_once('helpers/listing.php');
@@ -111,6 +113,7 @@ include_once('helpers/integrations.php');
 include_once('helpers/custom_attributes.php');
 include_once('helpers/settings.php');
 include_once('helpers/taxonomy.php');
+include_once('helpers/google-places.php');
 
 //third-party scripts
 include_once('third-party/tax-meta-class/tax-meta-class.php');
