@@ -13,7 +13,7 @@ Class PL_HTTP {
 	 * @param string $method
 	 * @return array
 	 */
-	function send_request($url, $request, $method = 'GET', $allow_cache = true, $allow_empty_values = false) {
+	function send_request($url, $request, $method = 'GET', $allow_cache = true, $allow_empty_values = false, $force_return = false, $use_ecoding = true) {
 	    
 	    $request_string = '';
 	    foreach ($request as $key => $value) {
@@ -34,6 +34,10 @@ Class PL_HTTP {
 	        	$request_string .= (strlen($request_string) > 0 ? '&' : '') . 
 	                $key . '=' . urlencode($value);
 	        }
+	    }
+
+	    if (!$use_ecoding) {
+	    	$request_string = urldecode($request_string);
 	    }
 
 	    PL_Debug::add_msg('Endpoint Logged As: ' . $method . ' ' . $url . '?' . $request_string);
@@ -67,12 +71,13 @@ Class PL_HTTP {
 					PL_Debug::add_msg('------- !!!USING CACHE!!! --------');    	    		
 					return $transient;
 	        	} else {
+	        		// pls_dump($url . '?' . $request_string);
 	            	$response = wp_remote_get($url . '?' . $request_string, array('timeout' => self::$timeout));
 					PL_Debug::add_msg('------- NO CACHE FOUND --------');    	    		
 	        		PL_Debug::add_msg($url . '?' . $request_string);    	
 
-
-					if (is_array($response) && isset($response['headers']) && $response['headers']['status'] == 200 ) {
+	        		// pls_dump($response);
+					if ( (is_array($response) && isset($response['headers']) && isset($response['headers']['status']) && $response['headers']['status'] == 200) || $force_return) {
 						if (!empty($response['body'])) {
 							$body = json_decode($response['body'], TRUE);
 							set_transient( $transient_id, $body , 3600 * 48 );

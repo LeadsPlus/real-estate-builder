@@ -44,6 +44,13 @@ class PL_Config {
 		return self::config_finder($PL_MY_LIST_FORM, $args, $num_args);
 	}
 
+	public function PL_TP_GOOGLE_PLACES () {	
+		global $PL_TP_GOOGLE_PLACES;
+		$args = func_get_args();
+		$num_args = func_num_args();
+		return self::config_finder($PL_TP_GOOGLE_PLACES, $args, $num_args);
+	}
+
 	public function bundler ($config_function, $keys, $bundle) {	
 		$config_items = array();
 		foreach ($bundle as $key) {
