@@ -16,6 +16,8 @@ class PL_Taxonomy_Helper {
 		add_action('wp_ajax_get_polygons_by_type', array(__CLASS__, 'ajax_get_polygons_by_type'));
 		add_action('wp_ajax_nopriv_lifestyle_polygon', array(__CLASS__, 'lifestyle_polygon'));
 		add_action('wp_ajax_lifestyle_polygon', array(__CLASS__, 'lifestyle_polygon'));
+		add_action('wp_ajax_polygon_listings', array(__CLASS__, 'polygon_lisitngs'));
+		add_action('wp_ajax_nopriv_polygon_listings', array(__CLASS__, 'polygon_lisitngs'));
 	}
 
 	function register_taxonomies () {
@@ -28,6 +30,23 @@ class PL_Taxonomy_Helper {
 		register_taxonomy('beds', 'property', array('hierarchical' => TRUE,'label' => __('Beds'), 'public' => TRUE,'show_ui' => TRUE,'query_var' => true,'rewrite' => true ) );
 		register_taxonomy('baths', 'property', array('hierarchical' => TRUE,'label' => __('Baths'), 'public' => TRUE,'show_ui' => TRUE,'query_var' => true,'rewrite' => true ) );
 		register_taxonomy('half-baths', 'property', array('hierarchical' => TRUE,'label' => __('Half-baths'), 'public' => TRUE,'show_ui' => TRUE,'query_var' => true,'rewrite' => true ) );
+	}
+
+	function polygon_lisitngs () {
+		if (isset($_POST['vertices'])) {
+			$vertices = $_POST['vertices'];
+			if (!empty($vertices)) {
+				$request = '';
+				foreach ($vertices as $key => $point) {
+					$request .= 'polygon['.$key. '][0]=' . $point['lat'] .'&';
+					$request .= 'polygon['.$key .'][1]=' . $point['lng'] .'&';
+				}
+				$api_listings = PL_Listing_Helper::results($request);
+				$response = $api_listings['listings'];
+				echo json_encode($response);
+			}
+		}
+		die();
 	}
 
 	function lifestyle_polygon () {
