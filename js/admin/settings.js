@@ -265,4 +265,24 @@
 			}
 	  	}, 'json');
 	});
+
+	$('#google_places_api_button').live('click', function (event) {
+		event.preventDefault();
+		var request = {};
+		request.places_key = $('#google_places_api').val();
+		request.action = 'update_google_places'
+
+		$.post(ajaxurl, request, function(data, textStatus, xhr) {
+		  	console.log(data);
+		  	$('#default_googe_places_message').removeClass('red');
+			if (data && data.result) {
+				$('#default_googe_places_message').addClass('green').html(data.message);
+				setTimeout(function () {
+					window.location.href = window.location.href;
+				}, 700)
+			} else {
+				$('#default_googe_places_message').addClass('red').html(data.message);
+			};
+		}, 'json');
+	});
 });

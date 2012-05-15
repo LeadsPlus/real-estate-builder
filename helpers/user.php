@@ -19,6 +19,7 @@ class PL_Helper_User {
 		add_action('wp_ajax_subscriptions', array(__CLASS__, 'ajax_subscriptions' ) );
 		add_action('wp_ajax_start_subscription_trial', array(__CLASS__, 'start_subscription_trial' ) );
 		add_action('wp_ajax_update_user', array(__CLASS__, 'ajax_update_user' ) );
+		add_action('wp_ajax_update_google_places', array(__CLASS__, 'update_google_places' ) );
 	}
 
 	public static function set_admin_email (){
@@ -32,6 +33,14 @@ class PL_Helper_User {
 
 	public static function start_subscription_trial() {
 		echo json_encode(PL_User::start_subscription_trial());
+		die();
+	}
+
+	public static function update_google_places () {
+		if (isset($_POST['places_key'])) {
+			$response = PL_Option_Helper::set_google_places_key($_POST['places_key']);
+			echo json_encode($response);
+		}
 		die();
 	}
 

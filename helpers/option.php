@@ -11,6 +11,9 @@ class PL_Option_Helper {
 	}
 
 	function set_api_key($new_api_key) {
+		if (empty($new_api_key) ) {
+			return array('result' => false,'message' => 'Google Places keys must not be empty');
+		}
 		if (get_option('placester_api_key') == $new_api_key) {
 			return array('result' => false,'message' => 'You\'re already using that Placester API Key.');
 		}
@@ -26,6 +29,24 @@ class PL_Option_Helper {
 			}
 		} 
 		return array('result' => false,'message' => 'That \'s not a valid Placester API Key.');
+	}
+
+	function set_google_places_key ($new_places_key) {
+		if (get_option('placester_places_api_key') == $new_places_key) {
+			return array('result' => false,'message' => 'You\'re already using that Places API Key.');
+		} else {
+			$response = update_option('placester_places_api_key', $new_places_key);
+			if ($response) {
+				return array('result' => true, 'message' => 'You\'ve successfully updated your Google Places API Key');
+			} else {
+				return array('result' => false, 'message' => 'There was an error. Please try again.');
+			}
+		}
+	}
+
+	function get_google_places_key () {
+		$places_api_key = get_option('placester_places_api_key', '');
+		return $places_api_key;
 	}
 
 	function post_slug() {
