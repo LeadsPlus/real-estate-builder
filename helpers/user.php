@@ -19,6 +19,7 @@ class PL_Helper_User {
 		add_action('wp_ajax_subscriptions', array(__CLASS__, 'ajax_subscriptions' ) );
 		add_action('wp_ajax_start_subscription_trial', array(__CLASS__, 'start_subscription_trial' ) );
 		add_action('wp_ajax_update_user', array(__CLASS__, 'ajax_update_user' ) );
+		add_action('wp_ajax_update_google_places', array(__CLASS__, 'update_google_places' ) );
 	}
 
 	public static function set_admin_email (){
@@ -32,6 +33,14 @@ class PL_Helper_User {
 
 	public static function start_subscription_trial() {
 		echo json_encode(PL_User::start_subscription_trial());
+		die();
+	}
+
+	public static function update_google_places () {
+		if (isset($_POST['places_key'])) {
+			$response = PL_Option_Helper::set_google_places_key($_POST['places_key']);
+			echo json_encode($response);
+		}
 		die();
 	}
 
@@ -93,18 +102,34 @@ class PL_Helper_User {
 
 	public function get_global_filters () {
 		$response = PL_Option_Helper::get_global_filters();
-		return array('filters' => $response);
+		return $response;
 	}
 
-	public function set_global_filters () {
-		unset($_POST['action']);
-		$global_search_filters = PL_Validate::request($_POST, PL_Config::PL_API_LISTINGS('get', 'args'));
+	public function set_global_filters ($args = array()) {
+		if (empty($args) ) {
+			unset($_POST['action']);
+			$args = $_POST;
+		}
+		
+		$global_search_filters = PL_Validate::request($args, PL_Config::PL_API_LISTINGS('get', 'args'));
+		// pls_dump($global_search_filters);
+		foreach ($global_search_filters as $key => $filter) {
+			foreach ($filter as $subkey => $subfilter) {
+				if (!is_array($subfilter) && (count($filter) > 1) ) {
+					$global_search_filters[$key . '_match'] = 'in';
+				} elseif (count($subfilter) > 1) {
+					$global_search_filters[$key][$subkey . '_match'] = 'in';
+				}
+			}
+		}
+		// pls_dump($global_search_filters);
 		$response = PL_Option_Helper::set_global_filters(array('filters' => $global_search_filters));
 		if ($response) {
 			echo json_encode(array('result' => true, 'message' => 'You successfully updated the global search filters'));
 		} else {
 			echo json_encode(array('result' => false, 'message' => 'Change not saved or no change detected. Please try again.'));
 		}
+		echo json_encode(PL_WordPress_Helper::report_filters());
 		die();
 	}
 

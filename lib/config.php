@@ -37,6 +37,13 @@ class PL_Config {
 		return self::config_finder($PL_API_INTEGRATION, $args, $num_args);
 	}
 
+	public function PL_API_WORDPRESS () {	
+		global $PL_API_WORDPRESS;
+		$args = func_get_args();
+		$num_args = func_num_args();
+		return self::config_finder($PL_API_WORDPRESS, $args, $num_args);
+	}
+
 	public function PL_MY_LIST_FORM () {	
 		global $PL_MY_LIST_FORM;
 		$args = func_get_args();

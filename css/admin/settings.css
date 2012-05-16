@@ -168,7 +168,7 @@
 	position: relative;
 }
 .polygon_list .polygons {
-	width: 500px;
+	width: 530px;
 	height: 255px;
 	float: left;	
 	overflow: auto;

@@ -1,8 +1,9 @@
 <?php extract(PL_Helper_User::whoami()); ?>
 <?php extract(PL_Page_Helper::get_types()); ?>
 <?php extract(PL_Helper_User::get_cached_items()); ?>
-<?php extract(PL_Helper_User::get_global_filters()); ?>
 <?php extract(PL_Helper_User::get_default_country()); ?>
+<?php extract(array('filters' => PL_Helper_User::get_global_filters())); ?>
+<?php extract(array('places_api_key' => PL_Option_Helper::get_google_places_key() ) ) ; ?>
 <?php extract(array('error_logging' => PL_Option_Helper::get_log_errors())); ?>
 <?php extract(array('block_address' => PL_Option_Helper::get_block_address())); ?>
 <?php $_POST = $filters; ?>
@@ -151,7 +152,7 @@
 						<p class="label">Active Filters:</p>	
 					<?php endif ?>
 					<form action="" id="active_filters">
-						<?php PL_Settings_Helper::display_global_filters($filters); ?>
+						<?php PL_Settings_Helper::display_global_filters(); ?>
 					</form>	
 				</div>
 				<div class="clear"></div>
@@ -172,6 +173,19 @@
 					<div class="global_filter_col" id="global_filter_message"></div>
 				</div>	
 			</div>
+
+			<div class="header-wrapper">
+				<h2>Google Places API Key</h2>
+				<div id="default_googe_places_message"></div>
+			</div>
+			<div class="clear"></div>
+			<p><strong>Add a Google Places API Key to enable lifestyle search for your clients!</strong> Here's how you can get a key. 1) Navigate to the <a href="https://code.google.com/apis/console/?pli=1">google api console</a>. 2) Login with your google account. 3) In the left menu, navigate to the services section. Scroll down to the Places Services and click the "on" switch. 4) Scroll back tot he top, and click on the "API Access" option on the left side of the page. 5) At the bottom of the page click "Create New Server Key". A pop up will appear 6) Click the create button in the pop up (you don't need to enter anything). 7) Copy the new api key. Labeled "API Key" and paste it into the form below and click save. Reach out at <a mailto="support@placester.com">support@placester.com</a> if you have any questions or problems and we'll be happy to help you. </p>
+			<div>
+				<label for="google_places_api">Google Places API Key</label>
+				<input type="text" id="google_places_api" value="<?php echo $places_api_key ?>">
+				<a href="#" id="google_places_api_button" class="button">Update</a>
+			</div>
+
 			<div class="header-wrapper">
 				<h2>Neighborhood Areas</h2>
 				<div class="ajax_message" id="neighborhood_messages"></div>

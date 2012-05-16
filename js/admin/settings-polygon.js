@@ -273,7 +273,7 @@ $(document).ready(function($) {
 	var polygon_listings_datatable = $('#polygon_listings_list').dataTable( {
             "bFilter": false,
             "bProcessing": true,
-            "bServerSide": true,
+            // "bServerSide": true,
             "sServerMethod": "POST",
             "sAjaxSource": ajaxurl, 
             "iDisplayLength" : 5,

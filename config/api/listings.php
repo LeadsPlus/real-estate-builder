@@ -224,6 +224,16 @@ $PL_API_LISTINGS = array(
 						'method' => 'locations_for_options',
 						'params' => 'locality'
 					)
+				),
+				'neighborhood'  => array(
+					'label' => 'Neighborhood',
+					'type' => 'select',
+					'group' => 'location',
+					'bound' => array(
+						'class' => 'PL_Listing_Helper',
+						'method' => 'locations_for_options',
+						'params' => 'neighborhood'
+					)
 				)
 			),
 			// binds to keys / values of all attributes (cur + uncur)

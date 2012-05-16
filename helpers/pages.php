@@ -17,10 +17,6 @@ class PL_Page_Helper {
 		die();
 	}
 
-	function ajax_get_types () {
-
-	}
-
 	function get_types () {
 		$page_details = array();
 		$pages = PL_Pages::get();
@@ -34,4 +30,5 @@ class PL_Page_Helper {
 		$url = get_permalink(PL_Pages::details($placester_id));
 		return $url;
 	}
+
 }
