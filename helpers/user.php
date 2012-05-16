@@ -102,18 +102,34 @@ class PL_Helper_User {
 
 	public function get_global_filters () {
 		$response = PL_Option_Helper::get_global_filters();
-		return array('filters' => $response);
+		return $response;
 	}
 
-	public function set_global_filters () {
-		unset($_POST['action']);
-		$global_search_filters = PL_Validate::request($_POST, PL_Config::PL_API_LISTINGS('get', 'args'));
+	public function set_global_filters ($args = array()) {
+		if (empty($args) ) {
+			unset($_POST['action']);
+			$args = $_POST;
+		}
+		
+		$global_search_filters = PL_Validate::request($args, PL_Config::PL_API_LISTINGS('get', 'args'));
+		// pls_dump($global_search_filters);
+		foreach ($global_search_filters as $key => $filter) {
+			foreach ($filter as $subkey => $subfilter) {
+				if (!is_array($subfilter) && (count($filter) > 1) ) {
+					$global_search_filters[$key . '_match'] = 'in';
+				} elseif (count($subfilter) > 1) {
+					$global_search_filters[$key][$subkey . '_match'] = 'in';
+				}
+			}
+		}
+		// pls_dump($global_search_filters);
 		$response = PL_Option_Helper::set_global_filters(array('filters' => $global_search_filters));
 		if ($response) {
 			echo json_encode(array('result' => true, 'message' => 'You successfully updated the global search filters'));
 		} else {
 			echo json_encode(array('result' => false, 'message' => 'Change not saved or no change detected. Please try again.'));
 		}
+		echo json_encode(PL_WordPress_Helper::report_filters());
 		die();
 	}
 

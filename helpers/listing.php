@@ -21,7 +21,7 @@ class PL_Listing_Helper {
 		}
 		//respect global filters
 		$global_filters = PL_Helper_User::get_global_filters();
-		$args = wp_parse_args($global_filters['filters'], $args);
+		$args = wp_parse_args($global_filters, $args);
 
 		//respect block address setting
 		if (PL_Option_Helper::get_block_address()) {
@@ -276,7 +276,8 @@ class PL_Listing_Helper {
 
 	public function get_listing_attributes() {
 		$options = array();
-		$attributes = PL_Config::PL_API_LISTINGS('get', 'args');
+		$attributes = PL_Config::bundler('PL_API_LISTINGS', array('create', 'args'), array( array('location' => array('region', 'locality', 'postal', 'neighborhood'))));
+		// $attributes = PL_Config::PL_API_LISTINGS('get', 'args');
 		foreach ($attributes as $key => $attribute) {
 			if ( isset($attribute['label']) ) {
 				$options['basic'][$key] = $attribute['label'];

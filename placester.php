@@ -75,6 +75,7 @@ include_once('config/api/users.php');
 include_once('config/api/people.php');
 include_once('config/api/integration.php');
 include_once('config/third-party/google-places.php');
+include_once('config/api/wordpress.php');
 
 //lib
 include_once('lib/config.php');
@@ -95,6 +96,7 @@ include_once('models/people.php');
 include_once('models/themes.php');
 include_once('models/integration.php');
 include_once('models/google-places.php');
+include_once('models/wordpress.php');
 
 //helpers
 include_once('helpers/listing.php');
@@ -114,6 +116,7 @@ include_once('helpers/custom_attributes.php');
 include_once('helpers/settings.php');
 include_once('helpers/taxonomy.php');
 include_once('helpers/google-places.php');
+include_once('helpers/wordpress.php');
 
 //third-party scripts
 include_once('third-party/tax-meta-class/tax-meta-class.php');
@@ -149,4 +152,5 @@ function placester_admin_menu() {
 function placester_activate () {
     $metrics = new MetricsTracker("9186cdb540264089399036dd672afb10");
     $metrics->track('Activation');
+    PL_WordPress_Helper::report_url();
 }
