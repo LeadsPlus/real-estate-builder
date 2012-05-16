@@ -594,7 +594,7 @@ class PL_Membership {
         if ( ! is_user_logged_in() ) {
             $loginout_link = '<a class="pl_login_link" href="#pl_login_form">Log in</a>';
         } else {
-            $loginout_link = '<a href="' . esc_url( wp_logout_url(get_permalink()) ) . '" id="pl_logout_link">Log out</a>';
+            $loginout_link = '<a href="' . esc_url( wp_logout_url($_SERVER['REQUEST_URI']) ) . '" id="pl_logout_link">Log out</a>';
         }
         if ($anchor_tag) {
             $loginout_link = "<{$anchor_tag} class={$anchor_class}>" . $inside_pre_tag . $loginout_link . $inside_post_tag . "</{$anchor_tag}>";
