@@ -506,7 +506,11 @@ $PL_API_LISTINGS = array(
 				'phone' => false
 			),
 			'images' => false,
-			'tracker_url' => false
+			'tracker_url' => false,
+			'rets' => array(
+			  'aname' => false,
+			  'oname' => false
+			)
 		)
 	),
 	'create' => array(
