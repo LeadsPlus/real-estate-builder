@@ -46,6 +46,9 @@ Class PL_HTTP {
 			case 'POST':
 			case 'PUT':
 				$response = wp_remote_post($url, array('body' => $request_string, 'timeout' => self::$timeout, 'method' => $method));
+				if (!is_array($response)) {
+					$response = array();
+				}
 				return json_decode($response['body'], TRUE);
 				break;
 			
