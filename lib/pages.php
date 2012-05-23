@@ -47,7 +47,8 @@ class PL_Pages {
 										'street' => $api_listing['location']['address'],
 										'beds' => (string) $api_listing['cur_data']['beds'],
 										'baths' => (string) $api_listing['cur_data']['beds'],
-										'half-baths' => (string) $api_listing['cur_data']['half_baths']
+										'half-baths' => (string) $api_listing['cur_data']['half_baths'],
+										'mlsid' => (string) $api_listing['rets']['mls_id']
 									);
 		// pls_dump($page_details['taxonomies']);
 		return self::manage($page_details);

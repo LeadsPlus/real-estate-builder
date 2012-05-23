@@ -443,7 +443,8 @@ $PL_API_LISTINGS = array(
 			'tracker_url' => false,
 			'rets' => array(
 				'aname' => false,
-				'oname' => false
+				'oname' => false,
+				'mls_id' => false
 			)
 		)
 	),
@@ -509,7 +510,8 @@ $PL_API_LISTINGS = array(
 			'tracker_url' => false,
 			'rets' => array(
 			  'aname' => false,
-			  'oname' => false
+			  'oname' => false,
+			  'mls_id' => false
 			)
 		)
 	),
