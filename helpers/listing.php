@@ -159,6 +159,7 @@ class PL_Listing_Helper {
 		echo json_encode($api_response);
 		if (isset($api_response['id'])) {
 			PL_HTTP::clear_cache();
+			self::details(array('id' => $api_response['id']));
 		}
 		die();
 	}	
