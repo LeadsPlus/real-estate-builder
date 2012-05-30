@@ -35,7 +35,7 @@ class PL_Router {
 	}
 	
 	public function my_listings() {
-		self:: router('my-listings.php', array('test'=>'donkey'), false);
+		self::router('my-listings.php', array('test'=>'donkey'), false);
 	}
 
 	public function add_listings() {
@@ -71,27 +71,31 @@ class PL_Router {
 					break;
 			}
 		}
-		self:: router('add-listing.php', array(), false);
+		self::router('add-listing.php', array(), false);
 	}
 
 	public function theme_gallery() {
 		if (isset($_GET['theme_url'])) {
-			self:: router('install-theme.php', array('test'=>'donkey'), false);	
+			self::router('install-theme.php', array('test'=>'donkey'), false);	
 		} else {
-			self:: router('theme-gallery.php', array('test'=>'donkey'), false);	
+			self::router('theme-gallery.php', array('test'=>'donkey'), false);	
 		}
 	}
 
 	public function settings() {
-		self:: router('settings.php', array(), false);
+		self::router('settings.php', array(), false);
+	}
+
+	public function display() {
+		self::router('display.php', array(), false);
 	}
 
 	public function support() {
-		self:: router('support.php', array(), false);
+		self::router('support.php', array(), false);
 	}
 
 	public function integrations() {
-		self:: router('integrations.php', array(), false);
+		self::router('integrations.php', array(), false);
 	}
 
 //end of class

@@ -10,7 +10,7 @@ class PL_Js_Helper {
 	}	
 
 	public function admin ($hook) {
-		$pages = array('placester_page_placester_properties', 'placester_page_placester_property_add', 'placester_page_placester_settings', 'placester_page_placester_support', 'placester_page_placester_theme_gallery', 'placester_page_placester_integrations');
+		$pages = array('placester_page_placester_properties', 'placester_page_placester_property_add', 'placester_page_placester_settings', 'placester_page_placester_support', 'placester_page_placester_theme_gallery', 'placester_page_placester_integrations', 'placester_page_placester_display');
 		if (!in_array($hook, $pages)) { return; }
 
 		// hack to force jquery to load properly. Needs to be removed once there's time to 
@@ -51,6 +51,10 @@ class PL_Js_Helper {
 
 		if ($hook == 'placester_page_placester_integrations') {						
 			self::register_enqueue_if_not('integration', trailingslashit(PL_JS_URL) .  'admin/integration.js', array( 'jquery'));			
+		}
+
+		if ($hook == 'placester_page_placester_display') {						
+			self::register_enqueue_if_not('display', trailingslashit(PL_JS_URL) .  'admin/display.js', array( 'jquery'));			
 		}
 		
 	}

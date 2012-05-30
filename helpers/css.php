@@ -10,7 +10,7 @@ class PL_Css_Helper {
 	}
 
 	function admin ($hook) {
-		$pages = array('placester_page_placester_properties', 'placester_page_placester_property_add', 'placester_page_placester_settings', 'placester_page_placester_support', 'placester_page_placester_theme_gallery', 'placester_page_placester_integrations');
+		$pages = array('placester_page_placester_properties', 'placester_page_placester_property_add', 'placester_page_placester_settings', 'placester_page_placester_support', 'placester_page_placester_theme_gallery', 'placester_page_placester_integrations', 'placester_page_placester_display');
 
 		if (!in_array($hook, $pages)) { return; }
 
@@ -43,6 +43,10 @@ class PL_Css_Helper {
 
 		if ($hook == 'placester_page_placester_integrations') {
 			self::register_enqueue_if_not('integrations', trailingslashit(PL_CSS_ADMIN_URL) .  'integration.css');					
+		}
+
+		if ($hook == 'placester_page_placester_display') {
+			self::register_enqueue_if_not('display', trailingslashit(PL_CSS_ADMIN_URL) .  'display.css');					
 		}
 	}
 
