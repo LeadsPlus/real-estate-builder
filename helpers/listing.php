@@ -174,6 +174,8 @@ class PL_Listing_Helper {
 		echo json_encode($api_response);
 		if (isset($api_response['id'])) {
 			PL_HTTP::clear_cache();
+			PL_Pages::delete_by_name($api_response['id']);
+			self::details(array('id' => $api_response['id']));
 		}
 		die();
 	}	
