@@ -117,7 +117,15 @@ class PL_Pages {
     	return false;
 	}
 
-	
+	function delete_by_name ($name) {
+		global $wpdb;
+    	$posts_table = $wpdb->prefix . 'posts';
+    	$results = $wpdb->get_results( "DELETE FROM $posts_table WHERE post_name = '".$name."' AND post_type = '" . self::$property_post_type . "'");
+    	if (empty($results)) {
+    		return true;
+    	}
+    	return false;	
+	}
 
 	function create_taxonomies() {
 		register_post_type(self::$property_post_type, array('labels' => array('name' => __( 'Properties' ),'singular_name' => __( 'property' )),'public' => true,'has_archive' => true, 'rewrite' => true, 'query_var' => true));

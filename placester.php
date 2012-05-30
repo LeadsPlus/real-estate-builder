@@ -97,6 +97,7 @@ include_once('models/themes.php');
 include_once('models/integration.php');
 include_once('models/google-places.php');
 include_once('models/wordpress.php');
+include_once('models/walkscore.php');
 
 //helpers
 include_once('helpers/listing.php');

@@ -1,4 +1,4 @@
-$(document).ready(function($) {
+jQuery(document).ready(function($) {
 
 	//property selectbox
 	set_property_type();
@@ -43,15 +43,18 @@ $(document).ready(function($) {
         sequentialUploads: true,
         submit: function (e, data) {
         	$.each(data.files, function (index, file) {
-        		var id = file.fileName.replace(/( )|(\.)|(\))|(\()/g,'');
+        		var id = file.name.replace(/( )|(\.)|(\))|(\()/g,'');
                 $('#fileupload-holder-message').append('<div id="image_container_remove"><li class="image_container"><div class="image_upload_bg"><div class="wpspinner" id="'+id+'"></div><a id="remove_image">Loading...</a></div></li></div>');
             });	
         },
         done: function (e, data) {
             $.each(data.result, function (index, file) {
+            	var count = $('.image_container div input').length;
+            	console.log(count);
+            	console.log(index);
             	var id = '#' + file.orig_name.replace(/( )|(\.)|(\))|(\()/g,'');
             	$(id).parentsUntil('#image_container_remove').remove();
-                $('#fileupload-holder-message').append('<li class="image_container"><div><img width="100px" height="100px" src="'+file.url+'" ><a id="remove_image">Remove</a><input id="hidden_images" type="hidden" name="images['+$('#hidden_images').length+'][filename]" value="'+file.name+'"></div></li>');
+                $('#fileupload-holder-message').append('<li class="image_container"><div><img width="100px" height="100px" src="'+file.url+'" ><a id="remove_image">Remove</a><input id="hidden_images" type="hidden" name="images['+count+'][filename]" value="'+file.name+'"></div></li>');
             });
         }
     });
@@ -108,7 +111,7 @@ $(document).ready(function($) {
         //set context of the form.
        var form = $('#add_listing_form');
        //ajax request for creating the listing.
-       // console.log(form_values); 
+       console.log(form_values); 
         $.ajax({
 			url: ajaxurl, //wordpress thing
 			type: "POST",
