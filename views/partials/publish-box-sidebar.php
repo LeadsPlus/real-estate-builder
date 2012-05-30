@@ -36,7 +36,6 @@
 				</div>
 
 				<div id="publishing-action">
-					<img src="http://wpsingle.com/wp-admin/images/wpspin_light.gif" class="ajax-loading" id="ajax-loading" alt="">
 					<input name="original_publish" type="hidden" id="original_publish" value="Publish">
 					<input type="submit" name="publish" id="add_listing_publish" class="button-primary" value="Publish" tabindex="5" accesskey="p"></div>
 				<div class="clear"></div>
