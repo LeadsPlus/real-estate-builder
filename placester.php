@@ -66,6 +66,14 @@ define( 'PL_CSS_ADMIN_URL', trailingslashit(PL_CSS_URL) . 'admin/' );
 define( 'PL_CSS_CLIENT_DIR', trailingslashit(PL_CSS_DIR) . 'client/' );
 define( 'PL_CSS_CLIENT_URL', trailingslashit(PL_CSS_URL) . 'client/' );
 
+define( 'PL_TPL_DIR', trailingslashit(PL_PARENT_DIR) . 'templates/' );
+define( 'PL_TPL_URL', trailingslashit(PL_PARENT_URL) . 'templates/' );
+
+define( 'PL_TPL_CON_DIR', trailingslashit(PL_TPL_DIR) . 'content/' );
+define( 'PL_TPL_CON_URL', trailingslashit(PL_TPL_URL) . 'content/' );
+
+define( 'PL_TPL_EXR_DIR', trailingslashit(PL_TPL_DIR) . 'exerpt/' );
+define( 'PL_TPL_EXR_URL', trailingslashit(PL_TPL_URL) . 'exerpt/' );
 
 //config
 include_once('config/toggle_form_sections.php');
@@ -147,7 +155,7 @@ function placester_admin_menu() {
     	add_submenu_page( 'placester', '', 'Theme Gallery', 'edit_pages', 'placester_theme_gallery', array('PL_Router','theme_gallery') );    	
     }
     add_submenu_page( 'placester', '', 'Settings', 'edit_pages', 'placester_settings', array('PL_Router','settings') );    
-    add_submenu_page( 'placester', '', 'Display Templates', 'edit_pages', 'placester_display', array('PL_Router','display') );    
+    add_submenu_page( 'placester', '', 'Listing Templates', 'edit_pages', 'placester_display', array('PL_Router','display') );    
     add_submenu_page( 'placester', '', 'Support', 'edit_pages', 'placester_support', array('PL_Router','support') );    
     add_submenu_page( 'placester', '', 'MLS Integration', 'edit_pages', 'placester_integrations', array('PL_Router','integrations') );    
 }

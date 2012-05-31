@@ -47,13 +47,53 @@ class PL_Display_Helper {
 		return '';
 	}
 
-	function get_templates ($arg = array()) {
+	function get_templates_as_options ($args = array()) {
+		$args = wp_parse_args($args, array('type' => 'content'));
+		$templates = self::get_templates($args);
+		if (!empty($templates)) {
+			ob_start();
+			?>
+				<?php foreach ($templates as $value => $label): ?>
+					<option value="<?php echo $value ?>"><?php echo $label ?></option>
+				<?php endforeach ?>
+			<?php
+			return ob_get_clean();
+		} else {
+			return '';
+		}
+		
+	}
+
+	private function get_templates ($args = array()) {
+		$tempaltes = array();
+		if ($args['type'] == 'content') {
+			$dir = PL_TPL_CON_DIR; 	
+		} else {
+			$dir = PL_TPL_EXR_DIR; 	
+		}
+		
+		if (is_dir($dir)) {
+		    if ($dh = opendir($dir)) {
+		        while ( (($file = readdir($dh)) !== false) )  {
+		        	if ($file != '.' && $file != '..') {
+		        		$templates[] = $file;
+		        	}
+		        }
+		        closedir($dh);
+		    }
+		}
+		return $templates;
+	}
+
+	function get_custom_templates ($args = array()) {
 		extract(wp_parse_args($args, array('type' => 'content')));
 		if ($type == 'content') {
 			$templates = get_option(self::$content_template_name, array());
 		} elseif ($type == 'excerpt') {
 			$templates = get_option(self::$excerpt_template_name, array());
 		}
+		
 	}
+
 //end of class
 }
