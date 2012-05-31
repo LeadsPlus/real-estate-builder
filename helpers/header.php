@@ -72,5 +72,20 @@
 
     }
 
+    function create_submenu ($submenu_items, $current_label) {
+      $submenu_html = '';
+      ob_start();
+        ?>
+          <ul class="subsubsub">
+            <?php foreach ($submenu_items as $routing_method => $label): ?>
+              <li class="all"><a href="edit.php?post_type=post" class="<?php echo $label == $current_label ? 'current' : '' ?>" data-bitly-type="bitly_hover_card"><?php echo $label ?></a> |</li>  
+            <?php endforeach ?>
+          </ul>  
+        <?php
+        $submenu_html .= ob_get_clean();
+      return $submenu_html;
+    }
+
+//end of class
 }
 
