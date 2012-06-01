@@ -68,7 +68,7 @@ Class PL_HTTP {
 			default:
 				$signature = base64_encode(sha1($url . $request_string, true));
 	        	$transient_id = 'pl_' . $signature;
-	        	$transient = get_transient($transient_id);
+	        	$transient = get_site_transient($transient_id);
 	        	// pls_dump($url . '?' . $request_string);
 	        	if ($allow_cache && $transient) {
 					PL_Debug::add_msg('------- !!!USING CACHE!!! --------');    	    		
@@ -83,7 +83,7 @@ Class PL_HTTP {
 					if ( (is_array($response) && isset($response['headers']) && isset($response['headers']['status']) && $response['headers']['status'] == 200) || $force_return) {
 						if (!empty($response['body'])) {
 							$body = json_decode($response['body'], TRUE);
-							set_transient( $transient_id, $body , 3600 * 48 );
+							set_site_transient( $transient_id, $body , 3600 * 48 );
 							return $body;
 						} else {
 							return false;
