@@ -171,6 +171,19 @@ class PL_Taxonomy_Helper {
 		return $response;
 	}
 
+	function get_polygons_by_slug ($slug = false) {
+		
+		$response = array();
+		$polygons = PL_Option_Helper::get_polygons();
+		foreach ($polygons as $key => $polygon) {
+			$polygon['permalink'] = get_term_link( $polygon['slug'], $polygon['tax'] );
+			if ($polygon['slug'] == $slug) {
+				$response[] = $polygon;
+			}
+		}
+		return $response;
+	}
+
 	function get_polygon_detail ($args = array()) {
 		extract(wp_parse_args($args, array('tax' => false, 'slug' => false)));
 		$response = array();
