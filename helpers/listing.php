@@ -126,7 +126,7 @@ class PL_Listing_Helper {
 		foreach ($api_response['listings'] as $key => $listing) {
 			$images = $listing['images'];
 			$listings[$key][] = ((is_array($images) && isset($images[0])) ? '<img width=50 height=50 src="' . $images[0]['url'] . '" />' : 'empty');
-			$listings[$key][] = '<a class="address" href="/wp-admin/admin.php?page=placester_property_add&id=' . $listing['id'] . '">' . $listing["location"]["address"] . ' ' . $listing["location"]["locality"] . ' ' . $listing["location"]["region"] . '</a><div class="row_actions"><a href="/wp-admin/admin.php?page=placester_property_add&id=' . $listing['id'] . '" >Edit</a><span>|</span><a href=' . PL_Page_Helper::get_url($listing['id']) . '>View</a><span>|</span><a class="red" id="pls_delete_listing" href="#" ref="'.$listing['id'].'">Delete</a></div>';
+			$listings[$key][] = '<a class="address" href="'.ADMIN_MENU_URL.'?page=placester_property_add&id=' . $listing['id'] . '">' . $listing["location"]["address"] . ' ' . $listing["location"]["locality"] . ' ' . $listing["location"]["region"] . '</a><div class="row_actions"><a href="'.admin_url().'?page=placester_property_add&id=' . $listing['id'] . '" >Edit</a><span>|</span><a href=' . PL_Page_Helper::get_url($listing['id']) . '>View</a><span>|</span><a class="red" id="pls_delete_listing" href="#" ref="'.$listing['id'].'">Delete</a></div>';
 			$listings[$key][] = $listing["location"]["postal"];
 			$listings[$key][] = implode($listing["zoning_types"], ', ') . ' ' . implode($listing["purchase_types"], ', ');
 			$listings[$key][] = implode($listing["listing_types"], ', ');
@@ -221,7 +221,7 @@ class PL_Listing_Helper {
 			echo json_encode(array('response' => true, 'message' => 'Listing successfully deleted. This page will reload momentarily.'));	
 			PL_HTTP::clear_cache();
 		} elseif ( isset($api_response['code']) && $api_response['code'] == 1800 ) {
-			echo json_encode(array('response' => false, 'message' => 'Cannot find listing. Try <a href="/wp-admin/admin.php?page=placester_settings">emptying your cache</a>.'));
+			echo json_encode(array('response' => false, 'message' => 'Cannot find listing. Try <a href="'.admin_url().'?page=placester_settings">emptying your cache</a>.'));
 		}
 		die();
 	}

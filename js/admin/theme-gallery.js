@@ -19,7 +19,7 @@ $(document).ready(function($) {
 				if (data && data.type == 'subscribe') {
 					prompt_free_trial('Start your 60 day free trial and begin the download', premium_theme_success, premium_theme_cancel);
 				} else {
-					window.location.href = "/wp-admin/admin.php?page=placester_theme_gallery&theme_url=" + encodeURIComponent(data.url);
+					window.location.href = adminurl + "?page=placester_theme_gallery&theme_url=" + encodeURIComponent(data.url);
 				};
 		    }
 		});
@@ -40,7 +40,7 @@ $(document).ready(function($) {
 				if (data && data.type == 'subscribe') {
 					prompt_free_trial('Start your 60 day free trial and begin the download', premium_theme_success, premium_theme_cancel);
 				} else {
-					window.location.href = "/wp-admin/admin.php?page=placester_theme_gallery&theme_url=" + encodeURIComponent(data.url);
+					window.location.href = adminurl + "?page=placester_theme_gallery&theme_url=" + encodeURIComponent(data.url);
 				};
 		    }
 		});

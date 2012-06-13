@@ -66,6 +66,9 @@ define( 'PL_CSS_ADMIN_URL', trailingslashit(PL_CSS_URL) . 'admin/' );
 define( 'PL_CSS_CLIENT_DIR', trailingslashit(PL_CSS_DIR) . 'client/' );
 define( 'PL_CSS_CLIENT_URL', trailingslashit(PL_CSS_URL) . 'client/' );
 
+define('ADMIN_URL', trailingslashit( admin_url() ) );
+define('ADMIN_MENU_URL', trailingslashit( ADMIN_URL ) . 'admin.php' );
+
 
 //config
 include_once('config/toggle_form_sections.php');

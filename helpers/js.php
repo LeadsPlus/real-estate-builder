@@ -7,6 +7,7 @@ class PL_Js_Helper {
 	public function init() {
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'admin' ));
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'frontend' ));
+		add_action('admin_head',array(__CLASS__, 'admin_menu_url'));
 	}	
 
 	public function admin ($hook) {
@@ -53,6 +54,16 @@ class PL_Js_Helper {
 			self::register_enqueue_if_not('integration', trailingslashit(PL_JS_URL) .  'admin/integration.js', array( 'jquery'));			
 		}
 		
+	}
+
+	public function admin_menu_url () {
+		?>
+			<script type="text/javascript">
+				var adminurl = '<?php echo ADMIN_MENU_URL; ?>';
+				var siteurl = '<?php echo site_url(); ?>';
+			</script>
+		<?php
+
 	}
 
 	public function frontend() {
