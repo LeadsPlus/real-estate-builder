@@ -121,7 +121,6 @@
 			<div class="header-wrapper">
 				<h2>Set Default Country</h2>
 				<select name="" class="set_default_country" id="set_default_country_select">
-					<?php pls_dump($default_country) ?>
 					<?php foreach (PL_Listing_Helper::supported_countries() as $key => $value): ?>
 						<?php if ($key === $default_country): ?>
 							<option value="<?php echo $key ?>" selected><?php echo $value ?></option>		
