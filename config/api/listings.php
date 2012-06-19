@@ -234,7 +234,18 @@ $PL_API_LISTINGS = array(
 						'method' => 'locations_for_options',
 						'params' => 'neighborhood'
 					)
+				),
+				'county'  => array(
+					'label' => 'County',
+					'type' => 'select',
+					'group' => 'location',
+					'bound' => array(
+						'class' => 'PL_Listing_Helper',
+						'method' => 'locations_for_options',
+						'params' => 'county'
+					)
 				)
+				
 			),
 			// binds to keys / values of all attributes (cur + uncur)
 			'metadata' => array(
@@ -429,6 +440,7 @@ $PL_API_LISTINGS = array(
 				'region' => false,
 				'postal' => false,
 				'neighborhood' => false,
+				'county' => false,
 				'country' => false,
 				'coords' => array(
 					'latitude' => false,
@@ -496,6 +508,7 @@ $PL_API_LISTINGS = array(
 				'region' => false,
 				'postal' => false,
 				'neighborhood' => false,
+				'county' => false,
 				'country' => false,
 				'coords' => array(
 					'latitude' => false,
@@ -698,6 +711,7 @@ $PL_API_LISTINGS = array(
 				'postal' => array('type' => 'text','group' => 'location', 'label' => 'Zip Code'),
 				'unit'  => array('type' => 'text','group' => 'location', 'label' => 'Unit'),
 				'neighborhood'  => array('type' => 'text','group' => 'location', 'label' => 'Neighborhood'),
+				'county' => array('type' => 'text','group' => 'location', 'label' => 'County'),
 				'country'  => array(
 					'type' => 'select',
 					'group' => 'location',
