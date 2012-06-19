@@ -84,12 +84,14 @@
 							<span>Placester.com Account Details</span>
 						</h3>
 						<div class="inside">
-							<div class="not-set-up"><h2>Plugin not Set Up! <a href="#">Get Started.</a></h2></div>
+							<div class="not-set-up"><h2>Plugin not Set Up! <a href="#" id="settings_get_started_signup">Get Started.</a></h2></div>
 						</div>
 						<div class="clear"></div>
 					</div>	
 				</div>
 			</form>
+			<?php do_action('sign-up-action'); ?>
+			<?php self::load_builder_partial('sign-up.php'); ?>
 		<?php endif ?>
 			<?php 
 			/*

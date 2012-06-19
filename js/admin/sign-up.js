@@ -79,7 +79,7 @@ $(document).ready(function($) {
 		buttons: main_buttons
 	});
 
-	$('.wrapper').live('click', function() {
+	$('.wrapper, #settings_get_started_signup').live('click', function() {
 		$( "#signup_wizard" ).dialog( "open" );
 	});
 	
