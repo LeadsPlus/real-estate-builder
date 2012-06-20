@@ -127,7 +127,7 @@ class PL_Pages {
 	}
 
 	function create_taxonomies() {
-		register_post_type(self::$property_post_type, array('labels' => array('name' => __( 'Properties' ),'singular_name' => __( 'property' )),'public' => true,'has_archive' => true, 'rewrite' => true, 'query_var' => true));
+		register_post_type(self::$property_post_type, array('labels' => array('name' => __( 'Properties' ),'singular_name' => __( 'property' )),'public' => true,'has_archive' => true, 'rewrite' => true, 'query_var' => true, 'taxonomies' => array('category', 'post_tag')));
 
 		global $wp_rewrite;
 	    $property_structure = '/property/%state%/%city%/%zip%/%neighborhood%/%street%/%'.self::$property_post_type.'%';
