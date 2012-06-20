@@ -534,9 +534,10 @@ class PL_Membership {
         //     $remove_link_attr['style'] = "display:none;";
         // }
 
+        
         $is_favorite = self::is_favorite_property($property_id);
-        ob_start();
 
+        ob_start();
         ?>
             <div id="pl_add_remove_lead_favorites">
                 <?php if (is_user_logged_in()): ?>

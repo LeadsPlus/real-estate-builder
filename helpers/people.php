@@ -35,7 +35,7 @@ class PL_People_Helper {
 	public function associate_property($property_id) {
 		$placester_person = self::person_details();
 		$new_favorites = array($property_id);
-		if (is_array($placester_person['fav_listings'])) {
+		if (isset($placester_person['fav_listings']) && is_array($placester_person['fav_listings'])) {
 			foreach ($placester_person['fav_listings'] as $fav_listings) {
 				$new_favorites[] = $fav_listings['id'];
 			}
