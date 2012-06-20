@@ -101,6 +101,7 @@ include_once('models/integration.php');
 include_once('models/google-places.php');
 include_once('models/wordpress.php');
 include_once('models/walkscore.php');
+include_once('models/education-com.php');
 
 //helpers
 include_once('helpers/listing.php');
@@ -121,6 +122,7 @@ include_once('helpers/settings.php');
 include_once('helpers/taxonomy.php');
 include_once('helpers/google-places.php');
 include_once('helpers/wordpress.php');
+include_once('helpers/education-com.php');
 
 //third-party scripts
 include_once('third-party/tax-meta-class/tax-meta-class.php');
