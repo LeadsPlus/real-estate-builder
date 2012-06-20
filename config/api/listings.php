@@ -885,7 +885,8 @@ $PL_API_LISTINGS = array(
 		'returns' => array(
 			'postal' => array(),
 			'region'  => array(),
-			'locality' => array()
+			'locality' => array(),
+			'county' => array(),
 		)
 	)
 );
