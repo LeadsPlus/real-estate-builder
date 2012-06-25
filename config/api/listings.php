@@ -885,7 +885,10 @@ $PL_API_LISTINGS = array(
 		'returns' => array(
 			'postal' => array(),
 			'region'  => array(),
-			'locality' => array()
+			'locality' => array(),
+			'neighborhood' => array(),
+			'county' => array(),
+			'neighborhood_polygons' => array()
 		)
 	)
 );

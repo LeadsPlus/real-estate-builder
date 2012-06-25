@@ -16,7 +16,7 @@ class PL_Taxonomy_Helper {
 		add_action('wp_ajax_get_polygons_by_type', array(__CLASS__, 'ajax_get_polygons_by_type'));
 		add_action('wp_ajax_nopriv_lifestyle_polygon', array(__CLASS__, 'lifestyle_polygon'));
 		add_action('wp_ajax_lifestyle_polygon', array(__CLASS__, 'lifestyle_polygon'));
-		add_action('wp_ajax_polygon_listings', array(__CLASS__, 'polygon_lisitngs'));
+		add_action('wp_ajax_polygon_listings', array(__CLASS__, 'ajax_polygon_listings'));
 		add_action('wp_ajax_nopriv_polygon_listings', array(__CLASS__, 'polygon_lisitngs'));
 	}
 
@@ -33,21 +33,34 @@ class PL_Taxonomy_Helper {
 		register_taxonomy('mlsid', 'property', array('hierarchical' => TRUE,'label' => __('MLS ID'), 'public' => TRUE,'show_ui' => TRUE,'query_var' => true,'rewrite' => true ) );
 	}
 
-	function polygon_lisitngs () {
+	function ajax_polygon_listings () {
 		if (isset($_POST['vertices'])) {
 			$vertices = $_POST['vertices'];
 			if (!empty($vertices)) {
-				$request = '';
-				foreach ($vertices as $key => $point) {
-					$request .= 'polygon['.$key. '][0]=' . $point['lat'] .'&';
-					$request .= 'polygon['.$key .'][1]=' . $point['lng'] .'&';
-				}
-				$api_listings = PL_Listing_Helper::results($request);
+				$api_listings = self::polygon_listings($vertices);
 				$response = $api_listings['listings'];
 				echo json_encode($response);
 			}
 		}
 		die();
+	}
+
+	function get_listings_polygon_name ($polygon_name) {
+		$polygons = PL_Option_Helper::get_polygons();
+		foreach ($polygons as $polygon) {
+			if ($polygon['name'] == $polygon_name) {
+				return self::polygon_listings($polygon['vertices']);
+			}
+		}
+	}
+
+	function polygon_listings ($vertices) {
+		$request = '';
+		foreach ($vertices as $key => $point) {
+			$request .= 'polygon['.$key. '][0]=' . $point['lat'] .'&';
+			$request .= 'polygon['.$key .'][1]=' . $point['lng'] .'&';
+		}
+		return PL_Listing_Helper::results($request);
 	}
 
 	function lifestyle_polygon () {

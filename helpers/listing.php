@@ -226,9 +226,12 @@ class PL_Listing_Helper {
 		die();
 	}
 
-	public function locations_for_options($return_only) {
+	public function locations_for_options($return_only = false) {
 		$options = array();
 		$response = PL_Listing::locations();
+		if (!$return_only) {
+			return $response;
+		}
 		if ($return_only && isset($response[$return_only])) {
 			foreach ($response[$return_only] as $key => $value) {
 				$options[$value] = $value;
@@ -239,6 +242,25 @@ class PL_Listing_Helper {
 		} else {
 			return array();	
 		}
+	}
+
+	public function polygon_locations ($return_only = false) {
+		$response = array();
+		$polygons = PL_Option_Helper::get_polygons();
+		if ($return_only) {
+			foreach ($polygons as $polygon) {
+				if ($polygon['tax'] == $return_only) {
+					$response[] = $polygon['name'];
+				}
+			}
+			return $response;	
+		} else {
+			foreach ($polygons as $polygon) {
+				$response[] = $polygon['name'];
+			}
+			return $response;	
+		}
+		
 	}
 
 	public function pricing_min_options($type = 'min') {
