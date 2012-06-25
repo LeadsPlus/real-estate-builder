@@ -301,7 +301,7 @@ class PL_Listing_Helper {
 
 	public function get_listing_attributes() {
 		$options = array();
-		$attributes = PL_Config::bundler('PL_API_LISTINGS', array('get', 'args'), array('listing_types','property_type.sublet','property_type.res_sale','property_type.res_rental','property_type.vac_rental','property_type.comm_sale','property_type.comm_rental', 'zoning_types', 'purchase_types', array('location' => array('region', 'locality', 'postal', 'neighborhood'))));
+		$attributes = PL_Config::bundler('PL_API_LISTINGS', array('get', 'args'), array('listing_types','property_type.sublet','property_type.res_sale','property_type.res_rental','property_type.vac_rental','property_type.comm_sale','property_type.comm_rental', 'zoning_types', 'purchase_types', array('location' => array('region', 'locality', 'postal', 'neighborhood', 'county'))));
 		foreach ($attributes as $key => $attribute) {
 			if ( isset($attribute['label']) ) {
 				$options['basic'][$key] = $attribute['label'];
