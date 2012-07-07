@@ -289,10 +289,13 @@ $(document).ready(function($) {
             }
         });
 
+	var all_polygon_coords = new google.maps.LatLngBounds();
 	$('.show_neighborhood_areas form').live('change', function () {
+		all_polygon_coords = new google.maps.LatLngBounds();
 		show_neighborhood_areas();
 	});
 
+	
 	function show_neighborhood_areas () {
 		var form_values = {};
 		form_values['action'] = 'get_polygons_by_type';
@@ -319,11 +322,13 @@ $(document).ready(function($) {
 					  });
 					polygon.setMap(map);
 					customTxt = data[item].name;
-		            var bounds = new google.maps.LatLngBounds();
+					var bounds = new google.maps.LatLngBounds();
 		            var polygonCoords = polygon.getPath();
 		            for (p = 0; p < polygonCoords.length; p++) {
-					  bounds.extend(polygonCoords.getAt(p));
+					  	bounds.extend(polygonCoords.getAt(p));
+					  	all_polygon_coords.extend(polygonCoords.getAt(p));
 					}
+					map.fitBounds(all_polygon_coords);
 		            other_text = new TxtOverlay(bounds.getCenter(),customTxt,"polygon_text_area",map );
 					other_polygons.push(polygon);
 					other_polygons.push(other_text);
