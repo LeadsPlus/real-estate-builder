@@ -45,21 +45,23 @@ class PL_Taxonomy_Helper {
 		die();
 	}
 
-	function get_listings_polygon_name ($polygon_name) {
+	function get_listings_polygon_name ($params) {
 		$polygons = PL_Option_Helper::get_polygons();
 		foreach ($polygons as $polygon) {
-			if ($polygon['name'] == $polygon_name) {
-				return self::polygon_listings($polygon['vertices']);
+			if ($polygon['name'] == $params['neighborhood_polygons']) {
+				return self::polygon_listings($polygon['vertices'], $params);
 			}
 		}
 	}
 
-	function polygon_listings ($vertices) {
+	function polygon_listings ($vertices, $additional_params = array()) {
 		$request = '';
 		foreach ($vertices as $key => $point) {
 			$request .= 'polygon['.$key. '][0]=' . $point['lat'] .'&';
 			$request .= 'polygon['.$key .'][1]=' . $point['lng'] .'&';
 		}
+		$request = wp_parse_args($request, $additional_params);
+		// pls_dump($request);
 		return PL_Listing_Helper::results($request);
 	}
 
