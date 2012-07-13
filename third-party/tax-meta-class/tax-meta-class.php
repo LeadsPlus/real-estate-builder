@@ -111,7 +111,7 @@ class Tax_Meta_Class {
     $this->add_missed_values();
     if (isset($meta_box['use_with_theme']))
       if ($meta_box['use_with_theme'] == true){
-        $this->SelfPath = get_stylesheet_directory_uri() . '/Tax-meta-class';
+        $this->SelfPath = get_stylesheet_directory_uri() . '/tax-meta-class';
       }elseif($meta_box['use_with_theme'] == false){
         $this->SelfPath = plugins_url( 'tax-meta-class', plugin_basename( dirname( __FILE__ ) ) );
       }else{
@@ -155,7 +155,7 @@ class Tax_Meta_Class {
       $this->check_field_date();
       $this->check_field_time();
       // Enqueue Meta Box Style
-      wp_enqueue_style( 'tax-meta-clss', $plugin_path . '/css/Tax-meta-class.css' );
+      wp_enqueue_style( 'tax-meta-clss', $plugin_path . '/css/tax-meta-class.css' );
       // Enqueue Meta Box Scripts
       wp_enqueue_script( 'tax-meta-clss', $plugin_path . '/js/tax-meta-clss.js', array( 'jquery' ), null, true );
     
