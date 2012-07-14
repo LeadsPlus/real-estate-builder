@@ -23,7 +23,7 @@ $(document).ready(function($) {
         "iDisplayLength" : 5,
         "aoColumns" : [
             { sWidth: '75px' },    //name
-            { sWidth: '220px' },    //type
+            { sWidth: '230px' },    //type
             { sWidth: '75px' },     //neighborhood
             { sWidth: '55%' },    //edit
             { sWidth: '60px' }    //remove

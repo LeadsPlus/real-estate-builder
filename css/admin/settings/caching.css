@@ -5,3 +5,7 @@
 #list_of_caches_list_length {
 	float: right;
 }
+.option_value {
+	height: 75px;
+	overflow: auto;
+}
