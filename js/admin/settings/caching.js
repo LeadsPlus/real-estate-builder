@@ -12,8 +12,6 @@ $(document).ready(function($) {
 		},'json');
 	});
 
-
-
 	var cache_datatable = $('#list_of_caches_list').dataTable( {
         "bFilter": false,
         "bProcessing": true,
@@ -45,7 +43,6 @@ $(document).ready(function($) {
             } else {
                 alert(data.message);
             }
-    	}, 'json');
-    	
+    	}, 'json');    	
     });
 });
