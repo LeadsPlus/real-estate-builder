@@ -42,11 +42,13 @@ class PL_Css_Helper {
 		}
 
 		if ($hook == 'placester_page_placester_settings') {
-			self::register_enqueue_if_not('settings', trailingslashit(PL_CSS_ADMIN_URL) .  'settings.css');					
+			self::register_enqueue_if_not('settings-all', trailingslashit(PL_CSS_ADMIN_URL) .  '/settings/all.css');					
+			self::register_enqueue_if_not('settings-general', trailingslashit(PL_CSS_ADMIN_URL) .  '/settings/general.css');	
 		}
 
 		if ($hook == 'placester_page_placester_settings_polygons') {
-			self::register_enqueue_if_not('settings', trailingslashit(PL_CSS_ADMIN_URL) .  'settings.css');					
+			self::register_enqueue_if_not('settings-all', trailingslashit(PL_CSS_ADMIN_URL) .  '/settings/all.css');					
+			self::register_enqueue_if_not('settings-polygons', trailingslashit(PL_CSS_ADMIN_URL) .  '/settings/polygon.css');									
 			self::register_enqueue_if_not('colorpicker', trailingslashit(PL_JS_URL) .  'lib/colorpicker/css/colorpicker.css');					
 		}
 

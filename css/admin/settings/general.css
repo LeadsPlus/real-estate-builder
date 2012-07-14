@@ -1,7 +1,3 @@
-.header-wrapper {
-	margin-top: 10px;
-}
-
 .search_filter_content section.form_group {
 	float: left;
 	clear:both;
@@ -126,87 +122,6 @@
 	margin: 8px 0 0 -15px;
 }
 
-
-.polygon_wrapper {
-	position: relative;
-}
-.polygon_wrapper #polygon_map {
-	margin: 10px 0 0 0;
-	width: 500px;
-	height: 300px;
-	float: left;
-}
-.polygon_wrapper .map_address {
-	position: absolute;
-	top: 273px;
-	left: 197px;
-	z-index: 100;
-	background-color: white;
-	padding: 10px 5px;
-}
-.polygon_controls {
-	position: absolute;
-	background: white;
-	width: 550px;
-}
-#polygon_listings_list_length {
-	display: none;
-}
-#polygon_listings_list_next {
-	float: right;
-	clear: both;
-}
-#polygon_listings_list_info {
-	float: right;
-	clear: both;
-}
-.polygon_wrapper .polygon_list {
-	float: left;
-	margin: 0 0 0 10px;
-}
-.polygon_list {
-	position: relative;
-}
-.polygon_list .polygons {
-	width: 530px;
-	height: 255px;
-	float: left;	
-	overflow: auto;
-}
-.polygon_list .polygons ul {
-	padding-left: 18px;
-}
-.polygon_list .polygons ul li {
-	list-style-type: decimal;
-}
-.form-item {
-	clear: both;
-}
-.form-item select, .form-item input, .form-item label {
-	float: left;
-}
-.another_colorpicker {
-	float: left;
-}
-.show_neighborhood_areas {
-	margin: 10px 0 0 0;
-}
-.show_neighborhood_areas span {
-	float: left;
-	margin-right: 10px;
-}
-.show_neighborhood_areas form section {
-	float: left;
-	height : 25px;
-	margin-right: 7px;
-}
-.polygon_text_area {
- 	font-size: 14px;
- 	text-shadow: #FFF 1px 1px 2px;
-    position: absolute;
-    text-align: center;
-    font-weight: bold;
-}
 
 
 
