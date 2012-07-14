@@ -13,7 +13,7 @@ class PL_Router {
 			}
 			self::load_builder_view($template, $directory);	
 			self::load_builder_view('footer.php');
-			echo ob_get_clean();	
+		echo ob_get_clean();	
 		
 	}
 

@@ -157,20 +157,7 @@ Class PL_HTTP {
 	}
 
 	function clear_cache() {
-	    global $wpdb;
-	    $placester_options = $wpdb->get_results('SELECT option_name FROM ' . $wpdb->prefix . 'options ' ."WHERE option_name LIKE '_transient_pl_%'");
-	    foreach ($placester_options as $option) {
-	        delete_option( $option->option_name );
-	    }
-	}
-
-	function num_items_cached () {
-		global $wpdb;
-	    $placester_options = $wpdb->get_results('SELECT option_name FROM ' . $wpdb->prefix . 'options ' ."WHERE option_name LIKE '_transient_pl_%'");		
-	    if ($placester_options && is_array($placester_options)) {
-	    	return count($placester_options);
-	    }
-	    return 0;
+	    PL_Cache::clear();
 	}
 }
 

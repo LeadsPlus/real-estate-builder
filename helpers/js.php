@@ -72,6 +72,7 @@ class PL_Js_Helper {
 		}
 		if ($hook == 'placester_page_placester_settings_caching') {
 			self::register_enqueue_if_not('settings', trailingslashit(PL_JS_URL) .  'admin/settings/caching.js', array( 'jquery'));	
+			self::register_enqueue_if_not('datatables', trailingslashit(PL_JS_LIB_URL) .  'datatables/jquery.dataTables.js', array( 'jquery'));	
 		}
 		if ($hook == 'placester_page_placester_settings_filtering') {
 			self::register_enqueue_if_not('settings', trailingslashit(PL_JS_URL) .  'admin/settings/filtering.js', array( 'jquery'));	

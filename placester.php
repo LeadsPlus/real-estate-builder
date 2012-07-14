@@ -127,6 +127,7 @@ include_once('helpers/taxonomy.php');
 include_once('helpers/google-places.php');
 include_once('helpers/wordpress.php');
 include_once('helpers/education-com.php');
+include_once('helpers/caching.php');
 
 //third-party scripts
 include_once('third-party/tax-meta-class/tax-meta-class.php');

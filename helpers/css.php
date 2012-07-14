@@ -62,7 +62,8 @@ class PL_Css_Helper {
 			self::register_enqueue_if_not('settings', trailingslashit(PL_CSS_ADMIN_URL) .  'settings.css');					
 		}
 		if ($hook == 'placester_page_placester_settings_caching') {
-			self::register_enqueue_if_not('settings', trailingslashit(PL_CSS_ADMIN_URL) .  'settings.css');					
+			self::register_enqueue_if_not('settings-all', trailingslashit(PL_CSS_ADMIN_URL) .  '/settings/all.css');					
+			self::register_enqueue_if_not('settings-caching', trailingslashit(PL_CSS_ADMIN_URL) .  '/settings/caching.css');					
 		}
 		if ($hook == 'placester_page_placester_settings_filtering') {
 			self::register_enqueue_if_not('settings-all', trailingslashit(PL_CSS_ADMIN_URL) .  '/settings/all.css');					
