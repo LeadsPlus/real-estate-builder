@@ -14,7 +14,6 @@
 				<div id="global_filter_message_remove"></div>
 			</div>
 			<p>Global listing search filters limit all the search results returned to your website. This is helpful if you have listings of many different types or locations created but only want this website to display a subset of them. For example, to only show properties in Boston.</p>
-			<?php //pls_dump($filters) ?> 
 			<div class="global_filters tagchecklist">
 				<?php if (!empty($filters)): ?>
 					<p class="label">Active Filters:</p>	
