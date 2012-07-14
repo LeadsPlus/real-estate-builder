@@ -51,5 +51,12 @@ class PL_Cache {
 		die();
 	}
 
+	public static function delete($option_name) {
+		// pl_dump($option_name);
+		$result = delete_transient( $option_name );
+		// var_dump($result);
+		return $result;
+	}
+
 //end class
 }

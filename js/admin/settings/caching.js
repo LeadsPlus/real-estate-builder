@@ -25,11 +25,20 @@ $(document).ready(function($) {
             { sWidth: '75px' },    //name
             { sWidth: '220px' },    //type
             { sWidth: '75px' },     //neighborhood
-            { sWidth: '80%' },    //edit
+            { sWidth: '55%' },    //edit
             { sWidth: '60px' }    //remove
         ], 
         "fnServerParams": function ( aoData ) {
             aoData.push( { "name": "action", "value" : "get_cache_items"} );
         }
+    });
+
+    $('.delete_cache').live('click', function(event) {
+    	event.preventDefault();
+    	var option_name = $(this).attr('id');
+    	$.post(ajaxurl, {action: 'delete_cache_items', 'option_name' : option_name}, function(data, textStatus, xhr) {
+    		console.log(data);
+    	}, 'json');
+    	
     });
 });
