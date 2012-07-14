@@ -12,7 +12,27 @@
       self::$page = $hook;
     }
 
+    function pl_settings_subpages () {
 
+      global $settings_subpages;
+        global $submenu;
+        $base_url = 'admin.php?page=placester_settings';
+        ob_start();
+          ?>
+          <div class="settings_sub_nav">
+            <ul>
+              <li class="submenu-title">Settings Pages:</li>
+              <?php foreach ($settings_subpages as $page_title => $page_url): ?>
+                <li>
+                  <a href="<?php echo $base_url . $page_url ?>" style="<?php echo strpos(self::$page, $page_url ) ? 'color:#D54E21;' : '' ?>"><?php echo $page_title ?></a>
+                </li>
+              <?php endforeach ?>
+            </ul>
+          </div>
+
+          <?php
+        return ob_get_clean();
+    }
 
     function placester_admin_header($title_postfix = '' ) {
       // placester_verified_check()
@@ -47,7 +67,12 @@
         $v = '';
         global $submenu;
         foreach ( $submenu['placester'] as $i ) {
-
+            
+            //exclude settings submenu pages
+            $check = explode('_', $i[2]);
+            if (count($check) > 2 && $check[1] == 'settings') {
+              continue;
+            }
             $title = $i[0];
             $slug = $i[2];
             $style = '';

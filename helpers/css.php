@@ -10,7 +10,8 @@ class PL_Css_Helper {
 	}
 
 	function admin ($hook) {
-		$pages = array('placester_page_placester_properties', 'placester_page_placester_property_add', 'placester_page_placester_settings', 'placester_page_placester_support', 'placester_page_placester_theme_gallery', 'placester_page_placester_integrations');
+		$pages = array('placester_page_placester_properties', 'placester_page_placester_property_add', 'placester_page_placester_settings', 'placester_page_placester_support', 'placester_page_placester_theme_gallery', 'placester_page_placester_integrations',
+		 'placester_page_placester_settings_polygons', 'placester_page_placester_settings_property_pages', 'placester_page_placester_settings_international', 'placester_page_placester_settings_neighborhood', 'placester_page_placester_settings_caching', 'placester_page_placester_settings_filtering');
 
 		if (!in_array($hook, $pages)) { return; }
 
@@ -22,11 +23,6 @@ class PL_Css_Helper {
 
 		if ($hook == 'placester_page_placester_properties') {
 			self::register_enqueue_if_not('my-listings', trailingslashit(PL_CSS_ADMIN_URL) .  'my-listings.css');					
-		}
-
-		if ($hook == 'placester_page_placester_settings') {
-			self::register_enqueue_if_not('settings', trailingslashit(PL_CSS_ADMIN_URL) .  'settings.css');					
-			self::register_enqueue_if_not('colorpicker', trailingslashit(PL_JS_URL) .  'lib/colorpicker/css/colorpicker.css');					
 		}
 
 		if ($hook == 'placester_page_placester_property_add') {
@@ -43,6 +39,31 @@ class PL_Css_Helper {
 
 		if ($hook == 'placester_page_placester_integrations') {
 			self::register_enqueue_if_not('integrations', trailingslashit(PL_CSS_ADMIN_URL) .  'integration.css');					
+		}
+
+		if ($hook == 'placester_page_placester_settings') {
+			self::register_enqueue_if_not('settings', trailingslashit(PL_CSS_ADMIN_URL) .  'settings.css');					
+		}
+
+		if ($hook == 'placester_page_placester_settings_polygons') {
+			self::register_enqueue_if_not('settings', trailingslashit(PL_CSS_ADMIN_URL) .  'settings.css');					
+			self::register_enqueue_if_not('colorpicker', trailingslashit(PL_JS_URL) .  'lib/colorpicker/css/colorpicker.css');					
+		}
+
+		if ($hook == 'placester_page_placester_settings_property_pages') {
+			self::register_enqueue_if_not('settings', trailingslashit(PL_CSS_ADMIN_URL) .  'settings.css');					
+		}
+		if ($hook == 'placester_page_placester_settings_international') {
+			self::register_enqueue_if_not('settings', trailingslashit(PL_CSS_ADMIN_URL) .  'settings.css');					
+		}
+		if ($hook == 'placester_page_placester_settings_neighborhood') {
+			self::register_enqueue_if_not('settings', trailingslashit(PL_CSS_ADMIN_URL) .  'settings.css');					
+		}
+		if ($hook == 'placester_page_placester_settings_caching') {
+			self::register_enqueue_if_not('settings', trailingslashit(PL_CSS_ADMIN_URL) .  'settings.css');					
+		}
+		if ($hook == 'placester_page_placester_settings_filtering') {
+			self::register_enqueue_if_not('settings', trailingslashit(PL_CSS_ADMIN_URL) .  'settings.css');					
 		}
 	}
 

@@ -29,7 +29,15 @@ class PL_Router {
 			echo ob_get_clean();	
 		}
 	}
-	
+
+	public static function load_builder_library ($template, $directory = PL_JS_LIB_DIR) {
+		include_once(trailingslashit($directory) . $template);
+	}
+
+	public static function load_builder_helper ($template, $directory = PL_HLP_DIR) {
+		include_once(trailingslashit($directory) . $template);
+	}
+
 	private static function load_builder_view($template, $directory = PL_VIEWS_ADMIN_DIR) {
 		include_once(trailingslashit($directory) . $template);
 	}
@@ -83,7 +91,25 @@ class PL_Router {
 	}
 
 	public function settings() {
-		self:: router('settings.php', array(), false);
+		self:: router('settings/general.php', array(), false);
+	}
+	public function settings_polygons() {
+		self:: router('settings/polygons.php', array(), false);
+	}
+	public function settings_property_pages() {
+		self:: router('settings/property.php', array(), false);
+	}
+	public function settings_international() {
+		self:: router('settings/international.php', array(), false);
+	}
+	public function settings_neighborhood() {
+		self:: router('settings/neighborhood.php', array(), false);
+	}
+	public function settings_caching() {
+		self:: router('settings/caching.php', array(), false);
+	}
+	public function settings_filtering() {
+		self:: router('settings/filtering.php', array(), false);
 	}
 
 	public function support() {

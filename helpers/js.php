@@ -11,7 +11,8 @@ class PL_Js_Helper {
 	}	
 
 	public function admin ($hook) {
-		$pages = array('placester_page_placester_properties', 'placester_page_placester_property_add', 'placester_page_placester_settings', 'placester_page_placester_support', 'placester_page_placester_theme_gallery', 'placester_page_placester_integrations');
+		$pages = array('placester_page_placester_properties', 'placester_page_placester_property_add', 'placester_page_placester_settings', 'placester_page_placester_support', 'placester_page_placester_theme_gallery', 'placester_page_placester_integrations',
+			'placester_page_placester_settings_polygons', 'placester_page_placester_settings_property_pages', 'placester_page_placester_settings_international', 'placester_page_placester_settings_neighborhood', 'placester_page_placester_settings_caching', 'placester_page_placester_settings_filtering');
 		if (!in_array($hook, $pages)) { return; }
 
 		// hack to force jquery to load properly. Needs to be removed once there's time to 
@@ -31,15 +32,6 @@ class PL_Js_Helper {
 			self::register_enqueue_if_not('my-listings', trailingslashit(PL_JS_URL) .  'admin/my-listings.js', array( 'jquery'));
 		}
 
-		if ($hook == 'placester_page_placester_settings') {
-			self::register_enqueue_if_not('settings', trailingslashit(PL_JS_URL) .  'admin/settings.js', array( 'jquery'));	
-			self::register_enqueue_if_not('settings-polygon', trailingslashit(PL_JS_URL) .  'admin/settings-polygon.js', array( 'jquery'));	
-			self::register_enqueue_if_not('new-colorpicker', trailingslashit(PL_JS_URL) .  'lib/colorpicker/js/colorpicker.js', array( 'jquery'));	
-			self::register_enqueue_if_not('google-maps', 'http://maps.googleapis.com/maps/api/js?sensor=false', array( 'jquery'));	
-			self::register_enqueue_if_not('text-overlay', trailingslashit(PL_JS_URL) .  'lib/google-maps/text-overlay.js', array( 'jquery'));	
-			self::register_enqueue_if_not('datatables', trailingslashit(PL_JS_LIB_URL) .  'datatables/jquery.dataTables.js', array( 'jquery'));			
-		}
-
 		if ($hook == 'placester_page_placester_property_add') {						
 			self::register_enqueue_if_not('blueimp-iframe', trailingslashit(PL_JS_LIB_URL) .  'blueimp/js/jquery.iframe-transport.js', array( 'jquery'));			
 			self::register_enqueue_if_not('blueimp-file-upload', trailingslashit(PL_JS_LIB_URL) .  'blueimp/js/jquery.fileupload.js', array( 'jquery'));			
@@ -52,6 +44,37 @@ class PL_Js_Helper {
 
 		if ($hook == 'placester_page_placester_integrations') {						
 			self::register_enqueue_if_not('integration', trailingslashit(PL_JS_URL) .  'admin/integration.js', array( 'jquery'));			
+		}
+
+
+		if ($hook == 'placester_page_placester_settings') {
+			self::register_enqueue_if_not('settings', trailingslashit(PL_JS_URL) .  'admin/settings/general.js', array( 'jquery'));	
+		}
+
+		if ($hook == 'placester_page_placester_settings_polygons') {
+			self::register_enqueue_if_not('settings', trailingslashit(PL_JS_URL) .  'admin/settings/polygon.js', array( 'jquery'));	
+			self::register_enqueue_if_not('settings-polygon', trailingslashit(PL_JS_URL) .  'admin/settings-polygon.js', array( 'jquery'));	
+			self::register_enqueue_if_not('new-colorpicker', trailingslashit(PL_JS_URL) .  'lib/colorpicker/js/colorpicker.js', array( 'jquery'));	
+			self::register_enqueue_if_not('google-maps', 'http://maps.googleapis.com/maps/api/js?sensor=false', array( 'jquery'));	
+			self::register_enqueue_if_not('text-overlay', trailingslashit(PL_JS_URL) .  'lib/google-maps/text-overlay.js', array( 'jquery'));	
+			self::register_enqueue_if_not('datatables', trailingslashit(PL_JS_LIB_URL) .  'datatables/jquery.dataTables.js', array( 'jquery'));	
+		}
+
+		if ($hook == 'placester_page_placester_settings_property_pages') {
+			self::register_enqueue_if_not('settings-property', trailingslashit(PL_JS_URL) .  'admin/settings/property.js', array( 'jquery'));	
+		}
+		if ($hook == 'placester_page_placester_settings_international') {
+			self::register_enqueue_if_not('settings', trailingslashit(PL_JS_URL) .  'admin/settings/international.js', array( 'jquery'));	
+			self::register_enqueue_if_not('settings', trailingslashit(PL_JS_URL) .  'admin/settings.js', array( 'jquery'));	
+		}
+		if ($hook == 'placester_page_placester_settings_neighborhood') {
+			self::register_enqueue_if_not('settings', trailingslashit(PL_JS_URL) .  'admin/settings.js', array( 'jquery'));	
+		}
+		if ($hook == 'placester_page_placester_settings_caching') {
+			self::register_enqueue_if_not('settings', trailingslashit(PL_JS_URL) .  'admin/settings/caching.js', array( 'jquery'));	
+		}
+		if ($hook == 'placester_page_placester_settings_filtering') {
+			self::register_enqueue_if_not('settings', trailingslashit(PL_JS_URL) .  'admin/settings/filtering.js', array( 'jquery'));	
 		}
 		
 	}

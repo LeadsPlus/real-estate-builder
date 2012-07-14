@@ -48,6 +48,9 @@ define( 'PL_VIEWS_PART_URL', trailingslashit(PL_VIEWS_URL) . 'partials/' );
 define( 'PL_JS_DIR', trailingslashit(PL_PARENT_DIR) . 'js/' );
 define( 'PL_JS_URL', trailingslashit(PL_PARENT_URL) . 'js/' );
 
+define( 'PL_HLP_DIR', trailingslashit(PL_PARENT_DIR) . 'helpers/' );
+define( 'PL_HLP_URL', trailingslashit(PL_PARENT_URL) . 'helpers/' );
+
 define( 'PL_JS_LIB_DIR', trailingslashit(PL_JS_DIR) . 'lib/' );
 define( 'PL_JS_LIB_URL', trailingslashit(PL_JS_URL) . 'lib/' );
 
@@ -150,9 +153,16 @@ function placester_admin_menu() {
     if ( !is_multisite() || !is_network_admin() ) {
     	add_submenu_page( 'placester', '', 'Theme Gallery', 'edit_pages', 'placester_theme_gallery', array('PL_Router','theme_gallery') );    	
     }
-    add_submenu_page( 'placester', '', 'Settings', 'edit_pages', 'placester_settings', array('PL_Router','settings') );    
+    global $settings_subpages;
+    $settings_subpages = array('Settings' => '','Caching Settings' => '_caching', 'Global Property Filtering' => '_filtering', 'Polygon Controls' => '_polygons', 'Property Pages' => '_property_pages', 'International Settings' => '_international' );
+    foreach ($settings_subpages as $name => $page_url) {
+        add_submenu_page( 'placester', '', $name, 'edit_pages', 'placester_settings' . $page_url, array('PL_Router','settings' . $page_url) );    
+    }
+    // add_submenu_page( 'placester', '', 'Settings', 'edit_pages', 'placester_settings_general', array('PL_Router','settings') );    
     add_submenu_page( 'placester', '', 'Support', 'edit_pages', 'placester_support', array('PL_Router','support') );    
     add_submenu_page( 'placester', '', 'MLS Integration', 'edit_pages', 'placester_integrations', array('PL_Router','integrations') );    
+
+
 }
 
 function placester_activate () {
