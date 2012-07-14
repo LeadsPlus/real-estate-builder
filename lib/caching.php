@@ -52,9 +52,8 @@ class PL_Cache {
 	}
 
 	public static function delete($option_name) {
-		// pl_dump($option_name);
+		$option_name = str_replace('_transient_', '', $option_name);
 		$result = delete_transient( $option_name );
-		// var_dump($result);
 		return $result;
 	}
 

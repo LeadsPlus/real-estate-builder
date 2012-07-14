@@ -22,8 +22,8 @@ class PL_Caching_Helper {
 				$option_name_explode = explode('_', $item['option_name']);
 
 				$items[$key][] = $item['option_id'];
-				$items[$key][] = $option_name_explode[4];
-				$items[$key][] = $option_name_explode[3];
+				$items[$key][] = isset($option_name_explode[4]) ? $option_name_explode[4] : '';
+				$items[$key][] = isset($option_name_explode[3]) ? $option_name_explode[3] : '';
 				$items[$key][] = $item['option_value'];
 				$items[$key][] = '<a href="#" id="'.$item['option_name'].'" class="delete_cache">Delete</a>';
 			}
