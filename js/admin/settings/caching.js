@@ -36,8 +36,15 @@ $(document).ready(function($) {
     $('.delete_cache').live('click', function(event) {
     	event.preventDefault();
     	var option_name = $(this).attr('id');
+        var that = this;
     	$.post(ajaxurl, {action: 'delete_cache_items', 'option_name' : option_name}, function(data, textStatus, xhr) {
-    		console.log(data);
+            if (data && data.result) {
+                alert(data.message);
+                var row = $(that).closest("tr").get(0);
+                cache_datatable.fnDeleteRow(cache_datatable.fnGetPosition(row));
+            } else {
+                alert(data.message);
+            }
     	}, 'json');
     	
     });
