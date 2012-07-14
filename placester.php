@@ -92,6 +92,7 @@ include_once('lib/form.php');
 include_once('lib/validation.php');
 include_once('lib/pages.php');
 include_once('lib/membership.php');
+include_once('lib/caching.php');
 
 //models
 include_once('models/listing.php');

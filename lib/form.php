@@ -6,6 +6,16 @@ class PL_Form {
 
 	public static function generate_form($items, $args) {
 		extract(self::process_defaults($args), EXTR_SKIP);
+		$cache = new PL_Cache('search_form');
+		if ($result = $cache->get($items, $args)) {
+			if ($echo_form) {
+				echo $result;
+				return false;	
+			} else {
+				return $result;
+			}
+		}
+		
 		$form = '';
 		$form_group = array();
 		foreach ($items as $key => $attributes) {
@@ -35,6 +45,7 @@ class PL_Form {
 		if ($wrap_form) {
 			$form = '<form name="input" method="' . $method . '" url="' . $url . '" class="complex-search" id="' . $id . '">' . $form . '</form>';
 		}
+		$cache->save($form);
 		if ($echo_form) {
 			echo $form;
 		} else {
