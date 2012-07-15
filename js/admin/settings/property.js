@@ -11,4 +11,27 @@ $(document).ready(function($) {
 			}, 1500);
 		},'json');
 	});
+
+	var property_datatable = $('#list_of_pages_list').dataTable( {
+        "bFilter": false,
+        "bProcessing": true,
+        // "bServerSide": true,
+        "sServerMethod": "POST",
+        "sAjaxSource": ajaxurl, 
+        "iDisplayLength" : 5,
+        "aoColumns" : [
+            { sWidth: '50px' },    //name
+            { sWidth: '100px' },    //type
+            { sWidth: '150px' },     //neighborhood
+            { sWidth: '50px' },    //edit
+            { sWidth: '200px' },    //remove
+            { sWidth: '200px' },    //remove
+            { sWidth: '60px' }    //remove
+        ], 
+        "fnServerParams": function ( aoData ) {
+            aoData.push( { "name": "action", "value" : "get_pages"} );
+        }
+    });
+
+
 });

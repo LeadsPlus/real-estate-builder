@@ -15,7 +15,7 @@ class PL_Pages {
 	function get () {
 		global $wpdb;
 		$sql = $wpdb->prepare('SELECT * ' . 'FROM ' . $wpdb->prefix . 'posts ' . "WHERE post_type = '" . self::$property_post_type . "'");
-	    $rows = $wpdb->get_results($sql);
+	    $rows = $wpdb->get_results($sql, ARRAY_A);
 		return $rows;
 	}
 
