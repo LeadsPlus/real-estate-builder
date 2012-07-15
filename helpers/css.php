@@ -11,7 +11,7 @@ class PL_Css_Helper {
 
 	function admin ($hook) {
 		$pages = array('placester_page_placester_properties', 'placester_page_placester_property_add', 'placester_page_placester_settings', 'placester_page_placester_support', 'placester_page_placester_theme_gallery', 'placester_page_placester_integrations',
-		 'placester_page_placester_settings_polygons', 'placester_page_placester_settings_property_pages', 'placester_page_placester_settings_international', 'placester_page_placester_settings_neighborhood', 'placester_page_placester_settings_caching', 'placester_page_placester_settings_filtering');
+		 'placester_page_placester_settings_polygons', 'placester_page_placester_settings_property_pages', 'placester_page_placester_settings_international', 'placester_page_placester_settings_neighborhood', 'placester_page_placester_settings_caching', 'placester_page_placester_settings_filtering', 'placester_page_placester_settings_template', 'placester_page_placester_settings_client');
 
 		if (!in_array($hook, $pages)) { return; }
 

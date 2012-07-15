@@ -111,6 +111,12 @@ class PL_Router {
 	public function settings_filtering() {
 		self:: router('settings/filtering.php', array(), false);
 	}
+	public function settings_template() {
+		self:: router('settings/template.php', array(), false);
+	}
+	public function settings_client() {
+		self:: router('settings/client.php', array(), false);
+	}
 
 	public function support() {
 		self:: router('support.php', array(), false);

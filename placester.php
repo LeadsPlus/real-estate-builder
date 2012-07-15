@@ -156,7 +156,7 @@ function placester_admin_menu() {
     	add_submenu_page( 'placester', '', 'Theme Gallery', 'edit_pages', 'placester_theme_gallery', array('PL_Router','theme_gallery') );    	
     }
     global $settings_subpages;
-    $settings_subpages = array('Settings' => '','Caching Settings' => '_caching', 'Global Property Filtering' => '_filtering', 'Polygon Controls' => '_polygons', 'Property Pages' => '_property_pages', 'International Settings' => '_international' );
+    $settings_subpages = array('Settings' => '','Client Settings' => '_client' ,'Caching Settings' => '_caching', 'Global Property Filtering' => '_filtering', 'Polygon Controls' => '_polygons', 'Property Pages' => '_property_pages', 'Template Controls' => '_template', 'Client Sign Up Settings' => 'clients', 'International Settings' => '_international' );
     foreach ($settings_subpages as $name => $page_url) {
         add_submenu_page( 'placester', '', $name, 'edit_pages', 'placester_settings' . $page_url, array('PL_Router','settings' . $page_url) );    
     }
