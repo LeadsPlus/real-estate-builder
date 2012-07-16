@@ -1,10 +1,5 @@
 <?php 
-PL_Router::load_ajax();
 class PL_Router {
-
-	public static function load_ajax () {
-		add_action( 'wp_ajax_set_client_settings', array('PL_Membership_Helper', 'set_client_settings'  )); 
-	}
 
 	private static function router($template, $params, $wrap = false, $directory = PL_VIEWS_ADMIN_DIR) {
 		ob_start();

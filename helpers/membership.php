@@ -1,11 +1,11 @@
 <?php 
 
-// PL_Membership_Helper::init();
+PL_Membership_Helper::init();
 class PL_Membership_Helper {
 
-	// function init () {
-	// 	add_action( 'wp_ajax_set_client_settings', array('PL_Membership_Helper', 'set_client_settings'  )); 
-	// }
+	function init () {
+		add_action( 'wp_ajax_set_client_settings', array('PL_Membership_Helper', 'set_client_settings'  )); 
+	}
 
 	function get_client_settings () {
 		$send_client_message = get_option('pls_send_client_option');
