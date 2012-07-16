@@ -516,9 +516,9 @@ class PL_Membership {
         extract( $args, EXTR_SKIP );
         
         $is_lead = current_user_can( 'placester_lead' );
-        if ( !$is_lead ) {
-            return;
-        }
+        // if ( !$is_lead ) {
+        //     return;
+        // }
 
         // $add_link_attr = array('href' => "#{$property_id}",'id' => 'pl_add_favorite','class' => 'pl_prop_fav_link');
         // $remove_link_attr = array('href' => "#{$property_id}",'id' => 'pl_remove_favorite','class' => 'pl_prop_fav_link');
@@ -538,8 +538,11 @@ class PL_Membership {
         //     $remove_link_attr['style'] = "display:none;";
         // }
 
-        
-        $is_favorite = self::is_favorite_property($property_id);
+        if ( is_user_logged_in() ) {
+            $is_favorite = self::is_favorite_property($property_id);
+        } else {
+            $is_favorite = '';
+        }
 
         ob_start();
         ?>
@@ -547,7 +550,7 @@ class PL_Membership {
                 <?php if (is_user_logged_in()): ?>
                     <a href="<?php echo "#" . $property_id ?>" id="pl_add_favorite" class="pl_prop_fav_link" <?php echo $is_favorite ? "style='display:none;'" : "" ?> ><?php echo $add_text ?></a>
                 <?php else: ?>
-                    <a href="<?php echo self::get_client_area_url() ?>" target="_blank" id="pl_add_favorite" class="guest"><?php echo $add_text ?></a>
+                    <a id="pl_register_lead_favorites_link" href="#pl_lead_register_form"><?php echo $add_text ?></a>
                 <?php endif ?>
                 <a href="<?php echo "#" . $property_id ?>" id="pl_remove_favorite" class="pl_prop_fav_link" <?php echo !$is_favorite ? "style='display:none;'" : "" ?> ><?php echo $remove_text ?></a>
                 <img class="pl_spinner" src="<?php echo $spinner ?>" alt="ajax-spinner" style="display:none; margin-left: 5px;">

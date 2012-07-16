@@ -51,6 +51,15 @@ jQuery(document).ready(function($) {
         'hideOnContentClick': false,
         'scrolling' : true
     });
+
+    $(document).ajaxStop(function() { 
+        console.log('here');
+        $("#pl_register_lead_favorites_link").fancybox({
+            'hideOnContentClick': false,
+            'scrolling' : true
+        });
+    });
+
     
     $(".pl_login_link").fancybox({
         'hideOnContentClick': false,
