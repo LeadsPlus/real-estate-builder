@@ -6,7 +6,7 @@ class PL_Form {
 
 	public static function generate_form($items, $args) {
 		extract(self::process_defaults($args), EXTR_SKIP);
-		$cache = new PL_Cache('searchForm');
+		$cache = new PL_Cache('form');
 		if ($result = $cache->get($items, $args)) {
 			if ($echo_form) {
 				echo $result;
