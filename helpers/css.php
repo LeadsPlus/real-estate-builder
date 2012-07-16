@@ -71,6 +71,10 @@ class PL_Css_Helper {
 			self::register_enqueue_if_not('settings-all', trailingslashit(PL_CSS_ADMIN_URL) .  '/settings/all.css');					
 			self::register_enqueue_if_not('settings-filtering', trailingslashit(PL_CSS_ADMIN_URL) .  'settings/client.css');					
 		}
+		if ($hook == 'placester_page_placester_settings_filtering') {
+			self::register_enqueue_if_not('settings-all', trailingslashit(PL_CSS_ADMIN_URL) .  '/settings/all.css');					
+			self::register_enqueue_if_not('settings-filtering', trailingslashit(PL_CSS_ADMIN_URL) .  'settings/filtering.css');					
+		}
 	}
 
 	private function register_enqueue_if_not($name, $path, $dependencies = array()) {
