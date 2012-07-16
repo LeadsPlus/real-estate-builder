@@ -53,7 +53,6 @@ class PL_Js_Helper {
 
 		if ($hook == 'placester_page_placester_settings_polygons') {
 			self::register_enqueue_if_not('settings', trailingslashit(PL_JS_URL) .  'admin/settings/polygon.js', array( 'jquery'));	
-			self::register_enqueue_if_not('settings-polygon', trailingslashit(PL_JS_URL) .  'admin/settings-polygon.js', array( 'jquery'));	
 			self::register_enqueue_if_not('new-colorpicker', trailingslashit(PL_JS_URL) .  'lib/colorpicker/js/colorpicker.js', array( 'jquery'));	
 			self::register_enqueue_if_not('google-maps', 'http://maps.googleapis.com/maps/api/js?sensor=false', array( 'jquery'));	
 			self::register_enqueue_if_not('text-overlay', trailingslashit(PL_JS_URL) .  'lib/google-maps/text-overlay.js', array( 'jquery'));	
