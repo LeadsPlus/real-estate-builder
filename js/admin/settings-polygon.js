@@ -276,7 +276,7 @@ $(document).ready(function($) {
             // "bServerSide": true,
             "sServerMethod": "POST",
             "sAjaxSource": ajaxurl, 
-            "iDisplayLength" : 5,
+            "iDisplayLength" : 10,
             "aoColumns" : [
                 { sWidth: '90px' },    //name
                 { sWidth: '90px' },    //type

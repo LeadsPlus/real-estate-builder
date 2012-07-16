@@ -20,6 +20,7 @@
 	position: absolute;
 	background: white;
 	width: 550px;
+	height: 360px;
 }
 #polygon_listings_list_length {
 	display: none;
@@ -41,7 +42,7 @@
 }
 .polygon_list .polygons {
 	width: 530px;
-	height: 255px;
+	height: 360px;
 	float: left;	
 	overflow: auto;
 }
@@ -52,13 +53,36 @@
 	list-style-type: decimal;
 }
 .form-item {
-	clear: both;
-}
-.form-item select, .form-item input, .form-item label {
+	width: 440px;
 	float: left;
+	clear: both;
+	height: 35px;
+}
+.form-item label {
+	float: left;
+	width: 140px;
+	text-align: right;
+}
+.form-item select, .form-item input {
+	float: right;
+	width: 250px;
+}
+.form-item.taxonomies select {
+	width: 125px;
+}
+.form-item#colorpicker {
+	margin-bottom: 10px;
+}
+.form-item .button {
+	margin-right: 10px;
+	float: left;
+}
+.form-item.buttons {
+	margin-top: 10px;
 }
 .another_colorpicker {
 	float: left;
+	margin-left: 46px;
 }
 .show_neighborhood_areas {
 	margin: 10px 0 0 0;

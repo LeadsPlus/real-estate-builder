@@ -23,7 +23,6 @@
 			</div>
 			<div class="polygon_list">
 				<?php echo PL_Router::load_builder_partial('settings-polygon-create.php'); ?>
-				<h3>Neighborhoods</h3>
 				<div class="polygons" id="list_of_polygons">
 					<table id="polygon_listings_list" class="widefat post fixed placester_properties" cellspacing="0">
 					    <thead>

@@ -1,8 +1,5 @@
 <div style="display:none" class="polygon_controls">
 				<h3>Neighborhoods Create Controls</h3>
-					<a id="polygon_clear_drawing" class="button" href="#">Cancel</a>
-					<a id="polygon_edit_drawing" class="button" href="#">Edit Drawing</a>
-					<a id="polygon_save_drawing" class="button" href="#">Save as Neighborhood</a>
 					<form>
 						<div class="form-item">
 							<label for="name">Neighborhood Name</label>
@@ -37,7 +34,7 @@
 								<option value="1" selected>1.0</option>
 							</select>	
 						</div>
-						<div class="form-item">
+						<div class="form-item" id="colorpicker">
 							<label>Border Color</label>
 							<div id="polygon_border" class="another_colorpicker">
 								<div style="background-color: #FF0000"></div>
@@ -57,16 +54,22 @@
 								<option value="1">1.0</option>
 							</select>	
 						</div>
-						<div class="form-item">
+						<div class="form-item" id="colorpicker">
 							<label>Fill Color</label>
 							<div id="polygon_fill" class="another_colorpicker">
 								<div style="background-color: #FF0000"></div>
 							</div>
 						</div>
-						<div class="form-item">
+						<div class="form-item taxonomies">
 							<label for="">Associated Taxonomy</label>
 							<?php echo PL_Taxonomy_Helper::taxonomies_as_selects(); ?>
 						</div>
 						<input type="hidden" id="edit_id" name="id">
+						<div class="form-item buttons">
+							<a id="polygon_clear_drawing" class="button" href="#">Cancel</a>
+							<a id="polygon_edit_drawing" class="button" href="#">Edit Drawing</a>
+							<a id="polygon_save_drawing" class="button-primary" href="#">Save as Neighborhood</a>	
+						</div>
+						
 					</form>
 				</div>
