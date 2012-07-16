@@ -122,6 +122,10 @@ class PL_Membership {
                 wp_new_user_notification( $wordpress_user_id);
             }
 
+            if (get_option('pls_send_client_option') && get_option('pls_send_client_text')) {
+                wp_mail($lead_object['username'], 'Your new account on ' . site_url(), get_option('pls_send_client_text'));
+            }
+
             //login user if successfully sign up.
             wp_set_auth_cookie($wordpress_user_id, true, is_ssl());
         } else {
