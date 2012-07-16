@@ -193,6 +193,13 @@ $(document).ready(function($) {
 		polygon_info['name'] = form_values['name'];
 		polygon_info['tax'] = form_values['poly_taxonomies'];
 		polygon_info['slug'] = form_values[form_values['poly_taxonomies']];
+		if (polygon_info['slug'] == 'custom') {
+			if (form_values['custom_taxonomy_name'] == '') {
+				alert('You must name your custom taxonomy');
+				return false;
+			};
+			polygon_info['create_taxonomy'] = form_values['custom_taxonomy_name'];
+		};
 		polygon_info['settings'] = {}, polygon_info['settings']['border'] = {}, polygon_info['settings']['fill'] = {};
 		polygon_info['settings']['border']['color'] = form_values['[border][color]'];
 		polygon_info['settings']['border']['weight'] = form_values['[border][weight]'];

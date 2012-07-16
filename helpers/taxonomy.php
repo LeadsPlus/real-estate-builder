@@ -117,6 +117,13 @@ class PL_Taxonomy_Helper {
 		$polygon['slug'] = $_POST['slug'];
 		$polygon['settings'] = $_POST['settings'];
 		$polygon['vertices'] = $_POST['vertices'];
+		if (isset($_POST['create_taxonomy'])) {
+			$id = wp_insert_term($_POST['create_taxonomy'], $polygon['tax']);
+			if (is_array($id)) {
+				$term = get_term($id['term_id'], $polygon['tax']);
+				$polygon['slug'] = $term->slug;
+			}
+		}
 		$response = PL_Option_Helper::set_polygons($polygon);
 		if ($response) {
 			echo json_encode(array('response' => true, 'message' => 'Polygon successfully saved. Updating list...'));	
