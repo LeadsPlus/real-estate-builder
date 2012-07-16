@@ -18,7 +18,7 @@ $(document).ready(function($) {
         // "bServerSide": true,
         "sServerMethod": "POST",
         "sAjaxSource": ajaxurl, 
-        "iDisplayLength" : 5,
+        "iDisplayLength" : 20,
         "aoColumns" : [
             { sWidth: '75px' },    //name
             { sWidth: '230px' },    //type

@@ -6,8 +6,8 @@ class PL_Cache {
 	public $type = 'general';
 	public $transient_id = false;
 
-	function __construct ($type = 'general') {
-		$this->$type = $type;
+	function __construct ($type) {
+		$this->type = $type;
 	}
 
 	public static function init () {
