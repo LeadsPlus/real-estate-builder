@@ -45,6 +45,14 @@ class PL_Taxonomy_Helper {
 		die();
 	}
 
+	function get_polygon_links () {
+		$polygons = PL_Option_Helper::get_polygons();
+		foreach ($polygons as $key => $value) {
+			$polygons[$key]['url'] = get_term_link($value['slug'], $value['tax']);
+		}
+		return $polygons;
+	}
+
 	function get_listings_polygon_name ($params) {
 		$polygons = PL_Option_Helper::get_polygons();
 		foreach ($polygons as $polygon) {
