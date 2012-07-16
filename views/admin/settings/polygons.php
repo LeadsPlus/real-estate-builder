@@ -2,7 +2,7 @@
 	<?php echo PL_Helper_Header::pl_settings_subpages(); ?>
 	<div>
 		<div class="header-wrapper">
-			<h2>Neighborhood Areas</h2>
+			<h2>Custom Neighborhood Areas</h2>
 			<div class="ajax_message" id="neighborhood_messages"></div>
 		</div>
 		<div class="clear"></div>
@@ -13,6 +13,9 @@
 				<?php echo PL_Taxonomy_Helper::taxonomies_as_checkboxes(); ?>
 				<a id="clear_created_neighborhoods"href="#">Hide All</a>
 			</div>
+			<div class="create_new_wrapper">
+				<a href="#" id="create_new_polygon" class="button">Create New Custom Neighborhood</a>
+			</div>
 			<div class="ajax_message" id="polygon_ajax_messages"></div>
 			<div class="clear"></div>
 			<div id="polygon_map"></div>
@@ -22,7 +25,15 @@
 				<a href="#" id="start_map_address_search" class="button">Search</a>
 			</div>
 			<div class="polygon_list">
-				<?php echo PL_Router::load_builder_partial('settings-polygon-create.php'); ?>
+				<?php echo PL_Router::load_builder_partial('settings-polygon-create.php'); ?>				
+				<div style="display:none" class="create_prevent_overlay" id="create_prevent_overlay">
+					<h2>Click on the Map to Start Drawing</h2>
+					<p>Click on the map to start tracing the outline of your custom neighborhood.</p>
+					<a href="#" id="close_create_overlay" class="button">Cancel</a>
+				</div>	
+				
+					
+
 				<div class="polygons" id="list_of_polygons">
 					<table id="polygon_listings_list" class="widefat post fixed placester_properties" cellspacing="0">
 					    <thead>

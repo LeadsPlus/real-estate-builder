@@ -18,6 +18,7 @@
 }
 .polygon_controls {
 	position: absolute;
+	top: 5px;
 	background: white;
 	width: 550px;
 	height: 360px;
@@ -96,10 +97,34 @@
 	height : 25px;
 	margin-right: 7px;
 }
+
 .polygon_text_area {
  	font-size: 14px;
  	text-shadow: #FFF 1px 1px 2px;
     position: absolute;
     text-align: center;
     font-weight: bold;
+}
+
+
+.create_new_wrapper {
+	float: left;
+	margin-left: 407px;
+}
+.create_prevent_overlay_parent {
+	position: absolute;
+	top: 5px;
+	width: 550px;
+	height: 360px;
+	color: black;
+}
+.create_prevent_overlay_parent h2, .create_prevent_overlay_parent p {
+	z-index: 100
+}
+.create_prevent_overlay {
+	position: absolute;
+	top: 5px;
+	background: white;
+	width: 550px;
+	height: 360px;
 }
