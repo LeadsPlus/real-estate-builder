@@ -219,7 +219,7 @@ class PL_Taxonomy_Helper {
 		die();
 	}
 
-	function taxonomies_as_selects () {
+	function types_as_selects () {
 		$taxonomies = self::get_taxonomies();
 		ob_start();
 		?>
@@ -228,7 +228,14 @@ class PL_Taxonomy_Helper {
 				<option value="<?php echo $slug ?>"><?php echo $label ?></option>
 			<?php endforeach ?>
 		</select>
+		<?php
+		return ob_get_clean();
+	}
 
+	function taxonomies_as_selects () {
+		$taxonomies = self::get_taxonomies();
+		ob_start();
+		?>
 		<?php foreach ($taxonomies as $slug => $label): ?>
 			<select class="poly_taxonmy_values" name="<?php echo $slug ?>" style="display: none;" id="<?php echo $slug ?>">
 					<option value="false"> --- </option>

@@ -60,7 +60,11 @@
 								<div style="background-color: #FF0000"></div>
 							</div>
 						</div>
-						<div class="form-item taxonomies">
+						<div class="form-item">
+							<label for="">Polygon Type</label>
+							<?php echo PL_Taxonomy_Helper::types_as_selects(); ?>
+						</div>
+						<div class="form-item">
 							<label for="">Associated Taxonomy</label>
 							<?php echo PL_Taxonomy_Helper::taxonomies_as_selects(); ?>
 						</div>

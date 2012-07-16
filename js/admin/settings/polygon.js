@@ -180,10 +180,10 @@ $(document).ready(function($) {
 			alert('Neighborhood must have a name');
 			return;
 		};
-		if (form_values[form_values['poly_taxonomies']] == 'false' ) {
-			alert('Neighborhood must be assigned to an area');
-			return;
-		};
+		// if (form_values[form_values['poly_taxonomies']] == 'false' ) {
+		// 	alert('Neighborhood must be assigned to an area');
+		// 	return;
+		// };
 		if (form_values['id'] == '') {
 			polygon_info['action'] = 'save_polygon';	
 		} else {
@@ -256,6 +256,7 @@ $(document).ready(function($) {
 				$('.polygon_controls form #poly_taxonomies').val(data.polygon.tax);
 				$('.polygon_controls form .poly_taxonmy_values#' + data.polygon.tax).val(data.polygon.slug);
 				$('#edit_id').val(data.polygon.id);
+				setTaxonomyDropdown();
 				closePolygon();
 				removePolyLine();
 			} else {
