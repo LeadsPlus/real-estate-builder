@@ -68,6 +68,10 @@
 							<label for="">Associated Taxonomy</label>
 							<?php echo PL_Taxonomy_Helper::taxonomies_as_selects(); ?>
 						</div>
+						<div class="form-item" id="custom_name" style="display: none">
+							<label for="name">Custom Taxonomy Name</label>
+							<input type="text" name="custom_taxonomy_name" id="custom_taxonomy_name">	
+						</div>
 						<input type="hidden" id="edit_id" name="id">
 						<div class="form-item buttons">
 							<a id="polygon_clear_drawing" class="button" href="#">Cancel</a>

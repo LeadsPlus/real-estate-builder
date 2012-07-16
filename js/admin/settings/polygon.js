@@ -360,6 +360,17 @@ $(document).ready(function($) {
 		    });
 		});
 
+
+	$('.poly_taxonmy_values').live('change', function(event) {
+		var value = $(this).val();
+		console.log(this);
+		if (value == 'custom') {
+			$('#custom_name').show();
+		} else {
+			$('#custom_name').hide();		
+		};
+	});
+
 	$('#create_new_polygon').live('click', function(event) {
 		event.preventDefault();
 		show_create_overlay();
