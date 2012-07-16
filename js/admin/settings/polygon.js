@@ -266,6 +266,12 @@ $(document).ready(function($) {
 				setTaxonomyDropdown();
 				closePolygon();
 				removePolyLine();
+				if ($('.polygon_controls form .poly_taxonmy_values#' + data.polygon.tax).val() == 'custom') {
+					$('#custom_taxonomy_name').val(data.polygon.slug);
+					$('#custom_name').show();
+				} else {
+					$('#custom_name').hide();		
+				};
 			} else {
 				$('#polygon_ajax_messages').html(data.message);
 			};
