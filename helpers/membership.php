@@ -5,6 +5,13 @@ class PL_Membership_Helper {
 
 	function init () {
 		add_action( 'wp_ajax_set_client_settings', array('PL_Membership_Helper', 'set_client_settings'  )); 
+		add_action( 'wp', array(__CLASS__, 'admin_bar'  )); 
+	}
+
+	function admin_bar() {
+		if (current_user_can( 'placester_lead' )) {
+			add_filter('show_admin_bar', '__return_false');
+		}
 	}
 
 	function get_client_settings () {
