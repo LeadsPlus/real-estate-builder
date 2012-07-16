@@ -44,9 +44,7 @@ class PL_Membership_Helper {
 		$replacements = array('%client_email%' => $client['username'], '%email_address%' => $admin_details['user']['email'], '%full_name%' => $admin_details['user']['first_name'] . ' ' . $admin_details['user']['last_name'], '%first_name%' => $admin_details['user']['first_name'], '%website_url%' => site_url()); 
 		foreach ($replacements as $key => $value) {
 			$send_client_message_text = str_replace($key, $value, $send_client_message_text);
-			// pl_dump($send_client_message_text);
 		}
-		// pl_dump($send_client_message_text);
 		return $send_client_message_text;
 	}
 
