@@ -11,7 +11,18 @@
 				</div>
 				<div class="form-row">
 					<label for="">Message sent to Client</label>
+					<div class="clear"></div>
 					<textarea class="full-size" name="send_client_message_text" id="send_client_message_text" cols="30" rows="10" ><?php echo $send_client_message_text ?></textarea>
+					<div class="message_keywords">
+						<p>You may use the follow keywords to send personalized emails:</p>
+						<ul>
+							<li><span>Clients Email:</span> %client_email%</li>
+							<li><span>Your Email Address:</span> %email_address%</li>
+							<li><span>Your Name:</span> %full_name%</li>
+							<li><span>Your First Name:</span> %first_name%</li>
+							<li><span>This Websites Address:</span> %website_url%</li>
+						</ul>
+					</div>
 				</div>
 				<div class="form-row">
 					<input type="submit" id="save" class="button-primary" value="Save">
