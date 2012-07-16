@@ -204,4 +204,5 @@ h3.hndle {
 .settings_option_wrapper {
 	float: left;
 	clear: both;
+	width: 100%;
 }

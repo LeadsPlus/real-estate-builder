@@ -12,7 +12,7 @@ class PL_Js_Helper {
 
 	public function admin ($hook) {
 		$pages = array('placester_page_placester_properties', 'placester_page_placester_property_add', 'placester_page_placester_settings', 'placester_page_placester_support', 'placester_page_placester_theme_gallery', 'placester_page_placester_integrations',
-			'placester_page_placester_settings_polygons', 'placester_page_placester_settings_property_pages', 'placester_page_placester_settings_international', 'placester_page_placester_settings_neighborhood', 'placester_page_placester_settings_caching', 'placester_page_placester_settings_filtering');
+			'placester_page_placester_settings_polygons', 'placester_page_placester_settings_property_pages', 'placester_page_placester_settings_international', 'placester_page_placester_settings_neighborhood', 'placester_page_placester_settings_caching', 'placester_page_placester_settings_filtering', 'placester_page_placester_settings_client');
 		if (!in_array($hook, $pages)) { return; }
 
 		// hack to force jquery to load properly. Needs to be removed once there's time to 
@@ -77,6 +77,9 @@ class PL_Js_Helper {
 		}
 		if ($hook == 'placester_page_placester_settings_filtering') {
 			self::register_enqueue_if_not('settings', trailingslashit(PL_JS_URL) .  'admin/settings/filtering.js', array( 'jquery'));	
+		}
+		if ($hook == 'placester_page_placester_settings_client') {
+			self::register_enqueue_if_not('settings-client', trailingslashit(PL_JS_URL) .  'admin/settings/client.js', array( 'jquery'));	
 		}
 		
 	}
