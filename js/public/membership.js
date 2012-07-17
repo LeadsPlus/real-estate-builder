@@ -52,21 +52,24 @@ jQuery(document).ready(function($) {
         'scrolling' : true
     });
 
-    $(document).ajaxStop(function() { 
-        console.log('here');
-        $("#pl_register_lead_favorites_link").fancybox({
-            'hideOnContentClick': false,
-            'scrolling' : true
-        });
-    });
-
-    
     $(".pl_login_link").fancybox({
         'hideOnContentClick': false,
         'scrolling' : true
     });
 
+    $(document).ajaxStop(function() { 
+      favorites_link_signup();
+    });
 
+    favorites_link_signup();
+
+    function favorites_link_signup () {
+      $("#pl_register_lead_favorites_link").fancybox({
+          'hideOnContentClick': false,
+          'scrolling' : true
+      });
+    }
+    
     function login_user (username, password) {
 
 
