@@ -1,0 +1,12 @@
+.message_keywords {
+	margin-left: 10px;
+	float: left;
+}
+.message_keywords p {
+	font-size: 14px;
+	font-weight: bold;
+}
+.message_keywords span {
+	margin-right: 5px;
+	font-weight: bold;
+}

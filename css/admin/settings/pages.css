@@ -1,0 +1,9 @@
+#list_of_pages_list_length {
+	float: right;
+	clear: both;
+	margin-bottom: 10px;
+}
+.overflow {
+	height: 75px;
+	overflow: auto;
+}

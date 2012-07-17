@@ -13,9 +13,9 @@ class PL_People {
 		if (isset($args['fav_listing_ids']) && empty($args['fav_listing_ids'])) {
 			$request['fav_listing_ids'] = array();
 		}
+		//create is the same as update.
 		$update_url = trailingslashit(PL_Config::PL_API_PEOPLE('create', 'request', 'url')) . $request['id'];
 		unset($request['id']);
-
 		$response = PL_HTTP::send_request($update_url, $request, 'PUT', false, true);
 		return $response;
 	}

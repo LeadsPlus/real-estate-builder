@@ -5,6 +5,7 @@ class PL_People_Helper {
 
 	public function init() {
 		add_action('wp_ajax_add_person', array(__CLASS__, 'add_person_ajax' ) );
+		add_action('wp_ajax_get_favorites', array(__CLASS__, 'get_favorites_ajax' ) );
 	}
 
 	public function add_person($args = array()) {
@@ -15,7 +16,17 @@ class PL_People_Helper {
 		$api_response = PL_People::create($_POST);
 		echo json_encode($api_response);
 		die();
-	}	
+	}
+
+	public function get_favorites_ajax () {
+		$placester_person = self::person_details();
+		if (isset($placester_person['fav_listings']) && is_array($placester_person['fav_listings'])) {
+			echo json_encode($placester_person['fav_listings']);
+		} else {
+			echo json_encode(array());
+		}
+		die();
+	}
 
 	public function update_person_details ($person_details) {
 		$placester_person = self::person_details();

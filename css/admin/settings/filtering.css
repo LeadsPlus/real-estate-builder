@@ -1,0 +1,54 @@
+#cache_message, .global_filter_active {
+	color: green;
+	font-weight: bold;
+	font-size: 16px;
+	margin-top: 15px; 
+	padding-left: 10px; 
+}
+.filters_active {
+	background-color: #FFFBCC;
+	border-color: #E6DB55;
+	padding: 10px;
+	float: left;
+}
+#gloal_filter_form .pls_search_form {
+	display: none;
+}
+#gloal_filter_form .pls_search_form label {
+	display: none;
+}
+.search_filter_content {
+	float: left;
+}
+.global_filter_col {
+	float: left;
+}
+.global_filter_col.filter_button {
+	margin-top: 5px;
+}
+.global_filter_col.red, .global_filter_col.green {
+	margin-top: 3px;
+}
+#active_filters {
+	float: left;
+	margin: 0px 0px 10px 0;
+}
+.global_filters.tagchecklist p.label {
+	float: left;
+	margin: 6px 30px 0 0;
+	font-size: 16px;
+	font-weight: bold;
+}
+.global_filters.tagchecklist span {
+	font-size: 14px; 
+	margin-right: 30px;
+	color: green;
+	font-weight: bold;
+}
+.global_filters.tagchecklist span span.global_dark_label {
+	margin: 0px;
+	color: #333;
+}
+.global_filters.tagchecklist span a {
+	margin: 8px 0 0 -15px;
+}

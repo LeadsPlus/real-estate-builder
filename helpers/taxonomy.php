@@ -45,6 +45,14 @@ class PL_Taxonomy_Helper {
 		die();
 	}
 
+	function get_polygon_links () {
+		$polygons = PL_Option_Helper::get_polygons();
+		foreach ($polygons as $key => $value) {
+			$polygons[$key]['url'] = get_term_link($value['slug'], $value['tax']);
+		}
+		return $polygons;
+	}
+
 	function get_listings_polygon_name ($params) {
 		$polygons = PL_Option_Helper::get_polygons();
 		foreach ($polygons as $polygon) {
@@ -117,6 +125,13 @@ class PL_Taxonomy_Helper {
 		$polygon['slug'] = $_POST['slug'];
 		$polygon['settings'] = $_POST['settings'];
 		$polygon['vertices'] = $_POST['vertices'];
+		if (isset($_POST['create_taxonomy'])) {
+			$id = wp_insert_term($_POST['create_taxonomy'], $polygon['tax']);
+			if (is_array($id)) {
+				$term = get_term($id['term_id'], $polygon['tax']);
+				$polygon['slug'] = $term->slug;
+			}
+		}
 		$response = PL_Option_Helper::set_polygons($polygon);
 		if ($response) {
 			echo json_encode(array('response' => true, 'message' => 'Polygon successfully saved. Updating list...'));	
@@ -219,7 +234,7 @@ class PL_Taxonomy_Helper {
 		die();
 	}
 
-	function taxonomies_as_selects () {
+	function types_as_selects () {
 		$taxonomies = self::get_taxonomies();
 		ob_start();
 		?>
@@ -228,10 +243,17 @@ class PL_Taxonomy_Helper {
 				<option value="<?php echo $slug ?>"><?php echo $label ?></option>
 			<?php endforeach ?>
 		</select>
+		<?php
+		return ob_get_clean();
+	}
 
+	function taxonomies_as_selects () {
+		$taxonomies = self::get_taxonomies();
+		ob_start();
+		?>
 		<?php foreach ($taxonomies as $slug => $label): ?>
 			<select class="poly_taxonmy_values" name="<?php echo $slug ?>" style="display: none;" id="<?php echo $slug ?>">
-					<option value="false"> --- </option>
+					<option value="custom">Custom</option>
 				<?php foreach (self::get_taxonomy_items($slug) as $item): ?>
 					<option value="<?php echo $item['slug'] ?>"><?php echo $item['name'] ?></option>
 				<?php endforeach ?>

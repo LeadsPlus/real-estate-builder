@@ -175,3 +175,34 @@ h3.hndle {
 	border: 1px solid #6F961C;
 	text-shadow: 0px 2px 1px rgba(0, 0, 0, 0.4), 0px 1px 0px rgba(255, 255, 255, 0.3);
 }
+
+
+
+.settings_sub_nav {
+	float: left;
+}
+.settings_sub_nav ul {
+	float: left;
+}
+.settings_sub_nav ul li {
+	float: left;
+	padding: 5px 10px;
+	border-right: 1px solid #CCC;
+}
+.settings_sub_nav ul li.submenu-title {
+	font-weight: bold;
+	font-size: 12px;
+	padding-left: 0px;
+}
+.settings_sub_nav ul li:last-child, .settings_sub_nav ul li:first-child { 
+	border-right: none !important;
+}
+..settings_sub_nav ul li a {
+	float: left;
+}
+
+.settings_option_wrapper {
+	float: left;
+	clear: both;
+	width: 100%;
+}

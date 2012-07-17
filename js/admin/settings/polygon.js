@@ -45,6 +45,7 @@ $(document).ready(function($) {
 		markers.push(marker);
 		google.maps.event.addListener(marker, 'click', function() {
 			if (confirm("Do you want to close the polygon?")) {
+				hide_create_overlay();
 				closePolygon();
 				removePolyLine();
 			} 
@@ -179,10 +180,10 @@ $(document).ready(function($) {
 			alert('Neighborhood must have a name');
 			return;
 		};
-		if (form_values[form_values['poly_taxonomies']] == 'false' ) {
-			alert('Neighborhood must be assigned to an area');
-			return;
-		};
+		// if (form_values[form_values['poly_taxonomies']] == 'false' ) {
+		// 	alert('Neighborhood must be assigned to an area');
+		// 	return;
+		// };
 		if (form_values['id'] == '') {
 			polygon_info['action'] = 'save_polygon';	
 		} else {
@@ -192,6 +193,13 @@ $(document).ready(function($) {
 		polygon_info['name'] = form_values['name'];
 		polygon_info['tax'] = form_values['poly_taxonomies'];
 		polygon_info['slug'] = form_values[form_values['poly_taxonomies']];
+		if (polygon_info['slug'] == 'custom') {
+			if (form_values['custom_taxonomy_name'] == '') {
+				alert('You must name your custom taxonomy');
+				return false;
+			};
+			polygon_info['create_taxonomy'] = form_values['custom_taxonomy_name'];
+		};
 		polygon_info['settings'] = {}, polygon_info['settings']['border'] = {}, polygon_info['settings']['fill'] = {};
 		polygon_info['settings']['border']['color'] = form_values['[border][color]'];
 		polygon_info['settings']['border']['weight'] = form_values['[border][weight]'];
@@ -255,8 +263,15 @@ $(document).ready(function($) {
 				$('.polygon_controls form #poly_taxonomies').val(data.polygon.tax);
 				$('.polygon_controls form .poly_taxonmy_values#' + data.polygon.tax).val(data.polygon.slug);
 				$('#edit_id').val(data.polygon.id);
+				setTaxonomyDropdown();
 				closePolygon();
 				removePolyLine();
+				if ($('.polygon_controls form .poly_taxonmy_values#' + data.polygon.tax).val() == 'custom') {
+					$('#custom_taxonomy_name').val(data.polygon.slug);
+					$('#custom_name').show();
+				} else {
+					$('#custom_name').hide();		
+				};
 			} else {
 				$('#polygon_ajax_messages').html(data.message);
 			};
@@ -276,7 +291,7 @@ $(document).ready(function($) {
             // "bServerSide": true,
             "sServerMethod": "POST",
             "sAjaxSource": ajaxurl, 
-            "iDisplayLength" : 5,
+            "iDisplayLength" : 10,
             "aoColumns" : [
                 { sWidth: '90px' },    //name
                 { sWidth: '90px' },    //type
@@ -357,4 +372,34 @@ $(document).ready(function($) {
 		      }
 		    });
 		});
+
+
+	$('.poly_taxonmy_values').live('change', function(event) {
+		var value = $(this).val();
+		console.log(this);
+		if (value == 'custom') {
+			$('#custom_name').show();
+		} else {
+			$('#custom_name').hide();		
+		};
+	});
+
+	$('#create_new_polygon').live('click', function(event) {
+		event.preventDefault();
+		show_create_overlay();
+	});
+	$('#close_create_overlay').live('click', function(event) {
+		event.preventDefault();
+		hide_create_overlay();
+	});
+
+	function show_create_overlay () {
+		$('#create_prevent_overlay').show();
+		$('#create_new_polygon').hide();
+	}
+
+	function hide_create_overlay () {
+		$('#create_prevent_overlay').hide();
+		$('#create_new_polygon').show();
+	}
 });

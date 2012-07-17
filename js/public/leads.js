@@ -45,11 +45,8 @@ jQuery(document).ready(function($) {
             if ( response != 'errors' ) {
                 $('#pl_add_favorite').show();
                 $('#pl_remove_favorite').hide();
-
-                $(that).closest('tr').remove();
             }
         },'json');
 
-    });
-        
+    });        
 });

@@ -66,14 +66,10 @@ Class PL_HTTP {
 			
 			case 'GET':
 			default:
-				$signature = base64_encode(sha1($url . $request_string, true));
-	        	$transient_id = 'pl_' . $signature;
-	        	$transient = get_site_transient($transient_id);
-	        	// pls_dump($url . '?' . $request_string);
-	        	if ($allow_cache && $transient) {
-					PL_Debug::add_msg('------- !!!USING CACHE!!! --------');    	    		
+				$cache = new PL_Cache('http');
+				if ($allow_cache && $transient = $cache->get($url . $request_string)) {
 					return $transient;
-	        	} else {
+				} else {
 	        		// pls_dump($url . '?' . $request_string);
 	            	$response = wp_remote_get($url . '?' . $request_string, array('timeout' => self::$timeout));
 					PL_Debug::add_msg('------- NO CACHE FOUND --------');    	    		
@@ -83,7 +79,7 @@ Class PL_HTTP {
 					if ( (is_array($response) && isset($response['headers']) && isset($response['headers']['status']) && $response['headers']['status'] == 200) || $force_return) {
 						if (!empty($response['body'])) {
 							$body = json_decode($response['body'], TRUE);
-							set_site_transient( $transient_id, $body , 3600 * 48 );
+							$cache->save($body);
 							return $body;
 						} else {
 							return false;
@@ -157,20 +153,7 @@ Class PL_HTTP {
 	}
 
 	function clear_cache() {
-	    global $wpdb;
-	    $placester_options = $wpdb->get_results('SELECT option_name FROM ' . $wpdb->prefix . 'options ' ."WHERE option_name LIKE '_transient_pl_%'");
-	    foreach ($placester_options as $option) {
-	        delete_option( $option->option_name );
-	    }
-	}
-
-	function num_items_cached () {
-		global $wpdb;
-	    $placester_options = $wpdb->get_results('SELECT option_name FROM ' . $wpdb->prefix . 'options ' ."WHERE option_name LIKE '_transient_pl_%'");		
-	    if ($placester_options && is_array($placester_options)) {
-	    	return count($placester_options);
-	    }
-	    return 0;
+	    PL_Cache::clear();
 	}
 }
 
