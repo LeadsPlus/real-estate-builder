@@ -17,7 +17,7 @@ class PL_Taxonomy_Helper {
 		add_action('wp_ajax_nopriv_lifestyle_polygon', array(__CLASS__, 'lifestyle_polygon'));
 		add_action('wp_ajax_lifestyle_polygon', array(__CLASS__, 'lifestyle_polygon'));
 		add_action('wp_ajax_polygon_listings', array(__CLASS__, 'ajax_polygon_listings'));
-		add_action('wp_ajax_nopriv_polygon_listings', array(__CLASS__, 'polygon_lisitngs'));
+		add_action('wp_ajax_nopriv_polygon_listings', array(__CLASS__, 'ajax_polygon_listings'));
 	}
 
 	function register_taxonomies () {
@@ -37,7 +37,7 @@ class PL_Taxonomy_Helper {
 		if (isset($_POST['vertices'])) {
 			$vertices = $_POST['vertices'];
 			if (!empty($vertices)) {
-				$api_listings = self::polygon_listings($vertices);
+				$api_listings = self::polygon_listings($vertices, $_POST);
 				$response = $api_listings['listings'];
 				echo json_encode($response);
 			}
@@ -69,7 +69,7 @@ class PL_Taxonomy_Helper {
 			$request .= 'polygon['.$key .'][1]=' . $point['lng'] .'&';
 		}
 		$request = wp_parse_args($request, $additional_params);
-		// pls_dump($request);
+		
 		return PL_Listing_Helper::results($request);
 	}
 
