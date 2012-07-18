@@ -87,8 +87,8 @@
 					</div>	
 				</div>
 			</form>
-			<?php do_action('sign-up-action'); ?>
-			<?php self::load_builder_partial('sign-up.php'); ?>
+			<?php //do_action('sign-up-action'); ?>
+			<?php //self::load_builder_partial('sign-up.php'); ?>
 		<?php endif ?>
 
 			<div class="header-wrapper">
