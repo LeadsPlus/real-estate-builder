@@ -16,7 +16,9 @@
 
       global $settings_subpages;
         global $submenu;
-        $base_url = 'admin.php?page=placester_settings';
+        $base_page = 'placester_settings';
+        $base_url = 'admin.php?page='.$base_page;
+        
         ob_start();
           ?>
           <div class="settings_sub_nav">
@@ -24,7 +26,15 @@
               <li class="submenu-title">Settings Pages:</li>
               <?php foreach ($settings_subpages as $page_title => $page_url): ?>
                 <li>
-                  <a href="<?php echo $base_url . $page_url ?>" style="<?php echo strpos(self::$page, $page_url ) ? 'color:#D54E21;' : '' ?>"><?php echo $page_title ?></a>
+                  <?php 
+                    if(!empty($page_url)) {
+                      $current_page = strpos(self::$page, $page_url );
+                    }
+                    else {
+                      $current_page = ($_REQUEST['page'] == $base_page);
+                    }
+                  ?>
+                  <a href="<?php echo $base_url . $page_url ?>" style="<?php echo $current_page ? 'color:#D54E21;' : '' ?>"><?php echo $page_title ?></a>
                 </li>
               <?php endforeach ?>
             </ul>
