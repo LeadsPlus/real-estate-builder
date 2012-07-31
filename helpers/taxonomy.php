@@ -13,7 +13,13 @@ class PL_Taxonomy_Helper {
 		add_action('wp_ajax_delete_polygon', array(__CLASS__, 'delete_polygon'));
 		add_action('wp_ajax_get_polygons_datatable', array(__CLASS__, 'get_polygons_datatable'));
 		add_action('wp_ajax_get_polygon', array(__CLASS__, 'get_polygon'));
+		
 		add_action('wp_ajax_get_polygons_by_type', array(__CLASS__, 'ajax_get_polygons_by_type'));
+		add_action('wp_ajax_nopriv_get_polygons_by_type', array(__CLASS__, 'ajax_get_polygons_by_type'));
+
+		add_action('wp_ajax_nopriv_get_polygons_by_slug', array(__CLASS__, 'ajax_get_polygons_by_slug'));
+		add_action('wp_ajax_nopriv_get_polygons_by_slug', array(__CLASS__, 'ajax_get_polygons_by_slug'));
+
 		add_action('wp_ajax_nopriv_lifestyle_polygon', array(__CLASS__, 'lifestyle_polygon'));
 		add_action('wp_ajax_lifestyle_polygon', array(__CLASS__, 'lifestyle_polygon'));
 		add_action('wp_ajax_polygon_listings', array(__CLASS__, 'ajax_polygon_listings'));
@@ -34,10 +40,10 @@ class PL_Taxonomy_Helper {
 	}
 
 	function ajax_polygon_listings () {
-		if (isset($_POST['vertices'])) {
-			$vertices = $_POST['vertices'];
-			if (!empty($vertices)) {
-				$api_listings = self::polygon_listings($vertices, $_POST);
+		if (isset($_POST['polygon'])) {
+			$polygon = $_POST['polygon'];
+			if (!empty($polygon)) {
+				$api_listings = self::polygon_listings($polygon, $_POST);
 				$response = $api_listings['listings'];
 				echo json_encode($response);
 			}
@@ -62,9 +68,9 @@ class PL_Taxonomy_Helper {
 		}
 	}
 
-	function polygon_listings ($vertices, $additional_params = array()) {
+	function polygon_listings ($polygon, $additional_params = array()) {
 		$request = '';
-		foreach ($vertices as $key => $point) {
+		foreach ($polygon as $key => $point) {
 			$request .= 'polygon['.$key. '][0]=' . $point['lat'] .'&';
 			$request .= 'polygon['.$key .'][1]=' . $point['lng'] .'&';
 		}
@@ -201,8 +207,12 @@ class PL_Taxonomy_Helper {
 		return $response;
 	}
 
+	function ajax_get_polygons_by_slug () {
+		echo json_encode(self::get_polygons_by_slug($_POST['slug']));
+		die();
+	}
+
 	function get_polygons_by_slug ($slug = false) {
-		
 		$response = array();
 		$polygons = PL_Option_Helper::get_polygons();
 		foreach ($polygons as $key => $polygon) {
