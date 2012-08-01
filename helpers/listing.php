@@ -21,13 +21,13 @@ class PL_Listing_Helper {
 		}
 		//respect global filters
 		$global_filters = PL_Helper_User::get_global_filters();
-    if (is_array($global_filters)) {
-  		foreach ($global_filters as $attribute => $value) {
-  			if (strpos($attribute, 'property_type') !== false ) {
-  				$args['property_type'] = is_array($value) ? implode('', $value) : $value;
-  			}
-  		}
-    }
+	    if (is_array($global_filters)) {
+	  		foreach ($global_filters as $attribute => $value) {
+	  			if (strpos($attribute, 'property_type') !== false ) {
+	  				$args['property_type'] = is_array($value) ? implode('', $value) : $value;
+	  			}
+	  		}
+	    }
 		$args = wp_parse_args($global_filters, $args);
 
 		//respect block address setting
