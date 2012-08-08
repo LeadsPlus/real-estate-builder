@@ -70,6 +70,7 @@ $(document).ready(function($) {
 		neighborhood = new google.maps.Polygon(options);
 		neighborhood.setMap(map);
 		$('.polygon_controls').show();
+		handle_custom_taxonomy_field();
 		PolyFormUpdate();
 	}
 
@@ -266,17 +267,26 @@ $(document).ready(function($) {
 				setTaxonomyDropdown();
 				closePolygon();
 				removePolyLine();
-				if ($('.polygon_controls form .poly_taxonmy_values#' + data.polygon.tax).val() == 'custom') {
-					$('#custom_taxonomy_name').val(data.polygon.slug);
-					$('#custom_name').show();
-				} else {
-					$('#custom_name').hide();		
-				};
+				handle_custom_taxonomy_field(data);
 			} else {
 				$('#polygon_ajax_messages').html(data.message);
 			};
 		}, 'json');
 	});
+	
+	function handle_custom_taxonomy_field ( data ) {
+		console.log('here');
+		var type = $('.polygon_controls form #poly_taxonomies').val();
+		var item_value = $('.polygon_controls form .poly_taxonmy_values#' + type).val();
+		if ( item_value == 'custom') {
+			if ( data ) {
+				$('#custom_taxonomy_name').val(data.polygon.slug);	
+			}
+			$('#custom_name').show();
+		} else {
+			$('#custom_name').hide();		
+		}
+	}
 
 	function setTaxonomyDropdown () {
 		var value = $('#poly_taxonomies').val();
@@ -288,7 +298,6 @@ $(document).ready(function($) {
 	var polygon_listings_datatable = $('#polygon_listings_list').dataTable( {
             "bFilter": false,
             "bProcessing": true,
-            // "bServerSide": true,
             "sServerMethod": "POST",
             "sAjaxSource": ajaxurl, 
             "iDisplayLength" : 10,
