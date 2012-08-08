@@ -16,6 +16,12 @@ jQuery(document).ready(function($) {
             var that = this;
             $.post(info.ajaxurl, data, function(response) {
                 spinner.hide();
+
+                // This property will only be set if WP determines user is of admin status...
+                if ( response.is_admin) {
+                    alert('Sorry, admins currently aren\'t able to maintain a list of "favorite" listings');
+                }
+
                 if ( response.id ) {
                     $(that).hide();
                     if ($(that).attr('id') == 'pl_add_favorite') {

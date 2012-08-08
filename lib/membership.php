@@ -34,7 +34,11 @@ class PL_Membership {
     }
 
     public function ajax_add_favorite_property () {
-        if ($_POST['property_id']) {
+        // Check to see if user is an admin (at this point, we know the user is logged in...)
+        if (current_user_can('manage_options')) {
+            echo json_encode(array('is_admin' => true));
+        }
+        else if ($_POST['property_id']) {
             $api_response = PL_People_Helper::associate_property($_POST['property_id']);
             echo json_encode($api_response);   
         } else {
