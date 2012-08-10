@@ -45,6 +45,9 @@ define( 'PL_VIEWS_CLIENT_URL', trailingslashit(PL_VIEWS_URL) . 'client/' );
 define( 'PL_VIEWS_PART_DIR', trailingslashit(PL_VIEWS_DIR) . 'partials/' );
 define( 'PL_VIEWS_PART_URL', trailingslashit(PL_VIEWS_URL) . 'partials/' );
 
+define( 'PL_VIEWS_SHORT_DIR', trailingslashit(PL_VIEWS_DIR) . 'shortcodes/' );
+define( 'PL_VIEWS_SHORT_URL', trailingslashit(PL_VIEWS_URL) . 'shortcodes/' );
+
 define( 'PL_JS_DIR', trailingslashit(PL_PARENT_DIR) . 'js/' );
 define( 'PL_JS_URL', trailingslashit(PL_PARENT_URL) . 'js/' );
 
@@ -93,6 +96,7 @@ include_once('lib/validation.php');
 include_once('lib/pages.php');
 include_once('lib/membership.php');
 include_once('lib/caching.php');
+include_once('lib/shortcodes.php');
 
 //models
 include_once('models/listing.php');
@@ -129,6 +133,7 @@ include_once('helpers/wordpress.php');
 include_once('helpers/education-com.php');
 include_once('helpers/caching.php');
 include_once('helpers/membership.php');
+include_once('helpers/snippet.php');
 
 //third-party scripts
 include_once('third-party/tax-meta-class/tax-meta-class.php');

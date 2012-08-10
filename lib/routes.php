@@ -85,6 +85,15 @@ class PL_Router {
 		self:: router('add-listing.php', array(), false);
 	}
 
+	public static function load_snippet($shortcode, $snippet) {
+		ob_start();
+			// Add parameter validation code...
+		  	$filename = (trailingslashit(PL_VIEWS_SHORT_DIR) . trailingslashit($shortcode) . $snippet . '.php');
+		  	//echo $filename;
+		  	include $filename;
+		return ob_get_clean();
+	}
+
 	public function theme_gallery() {
 		if (isset($_GET['theme_url'])) {
 			self:: router('install-theme.php', array('test'=>'donkey'), false);	
