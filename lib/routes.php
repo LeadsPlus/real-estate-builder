@@ -85,12 +85,21 @@ class PL_Router {
 		self:: router('add-listing.php', array(), false);
 	}
 
-	public static function load_snippet($shortcode, $snippet) {
+	public static function load_snippet($shortcode, $snippet, $type) {
 		ob_start();
 			// Add parameter validation code...
-		  	$filename = (trailingslashit(PL_VIEWS_SHORT_DIR) . trailingslashit($shortcode) . $snippet . '.php');
-		  	//echo $filename;
-		  	include $filename;
+		  switch ($type) 
+		  {
+		  	case 'custom' :
+		  	  $snippet_DB_key = ('pls_' . $shortcode . '_' . $snippet);
+		  	  echo get_option($snippet_DB_key, 'Cannot find custom snippet...');
+		  	  break;                                                                                                     
+		  	case 'default' :
+		  	default :
+		  	  $filename = (trailingslashit(PL_VIEWS_SHORT_DIR) . trailingslashit($shortcode) . $snippet . '.php');
+		  	  //echo $filename;
+		  	  include $filename;
+		  }
 		return ob_get_clean();
 	}
 

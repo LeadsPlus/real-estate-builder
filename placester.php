@@ -140,6 +140,10 @@ include_once('third-party/tax-meta-class/tax-meta-class.php');
 include_once('third-party/convex-hull/convex-hull.php');
 include_once('third-party/mixpanel/mixpanel.php');
 
+// including blueprint
+// include_once('blueprint/blueprint.php');
+// new Placester_Blueprint('2.1');
+
 register_activation_hook( __FILE__, 'placester_activate' );
 // register_deactivation_hook( __FILE__, 'placester_deactivate' );
 
