@@ -22,6 +22,7 @@
 
       $.post(ajaxurl, data, function(response) {
           if ( response.snippet_body ) {
+            // console.log(response.snippet_body);
           	container.find('.area_snippet textarea').val(response.snippet_body);
           }
       },'json');
@@ -140,9 +141,10 @@
     	
       // Clear & reset certain elements...
       $(this).siblings('.new_snippet_name').val('');
+      $(this).siblings('.new_snippet_name').css('display', 'none');
       container.find('.area_snippet').css('display', 'none');
 
-      // Call edit handler!
+      // Call edit handler...?
 	  });
 
     // Chaining these events to capture previously selected value...
