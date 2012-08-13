@@ -22,20 +22,13 @@ class PL_Pages {
 	//return a page url
 	function details ($placester_id) {
 		global $wpdb;
-		static $cache = array();
-		if(isset($cache[$placester_id])) {
-			return $cache[$placester_id];
-		}
-		else {
-			$sql = $wpdb->prepare('SELECT ID, post_modified ' . 'FROM ' . $wpdb->prefix . 'posts ' . "WHERE post_type = '" . self::$property_post_type . "' AND post_name = %s " .'LIMIT 0, 1', $placester_id);
-		    $row = $wpdb->get_row($sql);
-		    $post_id = 0;
-		    if ($row) {
-		        $post_id = $row->ID;
-		        $cache[$placester_id] = $post_id;
-		    }
-	    	return $post_id;
+		$sql = $wpdb->prepare('SELECT ID, post_modified ' . 'FROM ' . $wpdb->prefix . 'posts ' . "WHERE post_type = '" . self::$property_post_type . "' AND post_name = %s " .'LIMIT 0, 1', $placester_id);
+	    $row = $wpdb->get_row($sql, OBJECT, 0);
+	    if (isset($row->ID)) {
+	        $post_id = $row->ID;
+	        $cache[$placester_id] = $post_id;
 	    }
+    	return $post_id;
 	}
 
 	//create listing page
