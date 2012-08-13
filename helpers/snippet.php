@@ -6,6 +6,8 @@ PL_Snippet_Helper::init();
 
 class PL_Snippet_Helper {
 
+	public static $allowable_tags = "<a><p><script><div><span><section><label><br><h1><h2><h3><h4><h5><h6><scr'+'ipt>";
+
 	// Static?  Why or why not?
 	public function init() 
 	{
@@ -35,6 +37,9 @@ class PL_Snippet_Helper {
 			$shortcode_DB_key = ('pls_' . $_POST['shortcode']);
 			update_option($shortcode_DB_key, $_POST['snippet']);
 
+			// Blow-out the cache so the changes to the snippet can take effect...
+			PL_Cache::clear();
+
 			// Try to retrieve the option that was just set...
 			$activated_snippet_id = get_option($shortcode_DB_key);
 			echo json_encode(array('activated_snippet_id' => $activated_snippet_id));
@@ -51,7 +56,7 @@ class PL_Snippet_Helper {
 		{
 			// Format & sanitize snippet_body...
 			$snippet_body = stripslashes($_POST['snippet_body']);
-			$snippet_body = preg_replace('/<\?.*?(\?>|$)/', '', strip_tags($snippet_body, "<a><p><script><div><span><section><label><br><scr'+'ipt>"));
+			$snippet_body = preg_replace('/<\?.*?(\?>|$)/', '', strip_tags($snippet_body, self::$allowable_tags));
 			$snippet_body = htmlentities($snippet_body, ENT_QUOTES);
 
 			// This is sure to be unique due to restrictions enforced in the UI...

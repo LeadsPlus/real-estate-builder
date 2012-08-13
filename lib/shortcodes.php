@@ -12,6 +12,7 @@ class PL_Shortcodes
 
 	public static $p_codes = array('searchform' => 'Search Form', 'listings' => 'Listings', 'prop_details' => 'Property Details');
 	
+	// TODO: Construct these lists dynamically by examining the doc hierarchy...
 	public static $defaults = array('searchform' 	=> array('ventura', 'columbus', 'highland'),
 	  				                'prop_details' 	=> array('Red', 'Yellow', 'Orange'),
 			               			'listings' 		=> array('Purple', 'Pink', 'Gray') );

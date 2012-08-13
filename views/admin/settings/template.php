@@ -192,6 +192,7 @@
     }
 
     $pl_active_snippets = PL_Snippet_Helper::get_active_snippet_map();
+    $pl_snippet_types = array('default' => 'Default', 'custom' => 'Custom'); // Order matters, here...
 
     //echo '<pre>' . var_dump($pl_snippet_list['searchform']) . '</pre><br/>';
     //echo '<pre>' . var_dump($pl_active_snippets) . '</pre><br/>';
@@ -210,12 +211,17 @@
 	  	  <section id="shortcode_ref"> 
     			<label for="shortcode_list">Available Implementations:</label>	
     			<select class="snippet_list">
-  				  <?php foreach ($pl_snippet_list[$code] as $snippet => $type): ?>
-  					  <option id="<?php echo $snippet ?>" value="<?php echo $snippet ?>" class="<?php echo $type ?>" <?php echo $pl_active_snippets[$code] == $snippet ? 'selected' : '' ?>>
-                <?php echo $snippet ?>
-              </option>
-  				  <?php endforeach ?>	
-  		    </select>
+            <?php foreach ($pl_snippet_types as $curr_type => $title_type): ?>
+              <optgroup label="<?php echo $title_type?>">
+    				    <?php foreach ($pl_snippet_list[$code] as $snippet => $type): ?>
+                  <?php if ($type != $curr_type) { continue; } ?>
+    					    <option id="<?php echo $snippet ?>" value="<?php echo $snippet ?>" class="<?php echo $type ?>" <?php echo $pl_active_snippets[$code] == $snippet ? 'selected' : '' ?>>
+                    <?php echo $snippet ?>
+                  </option>
+    				    <?php endforeach ?>	
+              <?php endforeach ?>
+  		      </optgroup>
+          </select>
   		    <div style="float: right">
       			<input type="button" class="button-secondary edit_snippet" value="<?php echo $pl_snippet_list[$code][$pl_active_snippets[$code]] == 'default' ? 'View' : 'Edit' ?>" />
       			<input type="button" class="button-secondary activate_snippet" value="Activate" />
