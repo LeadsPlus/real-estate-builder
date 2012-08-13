@@ -14,7 +14,7 @@ class PL_Listing {
 		if (isset($response) && isset($response['listings']) && is_array($response['listings'])) {
 			foreach ($response['listings'] as $key => $listing) {
 				$response['listings'][$key] = PL_Validate::attributes($listing, PL_Config::PL_API_LISTINGS('get','returns'));
-				$post_exists = (PL_Pages::details($listing['id']));
+				$post_exists = (PL_Pages::details($listing['id']) > 0);
 				if(!$post_exists) {
 					PL_Pages::manage_listing($response['listings'][$key]);
 				}
