@@ -14,7 +14,10 @@ class PL_Listing {
 		if (isset($response) && isset($response['listings']) && is_array($response['listings'])) {
 			foreach ($response['listings'] as $key => $listing) {
 				$response['listings'][$key] = PL_Validate::attributes($listing, PL_Config::PL_API_LISTINGS('get','returns'));
-				PL_Pages::manage_listing($response['listings'][$key]);
+				$post_exists = (PL_Pages::details($listing['id']));
+				if(!$post_exists) {
+					PL_Pages::manage_listing($response['listings'][$key]);
+				}
 			}
 		} else {
 			$response = PL_Validate::attributes($response, array('listings' => array(), 'total' => 0));
