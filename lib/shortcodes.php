@@ -10,7 +10,7 @@ class PL_Shortcodes
 {
 	public static $codes = array('searchform', 'listings', 'prop_details');
 
-	public static $p_codes = array('searchform' => 'Search Form', 'prop_details' => 'Property Details', 'listings' => 'Listings');
+	public static $p_codes = array('searchform' => 'Search Form', 'listings' => 'Listings', 'prop_details' => 'Property Details');
 	
 	public static $defaults = array('searchform' 	=> array('ventura', 'columbus', 'highland'),
 	  				                'prop_details' 	=> array('Red', 'Yellow', 'Orange'),
@@ -38,7 +38,7 @@ class PL_Shortcodes
 												            'max_price',
 												            'min_price_rental',
 	        												'max_price_rental'),
-            						'listings'	  =>  array('price',
+            						'listing'	  =>  array('price',
             												'sqft',
             												'beds',
             												'baths',
@@ -54,24 +54,9 @@ class PL_Shortcodes
             												'unit',
             												'full_address',
             												'email',
-            												'phone'	),
-            						'prop_details'	  =>  array('price',
-            												'sqft',
-            												'beds',
-            												'baths',
-            												'url',
-            												'address',
-            												'locality',
-            												'region',
-            												'postal',
-            												'neighborhood',
-            												'county',
-            												'country',
-            												'coords',
-            												'unit',
-            												'full_address',
-            												'email',
-            												'phone'	)
+            												'phone',
+            												'desc',
+            												'image')
             						);
 
 	// TODO: These are a temporary solution, come up with a better convention...
@@ -167,7 +152,7 @@ class PL_Shortcodes
 		return self::$form_html[$tag];
 	}
 
-	public static function listings_sub_shortcode_handler ($atts, $content, $tag) 
+	public static function listing_sub_shortcode_handler ($atts, $content, $tag) 
 	{
 		$val = '';
 
@@ -182,26 +167,43 @@ class PL_Shortcodes
 			$val = 'Could not handle...';
 		}
 
+		// This is an example of handling a specific tag in a different way
+		// TODO: make this more elegant...
+		switch ($tag)
+		{
+			case 'desc':
+			    $max_len = array_key_exists('maxlen', $atts) ? (int)$atts['maxlen'] : 500;
+			    $val = substr($val, 0, $max_len);
+			    break;
+			case 'image':
+				$val = PLS_Image::load(self::$listing['images'][0]['url'], array('resize' => array('w' => 210, 'h' => 140), 
+																			 	 'fancybox' => true, 
+																				 'as_html' => true, 
+																				 'html' => array('alt' => self::$listing['location']['full_address'], 
+																				 		         'itemprop' => 'image')));
+			default:
+		}
+		
 		return $val;
 	}
 
-	public static function prop_details_sub_shortcode_handler ($atts, $content, $tag)
-	{
-		$val = '';
+	// public static function prop_details_sub_shortcode_handler ($atts, $content, $tag)
+	// {
+	// 	$val = '';
 
-		if (array_key_exists($tag, self::$listing['cur_data'])) { 
-			$val = self::$listing['cur_data'][$tag]; 
-		}else if (array_key_exists($tag, self::$listing['location'])) { 
-			$val = self::$listing['location'][$tag]; 
-		}else if (array_key_exists($tag, self::$listing['contact'])) { 
-			$val = self::$listing['contact'][$tag]; 
-		}
-		else {
-			$val = 'Could not handle...';
-		}
+	// 	if (array_key_exists($tag, self::$listing['cur_data'])) { 
+	// 		$val = self::$listing['cur_data'][$tag]; 
+	// 	}else if (array_key_exists($tag, self::$listing['location'])) { 
+	// 		$val = self::$listing['location'][$tag]; 
+	// 	}else if (array_key_exists($tag, self::$listing['contact'])) { 
+	// 		$val = self::$listing['contact'][$tag]; 
+	// 	}
+	// 	else {
+	// 		$val = 'Could not handle...';
+	// 	}
 
-		return $val;
-	}
+	// 	return $val;
+	// }
 
 
 /*** Helper Functions ***/

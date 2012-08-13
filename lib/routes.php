@@ -92,7 +92,8 @@ class PL_Router {
 		  {
 		  	case 'custom' :
 		  	  $snippet_DB_key = ('pls_' . $shortcode . '_' . $snippet);
-		  	  echo get_option($snippet_DB_key, 'Cannot find custom snippet...');
+		  	  $snippet_body = get_option($snippet_DB_key, 'Cannot find custom snippet...');
+		  	  echo html_entity_decode($snippet_body, ENT_QUOTES);
 		  	  break;                                                                                                     
 		  	case 'default' :
 		  	default :
