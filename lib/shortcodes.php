@@ -38,12 +38,45 @@ class PL_Shortcodes
 												            'max_price',
 												            'min_price_rental',
 	        												'max_price_rental'),
-            						'listings'	  =>  array('')
+            						'listings'	  =>  array('price',
+            												'sqft',
+            												'beds',
+            												'baths',
+            												'url',
+            												'address',
+            												'locality',
+            												'region',
+            												'postal',
+            												'neighborhood',
+            												'county',
+            												'country',
+            												'coords',
+            												'unit',
+            												'full_address',
+            												'email',
+            												'phone'	),
+            						'prop_details'	  =>  array('price',
+            												'sqft',
+            												'beds',
+            												'baths',
+            												'url',
+            												'address',
+            												'locality',
+            												'region',
+            												'postal',
+            												'neighborhood',
+            												'county',
+            												'country',
+            												'coords',
+            												'unit',
+            												'full_address',
+            												'email',
+            												'phone'	)
             						);
 
 	// TODO: These are a temporary solution, come up with a better convention...
 	public static $form_html = false;
-	public static $item_html = false;
+	public static $listing = false;
 
 	public function init() 
 	{
@@ -60,7 +93,7 @@ class PL_Shortcodes
 		// Register hooks to generate the forms...
 		add_filter('pls_listings_search_form_outer_shortcode', array(__CLASS__, 'searchform_shortcode_context'), 10, 6);
 		add_filter('pls_listings_list_ajax_item_html_shortcode', array(__CLASS__, 'listings_shortcode_context'), 10, 3);
-		add_filter('pls_listing_property_details', array(__CLASS__, 'prop_details_shortcode_handler'), 10, 2);
+		add_filter('property_details_filter', array(__CLASS__, 'prop_details_shortcode_context'), 10, 2);
 
 		// TODO: Construct defaults array properly...
 
@@ -98,31 +131,31 @@ class PL_Shortcodes
 		$shortcode = 'searchform';
 		self::$form_html = $form_html;
 
-	  ob_start();
 		$snippet_body = self::get_active_snippet_body($shortcode);
-		echo do_shortcode($snippet_body);
-	  return ob_get_clean(); 
+		return do_shortcode($snippet_body);
 	}
 
 	// It's important to note that this is called for every individual listing...
 	public static function listings_shortcode_context($item_html, $listing) 
 	{
-		ob_start();
-		  echo $item_html;
-		return ob_get_clean();
+		$shortcode = 'listings';
+		self::$listing = $listing;
 
-		// $shortcode = 'listings';
-		// self::$form_html = $form_html;
+		// ob_start();
+		//   echo pls_dump($listing);
+		// return ob_get_clean();
 
-	 //  ob_start();
-	 //  	$snippet_body = get_active_snippet_body($shortcode);
-	 //  	echo do_shortcode($snippet_body);
-	 //  return ob_get_clean();
+	  	$snippet_body = self::get_active_snippet_body($shortcode);
+	  	return do_shortcode($snippet_body);
 	}
 
-	public static function prop_details_shortcode_context() 
+	public static function prop_details_shortcode_context($html, $listing_data) 
 	{
+		$shortcode = 'prop_details';
+		self::$listing = $listing_data;
 
+	  	$snippet_body = self::get_active_snippet_body($shortcode);
+	  	return do_shortcode($snippet_body);
 	}
 
 
@@ -131,17 +164,43 @@ class PL_Shortcodes
 	public static function searchform_sub_shortcode_handler ($atts, $content, $tag) 
 	{
 		//pls_dump($tag);
-		echo self::$form_html[$tag];
+		return self::$form_html[$tag];
 	}
 
 	public static function listings_sub_shortcode_handler ($atts, $content, $tag) 
 	{
+		$val = '';
 
+		if (array_key_exists($tag, self::$listing['cur_data'])) { 
+			$val = self::$listing['cur_data'][$tag]; 
+		}else if (array_key_exists($tag, self::$listing['location'])) { 
+			$val = self::$listing['location'][$tag]; 
+		}else if (array_key_exists($tag, self::$listing['contact'])) { 
+			$val = self::$listing['contact'][$tag]; 
+		}
+		else {
+			$val = 'Could not handle...';
+		}
+
+		return $val;
 	}
 
 	public static function prop_details_sub_shortcode_handler ($atts, $content, $tag)
 	{
+		$val = '';
 
+		if (array_key_exists($tag, self::$listing['cur_data'])) { 
+			$val = self::$listing['cur_data'][$tag]; 
+		}else if (array_key_exists($tag, self::$listing['location'])) { 
+			$val = self::$listing['location'][$tag]; 
+		}else if (array_key_exists($tag, self::$listing['contact'])) { 
+			$val = self::$listing['contact'][$tag]; 
+		}
+		else {
+			$val = 'Could not handle...';
+		}
+
+		return $val;
 	}
 
 

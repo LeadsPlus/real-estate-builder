@@ -45,9 +45,12 @@ class PL_Snippet_Helper {
 		if ($_POST['shortcode'] && $_POST['snippet'] && $_POST['snippet_body']) {
 			// TODO: 'String-ify' snippet...comment out (but retain) at least HTML & Javascript, and perhaps PHP...
 
+			// Sanitize snippet_body...
+			$snippet_body = preg_replace('/<\?.*?(\?>|$)/', '',strip_tags($_POST['snippet_body'], "<a><p><script><div><span><section><label><br><scr'+'ipt>"));
+
 			// This is sure to be unique due to restrictions enforced in the UI...
 			$snippet_DB_key = ('pls_' . $_POST['shortcode'] . '_' . $_POST['snippet']);
-			update_option($snippet_DB_key, $_POST['snippet_body']);
+			update_option($snippet_DB_key, $snippet_body);
 
 			// Add to the list of custom snippet IDs for this shortcode...
 			$snippet_list_DB_key = ('pls_' . $_POST['shortcode'] . '_list');
@@ -56,6 +59,9 @@ class PL_Snippet_Helper {
 
 			// Update (or add) list in (to) DB...
 			update_option($snippet_list_DB_key, $snip_arr);
+
+			// Blow-out the cache so the changes to the snippet can take effect...
+			PL_Cache::clear();
 
 			echo json_encode(array('unique_id' => $snippet_DB_key, 'id_array' => $snip_arr));
 		} else {

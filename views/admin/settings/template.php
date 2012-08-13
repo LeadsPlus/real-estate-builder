@@ -112,6 +112,9 @@
       // Whether it's a new snippet, or an existing custom one, we need to pull what's in the textarea...
       snippet_body = container.find('.area_snippet textarea').val(); 
 
+      // Temp Fix...
+      if (!snippet_body) { snippet_body = 'Empty Template' }
+
       // AJAX call to persist new snippet...
       data = {
         action: 'save_custom_snippet',
