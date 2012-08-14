@@ -1,14 +1,17 @@
 <?php extract(PL_Page_Helper::get_types()); ?>    
 
 <script type="text/javascript">
+
   // Throw this into a .js file...
   jQuery( function ( $ ) {
   	$('.edit_snippet').live('click', function() {
 		  var container = $(this).parents('.shortcode_container');
 
       // If edit box is already visible, don't overwrite any possible changes/re-load unnecessarily...
-      if (container.find('.area_snippet').css('display') != 'none')
-      { alert('skipping edit...'); return; }
+      if (container.find('.area_snippet').css('display') != 'none') { 
+        //alert('skipping edit...'); 
+        return; 
+      }
 
       data = {
       	  action: 'get_snippet_body',
@@ -48,7 +51,7 @@
 
       // If edit box is visible and you are viewing a custom snippet, confirm the save-and-set...
       if ( container.find('.snippet_list option:selected').hasClass('custom') && container.find('.area_snippet').css('display') != 'none' ) {
-        alert('Please click \'Save\' before activating it...'); 
+        alert('You\'ll need \'Save\' before you can activate this snippet'); 
         return; 
       }
 
@@ -58,12 +61,12 @@
         snippet: container.find('.snippet_list option:selected').val()
       };
 
-      console.log(data);
+      //console.log(data);
         
   		$.post(ajaxurl, data, function(response) {
-      	console.log(response);
+      	//console.log(response);
         if ( response.activated_snippet_id ) {
-        	alert(data.shortcode + ' points to: ' + response.activated_snippet_id);
+        	//alert(data.shortcode + ' points to: ' + response.activated_snippet_id);
         }
       },'json');
 	  });
@@ -77,7 +80,7 @@
       var snippet_body;
 
       if (create_new) {
-        alert('creating a new custom snippet...');
+        //alert('creating a new custom snippet...');
 
         // Make sure name has been provided, and that it is unique with the given shortcode..
         var name = $(this).siblings('.new_snippet_name').val();
@@ -96,20 +99,15 @@
           }
         }
 
-        alert('The new name checks out...');
+        //alert('The new name checks out...');
         snippet_name = name;
 
       } else {
-        alert('saving an existing custom snippet...');
+        //alert('saving an existing custom snippet...');
         snippet_name = container.find('.snippet_list option:selected').val();
-
-        // TODO: Sanitize snippet code...
-        // sani_func = function (code) { return code; } 
-    
-        // sani_func(container.find('.area_snippet textarea').text());
       }
 
-      // Whether it's a new snippet, or an existing custom one, we need to pull what's in the textarea...
+      // Whether it's a new snippet or an existing custom one, we need to pull what's in the textarea...
       snippet_body = container.find('.area_snippet textarea').val(); 
 
       // Temp Fix...
@@ -128,8 +126,8 @@
         
       $.post(ajaxurl, data, function(response) {
         if ( response && response.unique_id ) {
-          console.log(data.snippet + ' snippet ' + (create_new ? 'created' : 'saved') + ' with ID: ' + response.unique_id
-                + '\n' + data.shortcode + ' ID list: ' + response.id_array);
+          // console.log(data.snippet + ' snippet ' + (create_new ? 'created' : 'saved') + ' with ID: ' + response.unique_id
+          //       + '\n' + data.shortcode + ' ID list: ' + response.id_array);
           
           if (create_new) {
             // add to options
@@ -164,7 +162,7 @@
       // Alert to save if a customizable template is in edit mode...
       if (container.find('.area_snippet').css('display') != 'none' && prev_opt_class && prev_opt_class !== 'default')
       {
-        var choice = confirm('Are you sure you want to navigate away before saving any changes?');
+        var choice = confirm('Are you sure you want to navigate away before saving?');
         if (!choice) { 
           $(this).val(prev_opt_val);
           return; 
@@ -182,6 +180,28 @@
   });
 </script>
 
+<style type="text/css">
+  .snippet_container {
+    overflow: hidden;
+    text-align: left;
+    margin: 30px 0px 0px 0px;
+    padding: 0px;
+    width: 1250px;
+  }
+  .shortcode_container {
+    float: left;
+    width: 850px;
+    
+  }
+  .shortcode_ref { 
+    margin: 0;
+    float: left;
+    width: 400px;
+    padding: 30px;
+    background-color: #CDCDCD;
+  }
+</style>
+
 <?php 
     /*** Load initial data... ***/
 
@@ -193,18 +213,14 @@
 
     $pl_active_snippets = PL_Snippet_Helper::get_active_snippet_map();
     $pl_snippet_types = array('default' => 'Default', 'custom' => 'Custom'); // Order matters, here...
-
-    //echo '<pre>' . var_dump($pl_snippet_list['searchform']) . '</pre><br/>';
-    //echo '<pre>' . var_dump($pl_active_snippets) . '</pre><br/>';
 ?>   
 
 <div class="wrap">
   <?php echo PL_Helper_Header::pl_settings_subpages(); ?>
-  <div class="" style="width: 50%">
 
-	<?php foreach (PL_Shortcodes::$p_codes as $code => $name): ?>
-	  <!-- <form name="snippet" id="snippet" action="" method="post"> -->
-	  <div style="margin-bottom: 18px" class="shortcode_container">
+ <?php foreach (PL_Shortcodes::$p_codes as $code => $name): ?>
+	<div class="snippet_container">
+	  <div style="width: 50%" class="shortcode_container">
 	  	  <h2><?php echo $name ?> Snippets</h2>
 	  	  <input type="hidden" class="shortcode" value="<?php echo $code ?>" />
         
@@ -234,8 +250,8 @@
           <input type="text" style="display: none" class="new_snippet_name" value="" />
   	  	</div>
 	  </div>
-	  <!-- </form> -->
-	<?php endforeach ?>		
-	
-  </div>
+
+    <?php echo PL_Router::load_builder_partial('shortcode-ref.php', array('shortcode' => $code), true) ?>
+  </div>  
+ <?php endforeach ?>	
 </div>

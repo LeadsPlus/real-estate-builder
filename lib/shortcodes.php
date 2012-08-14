@@ -97,7 +97,11 @@ class PL_Shortcodes
 		// Handle attributes using shortcode_atts...
 		// Ajax setting as an attr?
 
-		return PLS_Partials_Listing_Search_Form::init(array('context' => 'shortcode', 'ajax' => true));
+		// Default form enclosure
+		$header = '<form method="post" action="' . esc_url( home_url( '/' ) ) . 'listings" class="pls_search_form_listings">';
+		$footer = '</form>';
+
+		return ( $header . PLS_Partials_Listing_Search_Form::init(array('context' => 'shortcode', 'ajax' => true)) . $footer );
 	}
 
 	public static function listings_shortcode_handler($atts)

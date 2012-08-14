@@ -37,12 +37,12 @@ class PL_Snippet_Helper {
 			$shortcode_DB_key = ('pls_' . $_POST['shortcode']);
 			update_option($shortcode_DB_key, $_POST['snippet']);
 
-			// Blow-out the cache so the changes to the snippet can take effect...
-			PL_Cache::clear();
-
 			// Try to retrieve the option that was just set...
 			$activated_snippet_id = get_option($shortcode_DB_key);
 			echo json_encode(array('activated_snippet_id' => $activated_snippet_id));
+
+			// Blow-out the cache so the changes to the snippet can take effect...
+			PL_Cache::clear();
 		} else {
 			echo array();
 		}
@@ -70,11 +70,10 @@ class PL_Snippet_Helper {
 
 			// Update (or add) list in (to) DB...
 			update_option($snippet_list_DB_key, $snip_arr);
-
+			echo json_encode(array('unique_id' => $snippet_DB_key, 'id_array' => $snip_arr));
+			
 			// Blow-out the cache so the changes to the snippet can take effect...
 			PL_Cache::clear();
-
-			echo json_encode(array('unique_id' => $snippet_DB_key, 'id_array' => $snip_arr));
 		} else {
 			echo array();
 		}
