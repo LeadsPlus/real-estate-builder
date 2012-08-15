@@ -190,7 +190,7 @@
   }
   .shortcode_container {
     float: left;
-    width: 850px;
+    width: 50%;
     
   }
   .shortcode_ref { 
@@ -198,7 +198,6 @@
     float: left;
     width: 400px;
     padding: 30px;
-    background-color: #CDCDCD;
   }
 </style>
 
@@ -220,8 +219,8 @@
 
  <?php foreach (PL_Shortcodes::$p_codes as $code => $name): ?>
 	<div class="snippet_container">
-	  <div style="width: 50%" class="shortcode_container">
-	  	  <h2><?php echo $name ?> Snippets</h2>
+	  <div class="shortcode_container">
+	  	  <h2><?php echo $name ?></h2>
 	  	  <input type="hidden" class="shortcode" value="<?php echo $code ?>" />
         
 	  	  <section id="shortcode_ref"> 

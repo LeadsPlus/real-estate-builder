@@ -10,12 +10,12 @@ class PL_Shortcodes
 {
 	public static $codes = array('searchform', 'listings', 'prop_details');
 
-	public static $p_codes = array('searchform' => 'Search Form', 'listings' => 'Listings', 'prop_details' => 'Property Details');
+	public static $p_codes = array('searchform' => 'Search Form Shortcode', 'listings' => 'Listings Shortcode', 'prop_details' => 'Property Details Template');
 	
 	// TODO: Construct these lists dynamically by examining the doc hierarchy...
-	public static $defaults = array('searchform' 	=> array('ventura', 'columbus', 'highland'),
-	  				                'prop_details' 	=> array('Red', 'Yellow', 'Orange'),
-			               			'listings' 		=> array('Purple', 'Pink', 'Gray') );
+	public static $defaults = array('searchform' 	=> array('columbus', 'highland', 'ventura'),
+	  				                'prop_details' 	=> array('columbus', 'highland', 'ventura'),
+			               			'listings' 		=> array('columbus', 'highland', 'ventura') );
 
 	public static $subcodes = array('searchform'  =>  array('bedrooms',
 												            'min_beds',
@@ -43,6 +43,8 @@ class PL_Shortcodes
             												'sqft',
             												'beds',
             												'baths',
+            												'half_baths',
+            												'avail_on',
             												'url',
             												'address',
             												'locality',
@@ -57,7 +59,9 @@ class PL_Shortcodes
             												'email',
             												'phone',
             												'desc',
-            												'image')
+            												'image',
+            												'mls_id',
+            												'map')
             						);
 
 	// TODO: These are a temporary solution, come up with a better convention...
@@ -109,8 +113,9 @@ class PL_Shortcodes
 		// Handle attributes using shortcode_atts...
 		// These attributes will hand the look and feel of the listing form container, as 
 		// the context func applies to each individual listing.
-	
-		return PLS_Partials_Get_Listings_Ajax::load(array('context' => 'shortcode'));
+	  ob_start();
+	    PLS_Partials_Get_Listings_Ajax::load(array('context' => 'shortcode'));
+	  return ob_get_clean();  
 	}
 
 
@@ -167,6 +172,8 @@ class PL_Shortcodes
 			$val = self::$listing['location'][$tag]; 
 		}else if (array_key_exists($tag, self::$listing['contact'])) { 
 			$val = self::$listing['contact'][$tag]; 
+		}else if (array_key_exists($tag, self::$listing['rets'])) { 
+			$val = self::$listing['rets'][$tag];
 		}
 		else {
 			$val = 'Could not handle...';
@@ -186,29 +193,18 @@ class PL_Shortcodes
 																				 'as_html' => true, 
 																				 'html' => array('alt' => self::$listing['location']['full_address'], 
 																				 		         'itemprop' => 'image')));
+				break;
+
+			case 'map':
+				$val = PLS_Map::lifestyle(self::$listing, array('width' => 590, 'height' => 250, 'zoom' => 16, 'life_style_search' => true,
+																'show_lifestyle_controls' => true, 'show_lifestyle_checkboxes' => true, 
+																'lat' => self::$listing['location']['coords'][0], 'lng' => self::$listing['location']['coords'][1]));
+				break;
 			default:
 		}
 		
 		return $val;
 	}
-
-	// public static function prop_details_sub_shortcode_handler ($atts, $content, $tag)
-	// {
-	// 	$val = '';
-
-	// 	if (array_key_exists($tag, self::$listing['cur_data'])) { 
-	// 		$val = self::$listing['cur_data'][$tag]; 
-	// 	}else if (array_key_exists($tag, self::$listing['location'])) { 
-	// 		$val = self::$listing['location'][$tag]; 
-	// 	}else if (array_key_exists($tag, self::$listing['contact'])) { 
-	// 		$val = self::$listing['contact'][$tag]; 
-	// 	}
-	// 	else {
-	// 		$val = 'Could not handle...';
-	// 	}
-
-	// 	return $val;
-	// }
 
 
 /*** Helper Functions ***/

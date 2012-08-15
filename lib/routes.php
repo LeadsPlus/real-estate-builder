@@ -3,7 +3,7 @@ class PL_Router {
 
 	private static function router($template, $params, $wrap = false, $directory = PL_VIEWS_ADMIN_DIR) {
 		ob_start();
-			// delete_option('placester_api_key');
+			//delete_option('placester_api_key');
 			self::load_builder_view('header.php');
 			if (!PL_Option_Helper::api_key()) {
 				do_action('sign-up-action');

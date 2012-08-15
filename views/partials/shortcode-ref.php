@@ -35,7 +35,7 @@
 
 	<?php elseif ($shortcode == 'prop_details'): ?>
 	  <p>
-		Unlike the other examples here, this snippet is not actually used by placing a shortcode--instead, what you define
+		Unlike the other examples here, this snippet is not actually used via a shortcode--instead, what you define
 		in your snippet overwrites the format for any property details page, including those accesssed from search and 
 		listing elements you have <i>not</i> defined.
 	  </p>
