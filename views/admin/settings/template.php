@@ -177,6 +177,14 @@
       container.find('.area_snippet .new_snippet_name').css('display', 'none');
       container.find('.area_snippet').css('display', 'none');
     });
+
+    $('.area_snippet').live('click', function() {
+      if ( $(this).find('.text_snippet').attr('disabled') == 'disabled' )
+      {
+        alert('You need to create a custom version of this shortcode in order start editing');
+      }
+    });
+
   });
 </script>
 
@@ -191,13 +199,21 @@
   .shortcode_container {
     float: left;
     width: 50%;
-    
   }
   .shortcode_ref { 
     margin: 0;
     float: left;
     width: 400px;
     padding: 30px;
+  }
+  .text_snippet {
+    margin: 6px 0px 6px 0px;
+  }
+
+  .note {
+    margin: 6px 0px 12px 0px;
+    font-style: italic;
+    font-size: small;
   }
 </style>
 
@@ -222,7 +238,9 @@
 	  <div class="shortcode_container">
 	  	  <h2><?php echo $name ?></h2>
 	  	  <input type="hidden" class="shortcode" value="<?php echo $code ?>" />
-        
+        <div class="note">
+          Use this by placing <span style="background: lightyellow">[<?php echo $code ?>]</span> into any Post or Page
+        </div>
 	  	  <section id="shortcode_ref"> 
     			<label for="shortcode_list">Available Implementations:</label>	
     			<select class="snippet_list">

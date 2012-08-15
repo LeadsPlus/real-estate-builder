@@ -1,3 +1,78 @@
+<style type="text/css">
+  div#main {
+    width: 600px;
+    float: left; 
+  }
+  h3.h-address {
+    float: left; 
+    width: 100%;
+    margin-top: 5px;
+  }
+  p.h-price {
+    margin: 0px;
+    padding: 0px;
+    float: right;
+    color: #378a0b;
+    font-size: 26px;
+    font-weight: lighter; 
+  }
+  div.leasing {
+    background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#dadada));
+    background: -moz-linear-gradient(top, #f2f2f2, #dadada);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2f2f2', endColorstr='#dadada');
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    border: 1px solid #bfbfbf;
+    padding: 12px 15px 12px 18px;
+    margin: 15px 5px 14px 0; 
+  }
+  div.leasing h3 {
+    float: left;
+    margin: 0px 15px 0px 0px;
+    padding-top: 18px; 
+  }
+  div.leasing ul.leasing-01 {
+    margin: 0px;
+    padding: 6px 0px 0px 12px;
+    width: 220px;
+    float: left; 
+  }
+  div.leasing ul.leasing-01 li {
+    list-style: none;
+    font-size: 12px;
+    margin: 0px 10px 5px 0px;
+    font-weight: bold; 
+  }
+  div.leasing ul.leasing-01 li span {
+    float: right;
+    text-align: left;
+    font-weight: lighter; 
+  }
+  div.leasing ul.leasing-02 {
+    margin: 0px;
+    padding: 6px 0px 0px 12px;
+    width: 120px;
+    float: right; 
+  }
+  div.leasing ul.leasing-02 li {
+    list-style: none;
+    font-size: 12px;
+    margin: 0px 10px 6px 0px; 
+  }
+  div.leasing ul.leasing-02 li span.ico-bed {
+    background: url(../img/bed-ico.png) left center no-repeat;
+    padding: 0px 0px 0px 22px; 
+  }
+  div.leasing ul.leasing-02 li span.ico-bath {
+    background: url(../img/bath-ico.png) left center no-repeat;
+    padding: 0px 0px 0px 22px; 
+  }
+  div.leasing ul.leasing-02 li span.ico-half {
+    background: url(../img/half-ico.png) left center no-repeat;
+    padding: 0px 0px 0px 22px; 
+  }
+</style>
+
 <h3 class="h-address">[full_address]</h3>
 <p class="h-price">[price]</p>
 <div id="main" role="main">
@@ -7,103 +82,22 @@
   <div class="leasing">
   	<h3>Leasing Details</h3>
     <ul class="leasing-01">
-      <li>Listing Type <span><?php echo ucwords($listing['purchase_types'][0]); ?></span></li>
-      <li>Property Type <span><?php echo PLS_Format::translate_property_type($listing); ?></span>
+      <li>Property Type <span>[property_type]</span>
 			</li>
-      <?php if (isset($listing['rets']['mls_id'])): ?>
-        <li>MLS # <span><?php echo $listing['rets']['mls_id'] ?></span></li>  
-      <?php else: ?>
-        <li>Ref # <span><?php echo $listing['id'] ?></span></li>  
-      <?php endif ?>
-      
+      <li>MLS # <span>[mls_id]</span></li>
     </ul><!--LEASING-01-->      
     <ul class="leasing-02">
-      <li><span class="ico-bed"><?php echo $listing['cur_data']['beds'] ?> Bedroom(s)</span></li>        
-      <li><span class="ico-bath"><?php echo $listing['cur_data']['baths'] ?> Bathroom(s)</span></li>          
-      <li><span class="ico-half"><?php echo $listing['cur_data']['half_baths'] ?> Half Bath(s)</span></li>                                                                      
+      <li><span class="ico-bed">[beds] Bedroom(s)</span></li>        
+      <li><span class="ico-bath">[baths] Bathroom(s)</span></li>          
+      <li><span class="ico-half">[half_baths] Half Bath(s)</span></li>                                                                      
    	</ul><!--LEASING-02-->
     <div class="clearfix"></div>
   </div><!--leasing-->
 
   <div class="user-generated">
     <h3>Description</h3>
-    <?php if ($listing['cur_data']['desc']): ?>
-      <p><?php echo $listing['cur_data']['desc'] ?></p>  
-    <?php else: ?>
-      <p>No description available at this time.</p>
-    <?php endif ?>
-    
-	</div><!--USER-GENERATED-->
-
-	<?php $amenities = PLS_Format::amenities_but(&$listing, array('half_baths', 'beds', 'baths', 'url', 'sqft', 'avail_on', 'price', 'desc')); ?>
-
-	<?php if ( isset($amenities['list']) && $amenities['list'] != null ): ?>
-		<div class="user-generated">
-			<h3>Property Amenities</h3>
-			<ul class="checklist">
-				<?php PLS_Format::translate_amenities(&$amenities['list']); ?>
-				<?php foreach ($amenities['list'] as $amenity => $value): ?>
-					<li><span><?php echo $amenity; ?></span> <?php echo $value ?></li>
-				<?php endforeach ?>
-			</ul>
-			<div class="clearfix"></div>
-		</div><!--USER-GENERATED-->
-	<?php endif ?>
-
-	<?php if (isset($amenities['ngb']) && $amenities['ngb'] != null ): ?>
-		<div class="user-generated">
-			<h3>Neighborhood Amenities</h3>
-			<ul class="checklist">
-				<?php PLS_Format::translate_amenities(&$amenities['ngb']); ?>
-				<?php foreach ($amenities['ngb'] as $amenity => $value): ?>
-					<li><span><?php echo $amenity; ?></span> <?php echo $value ?></li>
-				<?php endforeach ?>
-			</ul>
-			<div class="clearfix"></div>
-		</div><!--USER-GENERATED-->
-	<?php endif ?>
-
-  <?php if ( isset($amenities['uncur']) && $amenities['uncur'] != null ): ?>
-		<div class="user-generated">
-			<h3>Custom Amenities</h3>
-			<ul class="checklist">
-				<?php PLS_Format::translate_amenities(&$amenities['uncur']); ?>
-				<?php foreach ($amenities['uncur'] as $amenity => $value): ?>
-					<li><span><?php echo $amenity; ?></span> <?php echo $value ?></li>
-				<?php endforeach ?>
-			</ul>
-			<div class="clearfix"></div>
-		</div><!--USER-GENERATED-->
-	<?php endif ?>
-
-
-  <div class="user-generated">
-  	<h3>Neighborhood</h3>
-      [map]
-  </div><!--USER-GENERATED-->
+    <p>[desc]</p>
+	</div>
   
   <div class="clearfix"></div>
-</div><!--MAIN-->  
-  
-  
-<aside>
-  <section id="location-widget">
-    [map] 
-  </section><!--LOCATION-WIDGET-->	
-    
-  <?php if ($listing['images']): ?>
-  <section id="gallery">
-    <h3>Photo Gallery</h3>
-    <?php foreach ($listing['images'] as $image): ?>
-      <?php echo PLS_Image::load($image['url'], array('resize' => array('w' => 120, 'h' => 95, 'method' => 'crop'), 'fancybox' => true, 'as_html' => false)) ?>  
-    <?php endforeach ?>
-    <div class="clearfix"></div>
-  </section><!--SEARCH-->  
-  <?php endif ?>
-  
-  
-  <section id="featured">
-  	<h3>Featured Listings</h3>
-    <?php echo pls_get_listings( "limit=4&featured_option_id=custom-featured-listings&context=property_details" ) ?>
-  </section>
-</aside>
+</div>

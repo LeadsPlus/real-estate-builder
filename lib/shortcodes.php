@@ -13,9 +13,9 @@ class PL_Shortcodes
 	public static $p_codes = array('searchform' => 'Search Form Shortcode', 'listings' => 'Listings Shortcode', 'prop_details' => 'Property Details Template');
 	
 	// TODO: Construct these lists dynamically by examining the doc hierarchy...
-	public static $defaults = array('searchform' 	=> array('columbus', 'highland', 'ventura'),
-	  				                'prop_details' 	=> array('columbus', 'highland', 'ventura'),
-			               			'listings' 		=> array('columbus', 'highland', 'ventura') );
+	public static $defaults = array('searchform' 	=> array('columbus', 'highland'),
+	  				                'prop_details' 	=> array('columbus', 'highland'),
+			               			'listings' 		=> array('columbus', 'highland') );
 
 	public static $subcodes = array('searchform'  =>  array('bedrooms',
 												            'min_beds',
@@ -61,7 +61,8 @@ class PL_Shortcodes
             												'desc',
             												'image',
             												'mls_id',
-            												'map')
+            												'map',
+            												'property_type')
             						);
 
 	// TODO: These are a temporary solution, come up with a better convention...
@@ -175,8 +176,7 @@ class PL_Shortcodes
 		}else if (array_key_exists($tag, self::$listing['rets'])) { 
 			$val = self::$listing['rets'][$tag];
 		}
-		else {
-			$val = 'Could not handle...';
+		else { 
 		}
 
 		// This is an example of handling a specific tag in a different way
@@ -199,6 +199,9 @@ class PL_Shortcodes
 				$val = PLS_Map::lifestyle(self::$listing, array('width' => 590, 'height' => 250, 'zoom' => 16, 'life_style_search' => true,
 																'show_lifestyle_controls' => true, 'show_lifestyle_checkboxes' => true, 
 																'lat' => self::$listing['location']['coords'][0], 'lng' => self::$listing['location']['coords'][1]));
+				break;
+			case 'property_type':
+				$val = PLS_Format::translate_property_type($listing);
 				break;
 			default:
 		}
