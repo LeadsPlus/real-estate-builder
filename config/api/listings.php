@@ -374,6 +374,8 @@ $PL_API_LISTINGS = array(
                 'deposit' => array(),
                 'ngb_pubsch' => array(),
 			),
+			'agency_only' => array('type' => 'checkbox', 'group' => 'advanced', 'label' => 'My Offices Listings'),
+			'non_import' => array('type' => 'checkbox',  'group' => 'advanced', 'label' => 'Non MLS Listigns'),
 			'custom' => array(
 				'type' => 'bundle',
 				'group' => '',
