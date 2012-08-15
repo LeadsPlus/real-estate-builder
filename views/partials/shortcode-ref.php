@@ -1,5 +1,5 @@
 <div id="<?php echo $shortcode ?>_ref" class="shortcode_ref">	
-  <h3>Usage</h3>
+  <h3><u>Usage</u></h3>
 	<?php if ($shortcode == 'searchform'): ?>
 	  <p>
 		You can insert your "activated" Search Form snippet by using the [searchform] shortcode in a page or a post. 
