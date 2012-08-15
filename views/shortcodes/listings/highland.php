@@ -5,6 +5,7 @@
     border-radius: 8px;
     -moz-border-radius: 8px;
     margin-bottom: 12px; 
+    width: inherit;
   }
   section.list-unit .lu-left {
     background: white;
@@ -148,7 +149,7 @@
 
   <section class="lu-left">
   	[image]
-    <a id="info" href="mailto:<?php echo pls_get_option('pls-user-email') ?>"><span>More Information</span></a>
+    <a id="info" href="[email]"><span>More Information</span></a>
   </section><!--lu-left-->
 
   <section class="lu-right">
@@ -164,10 +165,10 @@
     </div><!--LU PRICE-->
     <div class="clearfix"></div>
     <p class="desc">[desc maxlen=300]</p>
-    <span class="area">[sqft] Sq. Ft</span>
+    <span class="area">[sqft] Sq Ft</span>
     <span class="bed">[beds] Bed(s)</span>
     <span class="bath">[baths] Bath(s)</span>
-    <a class="[url]">See Details</a>
+    <a href="[url]">See Details</a>
   </section><!--LU-RIGHT-->
 
   <div class="clearfix"></div>

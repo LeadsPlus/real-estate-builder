@@ -180,4 +180,17 @@ $(document).ready(function($) {
     }
   });
 
+  $('.enabled_check').live('change', function() {
+    data = {
+      action: 'toggle_prop_details',
+    };
+      
+    $.post(ajaxurl, data, function(response) {
+      //console.log(response);
+      if ( response && response.old_val ) {
+        alert('was: ' + response.old_val + ', now: ' + response.new_val);
+      }
+    },'json');
+  });
+
 });

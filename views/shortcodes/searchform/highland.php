@@ -8,7 +8,7 @@
     border: 1px solid #bfbfbf;
     padding: 20px;
     margin-bottom: 14px; 
-    width: 900px;
+    width: inherit;
   }
   div#full-form h6 {
     margin: 0px;

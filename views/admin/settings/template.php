@@ -22,16 +22,25 @@
     margin: 6px 0px 6px 0px;
   }
 
-  .note {
+  .s-note {
     margin: 6px 0px 12px 0px;
     font-style: italic;
     font-size: small;
     font-weight: bold;
   }
 
-  .note span {
+  .s-note .s-code {
     background: lightYellow;
     font-style: normal;  
+  }
+
+  .s-note div {
+    padding-top: 6px;
+  }
+
+  .s-note div .enable_ctrl {
+    font-style: normal;
+    font-weight: normal;
   }
 </style>
 
@@ -46,6 +55,9 @@
 
     $pl_active_snippets = PL_Snippet_Helper::get_active_snippet_map();
     $pl_snippet_types = array('default' => 'Default', 'custom' => 'Custom'); // Order matters, here...
+
+    // Check if the 'Property Details' functionality is enabled...
+    $pd_enabled = get_option(PL_Shortcodes::$prop_details_enabled_key);
 ?>   
 
 <div class="wrap">
@@ -56,15 +68,21 @@
 	  <div class="shortcode_container">
 	  	  <h2><?php echo $name ?></h2>
 	  	  <input type="hidden" class="shortcode" value="<?php echo $code ?>" />
-        <div class="note">
+        <div class="s-note">
           <?php if ($code != 'prop_details'): ?>
-            Use this by placing <span>[<?php echo $code ?>]</span> into any Post or Page
+            Use this by placing <span class="s-code">[<?php echo $code ?>]</span> into any Post or Page
           <?php else: ?>
             This will automatically apply to <span>ALL</span> single-property details pages
+           <div>
+            <span class="enable_ctrl">
+              <label for="enabled_check">Enable this function: </label>
+              <input type="checkbox" class="enabled_check" value="Enable: " <?php echo ( $pd_enabled == 'true' ? 'checked="checked"' : '' ) ?> />
+            </span>
+           </div> 
           <?php endif ?>
         </div>
 	  	  <section id="shortcode_ref"> 
-    			<label for="shortcode_list">Available Implementations:</label>	
+    			<label for="snippet_list">Available Implementations:</label>	
     			<select class="snippet_list">
             <?php foreach ($pl_snippet_types as $curr_type => $title_type): ?>
               <optgroup label="<?php echo $title_type?>">

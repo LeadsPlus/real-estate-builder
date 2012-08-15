@@ -4,7 +4,7 @@
   }
   #full-search {
     margin: 20px;
-    width: 918px;
+    width: inherit;
     background: -webkit-gradient(linear, left top, left bottom, from(#e7e7e7), to(#e4e4e4));
     background: -moz-linear-gradient(top, #e7e7e7, #e4e4e4);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e7e7e7', endColorstr='#e4e4e4');

@@ -3,7 +3,7 @@
     margin: 0px;
     padding: 25px 0px 25px 0px;
     border-bottom: 1px dotted #cccccc;
-    width: 625px; 
+    width: inherit; 
   }
   div.lu-left {
     float: left;

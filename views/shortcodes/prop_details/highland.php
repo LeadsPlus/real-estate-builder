@@ -1,6 +1,6 @@
 <style type="text/css">
   div#main {
-    width: 600px;
+    width: inherit;
     float: left; 
   }
   h3.h-address {

@@ -13,9 +13,9 @@ class PL_Shortcodes
 	public static $p_codes = array('searchform' => 'Search Form Shortcode', 'listings' => 'Listings Shortcode', 'prop_details' => 'Property Details Template');
 	
 	// TODO: Construct these lists dynamically by examining the doc hierarchy...
-	public static $defaults = array('searchform' 	=> array('columbus', 'highland'),
-	  				                'prop_details' 	=> array('columbus', 'highland'),
-			               			'listings' 		=> array('columbus', 'highland') );
+	public static $defaults = array('searchform' 	=> array('columbus', 'highland', 'ventura'),
+	  				                'prop_details' 	=> array('columbus', 'highland', 'ventura'),
+			               			'listings' 		=> array('columbus', 'highland', 'ventura') );
 
 	public static $subcodes = array('searchform'  =>  array('bedrooms',
 												            'min_beds',
@@ -44,7 +44,7 @@ class PL_Shortcodes
             												'beds',
             												'baths',
             												'half_baths',
-            												'avail_on',
+            												//'avail_on',
             												'url',
             												'address',
             												'locality',
@@ -68,6 +68,7 @@ class PL_Shortcodes
 	// TODO: These are a temporary solution, come up with a better convention...
 	public static $form_html = false;
 	public static $listing = false;
+	public static $prop_details_enabled_key = 'pls_prop_details_enabled';
 
 	public function init() 
 	{
@@ -92,6 +93,9 @@ class PL_Shortcodes
 		foreach (self::$codes as $code) {
 			add_option( ('pls_' . $code), self::$defaults[$code][0] );
 		}
+
+		// Handle the special case of turning property details functionality on/off...
+		add_option( self::$prop_details_enabled_key, 'false' ); 
 	}
 
 
@@ -147,11 +151,22 @@ class PL_Shortcodes
 
 	public static function prop_details_shortcode_context($html, $listing_data) 
 	{
-		$shortcode = 'prop_details';
-		self::$listing = $listing_data;
+		// Check to see if this functionality is enabled...
+		$enabled = get_option( self::$prop_details_enabled_key, 'false' );
+		
+		if ($enabled == 'true') 
+		{
+			$shortcode = 'prop_details';
+			self::$listing = $listing_data;
 
-	  	$snippet_body = self::get_active_snippet_body($shortcode);
-	  	return do_shortcode($snippet_body);
+		  	$snippet_body = self::get_active_snippet_body($shortcode);
+		  	return do_shortcode($snippet_body);
+	  	}
+	  	else 
+	  	{
+	  		// Simply pass on what was originally sent the filter...
+	  		return $html;
+	  	}
 	}
 
 

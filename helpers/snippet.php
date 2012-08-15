@@ -14,6 +14,7 @@ class PL_Snippet_Helper {
 		add_action( 'wp_ajax_get_snippet_body', array(__CLASS__, 'get_snippet_body_ajax' ) );
 		add_action( 'wp_ajax_activate_snippet', array(__CLASS__, 'activate_snippet_ajax') );
 		add_action( 'wp_ajax_save_custom_snippet', array(__CLASS__, 'save_custom_snippet_ajax') );
+		add_action( 'wp_ajax_toggle_prop_details', array(__CLASS__, 'toggle_prop_details_enabled') );
 	}	
 
 	// Static?  Why or why not?
@@ -33,7 +34,6 @@ class PL_Snippet_Helper {
 	public function activate_snippet_ajax() 
 	{
 		if ($_POST['shortcode'] && $_POST['snippet']) {
-			//$snippet_DB_key = ( $_POST['type'] == 'default' ? $_POST['snippet'] : ('pls_' . $_POST['shortcode'] . '_' . $_POST['snippet_name']) );
 			$shortcode_DB_key = ('pls_' . $_POST['shortcode']);
 			update_option($shortcode_DB_key, $_POST['snippet']);
 
@@ -81,9 +81,35 @@ class PL_Snippet_Helper {
 		die();
 	}
 
+	public function toggle_prop_details_enabled() 
+	{
+		$DB_key = PL_Shortcodes::$prop_details_enabled_key;
+		$val = get_option( $DB_key, '');
+		$new_val = '';
+
+		switch ($val)
+		{
+			case 'false':
+			  $new_val = 'true';
+			  break;
+
+			case 'true':
+			default:
+			  $new_val = 'false';
+		}
+
+		update_option($DB_key, $new_val); 
+		echo json_encode(array('old_val' => $val, 'new_val' => $new_val));
+
+		PL_Cache::clear();
+		
+		die();
+	}
+
 	public function delete_snippet_ajax() 
 	{
 		// TODO...
+		die();
 	}
 
 	////////////////
