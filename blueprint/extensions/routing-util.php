@@ -18,28 +18,31 @@ class PLS_Route {
 	function init()
 	{
 		
-		// hooks into template_routing for auto wrapping header
-		// and footer.
-		 add_filter( 'template_include', array( __CLASS__, 'routing_logic' ) );
 
-		
-		// hook into each classification, so we can store the request locally. 
-		add_action( '404_template', array( __CLASS__, 'handle_404'  ));
-		add_action( 'search_template', array( __CLASS__, 'handle_search'  ));
-		add_action( 'home_template', array( __CLASS__, 'handle_home'  ));	
-		add_action( 'front_page_template', array( __CLASS__, 'handle_front_page'  ));	
-		add_action( 'paged_template', array( __CLASS__, 'handle_paged'  ));	
-		add_action( 'attachment_template', array( __CLASS__, 'handle_attachment'  ));	
-		add_action( 'taxonomy_template', array( __CLASS__, 'handle_taxonomy'  ));	
-		add_action( 'archive_template', array( __CLASS__, 'handle_archive'  ));	
-		add_action( 'date_template', array( __CLASS__, 'handle_date'  ));	
-		add_action( 'tag_template', array( __CLASS__, 'handle_tag'  ));	
-		add_action( 'author_template', array( __CLASS__, 'handle_author'  ));	
-		add_action( 'single_template', array( __CLASS__, 'handle_single'  ));	
-		add_action( 'page_template', array( __CLASS__, 'handle_page'  ));	
-		add_action( 'category_template', array( __CLASS__, 'handle_category'  ));	
-		add_action( 'comments_popup_template', array( __CLASS__, 'handle_popup_comments'  ));	
-		add_action( 'comments_template', array( __CLASS__, 'handle_comments'  ));
+		if (current_theme_supports('pls-routing-util-templates') )  {
+			// hooks into template_routing for auto wrapping header
+			// and footer.
+			 add_filter( 'template_include', array( __CLASS__, 'routing_logic' ) );
+
+			
+			// hook into each classification, so we can store the request locally. 
+			add_action( '404_template', array( __CLASS__, 'handle_404'  ));
+			add_action( 'search_template', array( __CLASS__, 'handle_search'  ));
+			add_action( 'home_template', array( __CLASS__, 'handle_home'  ));	
+			add_action( 'front_page_template', array( __CLASS__, 'handle_front_page'  ));	
+			add_action( 'paged_template', array( __CLASS__, 'handle_paged'  ));	
+			add_action( 'attachment_template', array( __CLASS__, 'handle_attachment'  ));	
+			add_action( 'taxonomy_template', array( __CLASS__, 'handle_taxonomy'  ));	
+			add_action( 'archive_template', array( __CLASS__, 'handle_archive'  ));	
+			add_action( 'date_template', array( __CLASS__, 'handle_date'  ));	
+			add_action( 'tag_template', array( __CLASS__, 'handle_tag'  ));	
+			add_action( 'author_template', array( __CLASS__, 'handle_author'  ));	
+			add_action( 'single_template', array( __CLASS__, 'handle_single'  ));	
+			add_action( 'page_template', array( __CLASS__, 'handle_page'  ));	
+			add_action( 'category_template', array( __CLASS__, 'handle_category'  ));	
+			add_action( 'comments_popup_template', array( __CLASS__, 'handle_popup_comments'  ));	
+			add_action( 'comments_template', array( __CLASS__, 'handle_comments'  ));
+		}
 	}
 
 	function routing_logic ($template)
