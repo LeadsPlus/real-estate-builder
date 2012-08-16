@@ -601,6 +601,12 @@ class PL_Listing_Helper {
 
 	public static function refresh_listing($the_content) {
 
+		global $post;
+
+		if ($post->post_type !== 'property' ) {
+			return $the_content;
+		}
+
 		$listing_details = unserialize($the_content);
 
 		// Update listing data from the API
