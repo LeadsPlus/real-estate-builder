@@ -182,7 +182,7 @@ class Placester_Blueprint {
         {
             case 'plugin':
               error_log(plugin_dir_url(), 0);
-              $blueprint_url = trailingslashit( plugin_dir_url('') ) . 'placester';
+              $blueprint_url = trailingslashit( plugin_dir_url(null) ) . 'placester';
               break;
             
             case 'theme':
@@ -190,7 +190,7 @@ class Placester_Blueprint {
               break;
 
             default:
-                die('Cannot load Blueprint: boot location type unknown');
+              die('Cannot load Blueprint: boot location type unknown');
         }
 
         /** Parent theme directory path and url */
