@@ -61,7 +61,8 @@ class PL_Shortcodes
             												'desc',
             												'image',
             												'mls_id',
-            												'map')
+            												'map',
+            												'listing_type')
             						);
 
 	// TODO: These are a temporary solution, come up with a better convention...
@@ -214,8 +215,11 @@ class PL_Shortcodes
 																'show_lifestyle_controls' => true, 'show_lifestyle_checkboxes' => true, 
 																'lat' => self::$listing['location']['coords'][0], 'lng' => self::$listing['location']['coords'][1]));
 				break;
-			case 'property_type':
-				$val = PLS_Format::translate_property_type($listing);
+			case 'price':
+				$val = PLS_Format::number(self::$listing['cur_data']['price'], array('abbreviate' => false, 'add_currency_sign' => true));
+				break;
+			case 'listing_type':
+				$val = PLS_Format::translate_property_type(self::$listing);
 				break;
 			default:
 		}
