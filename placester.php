@@ -150,12 +150,18 @@ function load_blueprint_from_plugin()
     if (!class_exists('Placester_Blueprint')) {
         require_once('blueprint/blueprint.php');
         new Placester_Blueprint('2.1', 'plugin');
-        remove_theme_support( 'pls-default-css' );
-        remove_theme_support( 'pls-default-style' );
-        remove_theme_support( 'pls-default-960' );
-        remove_theme_support( 'pls-default-normalize' );
-        remove_theme_support( 'pls-js' );
+        add_action('init', 'blueprint_settings');
+        
     }
+}
+
+function blueprint_settings() {
+    remove_theme_support( 'pls-default-css' );
+    remove_theme_support( 'pls-default-style' );
+    remove_theme_support( 'pls-default-960' );
+    remove_theme_support( 'pls-default-normalize' );
+    remove_theme_support( 'pls-js' );
+    remove_theme_support( 'pls-routing-util-templates' );
 }
 
 register_activation_hook( __FILE__, 'placester_activate' );
@@ -196,3 +202,4 @@ function placester_activate () {
     $metrics->track('Activation');
     PL_WordPress_Helper::report_url();
 }
+
