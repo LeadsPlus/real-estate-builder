@@ -13,9 +13,9 @@ class PL_Shortcodes
 	public static $p_codes = array('searchform' => 'Search Form Shortcode', 'listings' => 'Listings Shortcode', 'prop_details' => 'Property Details Template');
 	
 	// TODO: Construct these lists dynamically by examining the doc hierarchy...
-	public static $defaults = array('searchform' 	=> array('columbus', 'highland', 'ventura'),
-	  				                'prop_details' 	=> array('columbus', 'highland', 'ventura'),
-			               			'listings' 		=> array('columbus', 'highland', 'ventura') );
+	public static $defaults = array('searchform' 	=> array('twentyeleven'),
+	  				                'prop_details' 	=> array('twentyeleven'),
+			               			'listings' 		=> array('twentyeleven') );
 
 	public static $subcodes = array('searchform'  =>  array('bedrooms',
 												            'min_beds',
@@ -61,8 +61,7 @@ class PL_Shortcodes
             												'desc',
             												'image',
             												'mls_id',
-            												'map',
-            												'property_type')
+            												'map')
             						);
 
 	// TODO: These are a temporary solution, come up with a better convention...
@@ -203,7 +202,7 @@ class PL_Shortcodes
 			    $val = substr($val, 0, $max_len);
 			    break;
 			case 'image':
-				$val = PLS_Image::load(self::$listing['images'][0]['url'], array('resize' => array('w' => 210, 'h' => 140), 
+				$val = PLS_Image::load(self::$listing['images'][0]['url'], array('resize' => array('w' => 180, 'h' => 120), 
 																			 	 'fancybox' => true, 
 																				 'as_html' => true, 
 																				 'html' => array('alt' => self::$listing['location']['full_address'], 
