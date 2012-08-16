@@ -181,12 +181,8 @@ class Placester_Blueprint {
         switch (self::$boot_from)
         {
             case 'plugin':
-              if ( defined('PL_BOOT_FILE') ) {
-                $blueprint_url = trailingslashit( plugin_dir_url(PL_BOOT_FILE) ) . 'placester';
-              }
-              else { 
-                die('Cannot load Blueprint from plugin: file path for plugin was not specified');
-              }
+              error_log(plugin_dir_url(), 0);
+              $blueprint_url = trailingslashit( plugin_dir_url('') ) . 'placester';
               break;
             
             case 'theme':

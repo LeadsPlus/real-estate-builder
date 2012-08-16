@@ -140,8 +140,6 @@ include_once('third-party/tax-meta-class/tax-meta-class.php');
 include_once('third-party/convex-hull/convex-hull.php');
 include_once('third-party/mixpanel/mixpanel.php');
 
-// MUST be set in order to load Blueprint from the plugin...
-define( 'PL_BOOT_FILE', __FILE__); 
 
 // Register hook to load blueprint from plugin if no theme has yet to do so...
 add_action( 'after_setup_theme', 'load_blueprint_from_plugin', 18 );
