@@ -1,0 +1,133 @@
+#featured-listing-wrapper #save-featured-listings {
+	float: right;
+}
+#featured-listing-wrapper h3 {
+	margin: 5px 0px;
+}
+#featured-listing-wrapper p {
+	margin: 5px 0px;
+	font-size: 11px;
+}
+#featured-listing-wrapper .results {
+	width: 400px;
+	float: left;
+	margin-top: 10px;
+}
+#featured-listing-wrapper .featured-listing-wrapper {
+	float: left;
+}
+#featured-listing-wrapper .datatable-wrapper {
+	float: left;
+	margin-top: 10px;
+}
+#featured-listing-wrapper .results#search-results {
+	margin-right: 10px;
+}
+#featured-listing-wrapper .button {
+	float: right;
+	margin-top: 10px;
+	padding: 10px 20px;
+}
+#featured-listing-wrapper .featured-listing-form-beds input, #featured-listing-wrapper .featured-listing-form-baths input {
+	width: 65px;
+}
+#featured-listing-wrapper .address {
+	float: left;
+	clear: both;
+	width: 100%;
+	margin-bottom: 10px;
+}
+#featured-listing-wrapper .address input {
+	width: 400px;
+	font-size: 16px;
+}
+
+
+#options-filters .option {
+	height: 30px;
+	width: 200px;
+	float: left;
+	margin: 5px;
+}
+#options-filters .option input, #options-filters .option select {
+	width: 100px;
+	float: right;
+}
+#options-filters .option.checkboxes {
+	padding: 5px;
+}
+#options-filters .option.checkboxes input {
+	width: 20px;
+}
+
+
+.dataTables_filter {
+	float: right;
+}
+.dataTables_length {
+	display: none;
+}
+.dataTables_wrapper {
+	position: relative;
+}
+.dataTables_processing {
+	position: absolute;
+	width: 255px;
+	height: 244px;
+	padding: 50px 0 0 150px;
+	font-size: 16px;
+	font-weight: bold;
+	background-color: lightgrey;
+	opacity:0.3;
+	filter:alpha(opacity=30);
+}
+
+
+/* inline */
+.featured-listings-wrapper .head {
+	width: 100%;	
+	float: left;
+	clear: both;
+}
+.featured-listings-wrapper .head h4 {
+	float: left;
+}
+.featured-listings-wrapper .head button {
+	float: right;
+}
+.featured-listings-wrapper .featured-listings {
+	float: left;
+}
+.featured-listings-wrapper .featured-listings ul {
+	padding: 0 0 0 20px;
+}
+.featured-listings-wrapper .featured-listings ul li {
+	font-size: 16px;
+	list-style-type: disc;
+}
+            
+
+#image-preview {
+	position: fixed;
+	z-index: 9999;
+	top: 50px;
+	right: 25px;
+	max-width: 600px;
+	overflow:auto;
+}
+
+
+#save-featured-listings {
+	border-color: #298CBA;
+	font-weight: bold;
+	color: white;
+	background: #21759B url(../images/button-grad.png) repeat-x scroll left top;
+	text-shadow: rgba(0, 0, 0, 0.3) 0 -1px 0;
+}
+
+.dataTables_paginate a {
+	cursor: pointer;
+}
+#datatable_search_results_next, #datatable_featured_listings_next {
+	float: right;
+}

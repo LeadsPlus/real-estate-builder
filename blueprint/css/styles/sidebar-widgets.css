@@ -1,0 +1,101 @@
+/* Mixins */
+aside {
+  margin-top: -15px;
+  font-size: 12px; }
+  aside a {
+    color: grey; }
+    aside a:hover {
+      color: #1982D1; }
+  aside h3 {
+    font-size: 18px;
+    padding: 0 0 10px 0;
+    color: #666;
+    border-bottom: 1px solid #DBDBDB; }
+  aside .widget-pls-quick-search .chzn-container-single {
+    padding: 5px 0px; }
+  aside .widget-pls-quick-search .pls_search_form {
+    margin: 0px 10px;
+    float: left; }
+    aside .widget-pls-quick-search .pls_search_form label {
+      margin-right: 10px; }
+  aside .widget-pls-quick-search .bedrooms label {
+    margin-right: 37px; }
+  aside .widget-pls-quick-search .bathrooms, aside .widget-pls-quick-search .bedrooms, aside .widget-pls-quick-search .half_baths {
+    float: left; }
+    aside .widget-pls-quick-search .bathrooms select, aside .widget-pls-quick-search .bedrooms select, aside .widget-pls-quick-search .half_baths select {
+      width: 75px; }
+  aside .widget-pls-quick-search .property_type label {
+    margin-right: 15px; }
+  aside .widget-pls-quick-search .property_type select {
+    width: 185px; }
+  aside .widget-pls-quick-search .listing_types label {
+    margin-right: 26px; }
+  aside .widget-pls-quick-search .listing_types select {
+    width: 185px; }
+  aside .widget-pls-quick-search .zoning_types label {
+    margin-right: 24px; }
+  aside .widget-pls-quick-search .zoning_types select {
+    width: 185px; }
+  aside .widget-pls-quick-search .purchase_types label {
+    margin-right: 10px; }
+  aside .widget-pls-quick-search .purchase_types select {
+    width: 185px; }
+  aside .widget-pls-quick-search .available_on label {
+    margin-right: 15px; }
+  aside .widget-pls-quick-search .cities label, aside .widget-pls-quick-search .states label {
+    margin-right: 39px; }
+  aside .widget-pls-quick-search .zips label {
+    margin-right: 17px; }
+  aside .widget-pls-quick-search .zips select {
+    width: 210px; }
+  aside .widget-pls-quick-search .available_on select, aside .widget-pls-quick-search .cities select, aside .widget-pls-quick-search .states select {
+    width: 210px; }
+  aside .widget-pls-quick-search .min_price label {
+    margin-right: 17px; }
+  aside .widget-pls-quick-search .min_price, aside .widget-pls-quick-search .max_price {
+    margin: 0px 5px; }
+    aside .widget-pls-quick-search .min_price select, aside .widget-pls-quick-search .max_price select {
+      width: 75px; }
+  aside .widget-pls-quick-search input.pls_search_button {
+    float: right;
+    clear: both;
+    padding: 10px 15px;
+    margin-top: 10px; }
+  aside .widget-pls-agent img {
+    border: 1px solid #DBDBDB;
+    padding: 10px;
+    float: left; }
+  aside .widget-pls-agent h5, aside .widget-pls-agent span {
+    margin: 0 0 10px 10px; }
+  aside .widget-pls-agent h5 {
+    float: left;
+    font-size: 20px; }
+  aside .widget-pls-agent span.email {
+    float: left;
+    font-size: 14px; }
+  aside .widget-pls-agent span.phone {
+    float: left;
+    font-size: 20px; }
+  aside .pls-listing-get_listings_widget .listing-item {
+    border-bottom: 1px solid  #DBDBDB; }
+  aside .pls-listing-get_listings_widget h4 {
+    font-size: 16px;
+    margin: 20px 0 0 0; }
+  aside .pls-listing-get_listings_widget .details {
+    font-size: 14px;
+    margin-bottom: 10px; }
+  aside .pls-listing-get_listings_widget .featured-image {
+    width: 301px;
+    height: 191px; }
+    aside .pls-listing-get_listings_widget .featured-image img {
+      border: 1px solid #DBDBDB;
+      padding: 10px; }
+  aside .pls-listing-get_listings_widget a.learn-more {
+    margin: 10px 0;
+    float: right;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    padding: 10px; }
+  aside .pls-listing-get_listings_widget a.learn-more:hover {
+    color: white; }

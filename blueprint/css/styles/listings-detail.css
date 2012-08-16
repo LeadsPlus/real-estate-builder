@@ -1,0 +1,29 @@
+/* Property Details Page */
+body.single-property article h2 {
+  margin-bottom: 0px; }
+body.single-property article .listing_type {
+  margin: 5px 20px 0 0;
+  float: right; }
+body.single-property article .basic-details ul {
+  list-style-type: none;
+  padding-left: 0; }
+  body.single-property article .basic-details ul li {
+    float: left;
+    width: 135px;
+    margin: 5px 20px 5px 0; }
+body.single-property article .amenities-section ul {
+  padding-left: 0;
+  min-height: 50px;
+  min-width: 600px;
+  list-style-type: none; }
+  body.single-property article .amenities-section ul li {
+    padding: 10px 0;
+    width: 180px;
+    float: left;
+    overflow: hidden; }
+body.single-property article #slideshow ul.property-image-gallery {
+  list-style-type: none;
+  padding-left: 0; }
+  body.single-property article #slideshow ul.property-image-gallery li {
+    float: left;
+    margin-right: 10px; }

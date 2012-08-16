@@ -1,0 +1,436 @@
+@import "mixins"
+
+body
+  font-family: $font-primary
+  font-size: 15px
+  color: $black-light
+  .inner
+    padding: 20px 0px
+    float: left
+
+
+// Headers
+@mixin header-font-styles
+  color: $black
+  margin: 15px 0
+  font:
+    weight: 400
+    family: Helvetica, Arial
+  a, a:link, a:visited, a:active
+    color: $black
+    &:hover
+      color: $blue
+
+h1, h2, h3, h4, h5, h6
+  width: 100%
+  float: left
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6
+  @include header-font-styles
+
+@mixin h1
+  font-size: 35px
+h1, .h1 
+  @include h1
+
+@mixin h2
+  font-size: 30px
+h2, .h2
+  @include h2
+
+@mixin h3
+  font-size: 25px
+h3, .h3
+  @include h3
+
+@mixin h4
+  font-size: 20px
+h4, .h4
+  @include h4
+
+@mixin h5
+  font-size: 17px
+h5, .h5
+  @include h5
+
+@mixin h6
+  font-size: 14px
+h6, .h6
+  @include h6
+
+
+p, .p1, .p2, .p3, .p4, .p5, .p6
+  @include p-font-styles
+
+p
+  float: left
+.p2
+  color: $gray
+  font:
+    size: 13px
+    weight: 600
+.p3
+  color: $gray-light
+  font:
+    size: 12px
+.p4
+  color: $black
+  font:
+    size: 12px
+.p5
+  color: $gray-light
+  font-size: 14px
+.p6
+  color: $black
+  font-size: 13px
+  text-shadow: 0 1px 1px $gray-light
+
+// Media
+img, embed, iframe
+  background: $media-background
+  padding: $media-padding
+  border: $media-border-size solid $media-border-color
+
+// Images
+img
+  &.size-full
+    max-width: 97.5%
+    width: auto
+  &.aligncenter
+    margin: inherit 0px
+    width: auto
+    clear: both
+    display: block
+    margin-left: auto
+    margin-right: auto
+  &.alignleft
+    margin: 20px 20px 20px 0
+    display: inline
+    float: left
+  &.alignright
+    margin: 20px 0 20px 20px
+    display: inline
+    float: right
+
+
+// Lists
+ul, ol
+  padding: 0 0 0 30px
+  margin: 20px 0px
+  float: left
+  li
+    padding: 2px 0
+ul
+  li
+    list-style-image: $ul-list-style-image
+
+
+// Misc
+pre, code, samp
+  padding: 10px 20px
+  float: left
+  margin: 20px
+  width: 100%
+pre, code
+  border-left: 5px solid $color-secondary
+samp
+  border-left: 5px solid $color-tertiary
+blockquote
+  margin: 30px 40px
+  font-style: oblique
+  line-height: 20px
+abbr[title]
+  border-bottom: 1px dotted $gray-light
+fieldset
+  input
+    margin: 5px 0
+    width: 95%
+dl
+  width: 100%
+  float: left
+  padding-left: 10px
+  dt
+    font-weight: 600
+    padding-bottom: 3px
+
+
+// Tables
+table
+  caption
+    @include p-font-styles
+    text-shadow: $text-shadow-tertiary
+  tbody
+    tr
+      th, td
+        padding: 10px 15px
+        border: 1px solid $border-primary
+      th
+        @include bg-4 
+        text-shadow: $text-shadow-primary
+        color: $color-accent
+
+
+
+// Slideshow
+#slideshow
+  margin-bottom: 20px
+  #slider
+    a
+      img
+        border: none
+        padding: 0
+
+.orbit-wrapper
+  .timer
+    display: none
+.orbit-caption
+  display: none
+  font-family: "HelveticaNeue", "Helvetica-Neue", Helvetica, Arial, sans-serif
+  background: #000
+  background: rgba(0,0,0,.6)
+  z-index: 1000
+  color: #fff
+  padding: 7px 0
+  font-size: 13px
+  position: absolute
+  right: 0
+  bottom: 0
+  padding-left: 20px
+  width: 100% 
+  .details
+    margin-left: 10px
+    float: right
+    margin-right: 50px
+  .caption-title
+    font-size: 16pt
+    font-weight: 600
+    margin: 0px 0 0 10px
+  .caption-subtitle
+    font-size: 12pt
+    color: white
+    margin: 0px 0 5px 10px
+
+
+
+table#placester_listings_list, table#placester_fav_list
+  tr
+    float: left
+    td
+      padding: 0
+      border: none
+  
+.listing-item
+  padding: 0 0 20px 0
+  margin-bottom: 20px
+  p
+    margin: 0
+    line-height: 20px
+  .actions
+    width: 100%
+    clear: both
+    .more-link
+      float: right
+    a.pl_prop_fav_link
+      float: left
+  .listing-item-details
+    float: left
+    .basic-details
+      ul
+        list-style-type: none
+        padding-left: 0px
+        margin: 10px 0
+        li
+          float: left
+          margin: 0 15px 0 0
+          span
+            font-weight: 600
+    .listing-description
+      line-height: 17px
+  .actions
+    margin: 15px 0
+    float: left
+
+
+
+.compliance-wrapper
+  float: left
+  p.search-compliance, img, p.search-compliance-disclaimer, p.property-details-compliance-disclaimer
+    float: left
+    margin-right: 15px
+    line-height: 15px
+  p.search-compliance
+    margin-bottom: 10px
+  img
+    clear: left
+
+
+
+
+// Exempt Google Maps, spinner from borders/backgrounds/box-shadows
+#simple_map
+  img, embed
+    border: none
+    background: none
+    box-shadow: none
+    -webkit-box-shadow: none
+    -moz-box-shadow: none
+.pl_spinner
+  border: none
+
+footer
+  width: 100%
+  float: left
+#comments-template
+  float: left
+
+
+#main_content
+  article
+    float: left
+    margin-bottom: 15px
+    padding-bottom: 15px
+    header, .entry-summary, .entry-meta, footer
+      width: 100%
+      float: left
+    footer
+      margin: 15px 0
+  nav
+    float: left
+    width: 100%
+    padding: 10px 0
+    .prev, .next
+      width: 275px
+    .prev
+      margin-left: 5px
+      float: left
+    .next
+      float: right
+      text-align: right
+
+
+// Client Profile
+body.page-template-page-template-client-php
+  #edit_profile
+    form#edit_profile_form
+      div
+        float: left
+        width: 290px
+        margin: 0 20px 10px 0
+        label
+          font:
+            size: 15px
+        input[type="text"]
+          width: 270px
+  .ui-dialog
+    top: 25% !important
+    left: 25% !important
+  .ui-dialog-buttonset
+    button
+      @include button($gray-light, $gray, $black-light, $gray-light, $text-shadow-tertiary)
+  .placester_contact
+    margin: 0 0 50px 0
+    float: left
+  #client-details
+    float: right
+    width: 288px
+    ul
+      padding-left: 0
+      li
+        list-style-type: none
+        line-height: 20px
+        margin-left: 0px
+        &:first-child
+          margin-top: 10px
+        &:last-child
+          margin-bottom: 10px
+      a, a:visited
+        padding-right: 10px
+
+
+
+// Fancybox
+#fancybox-wrap
+  width: 290px !important
+  #fancybox-content
+    width: 270px !important
+    label
+      width: 200px
+    h2
+      margin: 10px 10px 0 10px
+    input[type="text"], input[type="password"]
+      float: left
+      width: 225px
+      height: 26px
+      margin: 4px 0px 0 10px
+    input[type="submit"]
+      padding: 6px 14px 6px 14px
+      margin: 10px 40px 20px 0
+      cursor: pointer
+      float: right
+    .login-remember
+      padding: 0 20px
+      input[type="checkbox"]
+        margin-right: 10px
+    input#pl_register
+      @include button($gray-light, $gray, $black-light, $gray-light, $text-shadow-tertiary)
+    #form_message_box
+      ul
+        list-style-type: none
+        li
+          color: red
+
+// Client Login
+#client-details
+  li
+    list-style-type: none
+    font:
+      weight: 600
+    span
+      font:
+        weight: 400
+
+
+
+// Mixins that can't be in external SASS files
+.comment-list
+  border: 1px solid #ddd
+#respond
+  .form-submit
+    input
+      @include button($gray-light, $gray, $black-light, $gray-light, $text-shadow-tertiary)
+
+nav
+  ul
+    li
+      @include rounded-corners
+      a 
+        &:hover
+          @include rounded-corners
+
+// Search Page
+.page-template-page-template-listings-php
+  form
+    .pls_search_form
+      float: left
+      width: 200px
+      margin-bottom: 10px
+      .chzn-container
+        width: 150px !important
+      .chzn-drop, .chzn-results
+        width: 148px !important
+  #content
+    border-top: 1px solid #DBDBDB
+    margin-top: 20px
+    padding-top: 20px
+
+.header-membership
+  a
+    padding: 0 10px
+
+
+@import "header"
+@import "nav"
+@import "forms"
+@import "widgets"
+@import "listings-detail"
+@import "blog"
+//

@@ -1,0 +1,25 @@
+header hgroup {
+  float: left; }
+header .header-membership {
+  float: right; }
+
+ul {
+  padding: 0 0 0 20px;
+  margin: 10px 0px; }
+
+#branding {
+  margin-top: 50px; }
+  #branding #logo {
+    float: left;
+    margin-right: 10px;
+    min-height: 50px; }
+  #branding h1 {
+    margin-bottom: 0px;
+    padding: 0px;
+    font-size: 30px; }
+  #branding h2 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 14px;
+    color: #7a7a7a;
+    font-weight: normal; }

@@ -1,0 +1,88 @@
+@import "variables"
+
+nav 
+  margin: 15px 0 0 0
+  border-top: 1px solid #DBDBDB
+  border-bottom: 1px solid #DBDBDB
+  padding: 0 10px
+
+  ul
+    padding-left: 0
+    float: left
+    li
+      float: left
+      width: auto
+      a 
+        position: relative
+        display: block
+        padding: 5px 10px
+        font:
+          size: 15px
+
+header
+  nav
+    padding: 0
+    > ul > li
+      padding: 10px
+
+    ul
+      padding-left: 0
+      float: left
+      position: relative
+      list-style: none
+      margin: 0
+      padding-left: 0
+
+      li
+        width: auto
+        float: left
+        position: relative
+
+        &:hover > a
+          color: #2793E5
+          background: #ddd
+
+        &:hover > ul
+          display: block
+
+        a:visited, a:link, a
+          position: relative
+          display: block
+          padding: 10px
+          display: block
+          text-decoration: none
+          font:
+            size: 12px
+            weight: bold
+          text-transform: uppercase
+
+          &:hover
+            color: #2793E5 !important
+            background: #ddd
+            border-radius: 0px
+            -moz-border-radius: 0px
+
+      ul
+        display: none
+        float: left
+        margin: 0
+        position: absolute
+        left: 0
+        z-index: 99999
+        background: #bbb
+        li
+          border-radius: 0px
+          -moz-border-radius: 0px
+          border: none
+          padding: 0
+          a:visited, a:link, a
+            border-left: 1px solid #bbb
+            height: auto
+            padding: 10px
+            width: 168px
+        ul
+          left: 100%
+          top: 0
+          &:hover > a
+            color: #2793E5
+            background: #ddd

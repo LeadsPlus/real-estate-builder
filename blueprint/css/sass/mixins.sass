@@ -1,0 +1,133 @@
+@import "variables"
+
+/**/
+/* Mixins */
+/**/
+
+// P Tags
+@mixin p-font-styles
+  color: $black-light
+  margin: 10px 0
+  text-shadow: none
+  text-decoration: none
+  text-transform: none
+  line-height: 20px
+  font:
+    size: 15px
+    weight: 400
+    family: Helvetica, Arial
+
+// Anchors
+@mixin anchor
+  color: $anchor-primary
+  text-decoration: none
+  &:active
+    color: $anchor-primary-active
+  &:hover
+    color: $anchor-primary-hover
+
+a, a:link, a:visited
+  @include anchor
+
+@mixin anchor-secondary
+  color: $anchor-secondary
+  text-decoration: none
+  &:active
+    color: $anchor-secondary-active
+  &:hover
+    color: $anchor-secondary-hover
+
+a.anchor-secondary, a.anchor-secondary:link, a.anchor-secondary:visited
+  @include anchor-secondary
+
+
+// Rounded Corners
+@mixin rounded-corners  
+  border-radius: $radius
+  -moz-border-radius: $radius
+  -webkit-border-radius: $radius
+
+
+// Backgrounds
+@mixin bg-primary
+  background-color: $bg-color-primary
+  background-image: $bg-image-primary
+  background-repeat: $bg-repeat-primary
+
+@mixin bg-secondary
+  background-color: $bg-color-secondary
+  background-image: $bg-image-secondary
+  background-repeat: $bg-repeat-secondary
+
+@mixin bg-tertiary
+  background-color: $bg-color-tertiary
+  background-image: $bg-image-tertiary
+  background-repeat: $bg-repeat-tertiary
+
+@mixin bg-4
+  background-color: $bg-color-4
+  background-image: $bg-image-4
+  background-repeat: $bg-repeat-4
+
+@mixin bg-5
+  background-color: $bg-color-5
+  background-image: $bg-image-5
+  background-repeat: $bg-repeat-5
+
+@mixin bg-6
+  background-color: $bg-color-6
+  background-image: $bg-image-6
+  background-repeat: $bg-repeat-6
+
+
+// Box Shadow
+@mixin box-shadow-primary
+  box-shadow: 0px 0px 3px $black-light
+  -webkit-box-shadow: 0px 0px 3px $black-light
+  -moz-box-shadow: 0px 0px 3px $black-light
+@mixin box-shadow-secondary
+  box-shadow: 0px 1px 0px 1px #ddd
+  -webkit-box-shadow: 0px 1px 0px 1px #ddd
+  -moz-box-shadow: 0px 1px 0px 1px #ddd
+
+
+// Buttons
+@mixin button($button-color-light, $button-color, $button-color-dark, $button-box-shadow, $button-text-shadow)
+  padding: 10px 15px
+  border-top: 1px solid $button-color-light
+  border-left: 1px solid $button-color
+  border-right: 1px solid $button-color
+  border-bottom: 1px solid $button-color
+  background: -webkit-gradient(linear, left top, left bottom, from($button-color-light), to($button-color-dark))
+  background: -moz-linear-gradient(top, $button-color-light, $button-color-dark)
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$button-color-light', endColorstr='$button-color-dark')
+  border-radius: 5px
+  -webkit-border-radius: 5px
+  -moz-border-radius: 5px
+  margin-bottom: 15px
+  color: #fefefe
+  box-shadow: 0 0 0 1px $button-box-shadow
+  -webkit-box-shadow: 0 0 0 1px $button-box-shadow
+  -moz-box-shadow: 0 0 0 1px $button-box-shadow
+  text-shadow: $button-text-shadow
+  font:
+    weight: 600
+    size: 16px
+  margin-left: 8px
+  margin-top: 10px
+  &:hover
+    background: -webkit-gradient(linear, left top, left bottom, from($button-color-dark), to($button-color-light))
+    background: -moz-linear-gradient(top, $button-color-dark, $button-color-light)
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$button-color-dark', endColorstr='$button-color-light')
+  &:active
+    background: $button-color
+
+.button-primary
+  @include button($gray-light, $gray, $black-light, $gray-light, $text-shadow-tertiary)
+.button-secondary
+  @include button($blue-light, $blue, $blue-dark, $gray-light, $text-shadow-tertiary)
+.button-tertiary
+  @include button($green-light, $green, $green-dark, $gray-light, $text-shadow-tertiary)
+
+
+//

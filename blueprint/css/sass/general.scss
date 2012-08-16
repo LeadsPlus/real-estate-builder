@@ -1,0 +1,40 @@
+.map_wrapper {
+	.loading_overlay {
+		background-color: #FFF;
+		opacity:0.4;
+		div	{
+			margin: 100px auto;
+			font-weight: bold;
+			font-size: 16px;
+			width: 150px;
+			text-align: center;
+		}
+	}
+	.empty_overlay {
+		background-color: #FFF;
+		opacity:0.4;
+	}
+	.lifestyle_form_wrapper {
+		margin-top: 10px;
+		 .location_wrapper {
+			float: left;
+			.location_select_wrapper {
+				float: left;
+				margin-right: 10px;
+			}
+			.location_select {
+				float: left;
+				margin-right: 10px;	
+			}
+		}
+		.checkbox_wrapper {
+			float: left;
+			margin-top: 10px;
+			.lifestyle_checkbox_item {
+				float: left;
+				width: 180px;
+				margin-right: 10px;
+			}
+		}	
+	}	
+}

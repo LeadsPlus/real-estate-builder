@@ -1,0 +1,129 @@
+/*
+Syntax error: Undefined variable: "$blue".
+        on line 60 of sass/nav.sass
+
+55:             weight: bold
+56:           text-transform: uppercase
+57:           color: #fff
+58: 
+59:           &:hover
+60:             color: $blue !important
+61:             background: $offwhite
+62:             border-radius: 0px
+63:             -moz-border-radius: 0px
+64: 
+65:       ul
+
+Backtrace:
+sass/nav.sass:60
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/script/variable.rb:50:in `_perform'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/script/node.rb:40:in `perform'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/script/list.rb:69:in `_perform'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/script/list.rb:69:in `map'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/script/list.rb:69:in `_perform'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/script/node.rb:40:in `perform'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:214:in `visit_prop'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `send'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:18:in `visit'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:53:in `map'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:27:in `visit_children'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:39:in `with_environment'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:26:in `visit_children'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:234:in `visit_rule'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `send'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:18:in `visit'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:53:in `map'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:27:in `visit_children'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:39:in `with_environment'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:26:in `visit_children'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:234:in `visit_rule'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `send'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:18:in `visit'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:53:in `map'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:27:in `visit_children'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:39:in `with_environment'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:26:in `visit_children'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:234:in `visit_rule'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `send'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:18:in `visit'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:53:in `map'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:27:in `visit_children'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:39:in `with_environment'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:26:in `visit_children'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:234:in `visit_rule'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `send'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:18:in `visit'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:53:in `map'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:27:in `visit_children'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:39:in `with_environment'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:26:in `visit_children'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:234:in `visit_rule'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `send'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:18:in `visit'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:53:in `map'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:27:in `visit_children'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:39:in `with_environment'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:26:in `visit_children'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:234:in `visit_rule'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `send'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:18:in `visit'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:53:in `map'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:27:in `visit_children'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:39:in `with_environment'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:26:in `visit_children'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:47:in `visit_root'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `send'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/base.rb:37:in `visit'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:18:in `visit'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:7:in `send'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/visitors/perform.rb:7:in `visit'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/tree/root_node.rb:20:in `render'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/engine.rb:300:in `_render'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/engine.rb:247:in `render'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/plugin/compiler.rb:319:in `update_stylesheet'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/plugin/compiler.rb:169:in `update_stylesheets'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/plugin/compiler.rb:167:in `each'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/plugin/compiler.rb:167:in `update_stylesheets'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/plugin/compiler.rb:214:in `watch'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/plugin.rb:111:in `send'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/plugin.rb:111:in `method_missing'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/exec.rb:421:in `watch_or_update'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/exec.rb:302:in `process_result'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/exec.rb:41:in `parse'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/../lib/sass/../sass/exec.rb:21:in `parse!'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/gems/sass-3.1.10/bin/sass:8
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/bin/sass:19:in `load'
+/Users/gvinter/.rvm/gems/ruby-1.8.7-p334/bin/sass:19
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Undefined variable: \"$blue\".\A         on line 60 of sass/nav.sass\A \A 55:             weight: bold\A 56:           text-transform: uppercase\A 57:           color: #fff\A 58: \A 59:           &:hover\A 60:             color: $blue !important\A 61:             background: $offwhite\A 62:             border-radius: 0px\A 63:             -moz-border-radius: 0px\A 64: \A 65:       ul"; }

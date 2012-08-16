@@ -1,0 +1,11 @@
+#plugin-main-nag {
+    text-align:center;
+    color: #444;
+    padding:10px;
+    background-color:#FBF9EA;
+    border: 1px solid #E2E1D5;
+    margin: 0;
+}
+#plugin-main-nag a {
+    color: #0080b0;
+}

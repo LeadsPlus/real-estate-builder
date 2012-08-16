@@ -1,0 +1,109 @@
+/* search */
+/* Mixins */
+.complex-search .pls_search_form {
+  float: left;
+  width: 290px;
+  height: 35px;
+  margin: 10px 20px 0 0; }
+  .complex-search .pls_search_form select {
+    margin-left: 10px;
+    width: 190px; }
+  .complex-search .pls_search_form .chzn-container {
+    float: right; }
+  .complex-search .pls_search_form input {
+    width: 280px; }
+.complex-search #pls_search_form_submit_button {
+  float: right;
+  padding: 10px 30px;
+  margin: 10px 10px 0 0; }
+
+.sort_wrapper {
+  float: left;
+  margin-top: 0px; }
+  .sort_wrapper label {
+    float: left;
+    margin: 12px 10px 0 0; }
+  .sort_wrapper .sort_item {
+    margin-left: 10px;
+    float: right; }
+  .sort_wrapper #sort-by {
+    width: 200px; }
+
+/* Main Content */
+#main_content div.listing-item {
+  padding: 0 0 30px 0; }
+  #main_content div.listing-item .property-details {
+    padding: 0px; }
+  #main_content div.listing-item header p, #main_content div.listing-item footer p {
+    margin: 10px 0 10px 0;
+    color: #111;
+    font-size: 20px;
+    font-weight: 600; }
+    #main_content div.listing-item header p a:hover, #main_content div.listing-item footer p a:hover {
+      color: #1982D1; }
+  #main_content div.listing-item header ul, #main_content div.listing-item footer ul {
+    padding: 0px; }
+    #main_content div.listing-item header ul li, #main_content div.listing-item footer ul li {
+      float: left;
+      list-style-type: none;
+      padding-right: 5px; }
+  #main_content div.listing-item .entry-meta {
+    float: right; }
+    #main_content div.listing-item .entry-meta a {
+      padding: 5px 10px; }
+  #main_content div.listing-item .outline img {
+    border: 1px solid #DBDBDB;
+    padding: 10px;
+    padding: 5px; }
+  #main_content div.listing-item .property-image-gallery {
+    padding-left: 0px; }
+    #main_content div.listing-item .property-image-gallery li {
+      float: left;
+      padding: 5px;
+      margin-right: 10px; }
+  #main_content div.listing-item .details-list-txt ul {
+    padding-left: 0px; }
+    #main_content div.listing-item .details-list-txt ul li {
+      width: 290px;
+      overflow: hidden;
+      float: left;
+      margin-right: 10px; }
+  #main_content div.listing-item .property-bottom-nav {
+    padding: 10px 0px; }
+
+/* default get listings list */
+.listing-item header {
+  padding: 10px 0px; }
+.listing-item .listing-thumbnail {
+  float: left;
+  width: 270px; }
+.listing-item .basic-details {
+  width: 350px;
+  float: left; }
+  .listing-item .basic-details h3 {
+    margin-top: 0px;
+    color: #333;
+    font-weight: normal; }
+  .listing-item .basic-details p {
+    margin: 3px 0px; }
+.listing-item .listing-description {
+  float: left;
+  padding-top: 5px;
+  margin: 0;
+  width: 350px; }
+.listing-item .actions {
+  padding-right: 5px;
+  float: left;
+  margin-top: 10px; }
+  .listing-item .actions a {
+    float: right;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    padding: 10px; }
+  .listing-item .actions a:hover {
+    color: #1982D1; }
+
+#custom section.form_group {
+  float: left;
+  clear: both; }

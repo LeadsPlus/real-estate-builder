@@ -1,0 +1,68 @@
+@import "variables"
+
+// Widgets
+.widget
+  width: 290px
+  float: left
+  padding: 10px
+  margin-bottom: 15px
+  h3
+    margin: 0
+    padding: 10px 0
+  ul
+    list-style-type: none
+  p
+    width: 100%
+    float: left
+
+  &.pls-quick-search
+    form
+      .pls_search_form
+        float: left
+        width: 140px
+        margin-bottom: 10px
+        .chzn-container
+          width: 120px !important
+        .chzn-drop, .chzn-results
+          width: 118px !important
+
+  &.pls-agent
+    img
+      margin: 0 10px 0 5px
+      float: left
+    p
+      width: 160px
+      &.fn, &.email, &.phone, &.desc
+        margin: 0 0 5px 0
+      &.desc
+        line-height: 17px
+    a
+      word-wrap: break-word
+
+  &.pls-recent-posts
+    .recent-post-title
+      margin-bottom: 0
+    .meta
+      margin: 0
+    .excerpt
+      margin: 5px 0
+    .read-more
+      margin-top: 0
+
+  &.pls-listings
+    .listing-item
+      margin-bottom: 20px
+      .listing-item-address
+        margin: 5px 0
+      .details
+        margin-bottom: 5px
+
+  &.pls-map
+    p.address
+      margin-top: 0
+
+  &.widget_calendar
+    table
+      margin: 0 auto
+      td
+        padding: 10px

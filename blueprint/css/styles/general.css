@@ -1,0 +1,29 @@
+.map_wrapper .loading_overlay {
+  background-color: #FFF;
+  opacity: 0.4; }
+  .map_wrapper .loading_overlay div {
+    margin: 100px auto;
+    font-weight: bold;
+    font-size: 16px;
+    width: 150px;
+    text-align: center; }
+.map_wrapper .empty_overlay {
+  background-color: #FFF;
+  opacity: 0.4; }
+.map_wrapper .lifestyle_form_wrapper {
+  margin-top: 10px; }
+  .map_wrapper .lifestyle_form_wrapper .location_wrapper {
+    float: left; }
+    .map_wrapper .lifestyle_form_wrapper .location_wrapper .location_select_wrapper {
+      float: left;
+      margin-right: 10px; }
+    .map_wrapper .lifestyle_form_wrapper .location_wrapper .location_select {
+      float: left;
+      margin-right: 10px; }
+  .map_wrapper .lifestyle_form_wrapper .checkbox_wrapper {
+    float: left;
+    margin-top: 10px; }
+    .map_wrapper .lifestyle_form_wrapper .checkbox_wrapper .lifestyle_checkbox_item {
+      float: left;
+      width: 180px;
+      margin-right: 10px; }
