@@ -203,7 +203,9 @@ class PL_Shortcodes
 			    $val = substr($val, 0, $max_len);
 			    break;
 			case 'image':
-				$val = PLS_Image::load(self::$listing['images'][0]['url'], array('resize' => array('w' => 180, 'h' => 120), 
+				$width = array_key_exists('width', $atts) ? (int)$atts['width'] : 180;
+				$height = array_key_exists('height', $atts) ? (int)$atts['height'] : 120;
+				$val = PLS_Image::load(self::$listing['images'][0]['url'], array('resize' => array('w' => $width, 'h' => $height), 
 																			 	 'fancybox' => true, 
 																				 'as_html' => true, 
 																				 'html' => array('alt' => self::$listing['location']['full_address'], 

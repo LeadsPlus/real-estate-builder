@@ -49,7 +49,7 @@
     float: left;
     padding-bottom: 20px;
     margin: inherit !important;
-    font-family: "Helvetica Neue", Arial, Helvetica, "Nimbus Sans L", sans-serif;
+    font-family: Georgia, "Bitstream Charter", serif;
   }
   .property-details-wrapper * {
     color: #333;
@@ -57,6 +57,7 @@
   .property-details-wrapper h1 {
     font-weight: bold;
     font-size: 21px;
+    font-family: "Helvetica Neue", Arial, Helvetica, "Nimbus Sans L", sans-serif;
     margin-bottom: 20px;
     color: black;
   }
@@ -65,46 +66,47 @@
   }
   .property-details-wrapper h3 {
     font-weight: bold;
+    font-size: 15px;
+    font-family: "Helvetica Neue", Arial, Helvetica, "Nimbus Sans L", sans-serif;
+    margin-bottom: 7px;
   }
   .property-details-wrapper .prop-desc {
-    font-size: 13px;
+    font-size: 14px;
   }
   .property-details-wrapper .prop-desc * {
     clear: both;
+    margin-bottom: 35px;
   }
-  .property-details-wrapper .prop-info h3,ul,li {
-    margin-bottom: 5px;
+  .property-details-wrapper .prop-info {
+    float: left;
+    margin-left: 20px;
+  }
+  .property-details-wrapper .prop-info ul,li {
+    margin-bottom: 7px;
+    font-size: 14px;
   }
   .property-details-wrapper .prop-info li span {
     font-weight: bold;
   }
-  p.p-info {
-    float: left;
-    margin: 0px 20px 10px 0px;
+  /*p.p-info {
+    margin-bottom: 6px;
     padding: 0px;
-    font-size: 11pt; 
+    font-size: 14px; 
   }
   p.p-info span {
-    font-weight: bold; 
-  }
+    font-weight: bold;
+    font-family: "Helvetica Neue", Arial, Helvetica, "Nimbus Sans L", sans-serif;
+  }*/
   .property-details-wrapper .prop-image {
-    margin-bottom: 15px;
+    float: left;
+    margin-bottom: 20px;
   }
 </style>
 
 <div class="property-details-wrapper">
   <h1 class="entry-title">[address] [locality], [region]</h1>
-
-  <div class="prop-image">[image]</div>
-
-  <div>
-    <p class="p-info"><span>Property Type:</span> [listing_type]</p>
-    <p class="p-info"><span>MLS #:</span> [mls_id]</p>
-  </div>
-
-  <div class="prop-desc">
-    <p>[desc]</p>
-  </div>
+  
+  <div class="prop-image">[image width="390" height="260"]</div>
 
   <div class="prop-info">
       <h3>Basic Details</h3>
@@ -114,9 +116,15 @@
           <li>Half Bath(s): <span>[half_baths]</span></li>
           <li>Price: <span>[price]</span></li>
           <li>Square Feet: <span>[sqft]</span></li>
+          <!-- <li>Type: <span>[listing_type]</span></li> -->
+          <li>MLS #: <span>[mls_id]</span></li>
       </ul>
   </div>
-
+  
+  <div class="prop-desc">
+    <p>[desc]</p>
+  </div>
+  
   <div class="map-wrapper">
       <h3>Property Map</h3>
       <div class="map">
