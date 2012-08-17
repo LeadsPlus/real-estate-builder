@@ -13,9 +13,9 @@ class PL_Shortcodes
 	public static $p_codes = array('searchform' => 'Search Form Shortcode', 'listings' => 'Listings Shortcode', 'prop_details' => 'Property Details Template');
 	
 	// TODO: Construct these lists dynamically by examining the doc hierarchy...
-	public static $defaults = array('searchform' 	=> array('twentyeleven'),
-	  				                'prop_details' 	=> array('twentyeleven'),
-			               			'listings' 		=> array('twentyeleven') );
+	public static $defaults = array('searchform' 	=> array('twentyten', 'twentyeleven'),
+	  				                'prop_details' 	=> array('twentyten', 'twentyeleven'),
+			               			'listings' 		=> array('twentyten', 'twentyeleven') );
 
 	public static $subcodes = array('searchform'  =>  array('bedrooms',
 												            'min_beds',

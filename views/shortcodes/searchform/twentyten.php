@@ -2,11 +2,13 @@
   #full-search {
     margin-bottom: 30px;
     /*padding: 10px;*/
-    width: 615px;
+    /*width: 450px;*/
+    /*background: -webkit-gradient(linear, left top, left bottom, from(#e7e7e7), to(#e4e4e4));
+    background: -moz-linear-gradient(top, #e7e7e7, #e4e4e4);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e7e7e7', endColorstr='#e4e4e4');*/
+    /*border: 1px dotted #d8d8d8;*/
     float: left;
     font-family: "Helvetica Neue", Arial, Helvetica, "Nimbus Sans L", sans-serif;
-  }
-  #full-search h3 {
   }
   #full-search .select-grp {
     /*float: left;*/
@@ -39,15 +41,13 @@
     
   }
   .search_results {
-    font-size: 14px; 
+    font-size: 15px; 
     font-weight: bold; 
     float: right; 
     font-family: "Helvetica Neue";
     padding-right: 20px;
   }
-  .entry-content {
-    width: 72% !important;
-  }
+  
   /* Styles that we need to override... */
   #content tr.odd td {
     background: white !important;
@@ -68,15 +68,10 @@
     float: left;
     padding-right: 15px;
   }
-  /*#secondary {
-    display: none;
-  }*/
 </style>
 
 <section id="full-search">
   <!-- <div> -->
-    <h3>Search Listing</h3>
-    	
     <div class="form-grp">
       <h6>Location</h6>
     	<div class="select-grp">

@@ -2,8 +2,7 @@
   section.lu {
     margin-bottom: 0px;
     padding: 0px;
-    font-family: "Helvetica Neue", Arial, Helvetica, "Nimbus Sans L", sans-serif;
-    font-weight: 300;
+    font-family: Georgia, "Bitstream Charter", serif;
   }
   div.lu-left {
     float: left;
@@ -12,7 +11,7 @@
     /*border: 1px solid #999999;*/
   }
   div.lu-right {
-    width: 350px;
+    width: 360px;
     margin-left: 15px;
     float: left;
   }
@@ -20,7 +19,8 @@
     margin: 0px 0px 6px 0px;
     padding: 0px;
     font-size: 18px;
-    font-weight: bold;
+    font-weight: bold; 
+    font-family: "Helvetica Neue", Arial, Helvetica, "Nimbus Sans L", sans-serif;
   }
   #content div.head_add h4 a {
     color: black;
@@ -52,7 +52,7 @@
     padding: 0px;
     font-size: 14px;
     line-height: 17px;
-    max-height: 52px;
+    max-height: 50px;
     clear: both;
     overflow: hidden;
   }
@@ -73,7 +73,7 @@
   }
   #content div.lu-right ul li span {
     color: black;
-    font-weight: 300;
+    font-weight: normal;
   }
   #content div.lu-right .details {
     font-size: 15px;
@@ -114,10 +114,6 @@
   }
   #placester_listings_list {
     margin: 0px -1px 0px 0px !important;
-  }
-  #placester_listings_list_length{
-    clear: both;
-    padding-top: 15px;
   }
 </style>
 

@@ -41,41 +41,50 @@
   }
   .map_wrapper .lifestyle_form_wrapper .checkbox_wrapper .lifestyle_checkbox_item {
     float: left;
-    width: 185px;
+    width: 180px;
     margin-right: 10px; 
   }
+  .entry-content input {
+    margin: 0px !important;
+  }
+  .entry-title, .entry-meta {
+    display: none !important;
+  }
+  .entry-utility {
+    visibility: hidden;
+  }
   .property-details {
-    float: none;
+    float: left;
   }
   .property-details-wrapper {
     width: 600px;
     padding-bottom: 20px;
-    margin-bottom: 30px; !important;
-    margin: 0 auto;
-    font-family: "Helvetica Neue", Arial, Helvetica, "Nimbus Sans L", sans-serif;
+    margin: inherit !important;
+    font-family: Georgia, "Bitstream Charter", serif;
   }
   .property-details-wrapper * {
     color: #333;
   }
-  #content .property-details-wrapper h1 {
-    color: black;
-    font-size: 28px;
+  #content .property-details-wrapper .prop-title {
     font-weight: bold;
-    line-height: 48px;
+    font-size: 21px;
+    font-family: "Helvetica Neue", Arial, Helvetica, "Nimbus Sans L", sans-serif;
     margin-bottom: 20px;
+    color: black;
   }
   .property-details-wrapper > div {
     margin-bottom: 24px;
   }
-  .property-details-wrapper h3 {
+  #content .property-details-wrapper h3 {
     font-weight: bold;
-    font-size: 16px;
-    margin-bottom: 3px;
+    font-size: 15px;
+    font-family: "Helvetica Neue", Arial, Helvetica, "Nimbus Sans L", sans-serif;
+    margin-bottom: 7px;
   }
   .property-details-wrapper .prop-desc {
-    font-size: 15px;
+    font-size: 14px;
   }
-  .property-details-wrapper .prop-desc * {
+  #content .property-details-wrapper .prop-desc * {
     clear: both;
     margin-bottom: 35px;
   }
@@ -85,50 +94,40 @@
   }
   .property-details-wrapper .prop-info ul li {
     margin-bottom: 7px;
-    font-size: 15px;
+    font-size: 14px;
   }
   .property-details-wrapper .prop-info li span {
     font-weight: bold;
   }
   .property-details-wrapper .prop-image {
     float: left;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
-  .property-bottom-nav {
+  /*.property-bottom-nav {
     padding-top: 25px;
     margin-bottom: 30px !important;
+    font-family: 'Helvetica Neue', Arial, Helvetica, 'Nimbus Sans L', sans-serif;
     font-size: 12px;
+    color: #888;
     clear: both;
   }
   .property-bottom-nav .prev {
     float: left;
-    padding-left: 20%;
   }
   .property-bottom-nav .next {
     float: right;
-    padding-right: 20%;
   }
   .property-bottom-nav a {
     text-decoration: none;
-    font-weight: bold;
-    color: #1982D1;
+    color: #888;
   }
   .property-bottom-nav a:hover, a:active {
-    text-decoration: underline;
-  }
-  .entry-title {
-    display: none;
-  }
-  .entry-meta {
-    visibility: hidden;
-  }
-  /*#secondary {
-    display: none;
+    color: #FF4B33;
   }*/
 </style>
 
 <div class="property-details-wrapper">
-  <h1>[address] [locality], [region]</h1>
+  <h1 class="prop-title">[address] [locality], [region]</h1>
   
   <div class="prop-image">[image width="390" height="260"]</div>
 
