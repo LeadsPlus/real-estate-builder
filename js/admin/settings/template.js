@@ -64,6 +64,15 @@ $(document).ready(function($) {
       	//alert(data.shortcode + ' points to: ' + response.activated_snippet_id);
       }
     },'json');
+
+    // Reflect change in "Activate" button + hidden field...
+    var act_btn = container.find('.activate_snippet');
+    var act_hidden = container.find('.active_snippet');
+
+    act_btn.val('Activated');
+    act_btn.attr('disabled', 'disabled');
+    act_btn.css('font-weight', 'normal');
+    act_hidden.val(data.snippet);
   });
 
 	$('.save_snippet').live('click', function() {
