@@ -153,6 +153,7 @@ $(document).ready(function($) {
   $('.snippet_list').live('change', function() {
     var container = $(this).parents('.shortcode_container');
     var shortcode = container.find('.shortcode').val();
+    var active_snippet = container.find('.active_snippet').val();
 
     // Alert to save if a customizable template is in edit mode...
     if (container.find('.area_snippet').css('display') != 'none' && prev_opt_class && prev_opt_class !== 'default')
@@ -168,9 +169,25 @@ $(document).ready(function($) {
     var is_default = $(this).find('option:selected').hasClass('default');
     container.find('.edit_snippet').val( is_default ? 'View' : 'Edit' );
 
-    container.find('.area_snippet textarea').val('');
-    container.find('.area_snippet .new_snippet_name').css('display', 'none');
-    container.find('.area_snippet').css('display', 'none');
+    // Handle "Activate" button...
+    var act_btn = container.find('.activate_snippet');
+    if ( $(this).val() == active_snippet ) 
+    {
+      act_btn.val('Activated');
+      act_btn.attr('disabled', 'disabled');
+      act_btn.css('font-weight', 'normal');
+    }
+    else 
+    {
+      act_btn.val('Activate');
+      act_btn.removeAttr('disabled');
+      act_btn.css('font-weight', 'bold');
+    }
+    
+    var snip = container.find('.area_snippet');
+    snip.find('textarea').val('');
+    snip.find('.new_snippet_name').css('display', 'none');
+    snip.css('display', 'none');
   });
 
   $('.area_snippet').live('click', function() {

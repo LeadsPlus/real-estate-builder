@@ -68,6 +68,7 @@
 	  <div class="shortcode_container">
 	  	  <h2><?php echo $name ?></h2>
 	  	  <input type="hidden" class="shortcode" value="<?php echo $code ?>" />
+        <input type="hidden" class="active_snippet" value="<?php echo $pl_active_snippets[$code] ?>" />
         <div class="s-note">
           <?php if ($code != 'prop_details'): ?>
             Use this by placing <span class="s-code">[<?php echo $code ?>]</span> into any Post or Page
@@ -97,7 +98,7 @@
           </select>
   		    <div style="float: right">
       			<input type="button" class="button-secondary edit_snippet" value="<?php echo $pl_snippet_list[$code][$pl_active_snippets[$code]] == 'default' ? 'View' : 'Edit' ?>" />
-      			<input type="button" class="button-secondary activate_snippet" value="Activate" />
+      			<input type="button" class="button-secondary activate_snippet" value="Activated" disabled="disabled" />
     			</div>
   		  </section>
   	  	
