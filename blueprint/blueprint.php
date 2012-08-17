@@ -181,8 +181,7 @@ class Placester_Blueprint {
         switch (self::$boot_from)
         {
             case 'plugin':
-              error_log(plugin_dir_url(), 0);
-              $blueprint_url = trailingslashit( plugin_dir_url(null) ) . 'placester';
+              $blueprint_url = trailingslashit( plugins_url() ) . 'placester';
               break;
             
             case 'theme':
