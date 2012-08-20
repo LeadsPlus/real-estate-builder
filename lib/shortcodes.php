@@ -47,7 +47,7 @@ class PL_Shortcodes
             												'beds',
             												'baths',
             												'half_baths',
-            												//'avail_on',
+            												'avail_on',
             												'url',
             												'address',
             												'locality',
@@ -66,7 +66,8 @@ class PL_Shortcodes
             												'mls_id',
             												'map',
             												'listing_type',
-            												'gallery')
+            												'gallery',
+            												'amenities')
             						);
 
 	// TODO: These are a temporary solution, come up with a better convention...
@@ -246,6 +247,22 @@ class PL_Shortcodes
 				break;
 			case 'listing_type':
 				$val = PLS_Format::translate_property_type(self::$listing);
+				break;
+			case 'amenities':
+				$amenities = PLS_Format::amenities_but(&self::$listing, array('half_baths', 'beds', 'baths', 'url', 'sqft', 'avail_on', 'price', 'desc'));
+				$amen_type = array_key_exists('type', $atts) ? (string)$atts['type'] : 'list';
+				ob_start();
+				?>
+					<div class="amenities-section grid_8 alpha">
+	                    <ul>
+	                    <?php PLS_Format::translate_amenities(&$amenities[$amen_type]); ?>
+	                      <?php foreach ($amenities[$amen_type] as $amenity => $value): ?>
+	                        <li><span><?php echo $amenity; ?></span> <?php echo $value ?></li>
+	                      <?php endforeach ?>
+	                    </ul>
+	                </div>
+				<?php 
+				$val = ob_get_clean();
 				break;
 			default:
 		}
