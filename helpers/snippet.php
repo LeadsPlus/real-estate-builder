@@ -6,7 +6,7 @@ PL_Snippet_Helper::init();
 
 class PL_Snippet_Helper {
 
-	public static $allowable_tags = "<a><p><script><div><span><section><label><br><h1><h2><h3><h4><h5><h6><scr'+'ipt>";
+	public static $allowable_tags = "<a><p><script><div><span><section><label><br><h1><h2><h3><h4><h5><h6><scr'+'ipt><style>";
 
 	// Static?  Why or why not?
 	public function init() 

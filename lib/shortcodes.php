@@ -1,8 +1,11 @@
 <?php
 
 /****** 
-	I need to figure out how to hook this into the WP execution framework properly
-	so the rest of the plugin & WP can actually utilize these... 
+	This class defines the shortcodes that can be used to access blueprint 
+	functionality from any page or post.
+
+	It handles both the implementation of each code in addition to hooking 
+	them into the proper events and filters.
 ******/
 
 PL_Shortcodes::init();
@@ -62,7 +65,8 @@ class PL_Shortcodes
             												'image',
             												'mls_id',
             												'map',
-            												'listing_type')
+            												'listing_type',
+            												'gallery')
             						);
 
 	// TODO: These are a temporary solution, come up with a better convention...
@@ -205,13 +209,33 @@ class PL_Shortcodes
 			case 'image':
 				$width = array_key_exists('width', $atts) ? (int)$atts['width'] : 180;
 				$height = array_key_exists('height', $atts) ? (int)$atts['height'] : 120;
-				$val = PLS_Image::load(self::$listing['images'][0]['url'], array('resize' => array('w' => $width, 'h' => $height), 
-																			 	 'fancybox' => true, 
-																				 'as_html' => true, 
-																				 'html' => array('alt' => self::$listing['location']['full_address'], 
-																				 		         'itemprop' => 'image')));
+				$val = PLS_Image::load(self::$listing['images'][0]['url'], 
+									   array('resize' => array('w' => $width, 'h' => $height), 
+									   'fancybox' => true, 
+									   'as_html' => true, 
+									   'html' => array('alt' => self::$listing['location']['full_address'], 
+													   'itemprop' => 'image')));
 				break;
-
+			case 'gallery':
+				ob_start();
+				?>
+					<div id="slideshow" class="clearfix theme-default left bottomborder">
+						<div class="grid_8 alpha">
+							<ul class="property-image-gallery grid_8 alpha">
+								<?php foreach (self::$listing['images'] as $image): ?>
+									<li><?php echo PLS_Image::load($image['url'], 
+										                           array('resize' => array('w' => 100, 'h' => 75), 
+																   'fancybox' => true, 
+																   'as_html' => false, 
+																   'html' => array('itemprop' => 'image'))); ?>
+									</li>
+								<?php endforeach ?>
+							</ul>
+						</div>
+					</div>
+				<?php
+				$val = ob_get_clean();
+				break;
 			case 'map':
 				$val = PLS_Map::lifestyle(self::$listing, array('width' => 590, 'height' => 250, 'zoom' => 16, 'life_style_search' => true,
 																'show_lifestyle_controls' => true, 'show_lifestyle_checkboxes' => true, 
