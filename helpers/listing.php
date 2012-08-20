@@ -11,6 +11,7 @@ class PL_Listing_Helper {
 		add_action('wp_ajax_add_temp_image', array(__CLASS__, 'add_temp_image' ) );
 		add_action('wp_ajax_filter_options', array(__CLASS__, 'filter_options' ) );
 		add_action('wp_ajax_delete_listing', array(__CLASS__, 'delete_listing_ajax' ) );
+		add_action('the_content', array(__CLASS__, 'refresh_listing'), 1);
 	}
 	
 	public function results($args = array()) {
@@ -308,7 +309,7 @@ class PL_Listing_Helper {
 
 	public function get_listing_attributes() {
 		$options = array();
-		$attributes = PL_Config::bundler('PL_API_LISTINGS', array('get', 'args'), array('listing_types','property_type.sublet','property_type.res_sale','property_type.res_rental','property_type.vac_rental','property_type.comm_sale','property_type.comm_rental', 'zoning_types', 'purchase_types', array('location' => array('region', 'locality', 'postal', 'neighborhood', 'county'))));
+		$attributes = PL_Config::bundler('PL_API_LISTINGS', array('get', 'args'), array('listing_types','property_type.sublet','property_type.res_sale','property_type.res_rental','property_type.vac_rental','property_type.comm_sale','property_type.comm_rental', 'zoning_types', 'purchase_types', 'agency_only', 'non_import', array('location' => array('region', 'locality', 'postal', 'neighborhood', 'county'))));
 		foreach ($attributes as $key => $attribute) {
 			if ( isset($attribute['label']) ) {
 				$options['basic'][$key] = $attribute['label'];
@@ -598,6 +599,20 @@ class PL_Listing_Helper {
 			"ZW" => "Zimbabwe (ZW)");
 	}
 
+	public static function refresh_listing($the_content) {
+
+		$listing_details = unserialize($the_content);
+
+		// Update listing data from the API
+		$args = array('listing_ids' => array($listing_details['id']), 'address_mode' => 'exact');
+		$response = PL_Listing::get($args);
+		// Should only be one listing returned, but loop just in case...
+		foreach($response['listings'] as $key => $listing) {
+			PL_Pages::manage_listing($listing);
+		}
+
+		return $the_content;
+	}
 
 //end of class
 }
