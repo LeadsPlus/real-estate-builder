@@ -9,6 +9,7 @@ class PL_Pages {
 		add_action('init', array(__CLASS__, 'create_taxonomies'));
 		add_action('wp_footer', array(__CLASS__,'force_rewrite_update'));
 		add_action('admin_footer', array(__CLASS__,'force_rewrite_update'));
+		add_action( '404_template', array( __CLASS__, 'dump_permalinks'  ));
 	}
 
 	//return many page urls
@@ -27,8 +28,8 @@ class PL_Pages {
 	    if (isset($row->ID)) {
 	        $post_id = $row->ID;
 	        $cache[$placester_id] = $post_id;
-	    }
-    	return $post_id;
+	        return $post_id;
+	    }    	
 	}
 
 	//create listing page
@@ -147,6 +148,11 @@ class PL_Pages {
 				self::delete_all();
 			}
 		}
+	}
+
+	public function dump_permalinks () {
+		global $wp_rewrite;
+		$wp_rewrite->flush_rules();
 	}
 
 }
