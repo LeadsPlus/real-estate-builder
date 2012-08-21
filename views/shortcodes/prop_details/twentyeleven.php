@@ -77,7 +77,8 @@
   }
   .property-details-wrapper .prop-desc * {
     clear: both;
-    margin-bottom: 35px;
+    padding-top: 20px;
+    margin-bottom: 30px;
   }
   .property-details-wrapper .prop-info {
     float: left;
@@ -122,9 +123,42 @@
   .entry-meta {
     visibility: hidden;
   }
-  /*#secondary {
-    display: none;
-  }*/
+  #slideshow ul.property-image-gallery {
+    list-style-type: none;
+    padding-left: 0px;
+    margin: 0px;
+    clear: both;
+  }
+  #slideshow ul.property-image-gallery li {
+    float: left;
+    margin-right: 12px; 
+  }
+  #content .amenities-section ul {
+    /*padding-left: 12px;*/
+    margin: 0px;
+    /*min-height: 50px;*/
+    min-width: 600px;
+    list-style-type: none; 
+  }
+  #content .amenities-section ul li {
+    padding: 10px 0px 10px 9px;
+    width: 190px;
+    height: 27px;
+    float: left;
+    overflow: hidden;
+    font-size: 12.5px;
+    line-height: 18px;
+  }
+  .amenities-section ul li span {
+    font-weight: bold;
+    padding-right: 3px;
+  }
+  .pad-top {
+    padding-top: 15px;
+  }
+  .compliance-wrapper {
+    font-size: 12px;
+  }
 </style>
 
 <div class="property-details-wrapper">
@@ -144,15 +178,39 @@
           <li>MLS #: <span>[mls_id]</span></li>
       </ul>
   </div>
+
+  <div>
+    [gallery]
+  </div>
   
   <div class="prop-desc">
     <p>[desc]</p>
   </div>
+
+  <div>
+    <h3>Property Amenities</h3>
+    [amenities type="list"]
+  </div>
   
+  <div>
+    <h3 class="pad-top">Neighborhood Amenities</h3>
+    [amenities type="ngb"]
+  </div>
+
+  <div>
+    <h3 class="pad-top">Other Amenities</h3>
+    [amenities type="uncur"]
+  </div>
+
   <div class="map-wrapper">
-      <h3>Property Map</h3>
+      <h3>Neighborhood</h3>
       <div class="map">
         [map]
       </div>
+  </div>
+
+  <div>
+    <h3 class="pad-top">Compliance</h3>
+    [compliance]
   </div>
 </div>

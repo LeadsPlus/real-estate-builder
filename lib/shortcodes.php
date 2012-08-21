@@ -67,7 +67,8 @@ class PL_Shortcodes
             												'map',
             												'listing_type',
             												'gallery',
-            												'amenities')
+            												'amenities',
+            												'compliance')
             						);
 
 	// TODO: These are a temporary solution, come up with a better convention...
@@ -226,9 +227,9 @@ class PL_Shortcodes
 								<?php foreach (self::$listing['images'] as $image): ?>
 									<li><?php echo PLS_Image::load($image['url'], 
 										                           array('resize' => array('w' => 100, 'h' => 75), 
-																   'fancybox' => true, 
-																   'as_html' => false, 
-																   'html' => array('itemprop' => 'image'))); ?>
+																   		 'fancybox' => true, 
+																   		 'as_html' => false, 
+																   		 'html' => array('itemprop' => 'image'))); ?>
 									</li>
 								<?php endforeach ?>
 							</ul>
@@ -264,6 +265,14 @@ class PL_Shortcodes
 				<?php 
 				$val = ob_get_clean();
 				break;
+			  case 'compliance':
+			  	ob_start();
+			  	PLS_Listing_Helper::get_compliance(array('context' => 'listings', 
+	  												     'agent_name' => self::$listing['rets']['aname'] , 
+	  												     'office_name' => self::$listing['rets']['oname'], 
+	  												     'office_phone' => PLS_Format::phone(self::$listing['contact']['phone'])));
+			  	$val = ob_get_clean();
+			  	break;
 			default:
 		}
 		
