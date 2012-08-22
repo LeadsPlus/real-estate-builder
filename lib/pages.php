@@ -39,7 +39,7 @@ class PL_Pages {
 		$page_details['type'] = self::$property_post_type;
 		$page_details['title'] = $api_listing['location']['address'];
 		$page_details['name'] = $api_listing['id'];
-		$page_details['content'] = serialize($api_listing);
+		$page_details['content'] = '';
 		$page_details['taxonomies'] = array(
 										'zip' => $api_listing['location']['postal'], 
 										'city' => $api_listing['location']['locality'],
@@ -51,6 +51,7 @@ class PL_Pages {
 										'half-baths' => (string) $api_listing['cur_data']['half_baths'],
 										'mlsid' => (string) $api_listing['rets']['mls_id']
 									);
+		$page_details['post_meta'] = array('listing_data' => serialize($api_listing));
 		// pls_dump($page_details['taxonomies']);
 		return self::manage($page_details);
 	}
@@ -144,7 +145,8 @@ class PL_Pages {
 				update_option('pl_plugin_version', PL_PLUGIN_VERSION);
 				global $wp_rewrite;
 				$wp_rewrite->flush_rules();
-				PL_HTTP::clear_cache();
+				PL_Cache::invalidate();
+				// PL_HTTP::clear_cache();
 				self::delete_all();
 			}
 		}

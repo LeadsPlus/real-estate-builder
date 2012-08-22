@@ -11,7 +11,6 @@ class PL_Listing_Helper {
 		add_action('wp_ajax_add_temp_image', array(__CLASS__, 'add_temp_image' ) );
 		add_action('wp_ajax_filter_options', array(__CLASS__, 'filter_options' ) );
 		add_action('wp_ajax_delete_listing', array(__CLASS__, 'delete_listing_ajax' ) );
-		add_action('the_content', array(__CLASS__, 'refresh_listing'), 1);
 	}
 	
 	public function results($args = array()) {
@@ -599,24 +598,26 @@ class PL_Listing_Helper {
 			"ZW" => "Zimbabwe (ZW)");
 	}
 
-	public static function refresh_listing($the_content) {
-
+	public static function get_listing_in_loop () {
 		global $post;
-		if ($post->post_type !== 'property' ) {
-			return $the_content;
+		$cache = new PL_Cache('dets');
+        if ($transient = $cache->get($post)) {
+            return $transient;
+        }
+		$serialized_listing_data = get_post_meta($post->ID, 'listing_data', true);
+		$listing_data = unserialize($serialized_listing_data);
+
+		if (!$listing_data) {
+		  	// Update listing data from the API
+			$args = array('listing_ids' => array($post->post_name), 'address_mode' => 'exact');
+			$response = PL_Listing::get($args);
+			if ( !empty($response['listings']) ) {
+				$listing_data = $response['listings'][0];
+			}
 		}
 
-		$listing_details = unserialize($the_content);
-
-		// Update listing data from the API
-		$args = array('listing_ids' => array($listing_details['id']), 'address_mode' => 'exact');
-		$response = PL_Listing::get($args);
-		// Should only be one listing returned, but loop just in case...
-		foreach($response['listings'] as $key => $listing) {
-			PL_Pages::manage_listing($listing);
-		}
-
-		return $the_content;
+		$cache->save($listing_data);
+		return $listing_data;		
 	}
 
 //end of class
