@@ -17,6 +17,6 @@
 			<a class="button-secondary" id="set_default_country" >Set Default</a>		
 			<div id="default_country_message"></div>
 		</div>
-		<p>Setting the default country will change the default option in the country selector everywhere in the plguin. This is most convenient when creating a website with listings in a specific country.</p>
+		<p>Setting the default country will change the default option in the country selector everywhere in the plugin. This is most convenient when creating a website with listings in a specific country.</p>
 	</div>
 </div>

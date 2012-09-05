@@ -34,7 +34,11 @@ class PL_Membership {
     }
 
     public function ajax_add_favorite_property () {
-        if ($_POST['property_id']) {
+        // Check to see if user is an admin (at this point, we know the user is logged in...)
+        if (current_user_can('manage_options')) {
+            echo json_encode(array('is_admin' => true));
+        }
+        else if ($_POST['property_id']) {
             $api_response = PL_People_Helper::associate_property($_POST['property_id']);
             echo json_encode($api_response);   
         } else {
@@ -543,14 +547,13 @@ class PL_Membership {
         } else {
             $is_favorite = '';
         }
-
         ob_start();
         ?>
             <div id="pl_add_remove_lead_favorites">
                 <?php if (is_user_logged_in()): ?>
                     <a href="<?php echo "#" . $property_id ?>" id="pl_add_favorite" class="pl_prop_fav_link" <?php echo $is_favorite ? "style='display:none;'" : "" ?> ><?php echo $add_text ?></a>
                 <?php else: ?>
-                    <a id="pl_register_lead_favorites_link" href="#pl_lead_register_form"><?php echo $add_text ?></a>
+                    <a class="pl_register_lead_favorites_link" href="#pl_lead_register_form"><?php echo $add_text ?></a>
                 <?php endif ?>
                 <a href="<?php echo "#" . $property_id ?>" id="pl_remove_favorite" class="pl_prop_fav_link" <?php echo !$is_favorite ? "style='display:none;'" : "" ?> ><?php echo $remove_text ?></a>
                 <img class="pl_spinner" src="<?php echo $spinner ?>" alt="ajax-spinner" style="display:none; margin-left: 5px;">

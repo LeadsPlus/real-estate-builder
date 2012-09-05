@@ -72,7 +72,7 @@
 				</div>
 			</form>
 		<?php else: ?>
-			<h2>This plugin is not set up! Click anywhere to start</h2>
+			<h2 style="clear: both">This plugin is not set up! Click anywhere to start</h2>
 			<form action="">
 				<div id="" class="meta-box-sortables ui-sortable">
 					<div id="div" class="postbox ">

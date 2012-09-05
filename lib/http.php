@@ -68,9 +68,11 @@ Class PL_HTTP {
 			default:
 				$cache = new PL_Cache('http');
 				if ($allow_cache && $transient = $cache->get($url . $request_string)) {
+					// error_log('Cached!!!!!:  ' . $url . $request_string);
 					return $transient;
 				} else {
 	        		// pls_dump($url . '?' . $request_string);
+	        		// error_log($url . '?' . $request_string);
 	            	$response = wp_remote_get($url . '?' . $request_string, array('timeout' => self::$timeout));
 					PL_Debug::add_msg('------- NO CACHE FOUND --------');    	    		
 	        		PL_Debug::add_msg($url . '?' . $request_string);    	

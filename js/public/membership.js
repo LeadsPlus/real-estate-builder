@@ -58,16 +58,16 @@ jQuery(document).ready(function($) {
     });
 
     $(document).ajaxStop(function() { 
-      favorites_link_signup();
+            favorites_link_signup();
     });
 
     favorites_link_signup();
 
     function favorites_link_signup () {
-      $("#pl_register_lead_favorites_link").fancybox({
+        $('.pl_register_lead_favorites_link').fancybox({
           'hideOnContentClick': false,
           'scrolling' : true
-      });
+        }); 
     }
     
     function login_user (username, password) {

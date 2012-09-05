@@ -3,7 +3,10 @@
 PL_Taxonomy_Helper::init();
 class PL_Taxonomy_Helper {
 
+	// List of taxonomies used to build a search UI
 	static $location_taxonomies = array('state' => 'State', 'zip' => 'Zip', 'city' => 'City', 'neighborhood' => 'Neighborhood');
+	// List of taxonomies used to bulid URLs, etc.
+	static $all_loc_taxonomies = array('state', 'zip', 'city', 'neighborhood', 'street');
 
 	function init () {
 		add_action('init', array(__CLASS__, 'register_taxonomies'));
@@ -13,7 +16,13 @@ class PL_Taxonomy_Helper {
 		add_action('wp_ajax_delete_polygon', array(__CLASS__, 'delete_polygon'));
 		add_action('wp_ajax_get_polygons_datatable', array(__CLASS__, 'get_polygons_datatable'));
 		add_action('wp_ajax_get_polygon', array(__CLASS__, 'get_polygon'));
+		
 		add_action('wp_ajax_get_polygons_by_type', array(__CLASS__, 'ajax_get_polygons_by_type'));
+		add_action('wp_ajax_nopriv_get_polygons_by_type', array(__CLASS__, 'ajax_get_polygons_by_type'));
+
+		add_action('wp_ajax_get_polygons_by_slug', array(__CLASS__, 'ajax_get_polygons_by_slug'));
+		add_action('wp_ajax_nopriv_get_polygons_by_slug', array(__CLASS__, 'ajax_get_polygons_by_slug'));
+
 		add_action('wp_ajax_nopriv_lifestyle_polygon', array(__CLASS__, 'lifestyle_polygon'));
 		add_action('wp_ajax_lifestyle_polygon', array(__CLASS__, 'lifestyle_polygon'));
 		add_action('wp_ajax_polygon_listings', array(__CLASS__, 'ajax_polygon_listings'));
@@ -34,10 +43,10 @@ class PL_Taxonomy_Helper {
 	}
 
 	function ajax_polygon_listings () {
-		if (isset($_POST['vertices'])) {
-			$vertices = $_POST['vertices'];
-			if (!empty($vertices)) {
-				$api_listings = self::polygon_listings($vertices, $_POST);
+		if (isset($_POST['polygon'])) {
+			$polygon = $_POST['polygon'];
+			if (!empty($polygon)) {
+				$api_listings = self::polygon_listings($polygon, $_POST);
 				$response = $api_listings['listings'];
 				echo json_encode($response);
 			}
@@ -62,9 +71,9 @@ class PL_Taxonomy_Helper {
 		}
 	}
 
-	function polygon_listings ($vertices, $additional_params = array()) {
+	function polygon_listings ($polygon, $additional_params = array()) {
 		$request = '';
-		foreach ($vertices as $key => $point) {
+		foreach ($polygon as $key => $point) {
 			$request .= 'polygon['.$key. '][0]=' . $point['lat'] .'&';
 			$request .= 'polygon['.$key .'][1]=' . $point['lng'] .'&';
 		}
@@ -201,8 +210,12 @@ class PL_Taxonomy_Helper {
 		return $response;
 	}
 
+	function ajax_get_polygons_by_slug () {
+		echo json_encode(self::get_polygons_by_slug($_POST['slug']));
+		die();
+	}
+
 	function get_polygons_by_slug ($slug = false) {
-		
 		$response = array();
 		$polygons = PL_Option_Helper::get_polygons();
 		foreach ($polygons as $key => $polygon) {
@@ -296,6 +309,35 @@ class PL_Taxonomy_Helper {
 		// pls_dump($response);
 	}
 
+	/**
+	 * Retrieves all terms for an object & caches them for subsequent requests.
+	 * @param int $obj_id Object ID (post ID)
+	 * @param string $taxonomy name of the taxonomy to return
+	 * @param string $default Value returned if no matching taxonomy found
+	 * @return string
+	 */
+	private function get_obj_term($obj_id, $taxonomy, $default) {
+		
+		static $cache = array();
+
+		if(isset($cache[$obj_id])) {
+			$terms_for_obj = $cache[$obj_id];
+		}
+		else {
+			$terms_for_obj = wp_get_object_terms($obj_id, self::$all_loc_taxonomies);
+			$cache[$obj_id] = $terms_for_obj;
+		}
+
+		foreach($terms_for_obj as $term) {
+			if($term->taxonomy == $taxonomy) {
+				return $term->slug;
+			}
+		}
+
+		// Not found
+		return $default;
+	}
+
 	function get_property_permalink ($permalink, $post_id, $leavename) {
 		$post = get_post($post_id);
 		$state = '';
@@ -305,50 +347,24 @@ class PL_Taxonomy_Helper {
         $rewritecode = array('%state%','%city%','%zip%','%neighborhood%','%street%', $leavename ? '' : '%postname%', $leavename ? '' : '%pagename%', $leavename ? '' : '%pagename%');
         
         if ( !empty($permalink) && $post->post_type == 'property' && !in_array($post->post_status, array('draft', 'pending', 'auto-draft')) ) {
-        
             if (strpos($permalink, '%state%')) {
-            	$terms = wp_get_object_terms($post->ID, 'state');  
-            	if (!is_wp_error($terms) && !empty($terms) && is_object($terms[0])) {
-            		$state = $terms[0]->slug;	
-            	} else {
-            		$state = 'unassigned-state';
-            	}
+            	$state = self::get_obj_term($post->ID, 'state', 'unassigned-state');
             }
 
             if (strpos($permalink, '%zip%')) {
-            	$terms = wp_get_object_terms($post->ID, 'zip');  
-            	if (!is_wp_error($terms) && !empty($terms) && is_object($terms[0])) {
-            		$zip = $terms[0]->slug;	
-            	} else {
-            		$zip = 'unassigned-zip';
-            	}
+            	$zip = self::get_obj_term($post->ID, 'zip', 'unassigned-zip');
             }
 
 	        if (strpos($permalink, '%city%')){
-	            $terms = wp_get_object_terms($post->ID, 'city');  
-	            if (!is_wp_error($terms) && !empty($terms) && is_object($terms[0])) {
-	            	$city = $terms[0]->slug;	
-	            } else {
-	            	$city = 'unassigned-city';
-	            } 
+            	$city = self::get_obj_term($post->ID, 'city', 'unassigned-city');
 	        } 
 
 	        if (strpos($permalink, '%neighborhood%')){
-	            $terms = wp_get_object_terms($post->ID, 'neighborhood');  
-	            if (!is_wp_error($terms) && !empty($terms) && is_object($terms[0])) {
-	            	$neighborhood = $terms[0]->slug;	
-	            } else {
-	            	$neighborhood = 'unassigned-neighborhood';
-	            } 
+	        	$neighborhood = self::get_obj_term($post->ID, 'neighborhood', 'unassigned-neighborhood');
 	        } 
 
 	        if (strpos($permalink, '%street%')){
-	            $terms = wp_get_object_terms($post->ID, 'street');  
-	            if (!is_wp_error($terms) && !empty($terms) && is_object($terms[0])) {
-	            	$street = $terms[0]->slug;	
-	            } else {
-	            	$street = 'unassigned-street';
-	            } 
+	        	$street = self::get_obj_term($post->ID, 'street', 'unassigned-street');
 	        }           
 
 	        $rewritereplace = array( $state, $city, $zip, $neighborhood, $street, $post->post_name, $post->post_name, $post->post_name, $post->post_name, $post->post_name);

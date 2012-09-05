@@ -21,6 +21,13 @@ class PL_Listing_Helper {
 		}
 		//respect global filters
 		$global_filters = PL_Helper_User::get_global_filters();
+	    if (is_array($global_filters)) {
+	  		foreach ($global_filters as $attribute => $value) {
+	  			if (strpos($attribute, 'property_type') !== false ) {
+	  				$args['property_type'] = is_array($value) ? implode('', $value) : $value;
+	  			}
+	  		}
+	    }
 		$args = wp_parse_args($global_filters, $args);
 
 		//respect block address setting
@@ -301,7 +308,7 @@ class PL_Listing_Helper {
 
 	public function get_listing_attributes() {
 		$options = array();
-		$attributes = PL_Config::bundler('PL_API_LISTINGS', array('get', 'args'), array('listing_types','property_type.sublet','property_type.res_sale','property_type.res_rental','property_type.vac_rental','property_type.comm_sale','property_type.comm_rental', 'zoning_types', 'purchase_types', array('location' => array('region', 'locality', 'postal', 'neighborhood', 'county'))));
+		$attributes = PL_Config::bundler('PL_API_LISTINGS', array('get', 'args'), array('listing_types','property_type.sublet','property_type.res_sale','property_type.res_rental','property_type.vac_rental','property_type.comm_sale','property_type.comm_rental', 'zoning_types', 'purchase_types', 'agency_only', 'non_import', array('location' => array('region', 'locality', 'postal', 'neighborhood', 'county'))));
 		foreach ($attributes as $key => $attribute) {
 			if ( isset($attribute['label']) ) {
 				$options['basic'][$key] = $attribute['label'];
@@ -591,6 +598,27 @@ class PL_Listing_Helper {
 			"ZW" => "Zimbabwe (ZW)");
 	}
 
+	public static function get_listing_in_loop () {
+		global $post;
+		$cache = new PL_Cache('dets');
+        if ($transient = $cache->get($post)) {
+            return $transient;
+        }
+		$serialized_listing_data = get_post_meta($post->ID, 'listing_data', true);
+		$listing_data = unserialize($serialized_listing_data);
+
+		if (!$listing_data) {
+		  	// Update listing data from the API
+			$args = array('listing_ids' => array($post->post_name), 'address_mode' => 'exact');
+			$response = PL_Listing::get($args);
+			if ( !empty($response['listings']) ) {
+				$listing_data = $response['listings'][0];
+			}
+		}
+
+		$cache->save($listing_data);
+		return $listing_data;		
+	}
 
 //end of class
 }

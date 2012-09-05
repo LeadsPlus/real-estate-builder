@@ -9,6 +9,7 @@ class PL_Pages {
 		add_action('init', array(__CLASS__, 'create_taxonomies'));
 		add_action('wp_footer', array(__CLASS__,'force_rewrite_update'));
 		add_action('admin_footer', array(__CLASS__,'force_rewrite_update'));
+		add_action( '404_template', array( __CLASS__, 'dump_permalinks'  ));
 	}
 
 	//return many page urls
@@ -23,12 +24,12 @@ class PL_Pages {
 	function details ($placester_id) {
 		global $wpdb;
 		$sql = $wpdb->prepare('SELECT ID, post_modified ' . 'FROM ' . $wpdb->prefix . 'posts ' . "WHERE post_type = '" . self::$property_post_type . "' AND post_name = %s " .'LIMIT 0, 1', $placester_id);
-	    $row = $wpdb->get_row($sql);
-	    $post_id = 0;
-	    if ($row) {
+	    $row = $wpdb->get_row($sql, OBJECT, 0);
+	    if (isset($row->ID)) {
 	        $post_id = $row->ID;
-	    }
-    	return $post_id;
+	        $cache[$placester_id] = $post_id;
+	        return $post_id;
+	    }    	
 	}
 
 	//create listing page
@@ -38,7 +39,7 @@ class PL_Pages {
 		$page_details['type'] = self::$property_post_type;
 		$page_details['title'] = $api_listing['location']['address'];
 		$page_details['name'] = $api_listing['id'];
-		$page_details['content'] = serialize($api_listing);
+		$page_details['content'] = '';
 		$page_details['taxonomies'] = array(
 										'zip' => $api_listing['location']['postal'], 
 										'city' => $api_listing['location']['locality'],
@@ -50,6 +51,7 @@ class PL_Pages {
 										'half-baths' => (string) $api_listing['cur_data']['half_baths'],
 										'mlsid' => (string) $api_listing['rets']['mls_id']
 									);
+		$page_details['post_meta'] = array('listing_data' => serialize($api_listing));
 		// pls_dump($page_details['taxonomies']);
 		return self::manage($page_details);
 	}
@@ -143,10 +145,16 @@ class PL_Pages {
 				update_option('pl_plugin_version', PL_PLUGIN_VERSION);
 				global $wp_rewrite;
 				$wp_rewrite->flush_rules();
-				PL_HTTP::clear_cache();
+				PL_Cache::invalidate();
+				// PL_HTTP::clear_cache();
 				self::delete_all();
 			}
 		}
+	}
+
+	public function dump_permalinks () {
+		global $wp_rewrite;
+		$wp_rewrite->flush_rules();
 	}
 
 }
