@@ -27,7 +27,7 @@ Author URI: https://www.placester.com/
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-echo 'LOL';
+echo 'test';
 
 define('PL_PLUGIN_VERSION','1.0.6');
 
