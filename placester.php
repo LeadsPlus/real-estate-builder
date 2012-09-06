@@ -27,8 +27,6 @@ Author URI: https://www.placester.com/
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-echo 'test';
-
 define('PL_PLUGIN_VERSION','1.0.6');
 
 define( 'PL_PARENT_DIR', dirname(__FILE__) );
